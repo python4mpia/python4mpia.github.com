@@ -1,0 +1,464 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Control flow statements &mdash;  0.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title=" 0.1.0 documentation" href="../index.html" />
+ 
+<script type="text/javascript"> 
+$(document).ready(function(){
+
+$(".flip0").click(function(){
+    $(".panel0").slideToggle("normal");
+  });
+
+$(".flip1").click(function(){
+    $(".panel1").slideToggle("normal");
+  });
+
+$(".flip2").click(function(){
+    $(".panel2").slideToggle("normal");
+  });
+
+$(".flip3").click(function(){
+    $(".panel3").slideToggle("normal");
+  });
+
+$(".flip4").click(function(){
+    $(".panel4").slideToggle("normal");
+  });
+
+$(".flip5").click(function(){
+    $(".panel5").slideToggle("normal");
+  });
+
+$(".flip6").click(function(){
+    $(".panel6").slideToggle("normal");
+  });
+
+$(".flip7").click(function(){
+    $(".panel7").slideToggle("normal");
+  });
+
+$(".flip8").click(function(){
+    $(".panel8").slideToggle("normal");
+  });
+
+$(".flip9").click(function(){
+    $(".panel9").slideToggle("normal");
+  });
+
+});
+</script>
+ 
+<style type="text/css"> 
+
+div.panel0,p.flip0
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip0
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel0
+{
+display:none;
+}
+
+div.panel1,p.flip1
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip1
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel1
+{
+display:none;
+}
+
+div.panel2,p.flip2
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip2
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel2
+{
+display:none;
+}
+
+div.panel3,p.flip3
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip3
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel3
+{
+display:none;
+}
+
+div.panel4,p.flip4
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip4
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel4
+{
+display:none;
+}
+
+div.panel5,p.flip5
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip5
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel5
+{
+display:none;
+}
+
+div.panel6,p.flip6
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip6
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel6
+{
+display:none;
+}
+
+div.panel7,p.flip7
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip7
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel7
+{
+display:none;
+}
+
+div.panel8,p.flip8
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip8
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel8
+{
+display:none;
+}
+
+div.panel9,p.flip9
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip9
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel9
+{
+display:none;
+}
+
+</style>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-18709417-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Control flow statements</a><ul>
+<li><a class="reference internal" href="#if-statements"><tt class="docutils literal"><span class="pre">if</span></tt> statements</a></li>
+<li><a class="reference internal" href="#for-loops"><tt class="docutils literal"><span class="pre">for</span></tt> loops</a></li>
+<li><a class="reference internal" href="#while-loops"><tt class="docutils literal"><span class="pre">while</span></tt> loops</a></li>
+</ul>
+</li>
+</ul>
+
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/pure_python/control_flow.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="control-flow-statements">
+<h1>Control flow statements<a class="headerlink" href="#control-flow-statements" title="Permalink to this headline">¶</a></h1>
+<p>Setting and modifying variables will only get you so far before you need to
+use control flow statements such as if statements, or loops. This section
+describes a few of the most basic control flow statements that you will need
+to get started.</p>
+<div class="section" id="if-statements">
+<h2><tt class="docutils literal"><span class="pre">if</span></tt> statements<a class="headerlink" href="#if-statements" title="Permalink to this headline">¶</a></h2>
+<p>The basic syntax for an if-statement is the following:</p>
+<div class="highlight-python"><pre>if condition:
+    # do something
+elif condition:
+    # do something else
+else:
+    # do yet something else</pre>
+</div>
+<p>Notice that there is no statement to end the if statement. Notice also the
+presence of a colon (<tt class="docutils literal"><span class="pre">:</span></tt>) after each control flow statement. Python relies
+on indentation and colons to determine whether it is in a specific block of
+code. For example, in the following example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">if</span> <span class="n">a</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&quot;a is 1, changing to 2&quot;</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="k">print</span> <span class="s">&quot;finished&quot;</span>
+</pre></div>
+</div>
+<p>The first print statement, and the <tt class="docutils literal"><span class="pre">a</span> <span class="pre">=</span> <span class="pre">2</span></tt> statement only get executed if
+<tt class="docutils literal"><span class="pre">a</span></tt> is 1. On the other hand, <tt class="docutils literal"><span class="pre">print</span> <span class="pre">&quot;finished&quot;</span></tt> gets executed regardless,
+once Python exits the if statement. Indentation is very important in Python,
+and the convention is to use four spaces (not tabs) for each level of indent.</p>
+<p>Back to the if-statements, the conditions in the statements can be anything
+that returns a boolean value. For example, <tt class="docutils literal"><span class="pre">a</span> <span class="pre">==</span> <span class="pre">1</span></tt>, <tt class="docutils literal"><span class="pre">b</span> <span class="pre">!=</span> <span class="pre">4</span></tt>, and <tt class="docutils literal"><span class="pre">c</span> <span class="pre">&lt;=</span>
+<span class="pre">5</span></tt> are valid conditions because they return either <tt class="docutils literal"><span class="pre">True</span></tt> or <tt class="docutils literal"><span class="pre">False</span></tt>
+depending on whether the statements are true or not. Standard comparisons can
+be used (<tt class="docutils literal"><span class="pre">==</span></tt> for equal, <tt class="docutils literal"><span class="pre">!=</span></tt> for not equal, <tt class="docutils literal"><span class="pre">&lt;=</span></tt> for less or equal,
+<tt class="docutils literal"><span class="pre">&gt;=</span></tt> for greater or equal, <tt class="docutils literal"><span class="pre">&lt;</span></tt> for less than, and <tt class="docutils literal"><span class="pre">&gt;</span></tt> for greater than),
+as well as logical operators (<tt class="docutils literal"><span class="pre">and</span></tt>, <tt class="docutils literal"><span class="pre">or</span></tt>, <tt class="docutils literal"><span class="pre">not</span></tt>). Parentheses can be
+used to isolate different parts of conditions, to make clear in what order the
+comparisons should be executed, for example:</p>
+<div class="highlight-python"><pre>if (a == 1 and b &lt;= 3) or c &gt; 3:
+    # do something</pre>
+</div>
+<p>More generally, any function or expression that ultimately returns <tt class="docutils literal"><span class="pre">True</span></tt> or
+<tt class="docutils literal"><span class="pre">False</span></tt> can be used.</p>
+</div>
+<div class="section" id="for-loops">
+<h2><tt class="docutils literal"><span class="pre">for</span></tt> loops<a class="headerlink" href="#for-loops" title="Permalink to this headline">¶</a></h2>
+<p>The most common type of loop is the <tt class="docutils literal"><span class="pre">for</span></tt> loop. In its most basic form, it
+is straightforward:</p>
+<div class="highlight-python"><pre>for value in iterable:
+    # do things</pre>
+</div>
+<p>The <em>iterable</em> can be any Python object that can be iterated over. This
+includes lists, tuples, dictionaries, strings. Try the following in IPython:</p>
+<div class="highlight-python"><pre>In [1]: for x in [3, 1.2, 'a']:
+   ...:     print x
+   ...:
+3
+1.2
+'a'</pre>
+</div>
+<p>Note that by putting the colon at the end of the first line, IPython automatically knows to indent the next line, so you don&#8217;t need to indent it yourself. After typing the <tt class="docutils literal"><span class="pre">print</span></tt> statement, you need to press enter twice to tell IPython you are finished writing code.</p>
+<p>A common type of for loop is one where the value should go between two integers with a specific set size. To do this, we can use the <tt class="docutils literal"><span class="pre">range</span></tt> function. If given a single value, it will give a list ranging from 0 to the value minus 1:</p>
+<div class="highlight-python"><pre>In [2]: range(10)
+Out[2]: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</pre>
+</div>
+<p>If given two values, these will be the starting value, and one plus the ending value:</p>
+<div class="highlight-python"><pre>In [3]: range(3, 12)
+Out[3]: [3, 4, 5, 6, 7, 8, 9, 10, 11]</pre>
+</div>
+<p>Finally, if a third number is specified, this is taken to be the step size:</p>
+<div class="highlight-python"><pre>In [4]: range(2, 20, 2)
+Out[4]: [2, 4, 6, 8, 10, 12, 14, 16, 18]</pre>
+</div>
+<p>The <tt class="docutils literal"><span class="pre">range</span></tt> function can be used as the iterable in a <tt class="docutils literal"><span class="pre">for</span></tt> loop:</p>
+<div class="highlight-python"><pre>In [5]: for x in range(10):
+   ...:     print x
+   ...:
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9</pre>
+</div>
+</div>
+<div class="section" id="while-loops">
+<h2><tt class="docutils literal"><span class="pre">while</span></tt> loops<a class="headerlink" href="#while-loops" title="Permalink to this headline">¶</a></h2>
+<p>Similarly to other programming languages, Python also provides a <tt class="docutils literal"><span class="pre">while</span></tt> loop which is similar to a <tt class="docutils literal"><span class="pre">for</span></tt> loop, but where the number of iterations is defined by a condition rather than an iterator:</p>
+<div class="highlight-python"><pre>while condition:
+    # do something</pre>
+</div>
+<p>For example, in the following example:</p>
+<div class="highlight-python"><pre>In [3]: a = 0
+
+In [4]: while a &lt; 10:
+   ...:        print a
+   ...:        a += 1.231
+   ...:
+0
+1.231
+2.462
+3.693
+4.924
+6.155
+7.386
+8.617
+9.848</pre>
+</div>
+<p>the loop is executed until <tt class="docutils literal"><span class="pre">a</span></tt> is equal to or exceeds 10:</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+ <small>Copyright:
+ Smithsonian Astrophysical Observatory under terms of
+ <a rel="license"
+ href="http://creativecommons.org/licenses/by/3.0/">CC
+ Attribution 3.0</a></small> <a rel="license"
+ href="http://creativecommons.org/licenses/by/3.0/"><img alt="Creative Commons
+ License" style="border-width:0"
+ src="http://i.creativecommons.org/l/by/3.0/80x15.png" /></a>
+
+  </body>
+</html>

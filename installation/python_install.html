@@ -1,0 +1,446 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Installing a scientific Python distribution &mdash;  0.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title=" 0.1.0 documentation" href="../index.html" />
+    <link rel="up" title="Python Installation and Understanding Packages" href="installation.html" />
+    <link rel="next" title="Modules, Packages, and all that" href="packages.html" />
+    <link rel="prev" title="Python Installation and Understanding Packages" href="installation.html" />
+ 
+<script type="text/javascript"> 
+$(document).ready(function(){
+
+$(".flip0").click(function(){
+    $(".panel0").slideToggle("normal");
+  });
+
+$(".flip1").click(function(){
+    $(".panel1").slideToggle("normal");
+  });
+
+$(".flip2").click(function(){
+    $(".panel2").slideToggle("normal");
+  });
+
+$(".flip3").click(function(){
+    $(".panel3").slideToggle("normal");
+  });
+
+$(".flip4").click(function(){
+    $(".panel4").slideToggle("normal");
+  });
+
+$(".flip5").click(function(){
+    $(".panel5").slideToggle("normal");
+  });
+
+$(".flip6").click(function(){
+    $(".panel6").slideToggle("normal");
+  });
+
+$(".flip7").click(function(){
+    $(".panel7").slideToggle("normal");
+  });
+
+$(".flip8").click(function(){
+    $(".panel8").slideToggle("normal");
+  });
+
+$(".flip9").click(function(){
+    $(".panel9").slideToggle("normal");
+  });
+
+});
+</script>
+ 
+<style type="text/css"> 
+
+div.panel0,p.flip0
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip0
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel0
+{
+display:none;
+}
+
+div.panel1,p.flip1
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip1
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel1
+{
+display:none;
+}
+
+div.panel2,p.flip2
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip2
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel2
+{
+display:none;
+}
+
+div.panel3,p.flip3
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip3
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel3
+{
+display:none;
+}
+
+div.panel4,p.flip4
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip4
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel4
+{
+display:none;
+}
+
+div.panel5,p.flip5
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip5
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel5
+{
+display:none;
+}
+
+div.panel6,p.flip6
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip6
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel6
+{
+display:none;
+}
+
+div.panel7,p.flip7
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip7
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel7
+{
+display:none;
+}
+
+div.panel8,p.flip8
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip8
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel8
+{
+display:none;
+}
+
+div.panel9,p.flip9
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip9
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel9
+{
+display:none;
+}
+
+</style>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-18709417-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="packages.html" title="Modules, Packages, and all that"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="installation.html" title="Python Installation and Understanding Packages"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li>
+          <li><a href="installation.html" accesskey="U">Python Installation and Understanding Packages</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Installing a scientific Python distribution</a><ul>
+<li><a class="reference internal" href="#installation-python-and-the-core-scientific-packages">Installation Python and the Core Scientific packages</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="installation.html"
+                        title="previous chapter">Python Installation and Understanding Packages</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="packages.html"
+                        title="next chapter">Modules, Packages, and all that</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/installation/python_install.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="installing-a-scientific-python-distribution">
+<span id="installing-scientific-python"></span><h1>Installing a scientific Python distribution<a class="headerlink" href="#installing-a-scientific-python-distribution" title="Permalink to this headline">¶</a></h1>
+<p>In order to run the examples to be presented in the workshops, your
+Python installation will need to meet the
+<a class="reference internal" href="requirements.html#python-pkg-requirements"><em>Python requirements</em></a>.  Unless you are confident with (and
+enjoy) tracking down compiler errors and other issues related to
+package incompatibilities, we strongly recommend using a pre-built
+binary Python distribution.  For MacOS in particular there are a whole
+slew of options for Python which don&#8217;t play well together.  Even if
+you already have an installation on your system you will probably save
+time in the long run by starting fresh with a binary Python
+distribution.</p>
+<p>For Windows, MacOS and linux non-root installation, <strong>the easiest
+option</strong> is to use the <a class="reference external" href="http://www.enthought.com/products/epd_free.php">Free Enthought Python Distribution</a>
+(EPDFree). <a class="reference external" href="http://www.enthought.com">Enthought</a> sponsors much of
+the development for <a class="reference external" href="http://numpy.scipy.org/">NumPy</a> and <a class="reference external" href="http://scipy.org/">SciPy</a>. EPDFree is a bundled binary
+distribution of Python including a set of useful packages. For the
+Python for Astronomers workshop series held at the Harvard Center for
+Astrophysics in 2011, over 50 astronomers successfully installed and
+used EPD on a variety of platforms (including Windows).</p>
+<p><strong>Alternatives to EPDFree</strong></p>
+<p>If you have a Linux distribution and have root access to your
+computer, you can instead install the necessary packages using your
+default package manager (for example, <tt class="docutils literal"><span class="pre">apt-get</span></tt> or the Software
+Centre on Ubuntu, or <tt class="docutils literal"><span class="pre">yum</span></tt> on Fedora).  Alternatively, if you are
+using a Mac you can install the necessary packages using
+Macports. This is one way to get a 64-bit Python installation on a
+Mac, which isn&#8217;t available with EPDFree.  But if you&#8217;re not sure which
+installation method to use it&#8217;s simplest to follow the instructions
+below to install EPDFree.</p>
+<div class="section" id="installation-python-and-the-core-scientific-packages">
+<h2>Installation Python and the Core Scientific packages<a class="headerlink" href="#installation-python-and-the-core-scientific-packages" title="Permalink to this headline">¶</a></h2>
+<p>Follow the relevant link below for detailed instructions on how to
+install Python and all the required packages using either EPDFree,
+your Linux package manager, or MacPorts:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="EPDFree.html">EPD Free (Linux, MacOS and Windows)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linux.html">Linux Package Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="macports.html">MacPorts</a></li>
+</ul>
+</div>
+<div class="section" id="test-your-installation">
+<h3>Test your installation<a class="headerlink" href="#test-your-installation" title="Permalink to this headline">¶</a></h3>
+<p>To do a very basic test whether you meet the requirements and have a
+functioning core scientific Python installation, do the following and
+check version numbers:</p>
+<div class="highlight-python"><pre>% python -V
+% ipython -V
+% ipython -pylab
+import numpy
+import scipy
+import scipy.linalg
+
+print numpy.__version__
+print scipy.__version__
+print matplotlib.__version__
+
+x = numpy.linspace(0, 20, 100)
+plot(x, sin(x))
+print scipy.linalg.eig([[1,2],[3,4]])</pre>
+</div>
+<p>The commands above should succeed with no errors.  The version numbers
+should meet the requirements, and finally you should see a plot of a
+sine wave.</p>
+<p>To check the other required packages, do the following from within
+ipython:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">asciitable</span>
+<span class="kn">import</span> <span class="nn">pyfits</span>
+<span class="kn">import</span> <span class="nn">pywcs</span>
+<span class="kn">import</span> <span class="nn">atpy</span>
+<span class="kn">import</span> <span class="nn">aplpy</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="packages.html" title="Modules, Packages, and all that"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="installation.html" title="Python Installation and Understanding Packages"
+             >previous</a> |</li>
+        <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li>
+          <li><a href="installation.html" >Python Installation and Understanding Packages</a> &raquo;</li> 
+      </ul>
+    </div>
+ <small>Copyright:
+ Smithsonian Astrophysical Observatory under terms of
+ <a rel="license"
+ href="http://creativecommons.org/licenses/by/3.0/">CC
+ Attribution 3.0</a></small> <a rel="license"
+ href="http://creativecommons.org/licenses/by/3.0/"><img alt="Creative Commons
+ License" style="border-width:0"
+ src="http://i.creativecommons.org/l/by/3.0/80x15.png" /></a>
+
+  </body>
+</html>
