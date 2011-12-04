@@ -26,6 +26,9 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title=" 0.1.0 documentation" href="../index.html" />
+    <link rel="up" title="Installing a scientific Python distribution" href="python_install.html" />
+    <link rel="next" title="Linux Package Manager" href="linux.html" />
+    <link rel="prev" title="Installing a scientific Python distribution" href="python_install.html" />
  
 <script type="text/javascript"> 
 $(document).ready(function(){
@@ -278,7 +281,15 @@ display:none;
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
-        <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li> 
+        <li class="right" >
+          <a href="linux.html" title="Linux Package Manager"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="python_install.html" title="Installing a scientific Python distribution"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li>
+          <li><a href="installation.html" >Python Installation and Understanding Packages</a> &raquo;</li>
+          <li><a href="python_install.html" accesskey="U">Installing a scientific Python distribution</a> &raquo;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar">
@@ -286,33 +297,35 @@ display:none;
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">EPD Free (Linux, MacOS and Windows)</a><ul>
-<li><a class="reference internal" href="#download-epd">Download EPD</a></li>
+<li><a class="reference internal" href="#all-platforms-download-epd">All Platforms: Download EPD</a></li>
 <li><a class="reference internal" href="#linux">Linux</a><ul>
 <li><a class="reference internal" href="#quick-installation-check">Quick installation check</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#windows">Windows</a><ul>
+<li><a class="reference internal" href="#macos">MacOS</a><ul>
 <li><a class="reference internal" href="#id3">Quick installation check</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#macos">MacOS</a><ul>
-<li><a class="reference internal" href="#id5">Quick installation check</a><ul>
-<li><a class="reference internal" href="#step-1">Step 1</a></li>
-<li><a class="reference internal" href="#step-2">Step 2</a></li>
-<li><a class="reference internal" href="#step-3">Step 3</a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#windows">Windows</a><ul>
+<li><a class="reference internal" href="#id5">Quick installation check</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#install-additional-packages">Install additional packages</a><ul>
-<li><a class="reference internal" href="#macos-and-linux">MacOS and Linux</a></li>
-<li><a class="reference internal" href="#id7">Windows</a></li>
+<li><a class="reference internal" href="#id7">Linux</a></li>
+<li><a class="reference internal" href="#id8">MacOS</a></li>
+<li><a class="reference internal" href="#id9">Windows</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="python_install.html"
+                        title="previous chapter">Installing a scientific Python distribution</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="linux.html"
+                        title="next chapter">Linux Package Manager</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="../_sources/installation/EPDFree.txt"
@@ -344,8 +357,8 @@ display:none;
 <p>These instructions tell you how to install all the Python packages
 necessary for the course on either Linux, MacOS, or Windows using the
 Free Enthought Python Distribution.</p>
-<div class="section" id="download-epd">
-<h2>Download EPD<a class="headerlink" href="#download-epd" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="all-platforms-download-epd">
+<h2>All Platforms: Download EPD<a class="headerlink" href="#all-platforms-download-epd" title="Permalink to this headline">¶</a></h2>
 <p>To download EPD go to the <a class="reference external" href="http://enthought.com/products/epd_free.php">EPDFree download</a> page. If you are
 running a Linux distribution, you need to establish whether your
 computer has a 32-bit or 64-bit processor and download the relevant
@@ -384,12 +397,30 @@ path. Now skip down to <a class="reference internal" href="#install-additional-p
 the remaining packages needed for the course.</p>
 </div>
 </div>
-<div class="section" id="windows">
-<span id="id2"></span><h2>Windows<a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h2>
-<p>Double click on the the .msi file, and choose to install for All
-Users.</p>
+<div class="section" id="macos">
+<span id="id2"></span><h2>MacOS<a class="headerlink" href="#macos" title="Permalink to this headline">¶</a></h2>
+<p>Open the EPD disk image then double-click on <tt class="docutils literal"><span class="pre">EPD.mpkg</span></tt> and follow
+the prompts to install. Choose all the defaults for installing (in
+particular use the default installation location).</p>
 <div class="section" id="id3">
 <h3>Quick installation check<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>Open a new terminal window and type:</p>
+<div class="highlight-python"><pre>which ipython</pre>
+</div>
+<p>You should see something like:</p>
+<blockquote>
+<div>/Library/Frameworks/EPD32.framework/Versions/Current/bin/ipython</div></blockquote>
+<p>If everything has gone smoothly, skip down to
+<a class="reference internal" href="#install-additional-packages"><em>Install additional packages</em></a> to install the remaining packages
+needed for the course.</p>
+</div>
+</div>
+<div class="section" id="windows">
+<span id="id4"></span><h2>Windows<a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h2>
+<p>Double click on the the .msi file, and choose to install for All
+Users.</p>
+<div class="section" id="id5">
+<h3>Quick installation check<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
 <p>Run the PyLab application from the Start menu, or from the command
 prompt enter:</p>
 <div class="highlight-python"><pre>C:\Python27\Scripts\ipython.exe -pylab</pre>
@@ -400,54 +431,6 @@ prompt enter:</p>
 </div>
 <p>Now skip down to <a class="reference internal" href="#install-additional-packages"><em>Install additional packages</em></a> to install the
 remaining packages needed for the course.</p>
-</div>
-</div>
-<div class="section" id="macos">
-<span id="id4"></span><h2>MacOS<a class="headerlink" href="#macos" title="Permalink to this headline">¶</a></h2>
-<p>Assuming that you have downloaded the EPD disk image, open it, then
-double-click on <tt class="docutils literal"><span class="pre">EPD.mpkg</span></tt> and follow the prompts to install. Choose
-all the defaults for installing (in particular use the default
-installation location).</p>
-<div class="section" id="id5">
-<h3>Quick installation check<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
-<p>Open a new terminal window and type:</p>
-<div class="highlight-python"><pre>which ipython</pre>
-</div>
-<p>You should see something like:</p>
-<blockquote>
-<div>/Library/Frameworks/EPD32.framework/Versions/Current/bin/ipython</div></blockquote>
-<p>If everything has gone smoothly, skip down to
-<a class="reference internal" href="#install-additional-packages"><em>Install additional packages</em></a> to install the remaining packages
-needed for the course.</p>
-<p>If EPD installed successfully and you can start <tt class="docutils literal"><span class="pre">python</span></tt> but not
-<tt class="docutils literal"><span class="pre">ipython</span></tt> (error message like <tt class="docutils literal"><span class="pre">ipython:</span> <span class="pre">command</span> <span class="pre">not</span> <span class="pre">found</span></tt>) then
-there is likely a problem with your PATH. To fix this, try following
-these steps:</p>
-<div class="section" id="step-1">
-<h4>Step 1<a class="headerlink" href="#step-1" title="Permalink to this headline">¶</a></h4>
-<p>Are you sure you opened a new terminal window after the installation finished?</p>
-</div>
-<div class="section" id="step-2">
-<h4>Step 2<a class="headerlink" href="#step-2" title="Permalink to this headline">¶</a></h4>
-<p>Try this in a new terminal window:</p>
-<div class="highlight-python"><pre>echo $PATH</pre>
-</div>
-<p>If you do not see something like
-<tt class="docutils literal"><span class="pre">/Library/Frameworks/EPD32.framework/Versions/Current/bin</span></tt> in your path then go
-to step 3.</p>
-</div>
-<div class="section" id="step-3">
-<h4>Step 3<a class="headerlink" href="#step-3" title="Permalink to this headline">¶</a></h4>
-<p>Determine if you are running csh/tcsh or bash by entering the command <tt class="docutils literal"><span class="pre">ps</span></tt> in a terminal window.
-For <tt class="docutils literal"><span class="pre">csh</span></tt> or <tt class="docutils literal"><span class="pre">tcsh</span></tt> you should edit the file <tt class="docutils literal"><span class="pre">~/.cshrc</span></tt> and add the following lines at the end:</p>
-<div class="highlight-python"><pre># Setting PATH for Enthough Python Distribution
-set path=(/Library/Frameworks/EPD32.framework/Versions/Current/bin $path)</pre>
-</div>
-<p>For <tt class="docutils literal"><span class="pre">bash</span></tt> you should edit the file <tt class="docutils literal"><span class="pre">~/.bash_profile</span></tt> and add the following lines at the end:</p>
-<div class="highlight-python"><pre># Setting PATH for Enthough Python Distribution
-export PATH=/Library/Frameworks/EPD32.framework/Versions/Current/bin:$PATH</pre>
-</div>
-</div>
 </div>
 </div>
 <div class="section" id="install-additional-packages">
@@ -464,8 +447,8 @@ users had problems.  Since then a patch has been released, but it is
 still known to fail for 32-bit Windows XP.  This package is required
 to make images with <tt class="docutils literal"><span class="pre">APLpy</span></tt> and do WCS coordinate transformations,
 but otherwise it is not absolutely needed.</p>
-<div class="section" id="macos-and-linux">
-<h3>MacOS and Linux<a class="headerlink" href="#macos-and-linux" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id7">
+<h3>Linux<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-python"><pre>easy_install --upgrade pip
 pip install --upgrade distribute
 pip install asciitable
@@ -478,9 +461,26 @@ pip install pyparsing
 pip install http://stsdas.stsci.edu/astrolib/vo-0.6.tar.gz
 pip install http://stsdas.stsci.edu/astrolib/coords-0.37.tar.gz</pre>
 </div>
+<p>Now <a class="reference internal" href="python_install.html#test-your-installation"><em>Test your installation</em></a>.</p>
 </div>
-<div class="section" id="id7">
-<h3>Windows<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id8">
+<h3>MacOS<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><pre>sudo easy_install --upgrade pip
+sudo pip install --upgrade distribute
+pip install --user asciitable
+pip install --user pyfits
+pip install --user pywcs
+pip install --user atpy
+pip install --user aplpy
+pip install --user pyregion
+pip install --user pyparsing
+pip install --user http://stsdas.stsci.edu/astrolib/vo-0.6.tar.gz
+pip install --user http://stsdas.stsci.edu/astrolib/coords-0.37.tar.gz</pre>
+</div>
+<p>Now <a class="reference internal" href="python_install.html#test-your-installation"><em>Test your installation</em></a>.</p>
+</div>
+<div class="section" id="id9">
+<h3>Windows<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
 <p>For Windows XP 32-bit the following are known to have problems: pywcs,
 pyregion, and coords.</p>
 <div class="highlight-python"><pre>cd C:\Python27\Scripts
@@ -496,6 +496,7 @@ pip.exe install pyparsing
 pip.exe install http://stsdas.stsci.edu/astrolib/vo-0.6.tar.gz
 pip.exe install http://stsdas.stsci.edu/astrolib/coords-0.37.tar.gz</pre>
 </div>
+<p>Now <a class="reference internal" href="python_install.html#test-your-installation"><em>Test your installation</em></a>.</p>
 <div class="admonition-what-is-pip-and-easy-install-and-distribute-and-setuptools admonition">
 <p class="first admonition-title">What is pip and easy_install and distribute and setuptools?</p>
 <p>Things can appear very confusing if you start installing packages
@@ -530,7 +531,15 @@ installer.</p>
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              >index</a></li>
-        <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li> 
+        <li class="right" >
+          <a href="linux.html" title="Linux Package Manager"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="python_install.html" title="Installing a scientific Python distribution"
+             >previous</a> |</li>
+        <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li>
+          <li><a href="installation.html" >Python Installation and Understanding Packages</a> &raquo;</li>
+          <li><a href="python_install.html" >Installing a scientific Python distribution</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
