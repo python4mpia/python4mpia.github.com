@@ -377,11 +377,15 @@ run the installation script. For example:</p>
 <div class="highlight-python"><pre>bash epd_free-7-1-2-rh5-x86.sh</pre>
 </div>
 <p>Next you need to edit the appropriate shell startup file
-(e.g. <tt class="docutils literal"><span class="pre">~/.cshrc</span></tt> or <tt class="docutils literal"><span class="pre">~/.bash_profile</span></tt>) and update your path to
+(e.g. <tt class="docutils literal"><span class="pre">~/.cshrc</span></tt>, <tt class="docutils literal"><span class="pre">~/.bash_profile</span></tt>) and update your path to
 include the EPD path.  For instance if you specified to install EPD in
 <tt class="docutils literal"><span class="pre">/home/me/epd7.1</span></tt> then the following will work:</p>
 <div class="highlight-python"><pre>export PATH=/home/me/epd7.1/bin:$PATH  # bash
 set path=(/home/me/epd7.1/bin $path)   # csh or tcsh</pre>
+</div>
+<p>Finally run the shell startup file with:</p>
+<div class="highlight-python"><pre>source ~/.bash_profile    # bash
+source ~/.cshrc           # csh or tcsh</pre>
 </div>
 <div class="section" id="quick-installation-check">
 <h3>Quick installation check<a class="headerlink" href="#quick-installation-check" title="Permalink to this headline">¶</a></h3>
@@ -401,6 +405,10 @@ the remaining packages needed for the course.</p>
 <p>Open the EPD disk image then double-click on <tt class="docutils literal"><span class="pre">EPD.mpkg</span></tt> and follow
 the prompts to install. Choose all the defaults for installing (in
 particular use the default installation location).</p>
+<p>Finally run the shell startup file, which the EPD installer has
+edited:</p>
+<div class="highlight-python"><pre>source ~/.profile</pre>
+</div>
 <div class="section" id="id3">
 <h3>Quick installation check<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <p>Open a new terminal window and type:</p>
@@ -464,6 +472,12 @@ pip install http://stsdas.stsci.edu/astrolib/coords-0.37.tar.gz</pre>
 </div>
 <div class="section" id="id8">
 <h3>MacOS<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<p>First ensure that XCode version 3 or 4 is installed. To check if XCode
+is installed properly, type <tt class="docutils literal"><span class="pre">gcc</span></tt> on the command-line. If you get
+<tt class="docutils literal"><span class="pre">gcc:</span> <span class="pre">command</span> <span class="pre">not</span> <span class="pre">found</span></tt>, then XCode is not properly installed. To
+install either download it <a class="reference external" href="http://itunes.apple.com/us/app/xcode/id448457090?mt=12">here</a>, or it
+should also be on the install DVDs for your Mac.</p>
+<p>Once XCode is installed, run the following commands:</p>
 <div class="highlight-python"><pre>sudo easy_install --upgrade pip
 sudo pip install --upgrade distribute
 pip install --user asciitable
@@ -496,7 +510,7 @@ pip.exe install http://stsdas.stsci.edu/astrolib/vo-0.6.tar.gz
 pip.exe install http://stsdas.stsci.edu/astrolib/coords-0.37.tar.gz</pre>
 </div>
 <p>Now <a class="reference internal" href="python_install.html#test-your-installation"><em>Test your installation</em></a>.</p>
-<div class="admonition-what-is-pip-and-easy-install-and-distribute-and-setuptools admonition">
+<div class="admonition-what-is-pip-and-easy-install-and-distribute-and-setuptools admonition ">
 <p class="first admonition-title">What is pip and easy_install and distribute and setuptools?</p>
 <p>Things can appear very confusing if you start installing packages
 on your own and looking through various projects and installation
