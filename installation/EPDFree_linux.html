@@ -1,0 +1,465 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>EPD Free (Linux) &mdash;  0.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title=" 0.1.0 documentation" href="../index.html" />
+    <link rel="up" title="Linux" href="linux.html" />
+    <link rel="next" title="Linux Package Manager" href="linux_package_manager.html" />
+    <link rel="prev" title="Linux" href="linux.html" />
+ 
+<script type="text/javascript"> 
+$(document).ready(function(){
+
+$(".flip0").click(function(){
+    $(".panel0").slideToggle("normal");
+  });
+
+$(".flip1").click(function(){
+    $(".panel1").slideToggle("normal");
+  });
+
+$(".flip2").click(function(){
+    $(".panel2").slideToggle("normal");
+  });
+
+$(".flip3").click(function(){
+    $(".panel3").slideToggle("normal");
+  });
+
+$(".flip4").click(function(){
+    $(".panel4").slideToggle("normal");
+  });
+
+$(".flip5").click(function(){
+    $(".panel5").slideToggle("normal");
+  });
+
+$(".flip6").click(function(){
+    $(".panel6").slideToggle("normal");
+  });
+
+$(".flip7").click(function(){
+    $(".panel7").slideToggle("normal");
+  });
+
+$(".flip8").click(function(){
+    $(".panel8").slideToggle("normal");
+  });
+
+$(".flip9").click(function(){
+    $(".panel9").slideToggle("normal");
+  });
+
+});
+</script>
+ 
+<style type="text/css"> 
+
+div.panel0,p.flip0
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip0
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel0
+{
+display:none;
+}
+
+div.panel1,p.flip1
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip1
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel1
+{
+display:none;
+}
+
+div.panel2,p.flip2
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip2
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel2
+{
+display:none;
+}
+
+div.panel3,p.flip3
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip3
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel3
+{
+display:none;
+}
+
+div.panel4,p.flip4
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip4
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel4
+{
+display:none;
+}
+
+div.panel5,p.flip5
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip5
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel5
+{
+display:none;
+}
+
+div.panel6,p.flip6
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip6
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel6
+{
+display:none;
+}
+
+div.panel7,p.flip7
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip7
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel7
+{
+display:none;
+}
+
+div.panel8,p.flip8
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip8
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel8
+{
+display:none;
+}
+
+div.panel9,p.flip9
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip9
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel9
+{
+display:none;
+}
+
+</style>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-27427631-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="linux_package_manager.html" title="Linux Package Manager"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="linux.html" title="Linux"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li>
+          <li><a href="installation.html" >Python Installation and Understanding Packages</a> &raquo;</li>
+          <li><a href="python_install.html" >Installing a scientific Python distribution</a> &raquo;</li>
+          <li><a href="linux.html" accesskey="U">Linux</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">EPD Free (Linux)</a><ul>
+<li><a class="reference internal" href="#install-additional-packages">Install additional packages</a></li>
+<li><a class="reference internal" href="#test-your-installation">Test your installation</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="linux.html"
+                        title="previous chapter">Linux</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="linux_package_manager.html"
+                        title="next chapter">Linux Package Manager</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/installation/EPDFree_linux.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="epd-free-linux">
+<h1>EPD Free (Linux)<a class="headerlink" href="#epd-free-linux" title="Permalink to this headline">¶</a></h1>
+<p>To download EPD go to the <a class="reference external" href="http://enthought.com/products/epd_free.php">EPDFree download</a> page. You need to
+establish whether your computer has a 32-bit or 64-bit processor and
+download the relevant package. To do this type <tt class="docutils literal"><span class="pre">uname</span> <span class="pre">-mpi</span></tt> at the
+command line.  If you see <tt class="docutils literal"><span class="pre">x86_64</span> <span class="pre">x86_64</span> <span class="pre">x86_64</span></tt> you have a 64-bit
+machine and operating system (OS).  If you see one or more <tt class="docutils literal"><span class="pre">i686</span></tt> or
+<tt class="docutils literal"><span class="pre">i386</span></tt> you are running a 32-bit OS.</p>
+<p>Once you have downloaded the appropriate EPD package for your system,
+run the installation script. For example:</p>
+<div class="highlight-python"><pre>bash epd_free-7-1-2-rh5-x86.sh</pre>
+</div>
+<p>Next you need to edit the appropriate shell startup file
+(e.g. <tt class="docutils literal"><span class="pre">~/.cshrc</span></tt>, <tt class="docutils literal"><span class="pre">~/.bash_profile</span></tt>) and update your path to
+include the EPD path.  For instance if you specified to install EPD in
+<tt class="docutils literal"><span class="pre">/home/me/epd7.1</span></tt> then the following will work:</p>
+<div class="highlight-python"><pre>export PATH=/home/me/epd7.1/bin:$PATH  # bash
+set path=(/home/me/epd7.1/bin $path)   # csh or tcsh</pre>
+</div>
+<p>Finally run the shell startup file with:</p>
+<div class="highlight-python"><pre>source ~/.bash_profile    # bash
+source ~/.cshrc           # csh or tcsh</pre>
+</div>
+<p>To check the installation has completed successfully, open a new
+terminal window and type:</p>
+<div class="highlight-python"><pre>which ipython</pre>
+</div>
+<p>You should see:</p>
+<div class="highlight-python"><pre>/home/me/epd7.1/bin/ipython</pre>
+</div>
+<p>where <tt class="docutils literal"><span class="pre">/home/me/epd7.1</span></tt> is replaced by your installation root
+path.</p>
+<div class="section" id="install-additional-packages">
+<h2>Install additional packages<a class="headerlink" href="#install-additional-packages" title="Permalink to this headline">¶</a></h2>
+<p>Once you&#8217;ve installed EPDFree you can install the additional packages
+listed in <a class="reference internal" href="requirements.html#python-pkg-requirements"><em>Python requirements</em></a>.  Copy and paste the lines
+below one at a time, checking that each one works.  The program
+outputs may contain various &#8220;warnings&#8221;, but watch for &#8220;errors&#8221; and
+look at the end to see if a successful installation was reported:</p>
+<div class="highlight-python"><pre>sudo easy_install --upgrade pip
+sudo pip install --upgrade distribute
+pip install --user asciitable
+pip install --user pyfits
+pip install --user pywcs
+pip install --user atpy
+pip install --user aplpy
+pip install --user pyregion
+pip install --user pyparsing
+pip install --user http://stsdas.stsci.edu/astrolib/vo-0.6.tar.gz
+pip install --user http://stsdas.stsci.edu/astrolib/coords-0.37.tar.gz</pre>
+</div>
+</div>
+<div class="section" id="test-your-installation">
+<h2>Test your installation<a class="headerlink" href="#test-your-installation" title="Permalink to this headline">¶</a></h2>
+<p>To do a basic test whether you meet the requirements and have a
+functioning core scientific Python installation, do the following to
+check version numbers. First on the command line check the version
+numbers of python and ipython:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">python</span> <span class="o">-</span><span class="n">V</span>
+<span class="n">ipython</span> <span class="o">--</span><span class="n">version</span>
+</pre></div>
+</div>
+<p>Then run ipython from the command line with the <tt class="docutils literal"><span class="pre">--pylab</span></tt> flag:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">ipython</span> <span class="o">--</span><span class="n">pylab</span>
+</pre></div>
+</div>
+<p>and inside ipython run the following python commands:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">import</span> <span class="nn">scipy</span>
+<span class="kn">import</span> <span class="nn">scipy.linalg</span>
+<span class="kn">import</span> <span class="nn">pylab</span> <span class="kn">as</span> <span class="nn">plt</span>
+
+<span class="k">print</span> <span class="n">numpy</span><span class="o">.</span><span class="n">__version__</span>
+<span class="k">print</span> <span class="n">scipy</span><span class="o">.</span><span class="n">__version__</span>
+<span class="k">print</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">__version__</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="k">print</span> <span class="n">scipy</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span>
+</pre></div>
+</div>
+<p>They should run without errors.  The version numbers should meet the
+requirements and finally you should see a plot of a sine wave.</p>
+<p>To check the other required packages, do the following also from
+within ipython:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">asciitable</span>
+<span class="kn">import</span> <span class="nn">pyfits</span>
+<span class="kn">import</span> <span class="nn">pywcs</span>
+<span class="kn">import</span> <span class="nn">atpy</span>
+<span class="kn">import</span> <span class="nn">aplpy</span>
+</pre></div>
+</div>
+<p>If all the above commands ran without errors, you&#8217;ve installed
+everything successfully!</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="linux_package_manager.html" title="Linux Package Manager"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="linux.html" title="Linux"
+             >previous</a> |</li>
+        <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li>
+          <li><a href="installation.html" >Python Installation and Understanding Packages</a> &raquo;</li>
+          <li><a href="python_install.html" >Installing a scientific Python distribution</a> &raquo;</li>
+          <li><a href="linux.html" >Linux</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright .
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+    </div>
+  </body>
+</html>

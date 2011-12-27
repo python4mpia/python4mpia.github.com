@@ -27,7 +27,7 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title=" 0.1.0 documentation" href="../index.html" />
     <link rel="up" title="Python Installation and Understanding Packages" href="installation.html" />
-    <link rel="prev" title="MacPorts" href="macports.html" />
+    <link rel="prev" title="Python Installation on Windows with EPDFree" href="EPDFree_windows.html" />
  
 <script type="text/javascript"> 
 $(document).ready(function(){
@@ -281,7 +281,7 @@ display:none;
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="macports.html" title="MacPorts"
+          <a href="EPDFree_windows.html" title="Python Installation on Windows with EPDFree"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li>
           <li><a href="installation.html" accesskey="U">Python Installation and Understanding Packages</a> &raquo;</li> 
@@ -300,8 +300,8 @@ display:none;
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="macports.html"
-                        title="previous chapter">MacPorts</a></p>
+  <p class="topless"><a href="EPDFree_windows.html"
+                        title="previous chapter">Python Installation on Windows with EPDFree</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="../_sources/installation/packages.txt"
@@ -517,6 +517,24 @@ python setup.py install # install in the python area (root / admin req'd)
 python setup.py install --user # install to user's package area</pre>
 </div>
 <p>More information is available in the <a class="reference external" href="http://docs.python.org/install/index.html">Installing Python Modules</a> page.</p>
+<div class="admonition-what-is-pip-and-easy-install-and-distribute-and-setuptools admonition ">
+<p class="first admonition-title">What is pip and easy_install and distribute and setuptools?</p>
+<p>Things can appear very confusing if you start installing packages
+on your own and looking through various projects and installation
+documentation.  First there was the <tt class="docutils literal"><span class="pre">distutils</span></tt> standard library
+module that specifies what a package provides and how it gets
+installed.  But this had some shortcomings and a 3rd party
+extension named <tt class="docutils literal"><span class="pre">setuptools</span></tt> was developed and adopted fairly
+widely.  In conjunction with <tt class="docutils literal"><span class="pre">setuptools</span></tt> was a script
+<tt class="docutils literal"><span class="pre">easy_install</span></tt> that took care of downloading, untarring,
+building, and installing packages.  Pretty good, except that the
+developer of both these stopped actively developing them.</p>
+<p class="last">So some people took matters into their own hands and did a
+&#8220;friendly fork&#8221; of <tt class="docutils literal"><span class="pre">setuptools</span></tt> named <tt class="docutils literal"><span class="pre">distribute</span></tt>. Now
+<tt class="docutils literal"><span class="pre">distribute</span></tt> is the standard, and likewise <tt class="docutils literal"><span class="pre">pip</span></tt> has replaced
+<tt class="docutils literal"><span class="pre">easy_install</span></tt> as the best (and actively developed) easy
+installer.</p>
+</div>
 </div>
 <div class="section" id="where-do-packages-get-installed">
 <h3>Where do packages get installed?<a class="headerlink" href="#where-do-packages-get-installed" title="Permalink to this headline">¶</a></h3>
@@ -731,7 +749,7 @@ numerical libraries are the fastest possible.  For most people this is not neede
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="macports.html" title="MacPorts"
+          <a href="EPDFree_windows.html" title="Python Installation on Windows with EPDFree"
              >previous</a> |</li>
         <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li>
           <li><a href="installation.html" >Python Installation and Understanding Packages</a> &raquo;</li> 

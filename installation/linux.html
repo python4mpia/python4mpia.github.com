@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Linux Package Manager &mdash;  0.1.0 documentation</title>
+    <title>Linux &mdash;  0.1.0 documentation</title>
     
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -27,8 +27,8 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title=" 0.1.0 documentation" href="../index.html" />
     <link rel="up" title="Installing a scientific Python distribution" href="python_install.html" />
-    <link rel="next" title="MacPorts" href="macports.html" />
-    <link rel="prev" title="EPD Free (Linux, MacOS and Windows)" href="EPDFree.html" />
+    <link rel="next" title="EPD Free (Linux)" href="EPDFree_linux.html" />
+    <link rel="prev" title="MacPorts" href="macports.html" />
  
 <script type="text/javascript"> 
 $(document).ready(function(){
@@ -282,10 +282,10 @@ display:none;
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="macports.html" title="MacPorts"
+          <a href="EPDFree_linux.html" title="EPD Free (Linux)"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="EPDFree.html" title="EPD Free (Linux, MacOS and Windows)"
+          <a href="macports.html" title="MacPorts"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li>
           <li><a href="installation.html" >Python Installation and Understanding Packages</a> &raquo;</li>
@@ -294,23 +294,12 @@ display:none;
     </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="../index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Linux Package Manager</a><ul>
-<li><a class="reference internal" href="#system-install-with-root">System install with root</a><ul>
-<li><a class="reference internal" href="#quick-installation-check">Quick installation check</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
   <h4>Previous topic</h4>
-  <p class="topless"><a href="EPDFree.html"
-                        title="previous chapter">EPD Free (Linux, MacOS and Windows)</a></p>
-  <h4>Next topic</h4>
   <p class="topless"><a href="macports.html"
-                        title="next chapter">MacPorts</a></p>
+                        title="previous chapter">MacPorts</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="EPDFree_linux.html"
+                        title="next chapter">EPD Free (Linux)</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="../_sources/installation/linux.txt"
@@ -337,53 +326,26 @@ display:none;
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="linux-package-manager">
-<h1>Linux Package Manager<a class="headerlink" href="#linux-package-manager" title="Permalink to this headline">¶</a></h1>
-<p>Here we describe how to install all the required Python packages using your Linux distribution&#8217;s package manager. You must have root access to use this installation method.</p>
-<div class="section" id="system-install-with-root">
-<h2>System install with root<a class="headerlink" href="#system-install-with-root" title="Permalink to this headline">¶</a></h2>
-<p>For a modern linux installation such as Ubuntu 11., the system Python version will be 2.6 or newer and all of the required core packages are available as package installs.  The instructions below have been developed and tested with Ubuntu 11.</p>
-<p>Corresponding packages for recent Fedora are probably available but this has not been verified. In this case you will NOT use the Enthought Python Distribution.</p>
-<p>The benefit of using a root install via the system package manager is that it is simple and all dependencies are managed for you.  The downside is that the package versions tend to be older and so you don&#8217;t keep up with the latest code development.  In Ubuntu 11 the core packages (NumPy, Matplotlib) are a little out date, but unless you are really pushing for the latest features, the older stable versions will work perfectly well.</p>
-<p>First install the core packages for analysis with the following:</p>
-<div class="highlight-python"><pre>sudo apt-get install python-dev
-sudo apt-get install ipython
-sudo apt-get install python-numpy
-sudo apt-get install python-scipy
-sudo apt-get install python-matplotlib
-sudo apt-get install python-setuptools
-sudo apt-get install python-pyfits</pre>
+  <div class="section" id="linux">
+<h1>Linux<a class="headerlink" href="#linux" title="Permalink to this headline">¶</a></h1>
+<p>The easiest option is to use the Free Enthought Python Distribution
+(EPDFree).  <a class="reference external" href="http://www.enthought.com">Enthought</a> sponsors much of
+the development for <a class="reference external" href="http://numpy.scipy.org/">NumPy</a> and <a class="reference external" href="http://www.scipy.org/">SciPy</a>. EPDFree is a bundled binary
+distribution of Python including a set of useful packages.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="EPDFree_linux.html">EPDFree installation instructions for Linux</a></li>
+</ul>
 </div>
-<p>Most of the remaining packages are not available in the package manager, so we install them using the Python package manager <tt class="docutils literal"><span class="pre">pip</span></tt>. To install pip:</p>
-<div class="highlight-python"><pre>sudo apt-get install python-pip</pre>
+<p>It is also possible to install the necessary packages using your Linux
+package manager.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="linux_package_manager.html">Linux package manager installation instructions</a></li>
+</ul>
 </div>
-<p>Then:</p>
-<div class="highlight-python"><pre>sudo pip install --upgrade distribute [--proxy web-proxy:3128]
-sudo pip install asciitable [--proxy web-proxy:3128]
-sudo pip install pywcs [--proxy web-proxy:3128]
-sudo pip install atpy [--proxy web-proxy:3128]
-sudo pip install aplpy [--proxy web-proxy:3128]
-sudo pip install pyregion [--proxy web-proxy:3128]
-sudo pip install pyparsing [--proxy web-proxy:3128]
-sudo pip install http://stsdas.stsci.edu/astrolib/vo-0.6.tar.gz [--proxy web-proxy:3128]
-sudo pip install http://stsdas.stsci.edu/astrolib/coords-0.37.tar.gz [--proxy web-proxy:3128]</pre>
-</div>
-<p>where the [&#8211;proxy web-proxy:3128] option may be required if you are within the MPIA network.</p>
-<div class="section" id="quick-installation-check">
-<h3>Quick installation check<a class="headerlink" href="#quick-installation-check" title="Permalink to this headline">¶</a></h3>
-<p>Open a new terminal window and type:</p>
-<div class="highlight-python"><pre>which ipython</pre>
-</div>
-<p>You should see:</p>
-<div class="highlight-python"><pre>/usr/bin/ipython</pre>
-</div>
-<div class="admonition-what-is-pip-and-easy-install-and-distribute-and-setuptools admonition ">
-<p class="first admonition-title">What is pip and easy_install and distribute and setuptools?</p>
-<p>Things can appear very confusing if you start installing packages on your own and looking through various projects and installation documentation.  First there was the <tt class="docutils literal"><span class="pre">distutils</span></tt> standard library module that specifies what a package provides and how it gets installed.  But this had some shortcomings and a 3rd party extension named <tt class="docutils literal"><span class="pre">setuptools</span></tt> was developed and adopted fairly widely.  In conjunction with <tt class="docutils literal"><span class="pre">setuptools</span></tt> was a script <tt class="docutils literal"><span class="pre">easy_install</span></tt> that took care of downloading, untarring, building, and installing packages.  Pretty good, except that the developer of both these stopped actively developing them.</p>
-<p class="last">So some people took matters into their own hands and did a &#8220;friendly fork&#8221; of <tt class="docutils literal"><span class="pre">setuptools</span></tt> named <tt class="docutils literal"><span class="pre">distribute</span></tt>. Now <tt class="docutils literal"><span class="pre">distribute</span></tt> is the standard, and likewise <tt class="docutils literal"><span class="pre">pip</span></tt> has replaced <tt class="docutils literal"><span class="pre">easy_install</span></tt> as the best (and actively developed) easy installer.</p>
-</div>
-</div>
-</div>
+<p>If you&#8217;re not sure which installation method to use it&#8217;s simplest to
+install EPDFree.</p>
 </div>
 
 
@@ -399,10 +361,10 @@ sudo pip install http://stsdas.stsci.edu/astrolib/coords-0.37.tar.gz [--proxy we
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="macports.html" title="MacPorts"
+          <a href="EPDFree_linux.html" title="EPD Free (Linux)"
              >next</a> |</li>
         <li class="right" >
-          <a href="EPDFree.html" title="EPD Free (Linux, MacOS and Windows)"
+          <a href="macports.html" title="MacPorts"
              >previous</a> |</li>
         <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li>
           <li><a href="installation.html" >Python Installation and Understanding Packages</a> &raquo;</li>
