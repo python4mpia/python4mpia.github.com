@@ -186,8 +186,7 @@ http://www.2slaq.info/2SLAQ_LRG_v5pub.cat::
   def inv_efunc(z):
       """ Used to calculate the comoving distance to object at redshift
       z. Eqn 14 from Hogg, astro-ph/9905116."""
-      zp1 = 1. + z
-      return 1. / sqrt(omega_m*zp1**3 + omega_lam)
+      return 1. / sqrt(omega_m * (1. + z)**3 + omega_lam)
    
   # Read the LRG positions, magnitudes and redshifts
   #
@@ -217,7 +216,7 @@ http://www.2slaq.info/2SLAQ_LRG_v5pub.cat::
   # Plot the LRGs, colouring by declination.
   col = plt.scatter(x, y, marker='.', s=sizes, c=r['Dec'], faceted=0,
            	    cmap=plt.cm.Spectral)
-  # add a colourbar.
+  # Add a colourbar.
   cax = fig.colorbar(col)
   cax.set_label('Declination (degrees)')
   plt.xlabel('Comoving Mpc')

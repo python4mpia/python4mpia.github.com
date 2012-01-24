@@ -420,10 +420,9 @@ talk was made.</p>
 <span class="n">dH</span> <span class="o">=</span> <span class="n">c_kms</span> <span class="o">/</span> <span class="n">H0</span>    <span class="c"># Hubble distance, Mpc</span>
 
 <span class="k">def</span> <span class="nf">inv_efunc</span><span class="p">(</span><span class="n">z</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; Used to calculate the comving distance to object at redshift</span>
+    <span class="sd">&quot;&quot;&quot; Used to calculate the comoving distance to object at redshift</span>
 <span class="sd">    z. Eqn 14 from Hogg, astro-ph/9905116.&quot;&quot;&quot;</span>
-    <span class="n">zp1</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">+</span> <span class="n">z</span>
-    <span class="k">return</span> <span class="mf">1.</span> <span class="o">/</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">omega_m</span><span class="o">*</span><span class="n">zp1</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="n">omega_lam</span><span class="p">)</span>
+    <span class="k">return</span> <span class="mf">1.</span> <span class="o">/</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">omega_m</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.</span> <span class="o">+</span> <span class="n">z</span><span class="p">)</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="n">omega_lam</span><span class="p">)</span>
 
 <span class="c"># Read the LRG positions, magnitudes and redshifts</span>
 <span class="c">#</span>
@@ -432,37 +431,40 @@ talk was made.</p>
 <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">genfromtxt</span><span class="p">(</span><span class="s">&#39;2SLAQ_LRG_v5pub.cat&#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">skip_header</span><span class="o">=</span><span class="mi">176</span><span class="p">,</span>
                   <span class="n">names</span><span class="o">=</span><span class="s">&#39;name,z,rmag,RA,Dec&#39;</span><span class="p">,</span><span class="n">usecols</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">28</span><span class="p">))</span>
 
+<span class="c"># Only keep objects with a redshift larger than 0.1</span>
 <span class="n">r</span> <span class="o">=</span> <span class="n">r</span><span class="p">[</span><span class="n">r</span><span class="p">[</span><span class="s">&#39;z&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.1</span><span class="p">]</span>
 
-<span class="c"># calculate comoving distance corresponding to each object&#39;s redshift</span>
+<span class="c"># Calculate the comoving distance corresponding to each object&#39;s redshift</span>
 <span class="n">dist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">dH</span> <span class="o">*</span> <span class="n">integrate</span><span class="o">.</span><span class="n">quad</span><span class="p">(</span><span class="n">inv_efunc</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">z</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">r</span><span class="p">[</span><span class="s">&#39;z&#39;</span><span class="p">]])</span>
 
-<span class="c"># plot the distribution of LRGs, converting redshifts to positions</span>
+<span class="c"># Plot the distribution of LRGs, converting redshifts to positions</span>
 <span class="c"># assuming Hubble flow.</span>
 <span class="n">theta</span> <span class="o">=</span> <span class="n">r</span><span class="p">[</span><span class="s">&#39;RA&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">180</span>  <span class="c"># radians</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">dist</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">dist</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
 
-<span class="c"># make the area of each circle representing an LRG position</span>
-<span class="c"># proportional to its apparent r-band luminosity</span>
+<span class="c"># Make the area of each circle representing an LRG position</span>
+<span class="c"># proportional to its apparent r-band luminosity.</span>
 <span class="n">sizes</span> <span class="o">=</span> <span class="mi">30</span> <span class="o">*</span> <span class="mi">10</span><span class="o">**-</span><span class="p">((</span><span class="n">r</span><span class="p">[</span><span class="s">&#39;rmag&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s">&#39;rmag&#39;</span><span class="p">]))</span><span class="o">/</span> <span class="mf">2.5</span><span class="p">)</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
-<span class="c"># Color each LRG by its declination</span>
-<span class="n">col</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s">&#39;.&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="n">sizes</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">r</span><span class="p">[</span><span class="s">&#39;Dec&#39;</span><span class="p">],</span> <span class="n">faceted</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-                 <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Spectral</span><span class="p">)</span>
+
+<span class="c"># Plot the LRGs, colouring by declination.</span>
+<span class="n">col</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s">&#39;.&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="n">sizes</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">r</span><span class="p">[</span><span class="s">&#39;Dec&#39;</span><span class="p">],</span> <span class="n">faceted</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                  <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Spectral</span><span class="p">)</span>
+<span class="c"># Add a colourbar.</span>
 <span class="n">cax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">col</span><span class="p">)</span>
 <span class="n">cax</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s">&#39;Declination (degrees)&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">&#39;Comoving Mpc&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&#39;Comoving Mpc&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Comoving Mpc&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Comoving Mpc&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s">&#39;equal&#39;</span><span class="p">)</span>
 
-<span class="c"># Now plot the redshift distribution</span>
+<span class="c"># Now plot the redshift distribution.</span>
 <span class="n">zbins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">)</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s">&#39;z&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="n">zbins</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">&#39;LRG redshift&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s">&#39;z&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="n">zbins</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;LRG redshift&#39;</span><span class="p">)</span>
 
 <span class="c"># Make a second axis to plot the comoving distance</span>
 <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">twiny</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
@@ -472,10 +474,12 @@ talk was made.</p>
 <span class="n">redshifts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">2.</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
 <span class="n">dist</span> <span class="o">=</span> <span class="p">[</span><span class="n">dH</span> <span class="o">*</span> <span class="n">integrate</span><span class="o">.</span><span class="n">quad</span><span class="p">(</span><span class="n">inv_efunc</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">z</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">redshifts</span><span class="p">]</span>
 <span class="n">Mpcvals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4000</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
-<span class="c"># Then interpolate to the redshift values at which we want ticks</span>
+
+<span class="c"># Then interpolate to the redshift values at which we want ticks.</span>
 <span class="n">Mpcticks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">Mpcvals</span><span class="p">,</span> <span class="n">dist</span><span class="p">,</span> <span class="n">redshifts</span><span class="p">)</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">Mpcticks</span><span class="p">)</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">Mpcvals</span><span class="p">])</span>
+
 <span class="c"># Make both axes have the same start and end point.</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">*</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xlim</span><span class="p">())</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">&#39;Comoving distance (Mpc)&#39;</span><span class="p">)</span>
