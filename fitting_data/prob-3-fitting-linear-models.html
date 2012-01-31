@@ -1,0 +1,440 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Example 2: Fitting linear models with Numpy &mdash;  0.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title=" 0.1.0 documentation" href="../index.html" />
+ 
+<script type="text/javascript"> 
+$(document).ready(function(){
+
+$(".flip0").click(function(){
+    $(".panel0").slideToggle("normal");
+  });
+
+$(".flip1").click(function(){
+    $(".panel1").slideToggle("normal");
+  });
+
+$(".flip2").click(function(){
+    $(".panel2").slideToggle("normal");
+  });
+
+$(".flip3").click(function(){
+    $(".panel3").slideToggle("normal");
+  });
+
+$(".flip4").click(function(){
+    $(".panel4").slideToggle("normal");
+  });
+
+$(".flip5").click(function(){
+    $(".panel5").slideToggle("normal");
+  });
+
+$(".flip6").click(function(){
+    $(".panel6").slideToggle("normal");
+  });
+
+$(".flip7").click(function(){
+    $(".panel7").slideToggle("normal");
+  });
+
+$(".flip8").click(function(){
+    $(".panel8").slideToggle("normal");
+  });
+
+$(".flip9").click(function(){
+    $(".panel9").slideToggle("normal");
+  });
+
+});
+</script>
+ 
+<style type="text/css"> 
+
+div.panel0,p.flip0
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip0
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel0
+{
+display:none;
+}
+
+div.panel1,p.flip1
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip1
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel1
+{
+display:none;
+}
+
+div.panel2,p.flip2
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip2
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel2
+{
+display:none;
+}
+
+div.panel3,p.flip3
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip3
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel3
+{
+display:none;
+}
+
+div.panel4,p.flip4
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip4
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel4
+{
+display:none;
+}
+
+div.panel5,p.flip5
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip5
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel5
+{
+display:none;
+}
+
+div.panel6,p.flip6
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip6
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel6
+{
+display:none;
+}
+
+div.panel7,p.flip7
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip7
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel7
+{
+display:none;
+}
+
+div.panel8,p.flip8
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip8
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel8
+{
+display:none;
+}
+
+div.panel9,p.flip9
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip9
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel9
+{
+display:none;
+}
+
+</style>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-27427631-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Example 2: Fitting linear models with Numpy</a><ul>
+<li><a class="reference internal" href="#background">Background</a></li>
+<li><a class="reference internal" href="#generating-artificial-toy-data">Generating artificial toy data</a></li>
+<li><a class="reference internal" href="#fitting-a-linear-model-analytically">Fitting a linear model analytically</a></li>
+</ul>
+</li>
+</ul>
+
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/fitting_data/prob-3-fitting-linear-models.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="example-2-fitting-linear-models-with-numpy">
+<h1>Example 2: Fitting linear models with Numpy<a class="headerlink" href="#example-2-fitting-linear-models-with-numpy" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="background">
+<h2>Background<a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h2>
+<p>Analysing scientific data often requires fitting models. Such models virtually always contain linear fit parameters - and often also nonlinear fit parameters. The crucial point is that fitting linear parameters can be done analytically, which improves both accuracy and speed.</p>
+<p>For the sake of simplicity, we only consider purely linear models here, where the fit is wholly analytic. The analytic fit requires some linear algebra, where Numpy can help us.</p>
+<p>Say we have a model of the form of a polynomial <img class="math" src="../_images/math/06574a44193ed343b40bd3afbdd9d7abc07baefa.png" alt="f(x)=a_0+a_1 x+a_2 x^2+a_3 x^3+\ldots"/> and we want to minimise <img class="math" src="../_images/math/3d57d67c2a0262372fe183e675761aa4643489b4.png" alt="\chi^2=\sum_{n=1}^N\left(\frac{y_n - f(x_n)}{\sigma_n}\right)^2"/>.</p>
+<p>It is now clever to rewrite chi-square in terms of matrices and vectors <img class="math" src="../_images/math/6b4ee31923570467104207e1e17cd1798bc6ad57.png" alt="\chi^2 = (\vec y - X\cdot\vec a)^T\cdot\Sigma^{-1}\cdot(\vec y - X\cdot\vec a)"/> where:</p>
+<ul class="simple">
+<li><img class="math" src="../_images/math/748525c545aea268cb7839ccc3d195e7d45d190d.png" alt="\vec y=(y_1,y_2,\ldots,y_N)"/> is the vector of N measurements.</li>
+<li>X is the design matrix with elements <img class="math" src="../_images/math/8211dd38b650ed3d6528e047c5ae20683c35a78c.png" alt="X_{np}=x_n^p"/>.</li>
+<li><img class="math" src="../_images/math/339679cfe8c2325af5362c7c4f2030e7fd8ab725.png" alt="\vec a=(a_0,a_1,\ldots,a_P)"/> is the vector of linear fit parameters.</li>
+<li><img class="math" src="../_images/math/c8f77e3035db5fe9a4975967750ac1a6454bda8c.png" alt="\Sigma"/> is the covariance matrix, in our case the diagonal matrix <img class="math" src="../_images/math/237c399727fffdb508da4bb67a54d36f0bd87c53.png" alt="\Sigma_{nn}=\sigma_n^2"/>.</li>
+</ul>
+<p>Using this notation, the best-fit amplitudes are given by <img class="math" src="../_images/math/6f39dff5bf54dfba72afecc6aaf77302dad34df8.png" alt="\vec a=(X^T\cdot\Sigma^{-1}\cdot X)^{-1}\cdot X^T\cdot\Sigma^{-1}\cdot\vec y"/>.</p>
+<p>This may look complicated at first glance, but it is simple enough to type into a Numpy code.</p>
+</div>
+<div class="section" id="generating-artificial-toy-data">
+<h2>Generating artificial toy data<a class="headerlink" href="#generating-artificial-toy-data" title="Permalink to this headline">¶</a></h2>
+<p>Let us write a simple piece of code which generates some toy data that we can use for demonstrations later.</p>
+<p>We want a python script called &#8220;ToyDataGeneration.py&#8221; that provides a method &#8220;generateToyData&#8221; that generates data from some underlying polynomial function and adds some Gaussian noise. Here we go:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">random</span> <span class="kn">as</span> <span class="nn">random</span>
+
+<span class="c"># Generate toy data from polynomial function.</span>
+<span class="c"># Inputs: amplitudes ... Numpy array of amplitudes. Its length specifies polynomial order.</span>
+<span class="c">#         sigma      ... Gaussian noise level. Identical for all data points.</span>
+<span class="c">#         N          ... Number of data points sampled.</span>
+<span class="c">#         xrange     ... x-range where data points are sampled from.</span>
+<span class="c">#         seed       ... random seed to ensure reproducability.</span>
+<span class="k">def</span> <span class="nf">generateToyData</span><span class="p">(</span><span class="n">amplitudes</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="nb">xrange</span><span class="p">,</span> <span class="n">seed</span><span class="p">):</span>
+      <span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+      <span class="n">X</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c"># prepare array for x coordinates</span>
+      <span class="n">Y</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c"># prepare array for y coordinates</span>
+      <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+              <span class="c"># First, draw an x coordinate from given range.</span>
+              <span class="n">x</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="nb">xrange</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="nb">xrange</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+              <span class="c"># Second, compute y from given polynomial amplitudes.</span>
+              <span class="n">y</span> <span class="o">=</span> <span class="mf">0.0</span>
+              <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">amplitudes</span><span class="p">)):</span>
+                      <span class="n">y</span> <span class="o">=</span> <span class="n">y</span> <span class="o">+</span> <span class="n">amplitudes</span><span class="p">[</span><span class="n">p</span><span class="p">]</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+              <span class="c"># Third, add Gaussian noise.</span>
+              <span class="n">y</span> <span class="o">=</span> <span class="n">y</span> <span class="o">+</span> <span class="n">random</span><span class="o">.</span><span class="n">gauss</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
+              <span class="c"># Finally, append to arrays.</span>
+              <span class="n">X</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+              <span class="n">Y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+      <span class="k">return</span> <span class="p">[</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="fitting-a-linear-model-analytically">
+<h2>Fitting a linear model analytically<a class="headerlink" href="#fitting-a-linear-model-analytically" title="Permalink to this headline">¶</a></h2>
+<p>Let us now fit a linear model to see Numpy&#8217;s linear algebra in action. We use a straight line with offset 0 and slope 1. Here is the code:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">ToyDataGeneration</span>
+<span class="kn">import</span> <span class="nn">pylab</span><span class="o">,</span><span class="nn">numpy</span>
+
+<span class="c"># Step 1: Generate toy data from straight line a_0=0 and a_1=1.</span>
+<span class="n">N</span>     <span class="o">=</span> <span class="mi">10</span>
+<span class="p">[</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">]</span> <span class="o">=</span> <span class="n">ToyDataGeneration</span><span class="o">.</span><span class="n">generateToyData</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">10.0</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c"># Step 2: Compute design matrix. Covariance matrix is identity matrix and drops out.</span>
+<span class="n">Design</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">N</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+        <span class="n">Design</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span>   <span class="c"># x^0</span>
+        <span class="n">Design</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>  <span class="c"># x^1</span>
+
+<span class="c"># Step 3: Compute analytic fit.</span>
+<span class="n">Dt</span>  <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">Design</span><span class="p">)</span>  <span class="c"># Transpose of Design appears twice, but compute only once.</span>
+<span class="n">DtD</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Dt</span><span class="p">,</span><span class="n">Design</span><span class="p">)</span>     <span class="c"># For brevity, compute Dt*D here.</span>
+<span class="c"># Now, compute best-fit amplitudes.</span>
+<span class="p">[</span><span class="n">a0</span><span class="p">,</span><span class="n">a1</span><span class="p">]</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">DtD</span><span class="p">),</span><span class="n">numpy</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">Design</span><span class="p">),</span> <span class="n">Y</span><span class="p">))</span>
+<span class="c"># Print best-fit amplitues</span>
+<span class="k">print</span> <span class="n">a0</span>
+<span class="k">print</span> <span class="n">a1</span>
+<span class="c"># Compute chi-square.</span>
+<span class="n">residuals</span> <span class="o">=</span> <span class="n">Y</span> <span class="o">-</span> <span class="n">numpy</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Design</span><span class="p">,[</span><span class="n">a0</span><span class="p">,</span><span class="n">a1</span><span class="p">])</span>
+<span class="n">chi2</span>      <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">residuals</span><span class="p">,</span><span class="n">residuals</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">chi2</span>
+
+<span class="c"># Step 4: Make plot.</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">pylab</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>  <span class="c"># figure size 8x5</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.12</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.97</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>  <span class="c"># boundaries</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+        <span class="n">pylab</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="n">Y</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="n">yerr</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;blue&#39;</span><span class="p">)</span>  <span class="c"># plot errorbars</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="s">&#39;s&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;blue&#39;</span><span class="p">)</span>  <span class="c"># plot data</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">],</span> <span class="p">[</span><span class="n">a0</span><span class="p">,</span> <span class="n">a0</span> <span class="o">+</span> <span class="n">a1</span><span class="o">*</span><span class="mf">10.0</span><span class="p">],</span> <span class="s">&#39;--&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;red&#39;</span><span class="p">)</span>  <span class="c"># plot fit</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>  <span class="c"># set fontsize of axis ticks</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>  <span class="c"># set fontsize of axis ticks</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">r&#39;$x$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>  <span class="c"># set axis label</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">r&#39;$y$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>  <span class="c"># set axis label</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">&#39;prob-3-linear-fit.png&#39;</span><span class="p">)</span>  <span class="c"># save figure</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/prob-3-linear-fit.png" src="../_images/prob-3-linear-fit.png" />
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright .
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+    </div>
+  </body>
+</html>

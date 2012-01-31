@@ -1,0 +1,509 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Example 3: Pitfalls of model comparison &mdash;  0.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title=" 0.1.0 documentation" href="../index.html" />
+ 
+<script type="text/javascript"> 
+$(document).ready(function(){
+
+$(".flip0").click(function(){
+    $(".panel0").slideToggle("normal");
+  });
+
+$(".flip1").click(function(){
+    $(".panel1").slideToggle("normal");
+  });
+
+$(".flip2").click(function(){
+    $(".panel2").slideToggle("normal");
+  });
+
+$(".flip3").click(function(){
+    $(".panel3").slideToggle("normal");
+  });
+
+$(".flip4").click(function(){
+    $(".panel4").slideToggle("normal");
+  });
+
+$(".flip5").click(function(){
+    $(".panel5").slideToggle("normal");
+  });
+
+$(".flip6").click(function(){
+    $(".panel6").slideToggle("normal");
+  });
+
+$(".flip7").click(function(){
+    $(".panel7").slideToggle("normal");
+  });
+
+$(".flip8").click(function(){
+    $(".panel8").slideToggle("normal");
+  });
+
+$(".flip9").click(function(){
+    $(".panel9").slideToggle("normal");
+  });
+
+});
+</script>
+ 
+<style type="text/css"> 
+
+div.panel0,p.flip0
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip0
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel0
+{
+display:none;
+}
+
+div.panel1,p.flip1
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip1
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel1
+{
+display:none;
+}
+
+div.panel2,p.flip2
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip2
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel2
+{
+display:none;
+}
+
+div.panel3,p.flip3
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip3
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel3
+{
+display:none;
+}
+
+div.panel4,p.flip4
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip4
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel4
+{
+display:none;
+}
+
+div.panel5,p.flip5
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip5
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel5
+{
+display:none;
+}
+
+div.panel6,p.flip6
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip6
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel6
+{
+display:none;
+}
+
+div.panel7,p.flip7
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip7
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel7
+{
+display:none;
+}
+
+div.panel8,p.flip8
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip8
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel8
+{
+display:none;
+}
+
+div.panel9,p.flip9
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip9
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel9
+{
+display:none;
+}
+
+</style>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-27427631-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Example 3: Pitfalls of model comparison</a><ul>
+<li><a class="reference internal" href="#background">Background</a></li>
+<li><a class="reference internal" href="#what-is-the-right-polynomial-order">What is the right polynomial order?</a></li>
+<li><a class="reference internal" href="#impact-of-noise">Impact of noise</a></li>
+<li><a class="reference internal" href="#the-pitfal-more-data-does-not-help">The pitfal: More data does not help!</a></li>
+</ul>
+</li>
+</ul>
+
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/fitting_data/prob-4-p-values.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="example-3-pitfalls-of-model-comparison">
+<h1>Example 3: Pitfalls of model comparison<a class="headerlink" href="#example-3-pitfalls-of-model-comparison" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="background">
+<h2>Background<a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h2>
+<p>Model comparison is a common task in science. Say you have radial-velocity measurements of a star and you want to know whether this star hosts one or more exoplanets. So you fit models with varying numbers of exoplanets to your data and then you need to assess which model fits your data best.</p>
+<p>The standard approach in astronomy is to employ reduced <img class="math" src="../_images/math/a61c1e51680e27d35d05bebed87d474972fc70bd.png" alt="\chi^2"/>, where you devide <img class="math" src="../_images/math/a61c1e51680e27d35d05bebed87d474972fc70bd.png" alt="\chi^2"/> by the number of degrees of freedom. The best model has a reduced <img class="math" src="../_images/math/a61c1e51680e27d35d05bebed87d474972fc70bd.png" alt="\chi^2"/> closest to unity. Alternatively, astronomers usually conduct <img class="math" src="../_images/math/a61c1e51680e27d35d05bebed87d474972fc70bd.png" alt="\chi^2"/>-tests, KS-tests or - in the case of exoplanets - false-alarm probabilities, which provide p-values.</p>
+<p>Unfortunately, p-values suffer from a systematic effect that essentially undermines their credibility, as we will learn in this example.</p>
+</div>
+<div class="section" id="what-is-the-right-polynomial-order">
+<h2>What is the right polynomial order?<a class="headerlink" href="#what-is-the-right-polynomial-order" title="Permalink to this headline">¶</a></h2>
+<p>Let us start easy by using our previous code to simulate some data from a 2nd-order polynomial. We then pretend that we do not know that the polynomial was of 2nd order and try to estimate the polynomial order from the data using reduced <img class="math" src="../_images/math/a61c1e51680e27d35d05bebed87d474972fc70bd.png" alt="\chi^2"/>. Here is the code:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">ToyDataGeneration</span>
+<span class="kn">import</span> <span class="nn">pylab</span><span class="o">,</span><span class="nn">numpy</span><span class="o">,</span><span class="nn">math</span>
+
+<span class="c"># Step 1: Define method that conducts analytic fit and returns reduced chi2.</span>
+<span class="c">#         (We need to call this multiple times and don&#39;t want to repeat the code everytime.</span>
+<span class="c"># Input:  X ... x-coordinates.</span>
+<span class="c">#         Y ... y-coordinates.</span>
+<span class="c">#         O ... maximum order of polynomial that is fitted to the data.</span>
+<span class="k">def</span> <span class="nf">computeReducedChi2</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">O</span><span class="p">):</span>
+        <span class="n">P</span>      <span class="o">=</span> <span class="n">O</span> <span class="o">+</span> <span class="mi">1</span>   <span class="c"># Number of amplitudes = order + 1</span>
+        <span class="n">N</span>      <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>  <span class="c"># Number of data points.</span>
+        <span class="n">Design</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">N</span><span class="p">,</span><span class="n">P</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">P</span><span class="p">):</span>
+                <span class="n">Design</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="n">p</span><span class="p">)</span>   <span class="c"># x_n^p</span>
+
+        <span class="c"># Compute analytic fit.</span>
+        <span class="n">Dt</span>  <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">Design</span><span class="p">)</span>  <span class="c"># Transpose of Design appears twice, but compute only once.</span>
+        <span class="n">DtD</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Dt</span><span class="p">,</span><span class="n">Design</span><span class="p">)</span>     <span class="c"># For brevity, compute Dt*D here.</span>
+        <span class="c"># Now, compute best-fit amplitudes.</span>
+        <span class="n">amplitudes</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">DtD</span><span class="p">),</span><span class="n">numpy</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">Design</span><span class="p">),</span> <span class="n">Y</span><span class="p">))</span>
+        <span class="c"># Compute chi-square.</span>
+        <span class="n">residuals</span> <span class="o">=</span> <span class="n">Y</span> <span class="o">-</span> <span class="n">numpy</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Design</span><span class="p">,</span> <span class="n">amplitudes</span><span class="p">)</span>
+        <span class="n">chi2</span>      <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">residuals</span><span class="p">,</span><span class="n">residuals</span><span class="p">)</span>
+        <span class="c"># Degrees of freedom is N-P.</span>
+        <span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">O</span><span class="p">)</span><span class="o">+</span><span class="s">&quot;</span><span class="se">\t</span><span class="s">&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">chi2</span><span class="o">/</span><span class="nb">float</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="n">P</span><span class="p">))</span>  <span class="c"># print order and reduced chi-square</span>
+        <span class="k">return</span> <span class="n">chi2</span><span class="o">/</span><span class="nb">float</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="n">P</span><span class="p">)</span>
+
+<span class="c"># Step 2: Generate toy data from 2nd order polynomial a_0=0 and a_1=1 and a_2=0.5.</span>
+<span class="n">N</span>     <span class="o">=</span> <span class="mi">10</span>
+<span class="p">[</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">]</span> <span class="o">=</span> <span class="n">ToyDataGeneration</span><span class="o">.</span><span class="n">generateToyData</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mf">10.0</span><span class="p">,</span><span class="mf">10.0</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="c"># Step 3: Evaluate reduced chi-squared for models of various polynomial orders.</span>
+<span class="n">Order</span>   <span class="o">=</span> <span class="p">[]</span>
+<span class="n">RedChi2</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">order</span> <span class="ow">in</span> <span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">:</span>
+        <span class="n">Order</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">order</span><span class="p">)</span>
+        <span class="n">RedChi2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">computeReducedChi2</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">order</span><span class="p">))</span>
+
+<span class="c"># Step 4: Make plot.</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">pylab</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>  <span class="c"># figure size 8x5</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.135</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.13</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.97</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>  <span class="c"># boundaries</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="s">&#39;--&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;red&#39;</span><span class="p">)</span>  <span class="c"># plot data</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Order</span><span class="p">,</span> <span class="n">RedChi2</span><span class="p">,</span> <span class="s">&#39;s--&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;blue&#39;</span><span class="p">)</span>  <span class="c"># plot data</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s">&#39;log&#39;</span><span class="p">)</span>        <span class="c"># y-axis in log scale</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">4.2</span><span class="p">)</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>  <span class="c"># set fontsize of axis ticks</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>  <span class="c"># set fontsize of axis ticks</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;polynomial order&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">21</span><span class="p">)</span>  <span class="c"># set axis label</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">r&#39;$\chi^2/(N-P)$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>  <span class="c"># set axis label</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">&#39;prob-3-infer_polynomial_order_simple.png&#39;</span><span class="p">)</span>  <span class="c"># save figure</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/prob-3-infer_polynomial_order_simple.png" src="../_images/prob-3-infer_polynomial_order_simple.png" />
+<p>Now, we see that reduced <img class="math" src="../_images/math/a61c1e51680e27d35d05bebed87d474972fc70bd.png" alt="\chi^2"/> actually favours a polynomial of order 4, although the data actually came from a polynomial of 2nd order.</p>
+</div>
+<div class="section" id="impact-of-noise">
+<h2>Impact of noise<a class="headerlink" href="#impact-of-noise" title="Permalink to this headline">¶</a></h2>
+<p>The fact that in the previous example reduced <img class="math" src="../_images/math/a61c1e51680e27d35d05bebed87d474972fc70bd.png" alt="\chi^2"/> favoured an incorrect solution can be interpreted as a consequence of the data being noisy. So far so good.</p>
+<p>Then, let us use multiple noise realisations of the data and average reduced <img class="math" src="../_images/math/a61c1e51680e27d35d05bebed87d474972fc70bd.png" alt="\chi^2"/> over all these realisations. This should rule out the impact of noise. We simply continue the previous code:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># Step 5: Draw multiple samples of data sets and average reduced chi2.</span>
+<span class="n">S</span>          <span class="o">=</span> <span class="mi">100</span>  <span class="c"># Number of samplings.</span>
+<span class="n">Order</span>      <span class="o">=</span> <span class="p">[]</span>
+<span class="n">RedChi2</span>    <span class="o">=</span> <span class="p">[]</span>
+<span class="n">RedChi2Err</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">order</span> <span class="ow">in</span> <span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">:</span>
+        <span class="n">Order</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">order</span><span class="p">)</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">S</span><span class="p">):</span>
+                <span class="n">seed</span>  <span class="o">=</span> <span class="mi">2</span><span class="o">+</span><span class="n">s</span><span class="o">*</span><span class="n">N</span>  <span class="c"># need to adjust random seed to generate different data</span>
+                <span class="p">[</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">]</span> <span class="o">=</span> <span class="n">ToyDataGeneration</span><span class="o">.</span><span class="n">generateToyData</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mf">10.0</span><span class="p">,</span><span class="mf">10.0</span><span class="p">],</span> <span class="n">seed</span><span class="p">)</span>
+                <span class="n">R</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">computeReducedChi2</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">order</span><span class="p">))</span>
+        <span class="n">RedChi2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">R</span><span class="p">))</span>
+        <span class="n">RedChi2Err</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">R</span><span class="p">))</span>
+        <span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">order</span><span class="p">)</span><span class="o">+</span><span class="s">&quot;</span><span class="se">\t</span><span class="s">&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">R</span><span class="p">))</span><span class="o">+</span><span class="s">&quot; +/- &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">R</span><span class="p">))</span>
+
+<span class="c"># Step 6: Make plot.</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">pylab</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>  <span class="c"># figure size 8x5</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.135</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.13</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.97</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>  <span class="c"># boundaries</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="s">&#39;--&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;red&#39;</span><span class="p">)</span>  <span class="c"># plot data</span>
+<span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">Order</span><span class="p">)):</span>
+        <span class="n">pylab</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">Order</span><span class="p">[</span><span class="n">o</span><span class="p">],</span> <span class="n">RedChi2</span><span class="p">[</span><span class="n">o</span><span class="p">],</span> <span class="n">yerr</span><span class="o">=</span><span class="n">RedChi2Err</span><span class="p">[</span><span class="n">o</span><span class="p">],</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;blue&#39;</span><span class="p">)</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Order</span><span class="p">,</span> <span class="n">RedChi2</span><span class="p">,</span> <span class="s">&#39;s--&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;blue&#39;</span><span class="p">)</span>  <span class="c"># plot data</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s">&#39;log&#39;</span><span class="p">)</span>        <span class="c"># y-axis in log scale</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">4.2</span><span class="p">)</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>  <span class="c"># set fontsize of axis ticks</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>  <span class="c"># set fontsize of axis ticks</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;polynomial order&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">21</span><span class="p">)</span>  <span class="c"># set axis label</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">r&#39;$\chi^2/(N-P)$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>  <span class="c"># set axis label</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">&#39;prob-3-infer_polynomial_order_advanced.png&#39;</span><span class="p">)</span>  <span class="c"># save figure</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/prob-3-infer_polynomial_order_advanced.png" src="../_images/prob-3-infer_polynomial_order_advanced.png" />
+<p>Obviously, that did not help us to solve this problem. What is going on here?</p>
+</div>
+<div class="section" id="the-pitfal-more-data-does-not-help">
+<h2>The pitfal: More data does not help!<a class="headerlink" href="#the-pitfal-more-data-does-not-help" title="Permalink to this headline">¶</a></h2>
+<p>Let us investigate, how the results of reduced <img class="math" src="../_images/math/a61c1e51680e27d35d05bebed87d474972fc70bd.png" alt="\chi^2"/> change if we vary the size of the data set. We already have all necessary components and can simply continue the previous code:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># Step 7: Increase sample size and monitor evolution of reduced chi-square.</span>
+<span class="n">SampleSize</span>     <span class="o">=</span> <span class="p">[]</span>
+<span class="n">RedChi2_O2</span>     <span class="o">=</span> <span class="p">[]</span>
+<span class="n">RedChi2_O2_Err</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">RedChi2_O3</span>     <span class="o">=</span> <span class="p">[]</span>
+<span class="n">RedChi2_O3_Err</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">RedChi2_O4</span>     <span class="o">=</span> <span class="p">[]</span>
+<span class="n">RedChi2_O4_Err</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">N</span> <span class="ow">in</span> <span class="mi">6</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">1000</span><span class="p">:</span>
+        <span class="n">SampleSize</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+        <span class="n">R2</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">R3</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">R4</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">S</span><span class="p">):</span>
+                <span class="p">[</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">]</span> <span class="o">=</span> <span class="n">ToyDataGeneration</span><span class="o">.</span><span class="n">generateToyData</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mf">10.0</span><span class="p">,</span><span class="mf">10.0</span><span class="p">],</span> <span class="mi">2</span><span class="o">+</span><span class="n">s</span><span class="o">*</span><span class="n">N</span><span class="p">)</span>
+                <span class="n">R2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">computeReducedChi2</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+                <span class="n">R3</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">computeReducedChi2</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+                <span class="n">R4</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">computeReducedChi2</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+        <span class="n">RedChi2_O2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">R2</span><span class="p">))</span>
+        <span class="n">RedChi2_O3</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">R3</span><span class="p">))</span>
+        <span class="n">RedChi2_O4</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">R4</span><span class="p">))</span>
+        <span class="n">RedChi2_O2_Err</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">R2</span><span class="p">))</span>
+        <span class="n">RedChi2_O3_Err</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">R3</span><span class="p">))</span>
+        <span class="n">RedChi2_O4_Err</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">R4</span><span class="p">))</span>
+
+<span class="c"># Step 8: Make plot.</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">pylab</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>  <span class="c"># figure size 8x5</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.135</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.14</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.97</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>  <span class="c"># boundaries</span>
+<span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">SampleSize</span><span class="p">)):</span>
+        <span class="n">pylab</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">SampleSize</span><span class="p">[</span><span class="n">s</span><span class="p">],</span> <span class="n">RedChi2_O2</span><span class="p">[</span><span class="n">s</span><span class="p">],</span> <span class="n">yerr</span><span class="o">=</span><span class="n">RedChi2_O2_Err</span><span class="p">[</span><span class="n">s</span><span class="p">],</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;red&#39;</span><span class="p">)</span>
+        <span class="n">pylab</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">SampleSize</span><span class="p">[</span><span class="n">s</span><span class="p">],</span> <span class="n">RedChi2_O3</span><span class="p">[</span><span class="n">s</span><span class="p">],</span> <span class="n">yerr</span><span class="o">=</span><span class="n">RedChi2_O3_Err</span><span class="p">[</span><span class="n">s</span><span class="p">],</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;orange&#39;</span><span class="p">)</span>
+        <span class="n">pylab</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">SampleSize</span><span class="p">[</span><span class="n">s</span><span class="p">],</span> <span class="n">RedChi2_O4</span><span class="p">[</span><span class="n">s</span><span class="p">],</span> <span class="n">yerr</span><span class="o">=</span><span class="n">RedChi2_O4_Err</span><span class="p">[</span><span class="n">s</span><span class="p">],</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;blue&#39;</span><span class="p">)</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">SampleSize</span><span class="p">,</span> <span class="n">RedChi2_O2</span><span class="p">,</span> <span class="s">&#39;s--&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;red&#39;</span><span class="p">)</span>  <span class="c"># plot data</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">SampleSize</span><span class="p">,</span> <span class="n">RedChi2_O3</span><span class="p">,</span> <span class="s">&#39;s--&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;orange&#39;</span><span class="p">)</span>  <span class="c"># plot data</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">SampleSize</span><span class="p">,</span> <span class="n">RedChi2_O4</span><span class="p">,</span> <span class="s">&#39;s--&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;blue&#39;</span><span class="p">)</span>  <span class="c"># plot data</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s">&#39;log&#39;</span><span class="p">)</span>        <span class="c"># x-axis in log scale</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s">&#39;log&#39;</span><span class="p">)</span>        <span class="c"># y-axis in log scale</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">1200</span><span class="p">)</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>  <span class="c"># set fontsize of axis ticks</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>  <span class="c"># set fontsize of axis ticks</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;size of data set&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">21</span><span class="p">)</span>  <span class="c"># set axis label</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">r&#39;$\chi^2/(N-P)$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>  <span class="c"># set axis label</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">&#39;prob-3-impact-data-size.png&#39;</span><span class="p">)</span>  <span class="c"># save figure</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/prob-3-impact-data-size.png" src="../_images/prob-3-impact-data-size.png" />
+<p>We now see that for polynomial orders 2, 3 and 4 the mean value of reduced <img class="math" src="../_images/math/a61c1e51680e27d35d05bebed87d474972fc70bd.png" alt="\chi^2"/> does not change with size of data set. Let us spell this out explicitly:</p>
+<p><strong>More data does not help!</strong></p>
+<p>For p-values, the situation is even worse. If one increases the data set there, they start to systematically favour complex models over simple models - irrespective of which model is better.</p>
+<p>Let us exploit this simple fact with a thought experiment: Again, we are given various radial-velocity observations of a single star and want to estimate the number of exoplanets hosted by this star. Our initial data comprises, say, 240 RV measurements, and reduced <img class="math" src="../_images/math/a61c1e51680e27d35d05bebed87d474972fc70bd.png" alt="\chi^2"/> and/or some p-value tells us, there are 6 exoplanets. Now we want to improve our results by adding more data, say we double the number of RV measurements. What will happen? If we use p-values, the number of exoplanets will increase, since p-values favour complex models over simple models. In the limit of us acquiring infinite RV measurements, the number of exoplanets will not converge but increase without limit.</p>
+<p><strong>Beware: This is exactly what is currently going on with Gliese 581!</strong> See <a class="reference external" href="http://adsabs.harvard.edu/abs/2010ApJ...723..954V">here</a> for a typical example.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright .
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+    </div>
+  </body>
+</html>

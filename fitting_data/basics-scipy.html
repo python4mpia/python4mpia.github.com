@@ -1,0 +1,397 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Basics of Scipy &mdash;  0.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title=" 0.1.0 documentation" href="../index.html" />
+ 
+<script type="text/javascript"> 
+$(document).ready(function(){
+
+$(".flip0").click(function(){
+    $(".panel0").slideToggle("normal");
+  });
+
+$(".flip1").click(function(){
+    $(".panel1").slideToggle("normal");
+  });
+
+$(".flip2").click(function(){
+    $(".panel2").slideToggle("normal");
+  });
+
+$(".flip3").click(function(){
+    $(".panel3").slideToggle("normal");
+  });
+
+$(".flip4").click(function(){
+    $(".panel4").slideToggle("normal");
+  });
+
+$(".flip5").click(function(){
+    $(".panel5").slideToggle("normal");
+  });
+
+$(".flip6").click(function(){
+    $(".panel6").slideToggle("normal");
+  });
+
+$(".flip7").click(function(){
+    $(".panel7").slideToggle("normal");
+  });
+
+$(".flip8").click(function(){
+    $(".panel8").slideToggle("normal");
+  });
+
+$(".flip9").click(function(){
+    $(".panel9").slideToggle("normal");
+  });
+
+});
+</script>
+ 
+<style type="text/css"> 
+
+div.panel0,p.flip0
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip0
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel0
+{
+display:none;
+}
+
+div.panel1,p.flip1
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip1
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel1
+{
+display:none;
+}
+
+div.panel2,p.flip2
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip2
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel2
+{
+display:none;
+}
+
+div.panel3,p.flip3
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip3
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel3
+{
+display:none;
+}
+
+div.panel4,p.flip4
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip4
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel4
+{
+display:none;
+}
+
+div.panel5,p.flip5
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip5
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel5
+{
+display:none;
+}
+
+div.panel6,p.flip6
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip6
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel6
+{
+display:none;
+}
+
+div.panel7,p.flip7
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip7
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel7
+{
+display:none;
+}
+
+div.panel8,p.flip8
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip8
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel8
+{
+display:none;
+}
+
+div.panel9,p.flip9
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip9
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel9
+{
+display:none;
+}
+
+</style>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-27427631-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Basics of Scipy</a><ul>
+<li><a class="reference internal" href="#numerical-integration">Numerical integration</a></li>
+<li><a class="reference internal" href="#optimisation">Optimisation</a></li>
+<li><a class="reference internal" href="#further-functionalities-of-scipy">Further functionalities of Scipy</a></li>
+</ul>
+</li>
+</ul>
+
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/fitting_data/basics-scipy.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="basics-of-scipy">
+<h1>Basics of Scipy<a class="headerlink" href="#basics-of-scipy" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="http://scipy.org/">SciPy</a> is probably the scientifically most potent package. If Python can do anything for you at all, changes are best that it is Scipy doing the job.</p>
+<p>Scipy is not developed by astronomers, but primarily by mathematicians and IT experts. Hence, its code quality is - on average - much better than some IDL code written by an astronomer who was under time pressure due to an upcoming proposal deadline. By better code quality, we mean not only that the code is usually faster, it has also been properly tested and debugged.</p>
+<p>The most recent version of Scipy is 0.10. As this version number suggests, substantial software design is still going on within Scipy. In fact, the Scipy software developers explicitly warn that the organisation of the Scipy package may still change before the first 1.x release. <em>For us, this means that the code we provide here may not run anymore, using a future Scipy version.</em></p>
+<p>Let us consider three simple examples. But note that these three examples by no means exploit the wealth of functionality of Scipy! This you can only appreciate, if you start using it for your own work.</p>
+<div class="section" id="numerical-integration">
+<h2>Numerical integration<a class="headerlink" href="#numerical-integration" title="Permalink to this headline">¶</a></h2>
+<p>Numerical integration is faced quite often in science. It is most prominent in the case of error estimation, when we need to marginalise over nuisance parameters.</p>
+<p>Let us consider a very simple example, integrating <img class="math" src="../_images/math/ed047fc68fea410ce0f70604ae7f5b8061299660.png" alt="\int_0^1 x^3 dx=1/4"/>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">quad</span>
+
+<span class="c"># Step 1: Define integrand.</span>
+<span class="k">def</span> <span class="nf">integrand</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+      <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">x</span>
+
+<span class="c"># Step 2: Integrate.</span>
+<span class="c"># The integrand gets further arguments a=0 and b=1.</span>
+<span class="p">[</span><span class="n">result</span><span class="p">,</span> <span class="n">error</span><span class="p">]</span> <span class="o">=</span> <span class="n">quad</span><span class="p">(</span><span class="n">integrand</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">))</span>
+<span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="p">)</span><span class="o">+</span><span class="s">&quot; +/- &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Take a look <a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.quad.html">here</a> to find out about further arguments, e.g., a tolerance limit for the numerical accuracy or maximum number of iterations.</p>
+<p>For an overview of other integration routines of Scipy, see the <a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/tutorial/integrate.html">Scipy.integrate documentation</a>.</p>
+</div>
+<div class="section" id="optimisation">
+<h2>Optimisation<a class="headerlink" href="#optimisation" title="Permalink to this headline">¶</a></h2>
+<p>Numerical optimisation is another task frequently encountered in scientific work, e.g., minimising <img class="math" src="../_images/math/a61c1e51680e27d35d05bebed87d474972fc70bd.png" alt="\chi^2"/> for nonlinear models.</p>
+<p>Let us consider a very simple example, where we want to minimise the function <img class="math" src="../_images/math/ccca40c0eb2256033f7236462795a14844a9bb7d.png" alt="f(x,y)=x^2+(y-1)^2"/>, which has a single minimum at x=0:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">fmin</span>
+
+<span class="c"># Step 1: Define function to be minimised.</span>
+<span class="k">def</span> <span class="nf">f4minimiser</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+      <span class="k">return</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mf">1.0</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mf">1.0</span><span class="p">)</span>
+
+<span class="n">x0</span>   <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">]</span>
+<span class="n">xopt</span> <span class="o">=</span> <span class="n">fmin</span><span class="p">(</span><span class="n">f4minimiser</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">xtol</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">xopt</span>
+</pre></div>
+</div>
+<p>Like above, the function to be minised can take additional arguments that are not part of the minimisation process.</p>
+<p>The optimization subpackage of Scipy also has other minimisation algorithms that may be more stable than this one in your specific application. For more information, see the <a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/optimize.html">Scipy.optimization documentation</a>.</p>
+</div>
+<div class="section" id="further-functionalities-of-scipy">
+<h2>Further functionalities of Scipy<a class="headerlink" href="#further-functionalities-of-scipy" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/optimize.html">root finding</a></li>
+<li><a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/misc.html">numerical derivatives</a></li>
+<li><a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/interpolate.html">interpolation</a></li>
+<li><a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/stats.html">statistics</a></li>
+<li>...</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright .
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+    </div>
+  </body>
+</html>

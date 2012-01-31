@@ -1,5 +1,5 @@
-Logistics
-=========
+How to find out more
+====================
 
 Workshop materials
 ------------------
@@ -12,14 +12,23 @@ All the workshop materials will be available through the web site:
 - Tutorial and example scripts
 - Example data files
 
-Installing Python and the rest
-------------------------------
+Installing Python
+-----------------
 
-In order to follow along the with future sessions you need to have
-Python 2.6 or 2.7 installed and satisfy these
-:ref:`python_pkg_requirements`.  Please to instructions in
-:ref:`installing_scientific_python`. If you have trouble installing
-packages feel free to contact the MPIA python mailing list.
+In order to follow along with future sessions you need to have Python
+2.6 or 2.7 installed and satisfy these :ref:`python_pkg_requirements`.
+Please to instructions in :ref:`installing_scientific_python`. If you
+have trouble installing packages feel free to contact the MPIA Python
+mailing list.
+
+Mailing list
+------------
+
+There is an MPIA python mailing list that you can join here:
+https://mailer.mpia-hd.mpg.de/mailman/listinfo/python
+
+Feel free to post any Python-related questions to the list, regardless
+of how simple (or complex) they might seem!
 
 Final words
 -----------

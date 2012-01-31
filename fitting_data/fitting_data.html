@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>MacOS X Developer Tools &mdash;  0.1.0 documentation</title>
+    <title>An introduction to fitting data using Numpy &amp; Scipy &mdash;  0.1.0 documentation</title>
     
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -285,13 +285,17 @@ display:none;
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">MacOS X Developer Tools</a></li>
-<li><a class="reference internal" href="#fortran-optional">Fortran (Optional)</a></li>
+<li><a class="reference internal" href="#">An introduction to fitting data using Numpy &amp; Scipy</a><ul>
+<li><a class="reference internal" href="#goals-of-this-session">Goals of this session</a><ul>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../_sources/installation/mac_compilers.txt"
+    <li><a href="../_sources/fitting_data/fitting_data.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
@@ -315,57 +319,43 @@ display:none;
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="macos-x-developer-tools">
-<h1>MacOS X Developer Tools<a class="headerlink" href="#macos-x-developer-tools" title="Permalink to this headline">¶</a></h1>
-<p>Before you install additional packages, you will need to make sure that you
-have installed the MacOS X Developer Tools (XCode) so that the <tt class="docutils literal"><span class="pre">gcc</span></tt>
-compiler is available. If you are not sure if you have the developer tools
-installed, try typing <tt class="docutils literal"><span class="pre">gcc</span></tt> in a Terminal. You should see something like this:</p>
-<div class="highlight-python"><pre>$ gcc
-i686-apple-darwin10-gcc-4.2.1: no input files</pre>
-</div>
-<p>If you get <tt class="docutils literal"><span class="pre">gcc:</span> <span class="pre">command</span> <span class="pre">not</span> <span class="pre">found</span></tt> then you need to install the
-developer tools. <strong>If you already have the developer tools installed, you can
-proceed to the next section</strong>.</p>
-<p>There are several ways to install XCode:</p>
+  <div class="section" id="an-introduction-to-fitting-data-using-numpy-scipy">
+<h1>An introduction to fitting data using Numpy &amp; Scipy<a class="headerlink" href="#an-introduction-to-fitting-data-using-numpy-scipy" title="Permalink to this headline">¶</a></h1>
+<p>Numpy and Scipy are two very important packages when using Python for scientific work. Both packages provide powerful methods, e.g., matrix operations, numerical integration, statistical distributions.</p>
+<div class="section" id="goals-of-this-session">
+<h2>Goals of this session<a class="headerlink" href="#goals-of-this-session" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>The developer tools should be present on one of the installation DVDs
-that came with your Mac. Often, this can be found on DVD 2 rather than on
-the main DVD.</li>
-<li>If you don&#8217;t have the original installation DVDs, you can <a class="reference external" href="http://developer.apple.com/programs/register/">register</a> for free as an Apple
-Developer, which will give you access to XCode 2 or 3:<ul>
-<li>If you are using MacOS 10.6 you should be able to download XCode 3.2.6
-once you are logged in to the <a class="reference external" href="http://developer.apple.com/devcenter/mac/index.action">Mac Dev Center</a>. Then, run
-the installer (<tt class="docutils literal"><span class="pre">Xcode</span> <span class="pre">and</span> <span class="pre">iOS</span> <span class="pre">SDK</span></tt>).</li>
-<li>If you are using MacOS 10.5, first log in to the <a class="reference external" href="http://developer.apple.com/devcenter/mac/index.action">Mac Dev Center</a>, then go
-<a class="reference external" href="http://connect.apple.com/cgi-bin/WebObjects/MemberSite.woa/wa/downloads">here</a>.
-Click on <cite>Developer Tools</cite>, and download <cite>Xcode 3.1.4 Developer DVD
-(Disk Image)</cite>, then run the installer (<tt class="docutils literal"><span class="pre">XcodeTools.mpkg</span></tt>).</li>
-<li>If you are using MacOS 10.4, first log in to the <a class="reference external" href="http://developer.apple.com/devcenter/mac/index.action">Mac Dev Center</a>, then go
-<a class="reference external" href="http://connect.apple.com/cgi-bin/WebObjects/MemberSite.woa/wa/downloads">here</a>.
-Click on <cite>Developer Tools</cite>, and download <cite>Xcode 2.5 Developer Tools
-(Disk Image)</cite>, then run the installer (<tt class="docutils literal"><span class="pre">XcodeTools.mpkg</span></tt>).</li>
+<li>How to use Numpy: matrices &amp; linear algebra.</li>
+<li>How to use Scipy: numerical integration.</li>
+<li>How to compare population proportions.</li>
+<li>How to fit linear models.</li>
+<li>Never trust p-values or reduced <img class="math" src="../_images/math/a61c1e51680e27d35d05bebed87d474972fc70bd.png" alt="\chi^2"/>.</li>
+<li>Review some basic plotting.</li>
 </ul>
-</li>
-<li>If you like to live on the bleeding edge, have MacOS X 10.6.6, and don&#8217;t
-mind shelling out $4.99, go to the App Store (<tt class="docutils literal"><span class="pre">/Applications/App</span>
-<span class="pre">Store.app</span></tt>) and buy XCode 4.</li>
+<p>At the end of this session, participants will have code fragments that can be readily used or easily adopted for their own scientific work.</p>
+<p>Furthermore, participants are then familiar with the basic concepts of Numpy and Scipy, such that they know how to learn more complicated things themselfes.</p>
+<p><strong>Agenda</strong></p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="basics-scipy.html">Basics of Scipy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prob-2-population-proportions.html">Example 1: Comparing population proportions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basics-numpy.html">Basics of Numpy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prob-3-fitting-linear-models.html">Example 2: Fitting linear models with Numpy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prob-4-p-values.html">Example 3: Pitfalls of model comparison</a></li>
+<li class="toctree-l1"><a class="reference internal" href="summary.html">Summary</a></li>
 </ul>
 </div>
-<div class="section" id="fortran-optional">
-<h1>Fortran (Optional)<a class="headerlink" href="#fortran-optional" title="Permalink to this headline">¶</a></h1>
-<p>You may at some point come across packages which require a Fortran
-compiler, or you may want to interface Fortran and Python code. If not, you
-can proceed to the next section.</p>
-<p>The preferred compiler to interface Fortran and Python code is <tt class="docutils literal"><span class="pre">gfortran</span></tt>.
-Other compilers <cite>should</cite> work, but if you want to be on the safe side, you
-can download a one-click installer for gfortran 4.2.3 from <a class="reference external" href="http://r.research.att.com/tools/">this page</a>. Once you have installed it, make sure
-that typing <tt class="docutils literal"><span class="pre">gfortran</span></tt> gives something like this:</p>
-<div class="highlight-python"><pre>$ gfortran
-i686-apple-darwin8-gfortran-4.2: no input files</pre>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Authors:</th><td class="field-body">Rene Andrae</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Copyright:</th><td class="field-body">2011, Rene Andrae</td>
+</tr>
+</tbody>
+</table>
 </div>
-<p>If you get <tt class="docutils literal"><span class="pre">gfortran:</span> <span class="pre">command</span> <span class="pre">not</span> <span class="pre">found</span></tt>, then <tt class="docutils literal"><span class="pre">gfortran</span></tt> did not
-install correctly.</p>
 </div>
 
 

@@ -1,0 +1,438 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Example 1: Comparing population proportions &mdash;  0.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title=" 0.1.0 documentation" href="../index.html" />
+ 
+<script type="text/javascript"> 
+$(document).ready(function(){
+
+$(".flip0").click(function(){
+    $(".panel0").slideToggle("normal");
+  });
+
+$(".flip1").click(function(){
+    $(".panel1").slideToggle("normal");
+  });
+
+$(".flip2").click(function(){
+    $(".panel2").slideToggle("normal");
+  });
+
+$(".flip3").click(function(){
+    $(".panel3").slideToggle("normal");
+  });
+
+$(".flip4").click(function(){
+    $(".panel4").slideToggle("normal");
+  });
+
+$(".flip5").click(function(){
+    $(".panel5").slideToggle("normal");
+  });
+
+$(".flip6").click(function(){
+    $(".panel6").slideToggle("normal");
+  });
+
+$(".flip7").click(function(){
+    $(".panel7").slideToggle("normal");
+  });
+
+$(".flip8").click(function(){
+    $(".panel8").slideToggle("normal");
+  });
+
+$(".flip9").click(function(){
+    $(".panel9").slideToggle("normal");
+  });
+
+});
+</script>
+ 
+<style type="text/css"> 
+
+div.panel0,p.flip0
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip0
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel0
+{
+display:none;
+}
+
+div.panel1,p.flip1
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip1
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel1
+{
+display:none;
+}
+
+div.panel2,p.flip2
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip2
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel2
+{
+display:none;
+}
+
+div.panel3,p.flip3
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip3
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel3
+{
+display:none;
+}
+
+div.panel4,p.flip4
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip4
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel4
+{
+display:none;
+}
+
+div.panel5,p.flip5
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip5
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel5
+{
+display:none;
+}
+
+div.panel6,p.flip6
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip6
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel6
+{
+display:none;
+}
+
+div.panel7,p.flip7
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip7
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel7
+{
+display:none;
+}
+
+div.panel8,p.flip8
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip8
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel8
+{
+display:none;
+}
+
+div.panel9,p.flip9
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip9
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel9
+{
+display:none;
+}
+
+</style>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-27427631-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Example 1: Comparing population proportions</a><ul>
+<li><a class="reference internal" href="#background">Background</a></li>
+<li><a class="reference internal" href="#the-solution">The solution</a></li>
+<li><a class="reference internal" href="#revisiting-the-other-two-examples">Revisiting the other two examples</a></li>
+</ul>
+</li>
+</ul>
+
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/fitting_data/prob-2-population-proportions.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="example-1-comparing-population-proportions">
+<h1>Example 1: Comparing population proportions<a class="headerlink" href="#example-1-comparing-population-proportions" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="background">
+<h2>Background<a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h2>
+<p>The comparison of population proportions is a very common task in science. Here are three examples:</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Astronomy:</th><td class="field-body">Say you have two samples of galaxies, one sample being active galaxies, the other sample inactive galaxies. For both sets, you also counted the number of merging galaxies. You now want to know, whether the merger rate in active galaxies is larger than in inactive galaxies. (Common idea: Activity is triggered by merging.)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Medicine:</th><td class="field-body">You test a new drug to cure some disease. You have two groups of test patients, one getting the real drug, the other getting a placebo. Now you want to compare the percentage of patients healed from the disease in both groups, thereby assessing the effect of your new drug.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Biology:</th><td class="field-body">Somebody claimed that &#8220;beautiful&#8221; parents tend to have more girls than &#8220;normal&#8221; parents. So you need to compare the proportions of newborn girls vs. boys for &#8220;beautiful&#8221; parents and for &#8220;normal&#8221; parents.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="the-solution">
+<h2>The solution<a class="headerlink" href="#the-solution" title="Permalink to this headline">¶</a></h2>
+<p>In order to solve these problems, we need a little bit of statistics, but not that much. We specialise on the astronomical problem here.</p>
+<p>We need to compare two samples, so let us consider each sample individually first. For each sample, we have the number of merging galaxies and the total number of galaxies in that sample. In statistics speech, the number n of successes and the number N of trials. We then want to estimate the success rate p.</p>
+<p>Common sense tells us that the success rate should be something like <img class="math" src="../_images/math/bcccd632df3571743d40685e14938fd1fb029efc.png" alt="p=n/N"/>. The likelihood of p is given by the binomial likelihood <img class="math" src="../_images/math/ac7aa907c0477a2b34e52c2204d2db9f306c9eea.png" alt="\mathcal L\propto p^n(1-p)^{N-n}"/> and its maximum is indeed at n/N.</p>
+<p>Now, we have two samples - active and inactive galaxies - and want to know the likelihood function of <img class="math" src="../_images/math/1ac250257ab15acc90081dc848eaa1a6cdfd8161.png" alt="\Delta=p_A-p_I"/>. The key is to realise that various combinations of <img class="math" src="../_images/math/10ce6d9df234a90e30d5321b4a6ec8cb2243705c.png" alt="p_A"/> and <img class="math" src="../_images/math/2ce1c1ed5b9bce61a0f42f299dff45a8e62c7709.png" alt="p_I"/> can generate the same value of <img class="math" src="../_images/math/0a737670d481129e2ead6d7223437f3cf70ea53f.png" alt="\Delta"/> such that we need to add all their likelihood</p>
+<p><img class="math" src="../_images/math/b454d75782416d18785d982c89ab578b310d9c48.png" alt="\mathcal L(\Delta) \propto\int p_B^{n_B}(1-p_B)^{N_B-n_B}(\Delta+p_B)^{N_A}(1-\Delta-p_B)^{N_A-n_A}dp_B"/></p>
+<p>We can now implement the general solution. Here, we also plug in numbers from a real publication by <a class="reference external" href="http://adsabs.harvard.edu/abs/2011ApJ...726...57C">Cisternas et al. (2011)</a>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">quad</span>
+<span class="kn">import</span> <span class="nn">math</span><span class="o">,</span><span class="nn">pylab</span>
+
+<span class="n">nA</span> <span class="o">=</span> <span class="mi">18</span>    <span class="c"># Number of merging active galaxies</span>
+<span class="n">NA</span> <span class="o">=</span> <span class="mi">140</span>   <span class="c"># Total number of active galaxies</span>
+<span class="n">nB</span> <span class="o">=</span> <span class="mi">153</span>   <span class="c"># Number of merging inactive galaxies</span>
+<span class="n">NB</span> <span class="o">=</span> <span class="mi">1264</span>  <span class="c"># Total number of inactive galaxies</span>
+
+<span class="c"># Step 1: Define integrand of likelihood of Delta.</span>
+<span class="k">def</span> <span class="nf">integrand</span><span class="p">(</span><span class="n">p_B</span><span class="p">,</span> <span class="n">delta</span><span class="p">):</span>
+      <span class="c"># Likelihood of sample B.</span>
+      <span class="n">lik_B</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">p_B</span><span class="p">,</span> <span class="n">nB</span><span class="p">)</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">p_B</span><span class="p">,</span> <span class="n">NB</span> <span class="o">-</span> <span class="n">nB</span><span class="p">)</span>
+      <span class="c"># Likelihood of sample A where pA = Delta + pB.</span>
+      <span class="n">lik_A</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">delta</span> <span class="o">+</span> <span class="n">p_B</span><span class="p">,</span> <span class="n">nA</span><span class="p">)</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">delta</span> <span class="o">-</span> <span class="n">p_B</span><span class="p">,</span> <span class="n">NA</span> <span class="o">-</span> <span class="n">nA</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">lik_A</span><span class="o">*</span><span class="n">lik_B</span>
+
+<span class="c"># Step 2: Define integral with appropriate integration limits:</span>
+<span class="k">def</span> <span class="nf">integrateLikelihood</span><span class="p">(</span><span class="n">delta</span><span class="p">):</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">delta</span> <span class="o">&gt;=</span> <span class="mf">0.0</span><span class="p">):</span>
+              <span class="k">return</span> <span class="n">quad</span><span class="p">(</span><span class="n">integrand</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">delta</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">delta</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+      <span class="k">else</span><span class="p">:</span>
+              <span class="k">return</span> <span class="n">quad</span><span class="p">(</span><span class="n">integrand</span><span class="p">,</span> <span class="o">-</span><span class="n">delta</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">delta</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c"># Step 3: Compute data for plotting likelihood of Delta.</span>
+<span class="n">D</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">L</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">201</span><span class="p">):</span>
+      <span class="n">Delta</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span> <span class="o">+</span> <span class="mf">2.0</span><span class="o">*</span><span class="nb">float</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">/</span><span class="mf">200.0</span>
+      <span class="n">lik</span>   <span class="o">=</span> <span class="n">integrateLikelihood</span><span class="p">(</span><span class="n">Delta</span><span class="p">)</span>
+      <span class="n">D</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Delta</span><span class="p">)</span>
+      <span class="n">L</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lik</span><span class="p">)</span>
+
+<span class="c"># Step 4: Make plot</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">pylab</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>  <span class="c"># figure size 8x5</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.12</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.14</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.97</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>  <span class="c"># boundaries</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="s">&#39;-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;blue&#39;</span><span class="p">)</span>  <span class="c"># plot data</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>  <span class="c"># set fontsize of axis ticks</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>  <span class="c"># set fontsize of axis ticks</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">r&#39;$\Delta$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>  <span class="c"># set axis label</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">r&#39;$\cal L(\Delta)$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>  <span class="c"># set axis label</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">&#39;prob-2-likelihood-delta.png&#39;</span><span class="p">)</span>  <span class="c"># save figure</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>That is how the likelihood looks. Scientific inference accomplished. Well, not quite, as we cannot put such a figure into the abstract of a paper, wherefore we need to condense this likelihood function into some plain numbers.</p>
+<img alt="../_images/prob-2-likelihood-delta.png" src="../_images/prob-2-likelihood-delta.png" />
+<p>We can also compute various diagnostics. Say we want to know the likelihood that <img class="math" src="../_images/math/8db560dadf75b0df55c799c2a816bee860f1a952.png" alt="p_A&gt;p_B"/> or rather <img class="math" src="../_images/math/e210e6ea59a93633f7271e3290dc0abfd1372108.png" alt="\Delta&gt;0"/>. For this purpose, we only need to integrate <img class="math" src="../_images/math/ba9a31303d02826e74737ce5e4b1b6167b82cb9c.png" alt="\mathcal L(\Delta)"/> from 0 to +1 (and compute the normalisation constant):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># Step 5: Compute normalisation constant.</span>
+<span class="n">normalisation</span> <span class="o">=</span> <span class="n">quad</span><span class="p">(</span><span class="n">integrateLikelihood</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="k">print</span> <span class="n">quad</span><span class="p">(</span><span class="n">integrateLikelihood</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">normalisation</span>
+</pre></div>
+</div>
+<p>We find a chance of only 51.9% that <img class="math" src="../_images/math/0a737670d481129e2ead6d7223437f3cf70ea53f.png" alt="\Delta"/> is positive, i.e., that the merger rate in active galaxies is larger than in inactive galaxies (irrespective of what the precise merger rates are in each set).</p>
+</div>
+<div class="section" id="revisiting-the-other-two-examples">
+<h2>Revisiting the other two examples<a class="headerlink" href="#revisiting-the-other-two-examples" title="Permalink to this headline">¶</a></h2>
+<p>You now have the code to also tackle the other two examples. All you need to do is to change the number statistics in the code:</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Biology:</th><td class="field-body"><a class="reference external" href="http://www.stat.columbia.edu/~gelman/research/unpublished/power.pdf">Gelman &amp; Weakliem (2009)</a> determined that the 50 most beautiful people of 1995 had 32 daughters and 24 sons. As a comparison sample, we can use Germany&#8217;s birth statistics, where in 100 births there are 48.7 girls. Do we find convincing evidence that beautiful people indeed have more daughters?</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Medicine:</th><td class="field-body">The astronomical example was interesting, the biological example was entertaining. Now, the medicine example can decide about life or death - or at least about the health of a real human being. In the textbook(!) by Schulz et al. (2002), &#8220;Phytopharmaka VII&#8221;, p. 85, we find the following example: A. Biller investigates a new drug to cure Coxarthrosis. His test sample are 21 patients of which 15 are cured. His reference set are 20 patients that get placebos whereof 8 are cured. He claims to find a statistically significant difference based on a p-value of 0.041. Are we convinced?</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright .
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+    </div>
+  </body>
+</html>
