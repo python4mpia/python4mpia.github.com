@@ -297,16 +297,12 @@ display:none;
   <ul>
 <li><a class="reference internal" href="#">Quick tour of Python</a><ul>
 <li><a class="reference internal" href="#making-a-publication-quality-image">Making a publication quality image</a></li>
-<li><a class="reference internal" href="#hello-world">Hello, world</a></li>
+<li><a class="reference internal" href="#the-basics">The Basics</a></li>
+<li><a class="reference internal" href="#array-indexing">Array indexing</a></li>
 <li><a class="reference internal" href="#reading-text-files-and-plotting">Reading text files and plotting</a></li>
 <li><a class="reference internal" href="#making-a-fancy-plot-from-monte-carlo-samples">Making a fancy plot from Monte-Carlo samples</a></li>
 <li><a class="reference internal" href="#parallel-process-of-fits-images">Parallel process of FITS images</a></li>
-<li><a class="reference internal" href="#reading-a-table-and-plotting-with-asciitable">Reading a table and plotting with asciitable</a></li>
-<li><a class="reference internal" href="#curve-fitting-with-scipy">Curve fitting with SciPy</a></li>
-<li><a class="reference internal" href="#intermission-numpy-matplotlib-and-scipy">Intermission: NumPy, Matplotlib, and SciPy</a></li>
-<li><a class="reference internal" href="#synthetic-images">Synthetic images</a></li>
-<li><a class="reference internal" href="#running-existing-compiled-codes">Running existing compiled codes</a></li>
-<li><a class="reference internal" href="#and-much-much-more">And much much more...</a></li>
+<li><a class="reference internal" href="#more-examples">More Examples</a></li>
 </ul>
 </li>
 </ul>
@@ -344,16 +340,54 @@ display:none;
           <div class="body">
             
   <div class="section" id="quick-tour-of-python">
-<h1>Quick tour of Python<a class="headerlink" href="#quick-tour-of-python" title="Permalink to this headline">¶</a></h1>
-<p>In the spirit of this workshop let&#8217;s jump in to real Python analysis code.
-These examples assume you are using <a class="reference external" href="http://matplotlib.sourceforge.net/faq/usage_faq.html#matplotlib-pylab-and-pyplot-how-are-they-related">pylab</a>
-(you&#8217;ll understand what that is after the 2nd hands-on session).</p>
+<span id="quick-tour"></span><h1>Quick tour of Python<a class="headerlink" href="#quick-tour-of-python" title="Permalink to this headline">¶</a></h1>
+<p>In the spirit of this workshop let&#8217;s jump in to real Python analysis code.</p>
 <div class="section" id="making-a-publication-quality-image">
 <h2>Making a publication quality image<a class="headerlink" href="#making-a-publication-quality-image" title="Permalink to this headline">¶</a></h2>
-<p>Making a publication quality image is a snap in Python using the <a class="reference external" href="http://aplpy.github.com">APLpy</a> package.  Images can be made interactively or
-(reproducibly) with a script.  Let&#8217;s see how the cover image for today&#8217;s
-talk was made.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">aplpy</span>
+<p>Making a publication quality image is a snap in Python using the <a class="reference external" href="http://aplpy.github.com">APLpy</a> package (Astronomical Tables in Python).  Images can be made interactively or (reproducibly) with a script. Let&#8217;s use this in combination with <a class="reference external" href="http://atpy.github.com">ATpy</a> to make a plot of a region with contours and a catalog overlaid.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">aplpy</span>
+<span class="kn">import</span> <span class="nn">atpy</span>
+
+<span class="c"># Create a new figure</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">aplpy</span><span class="o">.</span><span class="n">FITSFigure</span><span class="p">(</span><span class="s">&#39;i3.fits&#39;</span><span class="p">)</span>
+
+<span class="c"># Show the colorscale</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show_colorscale</span><span class="p">()</span>
+
+<span class="c"># Add contours</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show_contour</span><span class="p">(</span><span class="s">&#39;sc.fits&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s">&#39;jet&#39;</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+<span class="c"># Make ticks white</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">ticks</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s">&#39;white&#39;</span><span class="p">)</span>
+
+<span class="c"># Make labels smaller and serif</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tick_labels</span><span class="o">.</span><span class="n">set_font</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="s">&#39;small&#39;</span><span class="p">)</span>
+
+<span class="c"># Overlay a grid</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">add_grid</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">set_alpha</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="c"># Add a colorbar</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">add_colorbar</span><span class="p">()</span>
+
+<span class="c"># Use ATpy to read in an IRSA table</span>
+<span class="n">tab</span> <span class="o">=</span> <span class="n">atpy</span><span class="o">.</span><span class="n">Table</span><span class="p">(</span><span class="s">&#39;2mass.tbl&#39;</span><span class="p">)</span>
+<span class="n">tab_bright</span> <span class="o">=</span> <span class="n">tab</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">tab</span><span class="p">[</span><span class="s">&#39;j_m&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mf">13.</span><span class="p">)</span>
+
+<span class="c"># Plot markers</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show_markers</span><span class="p">(</span><span class="n">tab</span><span class="p">[</span><span class="s">&#39;ra&#39;</span><span class="p">],</span> <span class="n">tab</span><span class="p">[</span><span class="s">&#39;dec&#39;</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s">&#39;+&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s">&#39;white&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show_markers</span><span class="p">(</span><span class="n">tab_bright</span><span class="p">[</span><span class="s">&#39;ra&#39;</span><span class="p">],</span> <span class="n">tab_bright</span><span class="p">[</span><span class="s">&#39;dec&#39;</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s">&#39;o&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s">&#39;white&#39;</span><span class="p">)</span>
+
+<span class="c"># Save image for publication</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s">&#39;aplpy_plot.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This produces the nice image:</p>
+<a class="reference internal image-reference" href="../_images/aplpy_plot.png"><img alt="../_images/aplpy_plot.png" src="../_images/aplpy_plot.png" style="width: 547.8px; height: 470.4px;" /></a>
+<p>We can also easily make 3-color images with FITS files that have different projections:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">aplpy</span>
 
 <span class="c"># Convert all images to common projection</span>
 <span class="n">aplpy</span><span class="o">.</span><span class="n">make_rgb_cube</span><span class="p">([</span><span class="s">&#39;m1.fits&#39;</span><span class="p">,</span> <span class="s">&#39;i3.fits&#39;</span><span class="p">,</span> <span class="s">&#39;i2.fits&#39;</span><span class="p">],</span> <span class="s">&#39;rgb.fits&#39;</span><span class="p">)</span>
@@ -362,77 +396,170 @@ talk was made.</p>
 <span class="n">aplpy</span><span class="o">.</span><span class="n">make_rgb_image</span><span class="p">(</span><span class="s">&#39;rgb.fits&#39;</span><span class="p">,</span> <span class="s">&#39;rgb.png&#39;</span><span class="p">,</span>
                      <span class="n">vmin_r</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">vmax_r</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span>
                      <span class="n">vmin_g</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax_g</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span>
-                     <span class="n">vmin_b</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">vmax_b</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+                     <span class="n">vmin_b</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">vmax_b</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+                     <span class="n">embed_avm_tags</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
-<span class="c"># Create a new figure</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">aplpy</span><span class="o">.</span><span class="n">FITSFigure</span><span class="p">(</span><span class="s">&#39;rgb_2d.fits&#39;</span><span class="p">)</span>
-
-<span class="c"># Show the RGB image</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">show_rgb</span><span class="p">(</span><span class="s">&#39;rgb.png&#39;</span><span class="p">)</span>
-
-<span class="c"># Add contours</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">show_contour</span><span class="p">(</span><span class="s">&#39;sc.fits&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s">&#39;gist_heat&#39;</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="p">[</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.4</span><span class="p">,</span><span class="mf">0.6</span><span class="p">,</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">1.0</span><span class="p">])</span>
-
-<span class="c"># Overlay a grid</span>
+<span class="c"># Make a plot similarly to before</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">aplpy</span><span class="o">.</span><span class="n">FITSFigure</span><span class="p">(</span><span class="s">&#39;rgb.png&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show_rgb</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show_contour</span><span class="p">(</span><span class="s">&#39;sc.fits&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s">&#39;jet&#39;</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">ticks</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s">&#39;white&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tick_labels</span><span class="o">.</span><span class="n">set_font</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="s">&#39;small&#39;</span><span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">add_grid</span><span class="p">()</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">set_alpha</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
-
-<span class="c"># Save image</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s">&#39;plot.png&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s">&#39;aplpy_rgb_plot.png&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>This produces the nice image:</p>
-<a class="reference internal image-reference" href="../_images/image_plotting.png"><img alt="../_images/image_plotting.png" src="../_images/image_plotting.png" style="width: 523.8px; height: 471.0px;" /></a>
+<p>Which produces the following:</p>
+<a class="reference internal image-reference" href="../_images/aplpy_rgb_plot.png"><img alt="../_images/aplpy_rgb_plot.png" src="../_images/aplpy_rgb_plot.png" style="width: 512.4px; height: 468.6px;" /></a>
 </div>
-<div class="section" id="hello-world">
-<h2>Hello, world<a class="headerlink" href="#hello-world" title="Permalink to this headline">¶</a></h2>
-<p>The following is from &#8220;myfile.py&#8221;.</p>
+<div class="section" id="the-basics">
+<h2>The Basics<a class="headerlink" href="#the-basics" title="Permalink to this headline">¶</a></h2>
+<p>Here is a brief guide to the basics of python syntax.
+Defining variables:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">a</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">name</span><span class="o">=</span><span class="s">&quot;Jorge&quot;</span>
+</pre></div>
+</div>
+<p>Python figures out the variable type for you.</p>
+<p>Define functions</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;John&quot;</span><span class="p">):</span>
     <span class="k">print</span> <span class="s">&quot;Hello, &quot;</span><span class="o">+</span><span class="n">name</span>
 
-<span class="k">def</span> <span class="nf">array_hello</span><span class="p">(</span><span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s">&quot;Tom&quot;</span><span class="p">,</span> <span class="s">&quot;Dick&quot;</span><span class="p">,</span> <span class="s">&quot;Harry&quot;</span><span class="p">]):</span>
+<span class="k">def</span> <span class="nf">list_hello</span><span class="p">(</span><span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s">&quot;Tom&quot;</span><span class="p">,</span> <span class="s">&quot;Dick&quot;</span><span class="p">,</span> <span class="s">&quot;Harry&quot;</span><span class="p">]):</span>
     <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">:</span>
         <span class="k">print</span> <span class="s">&quot;Hello, &quot;</span><span class="o">+</span><span class="n">name</span>
 </pre></div>
 </div>
+<p>&#8221;:&#8221; indicates the beginning of something.  Indentation (4 spaces) tells python
+which code is included in the code segment instead of <cite>{</cite> and <cite>}</cite>.</p>
+<p>Functions in python can take both mandatory arguments and optional
+keyword arguments. You can set default arguments for keywords.</p>
+<p>It is easy to loop through elements of a <cite>list</cite> using a <cite>for</cite> loop.</p>
 <p>Run the functions by inside python typing</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">myfile</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">myfile</span><span class="o">.</span><span class="n">hello</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">myfile</span><span class="o">.</span><span class="n">array_hello</span><span class="p">()</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">hello</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">list_hello</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Run a script file in <cite>ipython</cite> using the <cite>run</cite> command:</p>
+<div class="highlight-python"><pre>In [1]: run myfile.py
+In [2]: a
+Out[2]: 1
+
+In [3]: name
+Out[3]: 'Bob'</pre>
+</div>
+<p>The variables you define in the script file are still available to you.:</p>
+<div class="highlight-python"><pre>In [4]: hello
+Out[4]: &lt;function hello at 0x1cec8c0&gt;</pre>
+</div>
+<p>Whoops.  A function needs to be called with <cite>()</cite>.  Otherwise, python just
+tells you that it is a function:</p>
+<div class="highlight-python"><pre>In [5]: hello()
+Hello, John</pre>
+</div>
+<p>I can also set the keyword explicitly:</p>
+<div class="highlight-python"><pre>In [6]: hello(name="Bryan")
+Hello, Bryan</pre>
+</div>
+<p>or be lazy and just pass in the argument alone and python will assign it to
+the keyword in the corresponding position:</p>
+<div class="highlight-python"><pre>In [7]: hello("Dieter")
+Hello, Dieter</pre>
+</div>
+<p>My list example also works:</p>
+<div class="highlight-python"><pre>In [8]: list_hello()
+Hello, Tom
+Hello, Dick
+Hello, Harry</pre>
+</div>
+</div>
+<div class="section" id="array-indexing">
+<h2>Array indexing<a class="headerlink" href="#array-indexing" title="Permalink to this headline">¶</a></h2>
+<p>Numpy array indexing and multidimensional arrays:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">scipy</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">random</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">asciitable</span>
+
+<span class="c"># Create a simple numerical numpy 1D array (a vector, if you like):</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">x</span>
+
+<span class="c"># To index a single element in x:</span>
+<span class="k">print</span> <span class="s">&#39;the first element of x is {0}&#39;</span> <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="k">print</span> <span class="s">&#39;the second element of x is {0}&#39;</span> <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="c"># Selecting ranges with the :</span>
+<span class="k">print</span> <span class="s">&#39;to select the first 4 elements of x type x[0:4] or simply x[:4]= {0}&#39;</span> <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">])</span>
+
+<span class="c"># Indexing in steps</span>
+<span class="k">print</span> <span class="s">&#39;pick every other element of x by typing x[: :2] = {0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">[:</span> <span class="p">:</span> <span class="mi">2</span><span class="p">])</span>
+
+<span class="c"># Negative indexing: start counting from the end</span>
+<span class="k">print</span> <span class="s">&#39;The last element of x can be indexed as x[-1] = {0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="k">print</span> <span class="s">&#39;The last-but-one element of x can be indexed as x[-2] = {0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span>
+
+<span class="c"># Negative indexing can also be used to select ranges, as above:</span>
+<span class="k">print</span> <span class="s">&#39;The last 4 elements of x are picked with x[-4:] = {0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">:])</span>
+<span class="k">print</span> <span class="s">&#39;Negative indexing and stepsizes can be used to reverse an array! try e.g. x[: :-1] = {0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">[:</span> <span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="c"># Now let&#39;s create a more typical array, with 2 dimensions, with numpy&#39;s random number generator:</span>
+<span class="n">x2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="mf">10.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)))</span>
+<span class="k">print</span> <span class="n">x2</span>
+
+<span class="c"># Indexing a 2D array is much the same as for a 1D array.... The : indicates &quot;all elements from this axis&quot;</span>
+<span class="k">print</span> <span class="s">&#39;Element (1,1) of x2 is selected by x2[0,0] = {0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x2</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="k">print</span> <span class="s">&#39;The first row of x2 is selected by x2[0,:] = {0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x2</span><span class="p">[</span><span class="mi">0</span><span class="p">,:])</span>
+<span class="k">print</span> <span class="s">&#39;The 3rd column of x2 is selected by x2[:,2] = {0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x2</span><span class="p">[:,</span><span class="mi">2</span><span class="p">])</span>
+
+<span class="c"># We can also create more multi-dimensional arrays. This is a 4D array:</span>
+<span class="n">x4</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="mf">10.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">)))</span>
+<span class="k">print</span> <span class="n">x4</span>
+
+<span class="c"># In principle indexing an N-dimensional array is again similar to previous examples....</span>
+<span class="k">print</span> <span class="s">&#39;The (0,0,0,0) element of x4 is selected by x4[0,0,0,0] = {0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x4</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="k">print</span> <span class="s">&#39;To select just from one axis and include all elements from the other axes, use ..., e.g. x4[1,...] = </span><span class="se">\n</span><span class="s">{0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x4</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="o">...</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="reading-text-files-and-plotting">
 <h2>Reading text files and plotting<a class="headerlink" href="#reading-text-files-and-plotting" title="Permalink to this headline">¶</a></h2>
-<p>Plot the space and redshift distribution of the luminous red galaxies
-(LRGs) from the catalogue here:
-<a class="reference external" href="http://www.2slaq.info/2SLAQ_LRG_v5pub.cat">http://www.2slaq.info/2SLAQ_LRG_v5pub.cat</a>:</p>
+<p>Plot the space and redshift distribution of luminous red galaxies
+(LRGs) from the 2SLAQ survey. The catalogue is available here:
+<a class="reference external" href="http://www.2slaq.info/2SLAQ_LRG_v5pub.cat">http://www.2slaq.info/2SLAQ_LRG_v5pub.cat</a>. First we&#8217;ll read the
+required columns from this text file and plot the galaxy distribution
+in a thin declination slice, showing the galaxy brightness by the
+point size, and colouring points by the r-i colour:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">integrate</span>
 <span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sqrt</span>
 
-<span class="c"># Cosmological parameters needed to convert redshift to distance</span>
-<span class="n">H0</span> <span class="o">=</span> <span class="mf">70.</span>    <span class="c"># Hubble parameter at z=0, km/s/Mpc</span>
+<span class="c"># To plot the space distribution we need to convert redshift to</span>
+<span class="c"># distance.  The values and function below are needed for this</span>
+<span class="c"># conversion.</span>
 <span class="n">omega_m</span> <span class="o">=</span> <span class="mf">0.3</span>
 <span class="n">omega_lam</span> <span class="o">=</span> <span class="mf">0.7</span>
+<span class="n">H0</span> <span class="o">=</span> <span class="mf">70.</span>    <span class="c"># Hubble parameter at z=0, km/s/Mpc</span>
 <span class="n">c_kms</span> <span class="o">=</span> <span class="mf">299792.458</span> <span class="c"># speed of light, km/s</span>
-<span class="n">dH</span> <span class="o">=</span> <span class="n">c_kms</span> <span class="o">/</span> <span class="n">H0</span>    <span class="c"># Hubble distance, Mpc</span>
+<span class="n">dH</span> <span class="o">=</span> <span class="n">c_kms</span> <span class="o">/</span> <span class="n">H0</span>          <span class="c"># Hubble distance, Mpc</span>
 
 <span class="k">def</span> <span class="nf">inv_efunc</span><span class="p">(</span><span class="n">z</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Used to calculate the comoving distance to object at redshift</span>
 <span class="sd">    z. Eqn 14 from Hogg, astro-ph/9905116.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="mf">1.</span> <span class="o">/</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">omega_m</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.</span> <span class="o">+</span> <span class="n">z</span><span class="p">)</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="n">omega_lam</span><span class="p">)</span>
 
-<span class="c"># Read the LRG positions, magnitudes and redshifts</span>
-<span class="c">#</span>
-<span class="c"># dtype=None means the type of each column (float, integer, string)</span>
-<span class="c"># will be guessed.</span>
+<span class="c"># Now read the LRG positions, magnitudes and redshifts and r-i colours.</span>
 <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">genfromtxt</span><span class="p">(</span><span class="s">&#39;2SLAQ_LRG_v5pub.cat&#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">skip_header</span><span class="o">=</span><span class="mi">176</span><span class="p">,</span>
-                  <span class="n">names</span><span class="o">=</span><span class="s">&#39;name,z,rmag,RA,Dec&#39;</span><span class="p">,</span><span class="n">usecols</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">28</span><span class="p">))</span>
+                  <span class="n">names</span><span class="o">=</span><span class="s">&#39;name,z,rmag,RA,Dec,rmi&#39;</span><span class="p">,</span>
+                  <span class="n">usecols</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">32</span><span class="p">))</span>
 
-<span class="c"># Only keep objects with a redshift larger than 0.1</span>
-<span class="n">r</span> <span class="o">=</span> <span class="n">r</span><span class="p">[</span><span class="n">r</span><span class="p">[</span><span class="s">&#39;z&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.1</span><span class="p">]</span>
+<span class="c"># Only keep objects with a redshift larger than 0.1 and in a narrow</span>
+<span class="c"># declination slice around the celestial equator</span>
+<span class="n">condition</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s">&#39;Dec&#39;</span><span class="p">])</span> <span class="o">&lt;</span> <span class="mf">0.2</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s">&#39;z&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.1</span><span class="p">)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">r</span><span class="p">[</span><span class="n">condition</span><span class="p">]</span>
 
 <span class="c"># Calculate the comoving distance corresponding to each object&#39;s redshift</span>
 <span class="n">dist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">dH</span> <span class="o">*</span> <span class="n">integrate</span><span class="o">.</span><span class="n">quad</span><span class="p">(</span><span class="n">inv_efunc</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">z</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">r</span><span class="p">[</span><span class="s">&#39;z&#39;</span><span class="p">]])</span>
@@ -449,18 +576,25 @@ talk was made.</p>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
 
-<span class="c"># Plot the LRGs, colouring by declination.</span>
-<span class="n">col</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s">&#39;.&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="n">sizes</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">r</span><span class="p">[</span><span class="s">&#39;Dec&#39;</span><span class="p">],</span> <span class="n">faceted</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-                  <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Spectral</span><span class="p">)</span>
+<span class="c"># Plot the LRGs, colouring points by r-i colour.</span>
+<span class="n">col</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s">&#39;.&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="n">sizes</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">r</span><span class="p">[</span><span class="s">&#39;rmi&#39;</span><span class="p">],</span> <span class="n">linewidths</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+                  <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Spectral_r</span><span class="p">)</span>
+
 <span class="c"># Add a colourbar.</span>
 <span class="n">cax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">col</span><span class="p">)</span>
-<span class="n">cax</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s">&#39;Declination (degrees)&#39;</span><span class="p">)</span>
+<span class="n">cax</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s">&#39;r-i&#39;</span><span class="p">)</span>
+
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Comoving Mpc&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Comoving Mpc&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s">&#39;equal&#39;</span><span class="p">)</span>
-
-<span class="c"># Now plot the redshift distribution.</span>
-<span class="n">zbins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This produces the image:</p>
+<a class="reference internal image-reference" href="../_images/dist_Mpc.png"><img alt="../_images/dist_Mpc.png" src="../_images/dist_Mpc.png" style="width: 487.2px; height: 367.2px;" /></a>
+<p>Now we&#8217;ll plot a histogram of the redshift distribution. This
+example demonstrates plotting two scales on the same axis &#8211; redshift
+along the bottom of the plot, corresponding distance along the top:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">zbins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">)</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s">&#39;z&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="n">zbins</span><span class="p">)</span>
@@ -481,352 +615,199 @@ talk was made.</p>
 <span class="n">ax1</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">Mpcvals</span><span class="p">])</span>
 
 <span class="c"># Make both axes have the same start and end point.</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">*</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xlim</span><span class="p">())</span>
+<span class="n">x0</span><span class="p">,</span><span class="n">x1</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_xlim</span><span class="p">()</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">x1</span><span class="p">)</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">&#39;Comoving distance (Mpc)&#39;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>The images produced are:</p>
-<a class="reference internal image-reference" href="../_images/LRG_space_dist.png"><img alt="../_images/LRG_space_dist.png" src="../_images/LRG_space_dist.png" style="width: 487.2px; height: 367.2px;" /></a>
-<a class="reference internal image-reference" href="../_images/LRG_z_dist.png"><img alt="../_images/LRG_z_dist.png" src="../_images/LRG_z_dist.png" style="width: 487.2px; height: 367.2px;" /></a>
+<a class="reference internal image-reference" href="../_images/hist_z.png"><img alt="../_images/hist_z.png" src="../_images/hist_z.png" style="width: 367.2px; height: 367.2px;" /></a>
 </div>
 <div class="section" id="making-a-fancy-plot-from-monte-carlo-samples">
 <h2>Making a fancy plot from Monte-Carlo samples<a class="headerlink" href="#making-a-fancy-plot-from-monte-carlo-samples" title="Permalink to this headline">¶</a></h2>
-<p>Assume you have run an MCMC and you are left with two arrays X,Y of
-MCMC samples of two fit parameters. You now want to use X,Y to
-visualise the likelihood manifold. You can do that (a) as a simple
-scatter plot or (b) in a more fancy way:</p>
+<p>Assume you have run an MCMC and you are left with two arrays X,Y of MCMC samples of two fit parameters. You now want to use X,Y to visualise the likelihood manifold. You can do that (a) as a simple scatter plot or (b) in a more fancy way.</p>
+<p>Instead of Monte-Carlo samples, you could also be faced with distributions of any two parameters, such as effective temperature and surface gravity of a set of stars, or redshift and magnitude of a set of galaxies.</p>
+<p>First, let us create some artificial toy data to mimick the output of an MCMC algorithm in some science application:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span><span class="o">,</span><span class="nn">math</span>
-<span class="kn">import</span> <span class="nn">pylab</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.gridspec</span> <span class="kn">as</span> <span class="nn">gridspec</span>
 
 <span class="c"># Create artificial data mimicking some MCMC results.</span>
 <span class="n">N</span> <span class="o">=</span> <span class="mi">50000</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>  <span class="c"># Normal distribution</span>
-<span class="n">Y</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">gamma</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>   <span class="c"># Gamma distribution</span>
-
-<span class="c"># Define plot ranges once, for multiple usage later (e.g. more than a single subplot).</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>  <span class="c"># Draw N samples from normal distribution</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">gamma</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>   <span class="c"># Draw N samples from Gamma distribution</span>
+</pre></div>
+</div>
+<p>Second, let us create a simple plot by plainly plotting x vs. y. This is very easy and we can recap some of the basic Python plotting commands:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># Define plot ranges at beginning, since used often later.</span>
+<span class="n">YRANGE</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span><span class="mf">11.4</span><span class="p">]</span>
 <span class="n">XRANGE</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">6.4</span><span class="p">,</span><span class="mf">6.4</span><span class="p">]</span>
-<span class="n">YRANGE</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">2.4</span><span class="p">,</span><span class="mf">11.4</span><span class="p">]</span>
 
 <span class="c"># Define figure size and formatting</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">pylab</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mf">7.5</span><span class="p">))</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">wspace</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="mf">0.04</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.07</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.99</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.99</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.10</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.09</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.98</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.98</span><span class="p">)</span>
 
-<span class="c"># Two subplots next to each other. Start with left subplot.</span>
-<span class="n">pylab</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
 <span class="c"># Simply plot X vs. Y as data points.</span>
-<span class="n">pylab</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="s">&#39;o&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;blue&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="s">&#39;o&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;blue&#39;</span><span class="p">)</span>
 
-<span class="n">pylab</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">XRANGE</span><span class="p">)</span>
-<span class="n">pylab</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">YRANGE</span><span class="p">)</span>
-<span class="n">pylab</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
-<span class="n">pylab</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
-<span class="n">pylab</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">r&#39;$x$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>
-<span class="n">pylab</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">r&#39;$y$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>
+<span class="c"># Set plot ranges, axes ticks and axes labels.</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">XRANGE</span><span class="p">)</span>                 <span class="c"># Set x plot range.</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">YRANGE</span><span class="p">)</span>                 <span class="c"># Set y plot range.</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>          <span class="c"># Set ticks x axis.</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>          <span class="c"># Set ticks y axis.</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">r&#39;$x$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>  <span class="c"># Set label x axis.</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">r&#39;$y$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>  <span class="c"># Set label y axis.</span>
 
-<span class="c"># Next, make right subplot.</span>
-<span class="n">pylab</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">&#39;plot_MCMC_samples_plain.png&#39;</span><span class="p">)</span> <span class="c"># Save png file.</span>
+</pre></div>
+</div>
+<p>The result looks like this:</p>
+<img alt="../_images/plot_MCMC_samples_plain.png" src="../_images/plot_MCMC_samples_plain.png" style="width: 350px; height: 350px;" />
+<p>Now, we would like to make this plot a little fancier. Our wish list is:</p>
+<ul class="simple">
+<li>We would like to see the density in the crowded regions!</li>
+<li>smoothed distribution instead of single points</li>
+<li>contours of confidence levels</li>
+<li>projected distributions of both parameters as side panels</li>
+</ul>
+<p>The result should look like this:</p>
+<img alt="../_images/plot_MCMC_samples_fancy.png" src="../_images/plot_MCMC_samples_fancy.png" style="width: 350px; height: 350px;" />
+<p>Here is the code showing how to do this. We start by the top right panel, which is the main panel:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="mf">0.10</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.095</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.975</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.98</span><span class="p">)</span>
+<span class="c"># gridspec enables you to assign different formats to panels in one plot.</span>
+<span class="n">gs</span> <span class="o">=</span> <span class="n">gridspec</span><span class="o">.</span><span class="n">GridSpec</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">width_ratios</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span> <span class="n">height_ratios</span><span class="o">=</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
 
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="c"># Main panel top right contains full 2D histogram.</span>
 <span class="c"># Convert to 2d histogram.</span>
-<span class="n">B</span>      <span class="o">=</span> <span class="mi">25</span>
-<span class="n">hist2D</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">histogram2d</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="n">B</span><span class="p">,</span><span class="n">B</span><span class="p">],</span> <span class="nb">range</span><span class="o">=</span><span class="p">[</span><span class="n">XRANGE</span><span class="p">,</span><span class="n">YRANGE</span><span class="p">],</span> <span class="n">normed</span><span class="o">=</span><span class="bp">False</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">Bins</span> <span class="o">=</span> <span class="mi">25</span>
+<span class="n">hist2D</span><span class="p">,</span> <span class="n">xedges</span><span class="p">,</span> <span class="n">yedges</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">histogram2d</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="n">Bins</span><span class="p">,</span><span class="n">Bins</span><span class="p">],</span> <span class="nb">range</span><span class="o">=</span><span class="p">[</span><span class="n">XRANGE</span><span class="p">,</span><span class="n">YRANGE</span><span class="p">],</span>
+    <span class="n">normed</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 
 <span class="c"># Plot Monte-Carlo samples as 2D histogram.</span>
-<span class="c"># Beware: imshow switches axes, so switch back.</span>
-<span class="n">hist2D</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">hist2D</span><span class="p">)</span>
-<span class="n">pylab</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">hist2D</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">pylab</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gray</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s">&#39;gaussian&#39;</span><span class="p">)</span>
+<span class="n">hist2D</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">hist2D</span><span class="p">)</span>  <span class="c"># Beware: numpy switches axes, so switch back.</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">xedges</span><span class="p">,</span> <span class="n">yedges</span><span class="p">,</span> <span class="n">hist2D</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gray</span><span class="p">)</span>
 
 <span class="c"># Overplot with error contours 1,2,3 sigma.</span>
 <span class="n">maximum</span>    <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">hist2D</span><span class="p">)</span>
-<span class="c"># Infering correct levels of 1,2,3 sigma would require some further code,</span>
-<span class="c"># so let&#39;s fake it by setting the three levels to some guessed values.</span>
-<span class="p">[</span><span class="n">L1</span><span class="p">,</span><span class="n">L2</span><span class="p">,</span><span class="n">L3</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.5</span><span class="o">*</span><span class="n">maximum</span><span class="p">,</span><span class="mf">0.25</span><span class="o">*</span><span class="n">maximum</span><span class="p">,</span><span class="mf">0.125</span><span class="o">*</span><span class="n">maximum</span><span class="p">]</span>
-<span class="c">#print [L1,L2,L3]</span>
-<span class="n">cs</span> <span class="o">=</span> <span class="n">pylab</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">hist2D</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="p">[</span><span class="n">L1</span><span class="p">,</span><span class="n">L2</span><span class="p">,</span><span class="n">L3</span><span class="p">],</span> <span class="n">linestyles</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;--&#39;</span><span class="p">,</span><span class="s">&#39;--&#39;</span><span class="p">,</span><span class="s">&#39;--&#39;</span><span class="p">],</span> <span class="n">colors</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;orange&#39;</span><span class="p">,</span><span class="s">&#39;orange&#39;</span><span class="p">,</span><span class="s">&#39;orange&#39;</span><span class="p">],</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="c"># use dictionary in order to assign my own labels to the contours.</span>
+<span class="p">[</span><span class="n">L1</span><span class="p">,</span><span class="n">L2</span><span class="p">,</span><span class="n">L3</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.5</span><span class="o">*</span><span class="n">maximum</span><span class="p">,</span><span class="mf">0.25</span><span class="o">*</span><span class="n">maximum</span><span class="p">,</span><span class="mf">0.125</span><span class="o">*</span><span class="n">maximum</span><span class="p">]</span>  <span class="c"># Replace with a proper code!</span>
+<span class="c"># Use bin edges to restore extent.</span>
+<span class="n">extent</span> <span class="o">=</span> <span class="p">[</span><span class="n">xedges</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">xedges</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">yedges</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">yedges</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+<span class="n">cs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">hist2D</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="n">extent</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="p">[</span><span class="n">L1</span><span class="p">,</span><span class="n">L2</span><span class="p">,</span><span class="n">L3</span><span class="p">],</span> <span class="n">linestyles</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;--&#39;</span><span class="p">,</span><span class="s">&#39;--&#39;</span><span class="p">,</span><span class="s">&#39;--&#39;</span><span class="p">],</span>
+    <span class="n">colors</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;orange&#39;</span><span class="p">,</span><span class="s">&#39;orange&#39;</span><span class="p">,</span><span class="s">&#39;orange&#39;</span><span class="p">],</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="c"># use dictionary in order to assign your own labels to the contours.</span>
 <span class="n">fmtdict</span> <span class="o">=</span> <span class="p">{</span><span class="n">L1</span><span class="p">:</span><span class="s">r&#39;$1\sigma$&#39;</span><span class="p">,</span><span class="n">L2</span><span class="p">:</span><span class="s">r&#39;$2\sigma$&#39;</span><span class="p">,</span><span class="n">L3</span><span class="p">:</span><span class="s">r&#39;$3\sigma$&#39;</span><span class="p">}</span>
-<span class="n">pylab</span><span class="o">.</span><span class="n">clabel</span><span class="p">(</span><span class="n">cs</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="n">fmtdict</span><span class="p">,</span> <span class="n">inline</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">clabel</span><span class="p">(</span><span class="n">cs</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="n">fmtdict</span><span class="p">,</span> <span class="n">inline</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 
-<span class="c"># Also plot marginal likelihoods.</span>
-<span class="n">S</span>  <span class="o">=</span> <span class="mi">101</span>
-<span class="n">I</span>  <span class="o">=</span> <span class="p">[]</span>
-<span class="c"># Bin X,Y separately. As 1D bin, can use more bins now.</span>
-<span class="n">LX</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">S</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="n">XRANGE</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="bp">True</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">LY</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">S</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="n">YRANGE</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="bp">True</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-<span class="c"># Rescale by maxima. Don&#39;t want this histogram to span whole subplot.</span>
-<span class="n">rescale_X</span> <span class="o">=</span> <span class="mf">0.15</span><span class="o">*</span><span class="nb">float</span><span class="p">(</span><span class="n">B</span><span class="p">)</span><span class="o">/</span><span class="n">numpy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">LX</span><span class="p">)</span>
-<span class="n">rescale_Y</span> <span class="o">=</span> <span class="mf">0.15</span><span class="o">*</span><span class="nb">float</span><span class="p">(</span><span class="n">B</span><span class="p">)</span><span class="o">/</span><span class="n">numpy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">LY</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">S</span><span class="p">):</span>
-        <span class="n">I</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">*</span><span class="nb">float</span><span class="p">(</span><span class="n">B</span><span class="p">)</span><span class="o">/</span><span class="nb">float</span><span class="p">(</span><span class="n">S</span><span class="p">))</span>
-        <span class="n">LX</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="n">LX</span><span class="p">[</span><span class="n">s</span><span class="p">]</span><span class="o">*</span><span class="n">rescale_X</span>
-        <span class="n">LY</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="n">LY</span><span class="p">[</span><span class="n">s</span><span class="p">]</span><span class="o">*</span><span class="n">rescale_Y</span>
-<span class="n">pylab</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">I</span><span class="p">,</span> <span class="n">LX</span><span class="p">,</span> <span class="s">&#39;-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;white&#39;</span><span class="p">)</span>
-<span class="n">pylab</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">LY</span><span class="p">,</span> <span class="n">I</span><span class="p">,</span> <span class="s">&#39;-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;white&#39;</span><span class="p">)</span>
-
-<span class="n">pylab</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">B</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">pylab</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">B</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-
-<span class="c"># Sadly, through binning numpy looses the position information, so we need to restore it manually</span>
-<span class="c"># in order to plot proper axes ticks.</span>
-<span class="n">T</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">L</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="o">-</span><span class="mi">6</span><span class="p">,</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">:</span>
-        <span class="n">index</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">XRANGE</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">*</span><span class="nb">float</span><span class="p">(</span><span class="n">B</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">XRANGE</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">XRANGE</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-        <span class="n">T</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
-        <span class="n">L</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="n">pylab</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
-
-<span class="n">T</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">L</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">10</span><span class="p">:</span>
-        <span class="n">index</span> <span class="o">=</span> <span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="n">YRANGE</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">*</span><span class="nb">float</span><span class="p">(</span><span class="n">B</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">YRANGE</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">YRANGE</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-        <span class="n">T</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
-        <span class="n">L</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-<span class="n">pylab</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
-
-<span class="n">pylab</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">r&#39;$x$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>
-<span class="n">pylab</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">r&#39;$y$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>
-
-<span class="n">pylab</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">&#39;plot_MCMC_samples.png&#39;</span><span class="p">)</span>  <span class="c"># Save figure as png-file.</span>
-<span class="n">pylab</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">XRANGE</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">YRANGE</span><span class="p">)</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../_images/plot_MCMC_samples1.png"><img alt="../_images/plot_MCMC_samples1.png" src="../_images/plot_MCMC_samples1.png" style="width: 560.0px; height: 262.5px;" /></a>
+<p>Finally, add the two side panels showing the projected distributions of X and Y:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># Bin X,Y separately. As 1D bin, can use more bins now.</span>
+<span class="n">S</span>  <span class="o">=</span> <span class="mi">101</span>
+<span class="n">LX</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">S</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="n">XRANGE</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="bp">True</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">LY</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">S</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="n">YRANGE</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="bp">True</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="c"># Restore positions lost by binning.</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">XRANGE</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">XRANGE</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">XRANGE</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">*</span><span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">LX</span><span class="p">)))</span><span class="o">/</span><span class="nb">float</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">LX</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">YRANGE</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">YRANGE</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">YRANGE</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">*</span><span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">LY</span><span class="p">)))</span><span class="o">/</span><span class="nb">float</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">LY</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c"># bottom right panel: projected density of x.</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">LX</span><span class="p">,</span> <span class="s">&#39;-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;black&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">r&#39;$x$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">r&#39;$\cal L$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">XRANGE</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.1</span><span class="o">*</span><span class="n">numpy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">LX</span><span class="p">))</span>
+
+<span class="c"># top left panel: projected density of y.</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">LY</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="s">&#39;-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;black&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">r&#39;$\cal L$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">r&#39;$y$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.1</span><span class="o">*</span><span class="n">numpy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">LY</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">YRANGE</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">&#39;plot_MCMC_samples_fancy.png&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="parallel-process-of-fits-images">
 <h2>Parallel process of FITS images<a class="headerlink" href="#parallel-process-of-fits-images" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">glob</span>
+<p>This example demonstrates the use of the built-in <a class="reference external" href="http://docs.python.org/library/multiprocessing.html">multiprocessing</a> module, specifically
+the ability to create process <em>pools</em>. The idea is essentially that given a
+function and a list of inputs to the function, the multiprocessing Pool allows
+the function to be run over multiple input values in parallel, speeding up the
+process if multiple cores are availbale on a machine.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">glob</span>
 <span class="kn">import</span> <span class="nn">multiprocessing</span>
+<span class="kn">import</span> <span class="nn">shutil</span>
 
 <span class="kn">import</span> <span class="nn">pyfits</span>
-<span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">gaussian_filter</span>
+<span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">median_filter</span>
 
-<span class="c"># Define a function to run on files</span>
+<span class="c"># Define a function to run on files. The steps are:</span>
+<span class="c"># - read in FITS file</span>
+<span class="c"># - convolve the data in the primary HDU</span>
+<span class="c"># - write out the result to a new file</span>
 <span class="k">def</span> <span class="nf">smooth</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
-
-    <span class="c"># Read in FITS file</span>
+    <span class="k">print</span> <span class="s">&quot;Processing </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">filename</span>
     <span class="n">hdulist</span> <span class="o">=</span> <span class="n">pyfits</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
-
-    <span class="c"># Convolve the data in the primary HDU</span>
-    <span class="n">hdulist</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">gaussian_filter</span><span class="p">(</span><span class="n">hdulist</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-
-    <span class="c"># Write out the result to a new file</span>
-    <span class="n">hdulist</span><span class="o">.</span><span class="n">writeto</span><span class="p">(</span><span class="n">filename</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;.fits&#39;</span><span class="p">,</span> <span class="s">&#39;_smooth.fits&#39;</span><span class="p">))</span>
+    <span class="n">hdulist</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">median_filter</span><span class="p">(</span><span class="n">hdulist</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+    <span class="n">hdulist</span><span class="o">.</span><span class="n">writeto</span><span class="p">(</span><span class="n">filename</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;files/&#39;</span><span class="p">,</span> <span class="s">&#39;files_smooth/&#39;</span><span class="p">),</span>
+                    <span class="n">clobber</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
 <span class="c"># Search for all FITS files</span>
 <span class="n">files</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s">&#39;files/*.fits&#39;</span><span class="p">)</span>
 
-<span class="c"># Define a &#39;pool&#39; of 16 processors</span>
-<span class="n">p</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">Pool</span><span class="p">(</span><span class="n">processes</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="c"># Remove output directory if it already exists</span>
+<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s">&#39;files_smooth&#39;</span><span class="p">):</span>
+    <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="s">&#39;files_smooth&#39;</span><span class="p">)</span>
+
+<span class="c"># Create output directory</span>
+<span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="s">&#39;files_smooth&#39;</span><span class="p">)</span>
+
+<span class="c"># Define a &#39;pool&#39; of 12 processes</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">Pool</span><span class="p">(</span><span class="n">processes</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 
 <span class="c"># Run the function over all files in parallel</span>
-<span class="n">ap</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">smooth</span><span class="p">,</span> <span class="n">files</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">smooth</span><span class="p">,</span> <span class="n">files</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>If we run this from ipython or with python, we can see 12 <tt class="docutils literal"><span class="pre">Processing</span> <span class="pre">...</span></tt> messages appear at the same time, and a quick look at <tt class="docutils literal"><span class="pre">top</span></tt> shows us that 12 processes are running simultaneously. If we run this from <tt class="docutils literal"><span class="pre">ipython</span></tt>, we can then try running it with different number of processes and timing it:</p>
+<div class="highlight-python"><pre>In [2]: run process.py
+
+In [3]: p = multiprocessing.Pool(processes=12)
+
+In [4]: %time result = p.map(smooth, files)
+Processing files/image_000.fits
+...
+CPU times: user 0.01 s, sys: 0.00 s, total: 0.02 s
+Wall time: 8.45 s
+
+In [52]: p = multiprocessing.Pool(processes=1)
+
+In [53]: %time result = p.map(smooth, files)
+Processing files/image_000.fits
+...
+CPU times: user 0.13 s, sys: 0.04 s, total: 0.17 s
+Wall time: 91.78 s</pre>
 </div>
-<div class="section" id="reading-a-table-and-plotting-with-asciitable">
-<h2>Reading a table and plotting with asciitable<a class="headerlink" href="#reading-a-table-and-plotting-with-asciitable" title="Permalink to this headline">¶</a></h2>
-<p>The Fermi Gamma-ray satellite has a nice catalog of AGN available through
-HEASARC.  The script below will read in the catalog data using the <a class="reference external" href="http://cxc.harvard.edu/contrib/asciitable">asciitable</a>
-module, do some basic filtering with <a class="reference external" href="http://numpy.scipy.org/">NumPy</a>, and make a couple of plots with
-<a class="reference external" href="http://matplotlib.sourceforge.net/">matplotlib</a></p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">asciitable</span>   <span class="c"># Make external package available</span>
-
-<span class="c"># Read table.</span>
-<span class="c"># ==&gt; dat[column_name] and dat[row_number] both valid &lt;==</span>
-<span class="n">dat</span> <span class="o">=</span> <span class="n">asciitable</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s">&#39;fermi_agn.dat&#39;</span><span class="p">)</span>
-
-<span class="n">redshift</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[</span><span class="s">&#39;redshift&#39;</span><span class="p">]</span>    <span class="c"># array of values from &#39;redshift&#39; column</span>
-<span class="n">flux</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[</span><span class="s">&#39;photon_flux&#39;</span><span class="p">]</span>
-<span class="n">gamma</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[</span><span class="s">&#39;spectral_index&#39;</span><span class="p">]</span>
-
-<span class="c"># Select rows that have a measured redshift</span>
-<span class="n">with_z</span> <span class="o">=</span> <span class="p">(</span><span class="n">redshift</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">999</span><span class="p">)</span>
-
-<span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">semilogx</span><span class="p">(</span><span class="n">flux</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="s">&#39;.b&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;All&#39;</span><span class="p">)</span>  <span class="c"># First plot!</span>
-<span class="n">semilogx</span><span class="p">(</span><span class="n">flux</span><span class="p">[</span><span class="n">with_z</span><span class="p">],</span> <span class="n">gamma</span><span class="p">[</span><span class="n">with_z</span><span class="p">],</span> <span class="s">&#39;or&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;With Z&#39;</span><span class="p">)</span>
-<span class="n">legend</span><span class="p">(</span><span class="n">numpoints</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">grid</span><span class="p">()</span>
-<span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Flux (photon/cm$^2$/s)&#39;</span><span class="p">)</span>   <span class="c"># latex works</span>
-<span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Spectral index $\Gamma$&#39;</span><span class="p">)</span>
-
-<span class="c"># Select low- and high-z samples</span>
-<span class="n">lowz</span> <span class="o">=</span> <span class="n">with_z</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">redshift</span> <span class="o">&lt;</span> <span class="mf">0.8</span><span class="p">)</span>
-<span class="n">highz</span> <span class="o">=</span> <span class="n">with_z</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">redshift</span> <span class="o">&gt;=</span> <span class="mf">0.8</span><span class="p">)</span>
-
-<span class="n">figure</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">bins</span> <span class="o">=</span> <span class="n">arange</span><span class="p">(</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>    <span class="c"># values from 1.2 to 3.0 by 0.1</span>
-<span class="n">hist</span><span class="p">(</span><span class="n">gamma</span><span class="p">[</span><span class="n">lowz</span><span class="p">],</span> <span class="n">bins</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;z &lt; 0.8&#39;</span><span class="p">)</span>
-<span class="n">hist</span><span class="p">(</span><span class="n">gamma</span><span class="p">[</span><span class="n">highz</span><span class="p">],</span> <span class="n">bins</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;r&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;z &gt; 0.8&#39;</span><span class="p">)</span>
-<span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Spectral index $\Gamma$&#39;</span><span class="p">)</span>
-<span class="n">title</span><span class="p">(</span><span class="s">&#39;$\Gamma$ for low-z and high-z samples&#39;</span><span class="p">)</span>
-<span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s">&#39;upper left&#39;</span><span class="p">)</span>
-
-<span class="n">asciitable</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">dat</span><span class="p">[</span><span class="n">with_z</span><span class="p">],</span> <span class="s">&#39;fermi_agn_with_z.dat&#39;</span><span class="p">)</span>
-</pre></div>
+<p>The speedup is therefore a factor of 10.9!</p>
 </div>
-<a class="reference internal image-reference" href="../_images/scatter.png"><img alt="../_images/scatter.png" src="../_images/scatter.png" style="width: 358.4px; height: 288.4px;" /></a>
-<a class="reference internal image-reference" href="../_images/hist.png"><img alt="../_images/hist.png" src="../_images/hist.png" style="width: 358.4px; height: 288.4px;" /></a>
-</div>
-<div class="section" id="curve-fitting-with-scipy">
-<h2>Curve fitting with SciPy<a class="headerlink" href="#curve-fitting-with-scipy" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="http://scipy.org/">SciPy</a> provides <a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.curve_fit.html">curve_fit</a>,
-a simple and useful implementation of the Levenburg-Marquardt non-linear
-minimization algorithm.  This example shows a code to generate a fake dataset
-and then fit with a gaussian, returning the covariance matrix for parameter
-uncertainties.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">curve_fit</span>
-
-<span class="c"># Create a function</span>
-<span class="c"># ==&gt; First encounter with *whitespace* in Python &lt;==</span>
-<span class="k">def</span> <span class="nf">gaussian</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
-    <span class="n">val</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">b</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="n">c</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">val</span>
-
-<span class="c"># Generate fake data.</span>
-<span class="c"># Note: functions in random package, array arithmetic (exp)</span>
-<span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mf">10.</span><span class="p">,</span> <span class="mf">10.</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="mf">3.</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="mi">4</span><span class="p">)</span> <span class="o">*</span> <span class="mf">10.</span> <span class="o">+</span> <span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
-<span class="n">e</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
-
-<span class="c"># Fit</span>
-<span class="n">popt</span><span class="p">,</span> <span class="n">pcov</span> <span class="o">=</span> <span class="n">curve_fit</span><span class="p">(</span><span class="n">gaussian</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">e</span><span class="p">)</span>
-
-<span class="c"># Print results</span>
-<span class="k">print</span> <span class="s">&quot;Scale =  </span><span class="si">%.3f</span><span class="s"> +/- </span><span class="si">%.3f</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">popt</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">pcov</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]))</span>
-<span class="k">print</span> <span class="s">&quot;Offset = </span><span class="si">%.3f</span><span class="s"> +/- </span><span class="si">%.3f</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">popt</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">pcov</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]))</span>
-<span class="k">print</span> <span class="s">&quot;Sigma =  </span><span class="si">%.3f</span><span class="s"> +/- </span><span class="si">%.3f</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">popt</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">pcov</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]))</span>
-
-<span class="c"># Plot data</span>
-<span class="n">errorbar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">yerr</span><span class="o">=</span><span class="n">e</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;black&#39;</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
-
-<span class="c"># Plot model</span>
-<span class="n">xm</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">10.</span><span class="p">,</span> <span class="mf">10.</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>  <span class="c"># 100 evenly spaced points</span>
-<span class="n">plot</span><span class="p">(</span><span class="n">xm</span><span class="p">,</span> <span class="n">gaussian</span><span class="p">(</span><span class="n">xm</span><span class="p">,</span> <span class="n">popt</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">popt</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">popt</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
-
-<span class="c"># Save figure</span>
-<span class="n">savefig</span><span class="p">(</span><span class="s">&#39;fit.png&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>The plotted fit result is as shown below:</p>
-<a class="reference internal image-reference" href="../_images/fit.png"><img alt="../_images/fit.png" src="../_images/fit.png" style="width: 400.0px; height: 300.0px;" /></a>
-</div>
-<div class="section" id="intermission-numpy-matplotlib-and-scipy">
-<h2>Intermission: NumPy, Matplotlib, and SciPy<a class="headerlink" href="#intermission-numpy-matplotlib-and-scipy" title="Permalink to this headline">¶</a></h2>
-<p>These three packages are the workhorses of scientific Python.</p>
-<ul class="simple">
-<li><a class="reference external" href="http://numpy.scipy.org/">NumPy</a> is the fundamental package for scientific computing in Python [<a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/">NumPy Reference</a>]</li>
-<li><a class="reference external" href="http://matplotlib.sourceforge.net/">Matplotlib</a> is one of many plotting packages.  Started as a Matlab clone.</li>
-<li><a class="reference external" href="http://scipy.org/">SciPy</a> is a collection of mathematical algorithms and convenience
-functions [<a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/">SciPy Reference</a>]</li>
-</ul>
-</div>
-<div class="section" id="synthetic-images">
-<h2>Synthetic images<a class="headerlink" href="#synthetic-images" title="Permalink to this headline">¶</a></h2>
-<p>This example demonstrates how to create a synthetic image of a cluster,
-including convolution with a Gaussian filter and the addition of noise.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">pyfits</span>
-<span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">gaussian_filter</span>
-
-<span class="c"># Create empty image</span>
-<span class="n">nx</span><span class="p">,</span> <span class="n">ny</span> <span class="o">=</span> <span class="mi">512</span><span class="p">,</span> <span class="mi">512</span>
-<span class="n">image</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">((</span><span class="n">ny</span><span class="p">,</span> <span class="n">nx</span><span class="p">))</span>
-
-<span class="c"># Set number of stars</span>
-<span class="n">n</span> <span class="o">=</span> <span class="mi">10000</span>
-
-<span class="c"># Generate random positions</span>
-<span class="n">r</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">*</span> <span class="n">nx</span>
-<span class="n">theta</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">2.</span> <span class="o">*</span> <span class="n">pi</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
-
-<span class="c"># Generate random fluxes</span>
-<span class="n">f</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
-
-<span class="c"># Compute position</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">nx</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">r</span> <span class="o">*</span> <span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">ny</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">r</span> <span class="o">*</span> <span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
-
-<span class="c"># Add stars to image</span>
-<span class="c"># ==&gt; First for loop and if statement &lt;==</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">nx</span> <span class="ow">and</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">ny</span><span class="p">:</span>
-        <span class="n">image</span><span class="p">[</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">+=</span> <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-
-<span class="c"># Convolve with a gaussian</span>
-<span class="n">image</span> <span class="o">=</span> <span class="n">gaussian_filter</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-
-<span class="c"># Add noise</span>
-<span class="n">image</span> <span class="o">+=</span> <span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-
-<span class="c"># Write out to FITS image</span>
-<span class="n">pyfits</span><span class="o">.</span><span class="n">writeto</span><span class="p">(</span><span class="s">&#39;cluster.fits&#39;</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="n">clobber</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>The simulated cluster image is below:</p>
-<a class="reference internal image-reference" href="../_images/synthetic_image.png"><img alt="../_images/synthetic_image.png" src="../_images/synthetic_image.png" style="width: 357.0px; height: 334.6px;" /></a>
-</div>
-<div class="section" id="running-existing-compiled-codes">
-<h2>Running existing compiled codes<a class="headerlink" href="#running-existing-compiled-codes" title="Permalink to this headline">¶</a></h2>
-<p>In addition to just doing computations and plotting, Python is great for gluing
-together other codes and doing system type tasks.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">asciitable</span>
-
-<span class="n">smoothing</span> <span class="o">=</span> <span class="mi">30</span>  <span class="c"># Smoothing window length</span>
-<span class="n">freqs</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>  <span class="c"># Frequency values for making data</span>
-<span class="n">noises</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span> <span class="c"># Noise amplitude inputs</span>
-
-<span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">clf</span><span class="p">()</span>
-
-<span class="c"># Loop over freq and noise values, running standalone code to create noisy data</span>
-<span class="c"># and smooth it.  Get the data back into Python and plot.</span>
-<span class="n">plot_num</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="k">for</span> <span class="n">freq</span> <span class="ow">in</span> <span class="n">freqs</span><span class="p">:</span>
-    <span class="k">for</span> <span class="n">noise</span> <span class="ow">in</span> <span class="n">noises</span><span class="p">:</span>
-        <span class="c"># Run the compiled code &quot;make_data&quot; to make data as a list of x, y, y_smooth</span>
-        <span class="n">cmd</span> <span class="o">=</span> <span class="s">&#39;make_data </span><span class="si">%s</span><span class="s"> </span><span class="si">%s</span><span class="s"> </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">freq</span><span class="p">,</span> <span class="n">noise</span><span class="p">,</span> <span class="n">smoothing</span><span class="p">)</span>
-        <span class="k">print</span> <span class="s">&#39;Running&#39;</span><span class="p">,</span> <span class="n">cmd</span>
-        <span class="n">out</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-        <span class="c"># out now contains the output from &lt;cmd&gt; as a single string</span>
-
-        <span class="c"># Write the output to a file</span>
-        <span class="n">filename</span> <span class="o">=</span> <span class="s">&#39;data_</span><span class="si">%s</span><span class="s">_</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">freq</span><span class="p">,</span> <span class="n">noise</span><span class="p">)</span>
-        <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
-
-        <span class="c"># Parse the output string as a table</span>
-        <span class="n">dat</span> <span class="o">=</span> <span class="n">asciitable</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
-
-        <span class="c"># Make a plot</span>
-        <span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">plot_num</span><span class="p">)</span>
-        <span class="n">plot</span><span class="p">(</span><span class="n">dat</span><span class="p">[</span><span class="s">&#39;x&#39;</span><span class="p">],</span> <span class="n">dat</span><span class="p">[</span><span class="s">&#39;y&#39;</span><span class="p">])</span>
-        <span class="n">plot</span><span class="p">(</span><span class="n">dat</span><span class="p">[</span><span class="s">&#39;x&#39;</span><span class="p">],</span> <span class="n">dat</span><span class="p">[</span><span class="s">&#39;y_smooth&#39;</span><span class="p">],</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;r&#39;</span><span class="p">)</span>
-
-        <span class="n">plot_num</span> <span class="o">+=</span> <span class="mi">1</span>
-</pre></div>
-</div>
-<a class="reference internal image-reference" href="../_images/run_codes.png"><img alt="../_images/run_codes.png" src="../_images/run_codes.png" style="width: 568.4px; height: 428.4px;" /></a>
-</div>
-<div class="section" id="and-much-much-more">
-<h2>And much much more...<a class="headerlink" href="#and-much-much-more" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>Fast access to big (1e9 rows) tables with <a class="reference external" href="http://www.pytables.org">PyTables</a> + <a class="reference external" href="http://www.hdfgroup.org/HDF5/">HDF5</a></li>
-<li>3-d plotting and surface rendering with <a class="reference external" href="http://mayavi.sourceforge.net/">Mayavi</a></li>
-<li>Sophisticated data modeling with advanced statistics with <a class="reference external" href="http://cxc.harvard.edu/sherpa/">Sherpa</a></li>
-<li><a class="reference external" href="http://www.astropython.org/blog/2011/3/Querying-tables-in-the-virtual-observatory">Query VO tables</a>
-and <a class="reference external" href="https://gist.github.com/855678">broadcast</a> or
-<a class="reference external" href="https://gist.github.com/855678">retrieve</a> tables to VO applications like
-<a class="reference external" href="http://www.star.bris.ac.uk/~mbt/topcat">TOPCAT</a>.</li>
-<li>GUI application to quickly view thousands of X-ray survey image cutouts</li>
-<li>Python-based web site for browsing a complex multi-wavelength survey</li>
-<li><a class="reference external" href="http://conference.scipy.org/scipy2010/slides/tom_aldcroft_chandra.pdf">Thermal modeling of the Chandra X-ray satellite</a></li>
-<li>Interactive multi-user plots accessed through a web browser (!)</li>
-<li>Distributed computing with <a class="reference external" href="http://mpi4py.scipy.org/">MPI for Python</a></li>
-<li>Make a little <a class="reference external" href="http://youtube.com">video distribution web site</a></li>
-</ul>
+<div class="section" id="more-examples">
+<h2>More Examples<a class="headerlink" href="#more-examples" title="Permalink to this headline">¶</a></h2>
+<p>The above examples were shown during the keynote session. More can be
+found in the <a class="reference internal" href="examples.html#examples"><em>More Examples</em></a> section.</p>
 </div>
 </div>
 
