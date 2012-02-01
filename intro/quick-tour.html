@@ -483,9 +483,12 @@ Hello, Harry</pre>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">asciitable</span>
 
+<span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="s">&#39;all&#39;</span><span class="p">)</span>
+
 <span class="c"># Create a simple numerical numpy 1D array (a vector, if you like):</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 <span class="k">print</span> <span class="n">x</span>
+
 
 <span class="c"># To index a single element in x:</span>
 <span class="k">print</span> <span class="s">&#39;the first element of x is {0}&#39;</span> <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
@@ -505,6 +508,7 @@ Hello, Harry</pre>
 <span class="k">print</span> <span class="s">&#39;The last 4 elements of x are picked with x[-4:] = {0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">:])</span>
 <span class="k">print</span> <span class="s">&#39;Negative indexing and stepsizes can be used to reverse an array! try e.g. x[: :-1] = {0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">[:</span> <span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 
+
 <span class="c"># Now let&#39;s create a more typical array, with 2 dimensions, with numpy&#39;s random number generator:</span>
 <span class="n">x2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="mf">10.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)))</span>
 <span class="k">print</span> <span class="n">x2</span>
@@ -521,6 +525,49 @@ Hello, Harry</pre>
 <span class="c"># In principle indexing an N-dimensional array is again similar to previous examples....</span>
 <span class="k">print</span> <span class="s">&#39;The (0,0,0,0) element of x4 is selected by x4[0,0,0,0] = {0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x4</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
 <span class="k">print</span> <span class="s">&#39;To select just from one axis and include all elements from the other axes, use ..., e.g. x4[1,...] = </span><span class="se">\n</span><span class="s">{0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x4</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="o">...</span><span class="p">])</span>
+
+
+<span class="c"># Now look at a more complex dataset: a catalogue, which I can read in with the asciitable package.</span>
+<span class="c"># this datafile is the 1st data release of large bubbles from the Milky Way Project (http://www.milkywayproject.org/data)</span>
+<span class="k">print</span> <span class="s">&#39;Reading in catalogue of bubbles....&#39;</span>
+<span class="n">catfile</span> <span class="o">=</span> <span class="s">&#39;mwp-large-bubbles-dr1-25-01-2012.csv&#39;</span>
+<span class="n">catcols</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;id&quot;</span><span class="p">,</span><span class="s">&quot;lat&quot;</span><span class="p">,</span><span class="s">&quot;lon&quot;</span><span class="p">,</span><span class="s">&quot;dl0&quot;</span><span class="p">,</span><span class="s">&quot;reff&quot;</span><span class="p">,</span><span class="s">&quot;abratio&quot;</span><span class="p">,</span><span class="s">&quot;thick&quot;</span><span class="p">,</span><span class="s">&quot;thickoutratio&quot;</span><span class="p">,</span><span class="s">&quot;reffout&quot;</span><span class="p">,</span><span class="s">&quot;ecc&quot;</span><span class="p">,</span><span class="s">&quot;hitrate&quot;</span><span class="p">,</span><span class="s">&quot;disp&quot;</span><span class="p">,</span><span class="s">&quot;hierarchy&quot;</span><span class="p">]</span>
+<span class="n">catexc</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;dl0&quot;</span><span class="p">,</span> <span class="s">&quot;abratio&quot;</span><span class="p">,</span> <span class="s">&quot;thick&quot;</span><span class="p">,</span> <span class="s">&quot;thickoutratio&quot;</span><span class="p">,</span> <span class="s">&quot;reffout&quot;</span><span class="p">,</span> <span class="s">&quot;ecc&quot;</span><span class="p">,</span> <span class="s">&quot;hitrate&quot;</span><span class="p">,</span><span class="s">&quot;disp&quot;</span><span class="p">,</span><span class="s">&quot;hierarchy&quot;</span><span class="p">]</span>                 <span class="c">#columns to exclude</span>
+<span class="n">cat</span><span class="o">=</span><span class="n">asciitable</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">catfile</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s">&#39;,&#39;</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="n">catcols</span><span class="p">,</span> <span class="n">comment</span><span class="o">=</span><span class="s">&#39;#&#39;</span><span class="p">)</span>
+<span class="n">neg</span><span class="o">=</span><span class="n">cat</span><span class="o">.</span><span class="n">lon</span> <span class="o">&gt;</span> <span class="mf">180.</span>
+<span class="n">cat</span><span class="o">.</span><span class="n">lon</span><span class="p">[</span><span class="n">neg</span><span class="p">]</span><span class="o">=</span><span class="n">cat</span><span class="o">.</span><span class="n">lon</span><span class="p">[</span><span class="n">neg</span><span class="p">]</span><span class="o">-</span><span class="mf">360.</span>
+<span class="k">print</span> <span class="s">&#39;# bubbles in catalogue: </span><span class="si">%i</span><span class="s">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">cat</span><span class="p">))</span>
+
+<span class="c"># This reads the catalogue into a numpy recarray</span>
+
+<span class="c"># Plot them on the sky using the scatter function in matplotlib.pyplot (plt.scatter):</span>
+<span class="n">scat</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ball</span> <span class="o">=</span> <span class="n">scat</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">311</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">cat</span><span class="o">.</span><span class="n">lon</span><span class="p">,</span> <span class="n">cat</span><span class="o">.</span><span class="n">lat</span><span class="p">,</span> <span class="n">marker</span> <span class="o">=</span> <span class="s">&#39;o&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s">&#39;green&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s">&#39;None&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;all bubbles&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;lon&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s">&#39;best&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;lat&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s">&#39;Bubbles in the inner galactic plane&#39;</span><span class="p">)</span>
+
+
+<span class="c"># or we can just plot the ones at positive latitudes</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="n">cat</span><span class="p">[</span><span class="n">cat</span><span class="o">.</span><span class="n">lat</span> <span class="o">&gt;=</span> <span class="mf">0.0</span><span class="p">]</span>
+<span class="n">bpos</span> <span class="o">=</span> <span class="n">scat</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">312</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">pos</span><span class="o">.</span><span class="n">lon</span><span class="p">,</span> <span class="n">pos</span><span class="o">.</span><span class="n">lat</span><span class="p">,</span> <span class="n">marker</span> <span class="o">=</span> <span class="s">&#39;o&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s">&#39;red&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s">&#39;None&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;bubbles, b &gt;= 0.&#39;</span> <span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;lon&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s">&#39;best&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;lat&#39;</span><span class="p">)</span>
+
+<span class="c"># or those with effective radii &gt; 5 arcminutes</span>
+<span class="n">big</span> <span class="o">=</span> <span class="n">cat</span><span class="p">[</span><span class="n">cat</span><span class="o">.</span><span class="n">reff</span> <span class="o">&gt;=</span> <span class="mf">5.</span><span class="p">]</span>
+<span class="n">bbig</span> <span class="o">=</span> <span class="n">scat</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">313</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">big</span><span class="o">.</span><span class="n">lon</span><span class="p">,</span> <span class="n">big</span><span class="o">.</span><span class="n">lat</span><span class="p">,</span> <span class="n">marker</span> <span class="o">=</span> <span class="s">&#39;o&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s">&#39;blue&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s">&#39;None&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;big bubbles&#39;</span> <span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;lon&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s">&#39;best&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;lat&#39;</span><span class="p">)</span>
+
+<span class="c"># show the figure:</span>
+<span class="n">scat</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
