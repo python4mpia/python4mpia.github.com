@@ -344,7 +344,7 @@ display:none;
 <p>In the spirit of this workshop let&#8217;s jump in to real Python analysis code.</p>
 <div class="section" id="making-a-publication-quality-image">
 <h2>Making a publication quality image<a class="headerlink" href="#making-a-publication-quality-image" title="Permalink to this headline">¶</a></h2>
-<p>Making a publication quality image is a snap in Python using the <a class="reference external" href="http://aplpy.github.com">APLpy</a> package (Astronomical Tables in Python).  Images can be made interactively or (reproducibly) with a script. Let&#8217;s use this in combination with <a class="reference external" href="http://atpy.github.com">ATpy</a> to make a plot of a region with contours and a catalog overlaid.</p>
+<p>Making a publication quality image is a snap in Python using the <a class="reference external" href="http://aplpy.github.com">APLpy</a> package (the Astronomical Plotting Library in Python).  Images can be made interactively or (reproducibly) with a script. Let&#8217;s use this in combination with <a class="reference external" href="http://atpy.github.com">ATpy</a> (Astronomical Tables in Python) to make a plot of a region with contours and a catalog overlaid.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">aplpy</span>
 <span class="kn">import</span> <span class="nn">atpy</span>
@@ -415,14 +415,14 @@ display:none;
 </div>
 <div class="section" id="the-basics">
 <h2>The Basics<a class="headerlink" href="#the-basics" title="Permalink to this headline">¶</a></h2>
-<p>Here is a brief guide to the basics of Python syntax.
+<p>Here is a brief guide to the basics of python syntax.
 Defining variables:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">a</span><span class="o">=</span><span class="mi">1</span>
 <span class="n">name</span><span class="o">=</span><span class="s">&quot;Jorge&quot;</span>
 </pre></div>
 </div>
 <p>Python figures out the variable type for you.</p>
-<p>Define functions:</p>
+<p>Define functions</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;John&quot;</span><span class="p">):</span>
     <span class="k">print</span> <span class="s">&quot;Hello, &quot;</span><span class="o">+</span><span class="n">name</span>
 
@@ -431,13 +431,12 @@ Defining variables:</p>
         <span class="k">print</span> <span class="s">&quot;Hello, &quot;</span><span class="o">+</span><span class="n">name</span>
 </pre></div>
 </div>
-<p>&#8221;:&#8221; indicates the beginning of something.  Indentation (4 spaces)
-tells Python which code is included in the code segment instead of <cite>{</cite>
-and <cite>}</cite>.</p>
-<p>Functions in Python can take both mandatory arguments and optional
+<p>&#8221;:&#8221; indicates the beginning of something.  Indentation (4 spaces) tells python
+which code is included in the code segment instead of <cite>{</cite> and <cite>}</cite>.</p>
+<p>Functions in python can take both mandatory arguments and optional
 keyword arguments. You can set default arguments for keywords.</p>
 <p>It is easy to loop through elements of a <cite>list</cite> using a <cite>for</cite> loop.</p>
-<p>Run the functions from the Python interpreter by typing:</p>
+<p>Run the functions by inside python typing</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">hello</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">list_hello</span><span class="p">()</span>
 </pre></div>
@@ -448,13 +447,13 @@ In [2]: a
 Out[2]: 1
 
 In [3]: name
-Out[3]: 'Bob'</pre>
+Out[3]: 'Jorge'</pre>
 </div>
-<p>The variables you define in the script file are still available to you:</p>
+<p>The variables you define in the script file are still available to you.:</p>
 <div class="highlight-python"><pre>In [4]: hello
 Out[4]: &lt;function hello at 0x1cec8c0&gt;</pre>
 </div>
-<p>Whoops.  A function needs to be called with <cite>()</cite>.  Otherwise, Python just
+<p>Whoops.  A function needs to be called with <cite>()</cite>.  Otherwise, python just
 tells you that it is a function:</p>
 <div class="highlight-python"><pre>In [5]: hello()
 Hello, John</pre>
@@ -463,8 +462,8 @@ Hello, John</pre>
 <div class="highlight-python"><pre>In [6]: hello(name="Bryan")
 Hello, Bryan</pre>
 </div>
-<p>or be lazy and just pass in the argument alone and Python will assign
-it to the keyword in the corresponding position:</p>
+<p>or be lazy and just pass in the argument alone and python will assign it to
+the keyword in the corresponding position:</p>
 <div class="highlight-python"><pre>In [7]: hello("Dieter")
 Hello, Dieter</pre>
 </div>
@@ -743,12 +742,11 @@ along the bottom of the plot, corresponding distance along the top:</p>
 </div>
 <div class="section" id="parallel-process-of-fits-images">
 <h2>Parallel process of FITS images<a class="headerlink" href="#parallel-process-of-fits-images" title="Permalink to this headline">¶</a></h2>
-<p>This example demonstrates the use of the built-in <a class="reference external" href="http://docs.python.org/library/multiprocessing.html">multiprocessing</a> module,
-specifically the ability to create process <em>pools</em>. The idea is
-essentially that given a function and a list of inputs to the
-function, the multiprocessing Pool allows the function to be run over
-multiple input values in parallel, speeding up the process if multiple
-cores are available on a machine.</p>
+<p>This example demonstrates the use of the built-in <a class="reference external" href="http://docs.python.org/library/multiprocessing.html">multiprocessing</a> module, specifically
+the ability to create process <em>pools</em>. The idea is essentially that given a
+function and a list of inputs to the function, the multiprocessing Pool allows
+the function to be run over multiple input values in parallel, speeding up the
+process if multiple cores are availbale on a machine.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">glob</span>
 <span class="kn">import</span> <span class="nn">multiprocessing</span>
@@ -785,11 +783,7 @@ cores are available on a machine.</p>
 <span class="n">result</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">smooth</span><span class="p">,</span> <span class="n">files</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>If we run this from ipython or with Python, we can see 12 <tt class="docutils literal"><span class="pre">Processing</span>
-<span class="pre">...</span></tt> messages appear at the same time, and a quick look at <tt class="docutils literal"><span class="pre">top</span></tt>
-shows us that 12 processes are running simultaneously. If we run this
-from <tt class="docutils literal"><span class="pre">ipython</span></tt>, we can then try running it with different number of
-processes and timing it:</p>
+<p>If we run this from ipython or with python, we can see 12 <tt class="docutils literal"><span class="pre">Processing</span> <span class="pre">...</span></tt> messages appear at the same time, and a quick look at <tt class="docutils literal"><span class="pre">top</span></tt> shows us that 12 processes are running simultaneously. If we run this from <tt class="docutils literal"><span class="pre">ipython</span></tt>, we can then try running it with different number of processes and timing it:</p>
 <div class="highlight-python"><pre>In [2]: run process.py
 
 In [3]: p = multiprocessing.Pool(processes=12)
