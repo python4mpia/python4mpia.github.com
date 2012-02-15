@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Logistics &mdash;  0.1.0 documentation</title>
+    <title>Importing Modules &mdash;  0.1.0 documentation</title>
     
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -26,9 +26,9 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title=" 0.1.0 documentation" href="../index.html" />
-    <link rel="up" title="Introduction and Motivation" href="intro.html" />
-    <link rel="next" title="More Examples" href="examples.html" />
-    <link rel="prev" title="Who is using Python" href="who-python.html" />
+    <link rel="up" title="An introduction to Pure Python" href="pure_python.html" />
+    <link rel="next" title="A Quick Note about Python 3" href="python3.html" />
+    <link rel="prev" title="Reading and Writing files in Pure Python" href="files.html" />
  
 <script type="text/javascript"> 
 $(document).ready(function(){
@@ -282,36 +282,26 @@ display:none;
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="examples.html" title="More Examples"
+          <a href="python3.html" title="A Quick Note about Python 3"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="who-python.html" title="Who is using Python"
+          <a href="files.html" title="Reading and Writing files in Pure Python"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li>
-          <li><a href="intro.html" accesskey="U">Introduction and Motivation</a> &raquo;</li> 
+          <li><a href="pure_python.html" accesskey="U">An introduction to Pure Python</a> &raquo;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="../index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Logistics</a><ul>
-<li><a class="reference internal" href="#workshop-materials">Workshop materials</a></li>
-<li><a class="reference internal" href="#installing-python-and-the-rest">Installing Python and the rest</a></li>
-<li><a class="reference internal" href="#final-words">Final words</a></li>
-</ul>
-</li>
-</ul>
-
   <h4>Previous topic</h4>
-  <p class="topless"><a href="who-python.html"
-                        title="previous chapter">Who is using Python</a></p>
+  <p class="topless"><a href="files.html"
+                        title="previous chapter">Reading and Writing files in Pure Python</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="examples.html"
-                        title="next chapter">More Examples</a></p>
+  <p class="topless"><a href="python3.html"
+                        title="next chapter">A Quick Note about Python 3</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../_sources/intro/wrapup.txt"
+    <li><a href="../_sources/pure_python/modules.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
@@ -335,33 +325,53 @@ display:none;
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="logistics">
-<h1>Logistics<a class="headerlink" href="#logistics" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="workshop-materials">
-<h2>Workshop materials<a class="headerlink" href="#workshop-materials" title="Permalink to this headline">¶</a></h2>
-<p>All the workshop materials will be available through the web site:</p>
-<blockquote>
-<div><a class="reference external" href="http://python4mpia.github.com">http://python4mpia.github.com</a></div></blockquote>
-<ul class="simple">
-<li>Presentations</li>
-<li>Tutorial and example scripts</li>
-<li>Example data files</li>
-</ul>
+  <div class="section" id="importing-modules">
+<h1>Importing Modules<a class="headerlink" href="#importing-modules" title="Permalink to this headline">¶</a></h1>
+<p>One of the strengths of Python is that there are many built-in add-ons - or
+<em>modules</em> - which allow you to do complex tasks in only a few lines of code. In addition, there are many other third-party modules (e.g. Numpy, Scipy,
+Matplotlib) that can be installed, and you can also develop your own modules
+that include functionalities you commonly use.</p>
+<p>The built-in modules are referred to as the <em>Standard Library</em>, and you can
+find a full list of the available functionality in the <a class="reference external" href="http://docs.python.org/library/index.html">Python Documentation</a>.</p>
+<p>To use modules in your Python session or script, you need to import them. The
+following example shows how to import the built-in <tt class="docutils literal"><span class="pre">os</span></tt> module, which
+contains amongst other things many useful functions relating to files and
+paths:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">os</span>
+</pre></div>
 </div>
-<div class="section" id="installing-python-and-the-rest">
-<h2>Installing Python and the rest<a class="headerlink" href="#installing-python-and-the-rest" title="Permalink to this headline">¶</a></h2>
-<p>In order to follow along with future sessions you need to have Python
-2.6 or 2.7 installed and satisfy these <a class="reference internal" href="../installation/requirements.html#python-pkg-requirements"><em>Python requirements</em></a>.
-Instructions for installation everything you need on Linux, Mac or
-Windows can be found in <a class="reference internal" href="../installation/python_install.html#installing-scientific-python"><em>Installing a scientific Python distribution</em></a>. If you
-have trouble installing packages feel free to contact the MPIA python
-mailing list.</p>
+<p>This will give you access to functions available within this module, which you
+can now access if you use the module name as a prefix. For example, if we want
+to check if a file <tt class="docutils literal"><span class="pre">data/m31.fits</span></tt> exists, we can use the <tt class="docutils literal"><span class="pre">os.path.exists</span></tt>
+function:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s">&#39;data/m31.fits&#39;</span><span class="p">)</span>
+<span class="go">False</span>
+</pre></div>
 </div>
-<div class="section" id="final-words">
-<h2>Final words<a class="headerlink" href="#final-words" title="Permalink to this headline">¶</a></h2>
-<p>From <a class="reference external" href="http://xkcd.com">xkcd</a>:</p>
-<img alt="../_images/xkcd_python.png" src="../_images/xkcd_python.png" />
+<p>In this case, we can use the function in an <tt class="docutils literal"><span class="pre">if</span></tt> statement, since it returns a boolean:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s">&#39;data/m31.fits&#39;</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">print</span> <span class="s">&quot;The file exists&quot;</span>
+<span class="gp">... </span><span class="k">else</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="k">print</span> <span class="s">&quot;The file does not exist&quot;</span>
+<span class="gp">...</span>
+<span class="go">The file does not exist</span>
+</pre></div>
 </div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">As with objects in Python, once you have imported a module, you can
+(in IPython) type the name of the module, followed by <tt class="docutils literal"><span class="pre">.</span></tt>, then
+press TAB to see the available functions!</p>
+</div>
+<p>If a module name is too long to be conveniently written each time you want to use a function, you can define a shortcut when you import it:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>In the following workshops we will look a number of third-party modules in
+more detail, such as <tt class="docutils literal"><span class="pre">numpy</span></tt> for creating and manipulating high performance
+arrays, <tt class="docutils literal"><span class="pre">scipy</span></tt> for scientific computing and <tt class="docutils literal"><span class="pre">matplotlib.pyplot</span></tt> for
+plotting.</p>
 </div>
 
 
@@ -377,13 +387,13 @@ mailing list.</p>
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="examples.html" title="More Examples"
+          <a href="python3.html" title="A Quick Note about Python 3"
              >next</a> |</li>
         <li class="right" >
-          <a href="who-python.html" title="Who is using Python"
+          <a href="files.html" title="Reading and Writing files in Pure Python"
              >previous</a> |</li>
         <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li>
-          <li><a href="intro.html" >Introduction and Motivation</a> &raquo;</li> 
+          <li><a href="pure_python.html" >An introduction to Pure Python</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">

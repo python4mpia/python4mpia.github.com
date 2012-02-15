@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Logistics &mdash;  0.1.0 documentation</title>
+    <title>A Quick Note about Python 3 &mdash;  0.1.0 documentation</title>
     
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -26,9 +26,8 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title=" 0.1.0 documentation" href="../index.html" />
-    <link rel="up" title="Introduction and Motivation" href="intro.html" />
-    <link rel="next" title="More Examples" href="examples.html" />
-    <link rel="prev" title="Who is using Python" href="who-python.html" />
+    <link rel="up" title="An introduction to Pure Python" href="pure_python.html" />
+    <link rel="prev" title="Importing Modules" href="modules.html" />
  
 <script type="text/javascript"> 
 $(document).ready(function(){
@@ -282,36 +281,31 @@ display:none;
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="examples.html" title="More Examples"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="who-python.html" title="Who is using Python"
+          <a href="modules.html" title="Importing Modules"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li>
-          <li><a href="intro.html" accesskey="U">Introduction and Motivation</a> &raquo;</li> 
+          <li><a href="pure_python.html" accesskey="U">An introduction to Pure Python</a> &raquo;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Logistics</a><ul>
-<li><a class="reference internal" href="#workshop-materials">Workshop materials</a></li>
-<li><a class="reference internal" href="#installing-python-and-the-rest">Installing Python and the rest</a></li>
-<li><a class="reference internal" href="#final-words">Final words</a></li>
+<li><a class="reference internal" href="#">A Quick Note about Python 3</a><ul>
+<li><a class="reference internal" href="#integer-division">Integer division</a></li>
+<li><a class="reference internal" href="#the-print-statement">The <tt class="docutils literal"><span class="pre">print</span></tt> statement</a></li>
+<li><a class="reference internal" href="#string-formatting">String formatting</a></li>
+<li><a class="reference internal" href="#writing-future-proof-scripts">Writing future-proof scripts</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="who-python.html"
-                        title="previous chapter">Who is using Python</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="examples.html"
-                        title="next chapter">More Examples</a></p>
+  <p class="topless"><a href="modules.html"
+                        title="previous chapter">Importing Modules</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../_sources/intro/wrapup.txt"
+    <li><a href="../_sources/pure_python/python3.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
@@ -335,32 +329,65 @@ display:none;
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="logistics">
-<h1>Logistics<a class="headerlink" href="#logistics" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="workshop-materials">
-<h2>Workshop materials<a class="headerlink" href="#workshop-materials" title="Permalink to this headline">¶</a></h2>
-<p>All the workshop materials will be available through the web site:</p>
-<blockquote>
-<div><a class="reference external" href="http://python4mpia.github.com">http://python4mpia.github.com</a></div></blockquote>
-<ul class="simple">
-<li>Presentations</li>
-<li>Tutorial and example scripts</li>
-<li>Example data files</li>
-</ul>
+  <div class="section" id="a-quick-note-about-python-3">
+<h1>A Quick Note about Python 3<a class="headerlink" href="#a-quick-note-about-python-3" title="Permalink to this headline">¶</a></h1>
+<p>There is currently a shift in the Python community as people move from Python 2.x to Python 3.x. The newer version of Python brings a number of improvements to the language, but also breaks backward compatibility. That is to say, programs written in Python 2.x will not necessarily run in Python 3.x. As a result of this, the Python community has been slow to move to the new version, as this requires that all of the pre-existing libraries and modules are updated. Nevertheless, this transition is now almost complete, with many of the large number of add-in packages now compatible with Python 3.x.</p>
+<p>Since this transition is not totally complete, we will concentrate on Python 2.x in these workshops. You should be aware that this transition is taking place, and that there will be some changes if you move to Python 3.x. We introduce two of the many differences in the following subsections.</p>
+<div class="section" id="integer-division">
+<h2>Integer division<a class="headerlink" href="#integer-division" title="Permalink to this headline">¶</a></h2>
+<p>In Python 2.x dividing two integers leads to unexpected results:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="mi">3</span> <span class="o">/</span> <span class="mi">2</span>
+<span class="go">1</span>
+</pre></div>
 </div>
-<div class="section" id="installing-python-and-the-rest">
-<h2>Installing Python and the rest<a class="headerlink" href="#installing-python-and-the-rest" title="Permalink to this headline">¶</a></h2>
-<p>In order to follow along with future sessions you need to have Python
-2.6 or 2.7 installed and satisfy these <a class="reference internal" href="../installation/requirements.html#python-pkg-requirements"><em>Python requirements</em></a>.
-Instructions for installation everything you need on Linux, Mac or
-Windows can be found in <a class="reference internal" href="../installation/python_install.html#installing-scientific-python"><em>Installing a scientific Python distribution</em></a>. If you
-have trouble installing packages feel free to contact the MPIA python
-mailing list.</p>
+<p>In Python 3.x this behavior has been fixed:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="mi">3</span> <span class="o">/</span> <span class="mi">2</span>
+<span class="go">1.5</span>
+</pre></div>
 </div>
-<div class="section" id="final-words">
-<h2>Final words<a class="headerlink" href="#final-words" title="Permalink to this headline">¶</a></h2>
-<p>From <a class="reference external" href="http://xkcd.com">xkcd</a>:</p>
-<img alt="../_images/xkcd_python.png" src="../_images/xkcd_python.png" />
+</div>
+<div class="section" id="the-print-statement">
+<h2>The <tt class="docutils literal"><span class="pre">print</span></tt> statement<a class="headerlink" href="#the-print-statement" title="Permalink to this headline">¶</a></h2>
+<p>In Python 3.x, the <tt class="docutils literal"><span class="pre">print</span></tt> statement has been replaced with the <tt class="docutils literal"><span class="pre">print()</span></tt> function. The new syntax is therefore:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="s">&quot;Hello World!&quot;</span><span class="p">)</span>
+<span class="go">Hello World!</span>
+</pre></div>
+</div>
+<p>instead of:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="s">&quot;Hello World!&quot;</span>
+<span class="go">Hello World!</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="string-formatting">
+<h2>String formatting<a class="headerlink" href="#string-formatting" title="Permalink to this headline">¶</a></h2>
+<p>Python 2 uses the following syntax for string formatting:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">format_string</span> <span class="o">%</span> <span class="n">values</span>
+</pre></div>
+</div>
+<p>for example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="s">&quot;</span><span class="si">%s</span><span class="s"> </span><span class="si">%d</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="s">&#39;spam&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>while Python 3 uses:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">format_string</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>and uses a <tt class="docutils literal"><span class="pre">{}</span></tt> notation instead of <tt class="docutils literal"><span class="pre">%</span></tt>, for example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="s">&quot;{:s} {:d}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s">&#39;spam&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="writing-future-proof-scripts">
+<h2>Writing future-proof scripts<a class="headerlink" href="#writing-future-proof-scripts" title="Permalink to this headline">¶</a></h2>
+<p>Python 2.6 and 2.7 already support the new formatting notation, so if you want
+to write future-proof scripts, you can already switch to using the new
+formatting in Python 2.</p>
+<p>In addition, you can also start using the new division and print statement. To do this, simply do:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span><span class="p">,</span> <span class="n">print_function</span>
+</pre></div>
+</div>
+<p>e.g. at the start of a script, and you can then use Python 3 syntax for division and printing.</p>
 </div>
 </div>
 
@@ -377,13 +404,10 @@ mailing list.</p>
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="examples.html" title="More Examples"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="who-python.html" title="Who is using Python"
+          <a href="modules.html" title="Importing Modules"
              >previous</a> |</li>
         <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li>
-          <li><a href="intro.html" >Introduction and Motivation</a> &raquo;</li> 
+          <li><a href="pure_python.html" >An introduction to Pure Python</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">

@@ -13,8 +13,11 @@ statements, ...) and basic file input/output operations.
    running.rst
    types.rst
    control_flow.rst
+   functions.rst
    files.rst
+   modules.rst
+   python3.rst
    
-:Authors: Thomas Robitaille
-:Copyright: 2011, Thomas Robitaille
+:Authors: Thomas Robitaille, Rory Holmes
+:Copyright: 2012, Thomas Robitaille, Rory Holmes
 

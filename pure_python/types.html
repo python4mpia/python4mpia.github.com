@@ -26,6 +26,9 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title=" 0.1.0 documentation" href="../index.html" />
+    <link rel="up" title="An introduction to Pure Python" href="pure_python.html" />
+    <link rel="next" title="Control Flow Statements" href="control_flow.html" />
+    <link rel="prev" title="Running Python code" href="running.html" />
  
 <script type="text/javascript"> 
 $(document).ready(function(){
@@ -278,7 +281,14 @@ display:none;
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
-        <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li> 
+        <li class="right" >
+          <a href="control_flow.html" title="Control Flow Statements"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="running.html" title="Running Python code"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li>
+          <li><a href="pure_python.html" accesskey="U">An introduction to Pure Python</a> &raquo;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar">
@@ -295,6 +305,12 @@ display:none;
 </li>
 </ul>
 
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="running.html"
+                        title="previous chapter">Running Python code</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="control_flow.html"
+                        title="next chapter">Control Flow Statements</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="../_sources/pure_python/types.txt"
@@ -388,20 +404,13 @@ display:none;
 <span class="go">1</span>
 </pre></div>
 </div>
-<p>This is behavior is widely regarded as a huge design mistake and Python 3.x has been fixed to behave like you would expect. To see how Python 3.x behaves, we can use:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
-</pre></div>
-</div>
-<p>After typing this, we can use the Python 3.x syntax:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="mi">3</span> <span class="o">/</span> <span class="mi">2</span>
-<span class="go">1.5</span>
-
-<span class="gp">&gt;&gt;&gt; </span><span class="mi">3</span> <span class="o">//</span> <span class="mi">2</span>
-<span class="go">1</span>
-</pre></div>
-</div>
-<p>Another way to prevent this is to cast at least one of the integers in the division to a <tt class="docutils literal"><span class="pre">float</span></tt>:</p>
+<p>This is behavior is widely regarded as a huge design mistake and Python 3.x has been fixed to behave like you would expect (more on Python 3.x later). A way to prevent this is to cast at least one of the integers in the division to a <tt class="docutils literal"><span class="pre">float</span></tt>:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="mi">3</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="go">1.5</span>
+</pre></div>
+</div>
+<p>or:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="mi">3</span> <span class="o">/</span> <span class="mf">2.</span>
 <span class="go">1.5</span>
 </pre></div>
 </div>
@@ -458,21 +467,10 @@ display:none;
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p>Unlike Numpy arrays:</p>
-<ul class="last">
-<li><p class="first">Python lists can contain anything, including other lists, objects, or complex data structures.</p>
-</li>
-<li><p class="first">When you slice a Python list it returns a copy.</p>
-</li>
-<li><dl class="first docutils">
-<dt>Vector math does not work on lists</dt>
-<dd><ul class="first last simple">
-<li>Multiplying a list by an int <tt class="docutils literal"><span class="pre">n</span></tt> gives <tt class="docutils literal"><span class="pre">n</span></tt> copies of the list.</li>
-<li>Adding another list concatentates.</li>
-<li>Multiplying by a float gives an error.</li>
-</ul>
-</dd>
-</dl>
-</li>
+<ul class="last simple">
+<li>Python lists can contain anything, including other lists, objects, or complex data structures.</li>
+<li>When you slice a Python list it returns a copy.</li>
+<li>Vector math does not work on lists. For example, multiplying a list by an int <tt class="docutils literal"><span class="pre">n</span></tt> gives <tt class="docutils literal"><span class="pre">n</span></tt> copies of the list, adding another list concatentates, and multiplying by a float gives an error.</li>
 </ul>
 </div>
 <p>Sets (<tt class="docutils literal"><span class="pre">set</span></tt>) are a third type of sequence which you can make from a tuple or a list:</p>
@@ -610,7 +608,14 @@ a</pre>
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              >index</a></li>
-        <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li> 
+        <li class="right" >
+          <a href="control_flow.html" title="Control Flow Statements"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="running.html" title="Running Python code"
+             >previous</a> |</li>
+        <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li>
+          <li><a href="pure_python.html" >An introduction to Pure Python</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">

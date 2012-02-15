@@ -26,6 +26,9 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title=" 0.1.0 documentation" href="../index.html" />
+    <link rel="up" title="An introduction to Pure Python" href="pure_python.html" />
+    <link rel="next" title="Python Built-in Types and Operations" href="types.html" />
+    <link rel="prev" title="An introduction to Pure Python" href="pure_python.html" />
  
 <script type="text/javascript"> 
 $(document).ready(function(){
@@ -278,7 +281,14 @@ display:none;
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
-        <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li> 
+        <li class="right" >
+          <a href="types.html" title="Python Built-in Types and Operations"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pure_python.html" title="An introduction to Pure Python"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li>
+          <li><a href="pure_python.html" accesskey="U">An introduction to Pure Python</a> &raquo;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar">
@@ -288,11 +298,18 @@ display:none;
 <li><a class="reference internal" href="#">Running Python code</a><ul>
 <li><a class="reference internal" href="#interactive-use">Interactive use</a></li>
 <li><a class="reference internal" href="#running-scripts">Running scripts</a></li>
+<li><a class="reference internal" href="#executable-scripts">Executable Scripts</a></li>
 <li><a class="reference internal" href="#combining-interactive-and-non-interactive-use">Combining interactive and non-interactive use</a></li>
 </ul>
 </li>
 </ul>
 
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pure_python.html"
+                        title="previous chapter">An introduction to Pure Python</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="types.html"
+                        title="next chapter">Python Built-in Types and Operations</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="../_sources/pure_python/running.txt"
@@ -365,8 +382,8 @@ Out[2]: 1</pre>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">IPython is much more than just a Python shell with a few
-improvements compared to the default shell. See the <cite>IPython
-documentation &lt;http://ipython.org/&gt;</cite> for a full overview of its
+improvements compared to the default shell. See the <a class="reference external" href="http://ipython.org/">IPython
+documentation</a> for a full overview of its
 capabilities!</p>
 </div>
 </div>
@@ -383,10 +400,12 @@ capabilities!</p>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">the <tt class="docutils literal"><span class="pre">print</span></tt> statement is necessary, because typing <tt class="docutils literal"><span class="pre">a</span></tt> on its
-own will only print out the value in interactive mode. In scripts,
-the printing has to be explicitely requested with the print command.</p>
+<p class="last">The <tt class="docutils literal"><span class="pre">print</span></tt> statement is necessary, because typing <tt class="docutils literal"><span class="pre">a</span></tt> on its own will only print out the value in interactive mode. In scripts, the printing has to be explicitly requested with the print command. To print multiple variables, just separate them with a comma after the print command: <tt class="docutils literal"><span class="pre">print</span> <span class="pre">a,</span> <span class="pre">1.5,</span> <span class="pre">&quot;spam&quot;</span></tt>. To print variable within strings use the following syntax: <tt class="docutils literal"><span class="pre">print</span> <span class="pre">(&quot;This</span> <span class="pre">is</span> <span class="pre">a</span> <span class="pre">integer:</span> <span class="pre">%d,</span> <span class="pre">this</span> <span class="pre">is</span> <span class="pre">a</span> <span class="pre">float:</span> <span class="pre">%f,</span> <span class="pre">and</span> <span class="pre">is</span> <span class="pre">a</span> <span class="pre">string:</span> <span class="pre">%s&quot;</span> <span class="pre">%</span> <span class="pre">(5,</span> <span class="pre">3.141,</span> <span class="pre">&quot;spam&quot;))</span></tt></p>
 </div>
+</div>
+<div class="section" id="executable-scripts">
+<h2>Executable Scripts<a class="headerlink" href="#executable-scripts" title="Permalink to this headline">¶</a></h2>
+<p>It is also possible to make Python scripts executable. Simply add <tt class="docutils literal"><span class="pre">#!/usr/bin/env</span> <span class="pre">python</span></tt> on the first line of your <tt class="docutils literal"><span class="pre">test.py</span></tt> script and change the file permission to make it executable with <tt class="docutils literal"><span class="pre">chmod</span> <span class="pre">+x</span> <span class="pre">test.py</span></tt>. Now the script can be run without the preceeding <tt class="docutils literal"><span class="pre">python</span></tt> command; instead you can just type <tt class="docutils literal"><span class="pre">./test.py</span></tt> in the command line. Note that this will only work on Linux and Macs, not on Windows.</p>
 </div>
 <div class="section" id="combining-interactive-and-non-interactive-use">
 <h2>Combining interactive and non-interactive use<a class="headerlink" href="#combining-interactive-and-non-interactive-use" title="Permalink to this headline">¶</a></h2>
@@ -422,7 +441,14 @@ Out[2]: 2</pre>
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              >index</a></li>
-        <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li> 
+        <li class="right" >
+          <a href="types.html" title="Python Built-in Types and Operations"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pure_python.html" title="An introduction to Pure Python"
+             >previous</a> |</li>
+        <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li>
+          <li><a href="pure_python.html" >An introduction to Pure Python</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">

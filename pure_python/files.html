@@ -26,6 +26,9 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title=" 0.1.0 documentation" href="../index.html" />
+    <link rel="up" title="An introduction to Pure Python" href="pure_python.html" />
+    <link rel="next" title="Importing Modules" href="modules.html" />
+    <link rel="prev" title="Writing Functions" href="functions.html" />
  
 <script type="text/javascript"> 
 $(document).ready(function(){
@@ -278,7 +281,14 @@ display:none;
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
-        <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li> 
+        <li class="right" >
+          <a href="modules.html" title="Importing Modules"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="functions.html" title="Writing Functions"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li>
+          <li><a href="pure_python.html" accesskey="U">An introduction to Pure Python</a> &raquo;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar">
@@ -292,6 +302,12 @@ display:none;
 </li>
 </ul>
 
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="functions.html"
+                        title="previous chapter">Writing Functions</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="modules.html"
+                        title="next chapter">Importing Modules</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="../_sources/pure_python/files.txt"
@@ -353,12 +369,12 @@ In [5]: data = f.read()</pre>
 Out[6]: str</pre>
 </div>
 <p>But what we&#8217;d really like to do is read the file line by line. There are several ways to do this, the simplest of which is to use a <tt class="docutils literal"><span class="pre">for</span></tt> loop in the following way:</p>
-<p>In [7]: f = open(&#8216;data.txt&#8217;, &#8216;r&#8217;)</p>
-<dl class="docutils">
-<dt>In [8]: for line in f:</dt>
-<dd>...:     print repr(line)
-...:</dd>
-</dl>
+<div class="highlight-python"><pre>In [7]: f = open('data.txt', 'r')
+
+In [8]: for line in f:
+   ...:     print repr(line)
+   ...:</pre>
+</div>
 <p>Notice the indent before <tt class="docutils literal"><span class="pre">print</span></tt>, which is necessary to indicate that we are inside the loop (there is no <tt class="docutils literal"><span class="pre">end</span> <span class="pre">for</span></tt> in Python). Note that we are using <tt class="docutils literal"><span class="pre">repr()</span></tt> to show any invisible characters (this will be useful in a minute). The output should now look something like this:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="s">&#39;RAJ        DEJ                          Jmag   e_Jmag</span><span class="se">\n</span><span class="s">&#39;</span>
 <span class="s">&#39;2000 (deg) 2000 (deg) 2MASS             (mag)  (mag) </span><span class="se">\n</span><span class="s">&#39;</span>
@@ -458,7 +474,7 @@ Out[19]: 12.07</pre>
 00424464+4116106 9.399
 00424446+4116016 12.07</pre>
 </div>
-<div class="admonition-exercise admonition ">
+<div class="admonition-exercise admonition">
 <p class="first admonition-title">Exercise</p>
 <p>Try and see if you can understand what the following script is doing:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;data.txt&#39;</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span>
@@ -536,7 +552,7 @@ Out[19]: 12.07</pre>
 </pre></div>
 </div>
 <p>(this also applies to reading files)</p>
-<div class="admonition-exercise admonition ">
+<div class="admonition-exercise admonition">
 <p class="first admonition-title">Exercise</p>
 <p>Let&#8217;s try combining reading and writing. Using at most seven lines, write a script which will read in <tt class="docutils literal"><span class="pre">data.txt</span></tt>, replace any spaces with periods (<tt class="docutils literal"><span class="pre">.</span></tt>), and write the result out to a file called <tt class="docutils literal"><span class="pre">data_new.txt</span></tt>.</p>
 <p class="last">Can you do it in a single line? (you can ignore closing the file)</p>
@@ -572,7 +588,14 @@ Out[19]: 12.07</pre>
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              >index</a></li>
-        <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li> 
+        <li class="right" >
+          <a href="modules.html" title="Importing Modules"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="functions.html" title="Writing Functions"
+             >previous</a> |</li>
+        <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li>
+          <li><a href="pure_python.html" >An introduction to Pure Python</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">

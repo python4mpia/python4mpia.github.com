@@ -26,7 +26,7 @@ Resources, resources, resources!
 
 - Discussions and people answering questions
 
-  - `MPIA python mailing list <https://mailer.mpia-hd.mpg.de/mailman/listinfo/python>`_
+  - MPIA python mailing list
   - `astropython.org <http://astropython.org>`_
   - `astropy <http://mail.scipy.org/mailman/listinfo/astropy>`_ mailing list
   - `stackoverflow <http://stackoverflow.com/questions/tagged/python>`_ (~50000

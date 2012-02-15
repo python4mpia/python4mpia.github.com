@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Control flow statements &mdash;  0.1.0 documentation</title>
+    <title>Control Flow Statements &mdash;  0.1.0 documentation</title>
     
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -26,6 +26,9 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title=" 0.1.0 documentation" href="../index.html" />
+    <link rel="up" title="An introduction to Pure Python" href="pure_python.html" />
+    <link rel="next" title="Writing Functions" href="functions.html" />
+    <link rel="prev" title="Python Built-in Types and Operations" href="types.html" />
  
 <script type="text/javascript"> 
 $(document).ready(function(){
@@ -278,14 +281,21 @@ display:none;
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
-        <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li> 
+        <li class="right" >
+          <a href="functions.html" title="Writing Functions"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="types.html" title="Python Built-in Types and Operations"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li>
+          <li><a href="pure_python.html" accesskey="U">An introduction to Pure Python</a> &raquo;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Control flow statements</a><ul>
+<li><a class="reference internal" href="#">Control Flow Statements</a><ul>
 <li><a class="reference internal" href="#if-statements"><tt class="docutils literal"><span class="pre">if</span></tt> statements</a></li>
 <li><a class="reference internal" href="#for-loops"><tt class="docutils literal"><span class="pre">for</span></tt> loops</a></li>
 <li><a class="reference internal" href="#while-loops"><tt class="docutils literal"><span class="pre">while</span></tt> loops</a></li>
@@ -293,6 +303,12 @@ display:none;
 </li>
 </ul>
 
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="types.html"
+                        title="previous chapter">Python Built-in Types and Operations</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="functions.html"
+                        title="next chapter">Writing Functions</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="../_sources/pure_python/control_flow.txt"
@@ -320,7 +336,7 @@ display:none;
           <div class="body">
             
   <div class="section" id="control-flow-statements">
-<h1>Control flow statements<a class="headerlink" href="#control-flow-statements" title="Permalink to this headline">¶</a></h1>
+<h1>Control Flow Statements<a class="headerlink" href="#control-flow-statements" title="Permalink to this headline">¶</a></h1>
 <p>Setting and modifying variables will only get you so far before you need to
 use control flow statements such as if statements, or loops. This section
 describes a few of the most basic control flow statements that you will need
@@ -347,8 +363,11 @@ code. For example, in the following example:</p>
 </div>
 <p>The first print statement, and the <tt class="docutils literal"><span class="pre">a</span> <span class="pre">=</span> <span class="pre">2</span></tt> statement only get executed if
 <tt class="docutils literal"><span class="pre">a</span></tt> is 1. On the other hand, <tt class="docutils literal"><span class="pre">print</span> <span class="pre">&quot;finished&quot;</span></tt> gets executed regardless,
-once Python exits the if statement. Indentation is very important in Python,
-and the convention is to use four spaces (not tabs) for each level of indent.</p>
+once Python exits the if statement.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Indentation is very important in Python, and the convention is to use four spaces (not tabs) for each level of indent.</p>
+</div>
 <p>Back to the if-statements, the conditions in the statements can be anything
 that returns a boolean value. For example, <tt class="docutils literal"><span class="pre">a</span> <span class="pre">==</span> <span class="pre">1</span></tt>, <tt class="docutils literal"><span class="pre">b</span> <span class="pre">!=</span> <span class="pre">4</span></tt>, and <tt class="docutils literal"><span class="pre">c</span> <span class="pre">&lt;=</span>
 <span class="pre">5</span></tt> are valid conditions because they return either <tt class="docutils literal"><span class="pre">True</span></tt> or <tt class="docutils literal"><span class="pre">False</span></tt>
@@ -363,6 +382,10 @@ comparisons should be executed, for example:</p>
 </div>
 <p>More generally, any function or expression that ultimately returns <tt class="docutils literal"><span class="pre">True</span></tt> or
 <tt class="docutils literal"><span class="pre">False</span></tt> can be used.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">In the previous examples we have included comments. All lines starting with the <tt class="docutils literal"><span class="pre">#</span></tt> character are ignored by Python. If you would like to comment out a section of code, you can enclose it in trip quotes: <tt class="docutils literal"><span class="pre">'''commented</span> <span class="pre">out</span> <span class="pre">code'''</span></tt>.</p>
+</div>
 </div>
 <div class="section" id="for-loops">
 <h2><tt class="docutils literal"><span class="pre">for</span></tt> loops<a class="headerlink" href="#for-loops" title="Permalink to this headline">¶</a></h2>
@@ -393,9 +416,37 @@ Out[3]: [3, 4, 5, 6, 7, 8, 9, 10, 11]</pre>
 <div class="highlight-python"><pre>In [4]: range(2, 20, 2)
 Out[4]: [2, 4, 6, 8, 10, 12, 14, 16, 18]</pre>
 </div>
-<p>The <tt class="docutils literal"><span class="pre">range</span></tt> function can be used as the iterable in a <tt class="docutils literal"><span class="pre">for</span></tt> loop:</p>
-<div class="highlight-python"><pre>In [5]: for x in range(10):
-   ...:     print x
+<p>The <tt class="docutils literal"><span class="pre">range</span></tt> function can be used as the iterable in a <tt class="docutils literal"><span class="pre">for</span></tt> loop.</p>
+<div class="admonition-exercise admonition">
+<p class="first admonition-title">Exercise</p>
+<p class="last">Write a for loop that prints out the integers 1 to 9, but not 5 and 7.</p>
+</div>
+<p class="flip8">Click to Show/Hide Solution</p> <div class="panel8"><div class="highlight-python"><pre>In [1]: for x in range(10):
+   ...:    if x != 5 and x != 7:
+   ...:        print x
+   ...:
+0
+1
+2
+3
+4
+6
+8
+9</pre>
+</div>
+</div>
+<div class="section" id="while-loops">
+<h2><tt class="docutils literal"><span class="pre">while</span></tt> loops<a class="headerlink" href="#while-loops" title="Permalink to this headline">¶</a></h2>
+<p>Similarly to other programming languages, Python also provides a <tt class="docutils literal"><span class="pre">while</span></tt> loop which is similar to a <tt class="docutils literal"><span class="pre">for</span></tt> loop, but where the number of iterations is defined by a condition rather than an iterator:</p>
+<div class="highlight-python"><pre>while condition:
+    # do something</pre>
+</div>
+<p>For example, in the following example:</p>
+<div class="highlight-python"><pre>In [1]: a = 0
+
+In [2]: while a &lt; 10:
+   ...:     print a
+   ...:     a += 1
    ...:
 0
 1
@@ -408,31 +459,34 @@ Out[4]: [2, 4, 6, 8, 10, 12, 14, 16, 18]</pre>
 8
 9</pre>
 </div>
+<p>the loop is executed until <tt class="docutils literal"><span class="pre">a</span></tt> is equal to or exceeds 10.</p>
+<div class="admonition-exercise admonition">
+<p class="first admonition-title">Exercise</p>
+<p class="last">Write a while loop to print out the Fibonacci numbers below 100.</p>
 </div>
-<div class="section" id="while-loops">
-<h2><tt class="docutils literal"><span class="pre">while</span></tt> loops<a class="headerlink" href="#while-loops" title="Permalink to this headline">¶</a></h2>
-<p>Similarly to other programming languages, Python also provides a <tt class="docutils literal"><span class="pre">while</span></tt> loop which is similar to a <tt class="docutils literal"><span class="pre">for</span></tt> loop, but where the number of iterations is defined by a condition rather than an iterator:</p>
-<div class="highlight-python"><pre>while condition:
-    # do something</pre>
-</div>
-<p>For example, in the following example:</p>
-<div class="highlight-python"><pre>In [3]: a = 0
+<p class="flip9">Click to Show/Hide Solution</p> <div class="panel9"><div class="highlight-python"><pre>In [1]: a = 0
 
-In [4]: while a &lt; 10:
-   ...:        print a
-   ...:        a += 1.231
+In [2]: b = 1
+
+In [3]: while a &lt; 100:
+   ...:     print a
+   ...:     c = a + b
+   ...:     a = b
+   ...:     b = c
    ...:
 0
-1.231
-2.462
-3.693
-4.924
-6.155
-7.386
-8.617
-9.848</pre>
+1
+1
+2
+3
+5
+8
+13
+21
+34
+55
+89</pre>
 </div>
-<p>the loop is executed until <tt class="docutils literal"><span class="pre">a</span></tt> is equal to or exceeds 10:</p>
 </div>
 </div>
 
@@ -448,7 +502,14 @@ In [4]: while a &lt; 10:
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              >index</a></li>
-        <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li> 
+        <li class="right" >
+          <a href="functions.html" title="Writing Functions"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="types.html" title="Python Built-in Types and Operations"
+             >previous</a> |</li>
+        <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li>
+          <li><a href="pure_python.html" >An introduction to Pure Python</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
