@@ -26,6 +26,7 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title=" 0.1.0 documentation" href="../index.html" />
+    <link rel="prev" title="A Quick Note about Python 3" href="../pure_python/python3.html" />
  
 <script type="text/javascript"> 
 $(document).ready(function(){
@@ -278,6 +279,9 @@ display:none;
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../pure_python/python3.html" title="A Quick Note about Python 3"
+             accesskey="P">previous</a> |</li>
         <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
@@ -292,6 +296,9 @@ display:none;
 </li>
 </ul>
 
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../pure_python/python3.html"
+                        title="previous chapter">A Quick Note about Python 3</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="../_sources/core/core.txt"
@@ -362,8 +369,11 @@ the workshop.  Now that you have a working Python installation we can do this
 without worrying about details of the platform (e.g. linux has wget,
 Mac has curl, Windows might not have tar, etc etc).</p>
 <p>First, download the following <a class="reference download internal" href="../_downloads/core_examples.tar"><tt class="xref download docutils literal"><span class="pre">this</span></tt></a> file,
-expand it, then change to the <tt class="docutils literal"><span class="pre">core_examples</span></tt> directory.</p>
-<p>If you have issues downloading the file, start up <tt class="docutils literal"><span class="pre">ipython</span></tt> and enter:</p>
+expand it, then change to the <tt class="docutils literal"><span class="pre">core_examples</span></tt> directory, then launch:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">ipython</span> <span class="o">--</span><span class="n">pylab</span>
+</pre></div>
+</div>
+<p>If you have issues downloading the file, start up <tt class="docutils literal"><span class="pre">ipython</span> <span class="pre">--pylab</span></tt> and enter:</p>
 <div class="highlight-python"><pre>import urllib2, tarfile
 url = 'http://python4mpia.github.com/_downloads/core_examples.tar'
 tarfile.open(fileobj=urllib2.urlopen(url), mode='r|').extractall()
@@ -907,6 +917,9 @@ functionality that isn&#8217;t in NumPy: there is a good chance it is in SciPy:<
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              >index</a></li>
+        <li class="right" >
+          <a href="../pure_python/python3.html" title="A Quick Note about Python 3"
+             >previous</a> |</li>
         <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
