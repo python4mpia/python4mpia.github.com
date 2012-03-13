@@ -307,10 +307,8 @@ display:none;
 <li><a class="reference internal" href="#annotating-text">Annotating text</a></li>
 <li><a class="reference internal" href="#making-contour-plots-and-saving-figures">Making contour plots and saving figures</a></li>
 <li><a class="reference internal" href="#other-2-d-plots">Other 2-d plots</a></li>
-<li><a class="reference internal" href="#plotting-3-d-data">Plotting 3-d data</a><ul>
+<li><a class="reference internal" href="#plotting-3-d-data">Plotting 3-d data</a></li>
 <li><a class="reference internal" href="#putting-it-all-together">Putting it all together</a></li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
@@ -676,7 +674,7 @@ properties.</p>
 <tr class="row-odd"><td><a class="reference external" href="http://matplotlib.sourceforge.net/api/pyplot_api.html?highlight=plot.xticks#matplotlib.pyplot.xticks">xticks()</a>, <a class="reference external" href="http://matplotlib.sourceforge.net/api/pyplot_api.html?highlight=plot.yticks#matplotlib.pyplot.yticks">yticks()</a></td>
 <td>Set x and y axis ticks</td>
 </tr>
-<tr class="row-even"><td><a href="#id4"><span class="problematic" id="id5">`savefig`_</span></a></td>
+<tr class="row-even"><td><a class="reference external" href="http://matplotlib.sourceforge.net/api/pyplot_api.html?highlight=plot.savefig#matplotlib.pyplot.savefig">savefig()</a></td>
 <td>Save a figure as png, pdf, ps, svg, jpg, ...</td>
 </tr>
 </tbody>
@@ -823,7 +821,7 @@ distributions.</p>
 <tt class="docutils literal"><span class="pre">np.arange(min,</span> <span class="pre">max,</span> <span class="pre">step)</span></tt> so both histograms are binned the
 same.</li>
 <li>The <tt class="docutils literal"><span class="pre">histtype</span></tt> parameter may also prove useful depending on
-your taste.plt.clf()</li>
+your taste.</li>
 </ul>
 </div>
 <p class="flip0">Click to Show/Hide Solution</p> <div class="panel0"><div class="highlight-python"><div class="highlight"><pre><span class="n">plt</span><span class="o">.</span><span class="n">clf</span><span class="p">()</span>
@@ -926,9 +924,10 @@ expect. (Often the saved vector format version will look better!)</p>
 <p class="last">Make a contour plot of a single 2d gaussian centred on 0,0. You
 should show only 2 contours that are both coloured black. Label the
 inner contour with &#8216;99%&#8217; and the outer contour with &#8216;95%&#8217;. You
-might want to take a look at the <cite>fmt</cite> keyword in the <cite>clabel()</cite>
-help to see how to give your own contour labels, and take note that
-the values of each contour level are stored in <cite>CS.levels</cite>.</p>
+might want to take a look at the <cite>fmt</cite> keyword in the help for
+<cite>clabel()</cite> to see how to give your own contour labels, and take
+note that the values of each contour level are stored in
+<cite>CS.levels</cite>.</p>
 </div>
 <p class="flip1">Click to Show/Hide Solution</p> <div class="panel1"><div class="highlight-python"><div class="highlight"><pre><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span>
@@ -976,11 +975,12 @@ it&#8217;s worth looking at an example of the 3-d viewer that is available:</p>
 </pre></div>
 </div>
 <p>To get more information check out the <a class="reference external" href="http://matplotlib.sourceforge.net/mpl_toolkits/mplot3d/tutorial.html">mplot3d tutorial</a>.</p>
+</div>
 <div class="section" id="putting-it-all-together">
-<h3>Putting it all together<a class="headerlink" href="#putting-it-all-together" title="Permalink to this headline">¶</a></h3>
+<h2>Putting it all together<a class="headerlink" href="#putting-it-all-together" title="Permalink to this headline">¶</a></h2>
 <p>Let&#8217;s use some of what we&#8217;ve learned over the past few lessons to plot
 a 2d distribution, overlay some contours, and show the 1d histograms
-in corresponding to each dimension. You should understand everything
+corresponding to each dimension. You should understand everything
 that&#8217;s going on here - if you don&#8217;t, please ask!:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="c"># the random data</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mf">1e5</span><span class="p">)</span>
@@ -1031,7 +1031,6 @@ that&#8217;s going on here - if you don&#8217;t, please ask!:</p>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
-</div>
 </div>
 </div>
 </div>

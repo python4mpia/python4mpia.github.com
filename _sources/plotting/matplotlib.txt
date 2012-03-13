@@ -33,6 +33,7 @@
 .. _`ylim()`: http://matplotlib.sourceforge.net/api/pyplot_api.html?highlight=plot.ylim#matplotlib.pyplot.ylim
 .. _`xticks()`: http://matplotlib.sourceforge.net/api/pyplot_api.html?highlight=plot.xticks#matplotlib.pyplot.xticks
 .. _`yticks()`: http://matplotlib.sourceforge.net/api/pyplot_api.html?highlight=plot.yticks#matplotlib.pyplot.yticks
+.. _`savefig()`: http://matplotlib.sourceforge.net/api/pyplot_api.html?highlight=plot.savefig#matplotlib.pyplot.savefig
 
 
 ============
@@ -373,7 +374,7 @@ Here are a few useful matplotlib.pyplot functions:
 `subplots_adjust()`_	        Adjust the spacing around subplots (fix clipped labels etc)
 `xlim()`_, `ylim()`_, `axis()`_ Set x and y axis limits
 `xticks()`_, `yticks()`_        Set x and y axis ticks
-`savefig`_                      Save a figure as png, pdf, ps, svg, jpg, ...			         
+`savefig()`_                      Save a figure as png, pdf, ps, svg, jpg, ...			         
 =============================== ==================================================================
 
 .. _multiple-figs-axes:
@@ -528,7 +529,7 @@ choose a location to minimise overlap with the plotted data.
      ``np.arange(min, max, step)`` so both histograms are binned the
      same.
    - The ``histtype`` parameter may also prove useful depending on
-     your taste.plt.clf()
+     your taste.
 
 .. raw:: html
 
@@ -652,9 +653,10 @@ You can also save a plot using the button in the plotting window.
    Make a contour plot of a single 2d gaussian centred on 0,0. You
    should show only 2 contours that are both coloured black. Label the
    inner contour with '99%' and the outer contour with '95%'. You
-   might want to take a look at the `fmt` keyword in the `clabel()`
-   help to see how to give your own contour labels, and take note that
-   the values of each contour level are stored in `CS.levels`.
+   might want to take a look at the `fmt` keyword in the help for
+   `clabel()` to see how to give your own contour labels, and take
+   note that the values of each contour level are stored in
+   `CS.levels`.
 
 .. raw:: html
 
@@ -716,11 +718,11 @@ To get more information check out the `mplot3d tutorial
 <http://matplotlib.sourceforge.net/mpl_toolkits/mplot3d/tutorial.html>`_.
 
 Putting it all together
------------------------
+=======================
 
 Let's use some of what we've learned over the past few lessons to plot
 a 2d distribution, overlay some contours, and show the 1d histograms
-in corresponding to each dimension. You should understand everything
+corresponding to each dimension. You should understand everything
 that's going on here - if you don't, please ask!::
    
   # the random data
