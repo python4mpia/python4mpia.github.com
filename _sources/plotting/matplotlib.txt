@@ -241,7 +241,7 @@ different format styles in one command using arrays::
 
 .. raw:: html
 
-   <p class="flip0">Click to Show/Hide Solution</p> <div class="panel1">
+   <p class="flip0">Click to Show/Hide Solution</p> <div class="panel0">
 
 ::
 
@@ -534,7 +534,7 @@ choose a location to minimise overlap with the plotted data.
 
 .. raw:: html
 
-   <p class="flip2">Click to Show/Hide Solution</p> <div class="panel0">
+   <p class="flip2">Click to Show/Hide Solution</p> <div class="panel2">
 
 ::
 
@@ -661,7 +661,7 @@ You can also save a plot using the button in the plotting window.
 
 .. raw:: html
 
-   <p class="flip3">Click to Show/Hide Solution</p> <div class="panel1">
+   <p class="flip3">Click to Show/Hide Solution</p> <div class="panel3">
 
 ::
 
