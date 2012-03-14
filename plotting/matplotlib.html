@@ -449,7 +449,7 @@ same length as y but starts with 0.  Hence the x data are
 <p><a class="reference external" href="http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.plot">plot()</a> is a versatile command, and will take an arbitrary number of
 arguments.  For example, to plot x versus y, you can issue the
 command:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">plt</span><span class="o">.</span><span class="n">clf</span><span class="p">()</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">plt</span><span class="o">.</span><span class="n">clf</span><span class="p">()</span>    <span class="c"># this clears the existing figure</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">16</span><span class="p">])</span>
 </pre></div>
 </div>
@@ -475,8 +475,8 @@ axes.</p>
 <p>If matplotlib were limited to working with lists, it would be of
 limited use for numeric processing.  Generally, you will use <a class="reference external" href="http://numpy.scipy.org/">NumPy</a>
 arrays.  In fact, all sequences are converted to numpy arrays
-internally.  The example below illustrates a plotting several lines
-with different format styles in one command using arrays:</p>
+internally.  The example below illustrates plotting several lines with
+different format styles in one command using arrays:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="c"># evenly sampled time at 200ms intervals</span>
 <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)</span>
 
@@ -494,10 +494,11 @@ with different format styles in one command using arrays:</p>
 curve. Remember that the value of <cite>pi</cite> and the sine function are in
 the numpy namespace (<tt class="docutils literal"><span class="pre">np.pi</span></tt> and <tt class="docutils literal"><span class="pre">np.sin</span></tt>).</p>
 </div>
-<p class="flip1">Click to Show/Hide Solution</p> <div class="panel1"><div class="highlight-python"><div class="highlight"><pre><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<p class="flip0">Click to Show/Hide Solution</p> <div class="panel1"><div class="highlight-python"><div class="highlight"><pre><span class="n">plt</span><span class="o">.</span><span class="n">clf</span><span class="p">()</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s">&#39;g&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mf">1.1</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div><div class="section" id="controlling-line-properties">
@@ -636,8 +637,8 @@ can then use to later adjust the properties of the plotted object.</p>
 <p class="first admonition-title">Exercise: Make this plot</p>
 <a class="reference internal image-reference" href="../_images/stars.png"><img alt="../_images/stars.png" src="../_images/stars.png" style="width: 560.0px; height: 420.0px;" /></a>
 <p class="last">Make a plot that looks similar to the one above. You should be able
-to do this just by using keyword arguments to adjust the plotting
-properties.</p>
+to do this just by using the format string and keyword arguments to
+adjust the line and marker properties.</p>
 </div>
 <p class="flip1">Click to Show/Hide Solution</p> <div class="panel1"><div class="highlight-python"><div class="highlight"><pre><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
 <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
@@ -662,19 +663,22 @@ properties.</p>
 <tr class="row-odd"><td><a class="reference external" href="http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.figure">figure()</a></td>
 <td>Make new figure frame (accepts figsize=(width,height) in inches)</td>
 </tr>
-<tr class="row-even"><td><a class="reference external" href="http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.axis">axis()</a></td>
+<tr class="row-even"><td><a class="reference external" href="http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.clf">clf()</a></td>
+<td>Clear an existing figure</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.axis">axis()</a></td>
 <td>Set plot axis limits or set aspect ratio (plus more)</td>
 </tr>
-<tr class="row-odd"><td><a class="reference external" href="http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.subplots_adjust">subplots_adjust()</a></td>
+<tr class="row-even"><td><a class="reference external" href="http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.subplots_adjust">subplots_adjust()</a></td>
 <td>Adjust the spacing around subplots (fix clipped labels etc)</td>
 </tr>
-<tr class="row-even"><td><a class="reference external" href="http://matplotlib.sourceforge.net/api/pyplot_api.html?highlight=plot.xlim#matplotlib.pyplot.xlim">xlim()</a>, <a class="reference external" href="http://matplotlib.sourceforge.net/api/pyplot_api.html?highlight=plot.ylim#matplotlib.pyplot.ylim">ylim()</a>, <a class="reference external" href="http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.axis">axis()</a></td>
+<tr class="row-odd"><td><a class="reference external" href="http://matplotlib.sourceforge.net/api/pyplot_api.html?highlight=plot.xlim#matplotlib.pyplot.xlim">xlim()</a>, <a class="reference external" href="http://matplotlib.sourceforge.net/api/pyplot_api.html?highlight=plot.ylim#matplotlib.pyplot.ylim">ylim()</a>, <a class="reference external" href="http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.axis">axis()</a></td>
 <td>Set x and y axis limits</td>
 </tr>
-<tr class="row-odd"><td><a class="reference external" href="http://matplotlib.sourceforge.net/api/pyplot_api.html?highlight=plot.xticks#matplotlib.pyplot.xticks">xticks()</a>, <a class="reference external" href="http://matplotlib.sourceforge.net/api/pyplot_api.html?highlight=plot.yticks#matplotlib.pyplot.yticks">yticks()</a></td>
+<tr class="row-even"><td><a class="reference external" href="http://matplotlib.sourceforge.net/api/pyplot_api.html?highlight=plot.xticks#matplotlib.pyplot.xticks">xticks()</a>, <a class="reference external" href="http://matplotlib.sourceforge.net/api/pyplot_api.html?highlight=plot.yticks#matplotlib.pyplot.yticks">yticks()</a></td>
 <td>Set x and y axis ticks</td>
 </tr>
-<tr class="row-even"><td><a class="reference external" href="http://matplotlib.sourceforge.net/api/pyplot_api.html?highlight=plot.savefig#matplotlib.pyplot.savefig">savefig()</a></td>
+<tr class="row-odd"><td><a class="reference external" href="http://matplotlib.sourceforge.net/api/pyplot_api.html?highlight=plot.savefig#matplotlib.pyplot.savefig">savefig()</a></td>
 <td>Save a figure as png, pdf, ps, svg, jpg, ...</td>
 </tr>
 </tbody>
@@ -755,8 +759,8 @@ for an example with lots-o-subplots.</p>
 <p>You can clear the current figure with <a class="reference external" href="http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.clf">clf()</a> and the current axes
 with <a class="reference external" href="http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.cla">cla()</a>.  There is also an object oriented API which you can use
 instead (see the <a class="reference external" href="http://matplotlib.sourceforge.net/users/artists.html">artist tutorial</a>).Briefly,
-<cite>subplot</cite> and <cite>axes</cite> have equivalents that are methods of a figure;
-<cite>figure().add_subplot()</cite> and <cite>figure().add_axes()</cite>. In scripts it is
+<tt class="docutils literal"><span class="pre">subplot</span></tt> and <tt class="docutils literal"><span class="pre">axes</span></tt> have equivalents that are methods of a figure;
+<tt class="docutils literal"><span class="pre">figure().add_subplot()</span></tt> and <tt class="docutils literal"><span class="pre">figure().add_axes()</span></tt>. In scripts it is
 often more convenient to use these as it makes explicit which figure
 the plot will appear on.</p>
 </div>
@@ -766,7 +770,7 @@ the plot will appear on.</p>
 location, and the <a class="reference external" href="http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.xlabel">xlabel()</a>, <a class="reference external" href="http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.ylabel">ylabel()</a> and <a class="reference external" href="http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.title">title()</a> are used to
 add text in the indicated locations (see the <a class="reference external" href="http://matplotlib.sourceforge.net/users/text_intro.html#text-intro">text intro</a>
 for a more detailed example). Here we&#8217;ll create a histogram from some
-data using the <cite>hist_</cite> command and then annotate it with some text:</p>
+data using the <a class="reference external" href="http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.hist">hist()</a> command and then annotate it with some text:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">clf</span><span class="p">()</span>
@@ -785,7 +789,7 @@ data using the <cite>hist_</cite> command and then annotate it with some text:</
 </pre></div>
 </div>
 <a class="reference internal image-reference" href="../_images/pyplot_text.png"><img alt="../_images/pyplot_text.png" src="../_images/pyplot_text.png" style="width: 560.0px; height: 420.0px;" /></a>
-<p>All of the <a class="reference external" href="http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.text">text()</a> commands return an <tt class="xref py py-class docutils literal"><span class="pre">matplotlib.text.Text</span></tt>
+<p>All of the <a class="reference external" href="http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.text">text()</a> commands return a <tt class="xref py py-class docutils literal"><span class="pre">matplotlib.text.Text</span></tt>
 instance.  Just as with with lines above, you can customize the
 properties by passing keyword arguments into the text functions or
 using <cite>set_</cite> methods:</p>
@@ -805,7 +809,7 @@ legend. Let&#8217;s do that now using <tt class="docutils literal"><span class="
 <div class="highlight-python"><div class="highlight"><pre><span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s">&#39;best&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Type <tt class="docutils literal"><span class="pre">legend?</span></tt> and take a look at the different keyword options that
+<p>Type <tt class="docutils literal"><span class="pre">plt.legend?</span></tt> and take a look at the different keyword options that
 let you customise the legend. <cite>loc=&#8217;best&#8217;</cite> means it will magically
 choose a location to minimise overlap with the plotted data.</p>
 <div class="admonition-exercise-overlaying-histograms admonition ">
@@ -824,7 +828,7 @@ same.</li>
 your taste.</li>
 </ul>
 </div>
-<p class="flip0">Click to Show/Hide Solution</p> <div class="panel0"><div class="highlight-python"><div class="highlight"><pre><span class="n">plt</span><span class="o">.</span><span class="n">clf</span><span class="p">()</span>
+<p class="flip2">Click to Show/Hide Solution</p> <div class="panel0"><div class="highlight-python"><div class="highlight"><pre><span class="n">plt</span><span class="o">.</span><span class="n">clf</span><span class="p">()</span>
 <span class="n">x2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
 <span class="n">bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)</span>
 <span class="n">out</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s">&#39;g&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
@@ -900,7 +904,7 @@ then be labelled with <cite>clabel()</cite>:</p>
 <span class="c"># inline argument to clabel will control whether the labels are draw</span>
 <span class="c"># over the line segments of the contour, removing the lines beneath</span>
 <span class="c"># the label</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">clf</span><span class="p">()</span>
 <span class="n">CS</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Z</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">clabel</span><span class="p">(</span><span class="n">CS</span><span class="p">,</span> <span class="n">inline</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;Simplest default with labels&#39;</span><span class="p">)</span>
@@ -929,7 +933,7 @@ might want to take a look at the <cite>fmt</cite> keyword in the help for
 note that the values of each contour level are stored in
 <cite>CS.levels</cite>.</p>
 </div>
-<p class="flip1">Click to Show/Hide Solution</p> <div class="panel1"><div class="highlight-python"><div class="highlight"><pre><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span>
+<p class="flip3">Click to Show/Hide Solution</p> <div class="panel1"><div class="highlight-python"><div class="highlight"><pre><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span>
 <span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 <span class="n">Z</span> <span class="o">=</span> <span class="n">gaussian_2d</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">)</span>
@@ -954,8 +958,8 @@ astronomical fits images incorporating WCS information.</li>
 <div class="section" id="plotting-3-d-data">
 <h2>Plotting 3-d data<a class="headerlink" href="#plotting-3-d-data" title="Permalink to this headline">¶</a></h2>
 <p>Matplotlib supports plotting 3-d data through the
-<tt class="docutils literal"><span class="pre">mpl_toolkits.mplot3d</span></tt> module.  This is somewhat experimental but
-it&#8217;s worth looking at an example of the 3-d viewer that is available:</p>
+<tt class="docutils literal"><span class="pre">mpl_toolkits.mplot3d</span></tt> module.  Let&#8217;s take a look at an example of
+the 3-d viewer that is available:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="kn">import</span> <span class="n">Axes3D</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
@@ -1029,7 +1033,7 @@ that&#8217;s going on here - if you don&#8217;t, please ask!:</p>
 <span class="n">ax_right</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">([])</span>
 <span class="n">ax_right</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">([])</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
