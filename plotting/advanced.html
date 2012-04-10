@@ -300,6 +300,7 @@ display:none;
 <li><a class="reference internal" href="#figure-size">Figure size</a></li>
 <li><a class="reference internal" href="#placing-axes">Placing Axes</a></li>
 <li><a class="reference internal" href="#controlling-the-appearance-of-plots">Controlling the appearance of plots</a></li>
+<li><a class="reference internal" href="#rc-parameters"><tt class="docutils literal"><span class="pre">rc</span></tt> parameters</a></li>
 <li><a class="reference internal" href="#adding-a-legend">Adding a legend</a></li>
 <li><a class="reference internal" href="#adding-a-colorbar">Adding a colorbar</a></li>
 <li><a class="reference internal" href="#custom-ticks-and-labels">Custom ticks and labels</a></li>
@@ -432,8 +433,19 @@ matplotlib, but we will not cover this here.</p>
 </pre></div>
 </div>
 <a class="reference internal image-reference" href="../_images/axes_inset.png"><img alt="../_images/axes_inset.png" class="align-center" src="../_images/axes_inset.png" style="width: 480.0px; height: 360.0px;" /></a>
-<p>Exercise: TODO</p>
+<div class="admonition-exercise-practice-creating-custom-axes admonition">
+<p class="first admonition-title">Exercise: Practice creating custom axes</p>
+<p class="last">Create a set of square axes in a figure that has <tt class="docutils literal"><span class="pre">figsize=(10,</span> <span class="pre">5)</span></tt>,
+leaving enough space for the axis and tick labels. Make the set of axes
+centered in the figure.</p>
 </div>
+<p class="flip1">Click to Show/Hide Solution</p> <div class="panel1"><p>The figure has an aspect ratio of 2:1, so we need to compensate for this in the axes dimensions, since these are in relative units:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">([</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">])</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/exercise_1.png"><img alt="../_images/exercise_1.png" class="align-center" src="../_images/exercise_1.png" style="width: 600.0px; height: 300.0px;" /></a>
+</div></div>
 <div class="section" id="controlling-the-appearance-of-plots">
 <h2>Controlling the appearance of plots<a class="headerlink" href="#controlling-the-appearance-of-plots" title="Permalink to this headline">¶</a></h2>
 <p>In Matplotlib, every plot element is a full Python object with properties that can be edited. Therefore, this means that properties can always be specified by setting the appropriate arguments in methods, or by retrieving these objects. For example:</p>
@@ -453,7 +465,41 @@ matplotlib, but we will not cover this here.</p>
 </pre></div>
 </div>
 <a class="reference internal image-reference" href="../_images/appearance_fonts_custom.png"><img alt="../_images/appearance_fonts_custom.png" class="align-center" src="../_images/appearance_fonts_custom.png" style="width: 480.0px; height: 360.0px;" /></a>
-<p>This is very powerful, as it allows you to customize virtually <em>all</em> elements in a plot. However, in practice, this can be a lot of work for simple and common things (e.g. setting the tick label properties), so matplotlib allows users to specify default properties via rc parameters. These can be set either in a <cite>~/.matplotlib/matplotlibrc</cite> file, or in a script. To set these via a file, see <a class="reference external" href="http://matplotlib.sourceforge.net/users/customizing.html#a-sample-matplotlibrc-file">matplotlibrc</a>. Example lines from this script include:</p>
+<p>This is very powerful, as it allows you to customize virtually <em>all</em> elements in a plot. In general, most matplotlib functions/methods return a <em>handle</em> to the element that is being plotted. In the following example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">title</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">&quot;My plot&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="s">&#39;large&#39;</span><span class="p">)</span>
+<span class="n">points</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">])</span>
+</pre></div>
+</div>
+<p><tt class="docutils literal"><span class="pre">title</span></tt> will be the title object, and points will be a scatter object. Both can be used to set/change the current properties.</p>
+<div class="admonition-exercise-explore-customization admonition">
+<p class="first admonition-title">Exercise: Explore customization</p>
+<p>Run the above example in <tt class="docutils literal"><span class="pre">ipython</span> <span class="pre">--pylab</span></tt>, and try and use the title
+and points objects to change the points to be red, and the title to have
+an <tt class="docutils literal"><span class="pre">x-large</span></tt> font size.</p>
+<p><strong>Hint 1:</strong> &lt;tab&gt; suggestion/completion is your friend!</p>
+<p class="last"><strong>Hint 2:</strong> Don&#8217;t forget to run <tt class="docutils literal"><span class="pre">plt.draw()</span></tt> to refresh the plot after
+modifying properties!</p>
+</div>
+<p class="flip2">Click to Show/Hide Solution</p> <div class="panel2"><div class="highlight-python"><div class="highlight"><pre><span class="n">points</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">title</span><span class="o">.</span><span class="n">set_fontsize</span><span class="p">(</span><span class="s">&#39;x-large&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Easy! :-)</p>
+</div><p><strong>Remember:</strong> Tab completion is your friend for exploring all the capabilities
+of Matplotlib. When you plot something, you can always get a handle to it, and
+then use this to get and set parameters!</p>
+</div>
+<div class="section" id="rc-parameters">
+<h2><tt class="docutils literal"><span class="pre">rc</span></tt> parameters<a class="headerlink" href="#rc-parameters" title="Permalink to this headline">¶</a></h2>
+<p>In practice, this can be a lot of work for simple and common things (e.g.
+setting the tick label properties), so matplotlib allows users to specify
+default properties via rc parameters. These can be set either in a
+<tt class="docutils literal"><span class="pre">~/.matplotlib/matplotlibrc</span></tt> file, or in a script. To set these via a file,
+see <a class="reference external" href="http://matplotlib.sourceforge.net/users/customizing.html#a-sample-matplotlibrc-file">matplotlibrc</a> (this also shows all the options that are availables).
+Example (modified) lines from this script include:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="c">#xtick.major.size     : 4      # major tick size in points</span>
 <span class="c">#xtick.minor.size     : 2      # minor tick size in points</span>
 <span class="c">#xtick.major.pad      : 4      # distance to major tick label in points</span>
@@ -572,7 +618,58 @@ matplotlib, but we will not cover this here.</p>
 </pre></div>
 </div>
 <a class="reference internal image-reference" href="../_images/custom_ticks_4.png"><img alt="../_images/custom_ticks_4.png" class="align-center" src="../_images/custom_ticks_4.png" style="width: 480.0px; height: 360.0px;" /></a>
+<div class="admonition-exercise-practice-setting-custom-labels admonition">
+<p class="first admonition-title">Exercise: Practice setting custom labels</p>
+<p>Make a plot that looks like this (note the x-axis):</p>
+<a class="reference internal image-reference" href="../_images/exercise_3.png"><img alt="../_images/exercise_3.png" class="align-center" src="../_images/exercise_3.png" style="width: 480.0px; height: 360.0px;" /></a>
+<p class="last">(the y values are <tt class="docutils literal"><span class="pre">[4,</span> <span class="pre">3,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">4,</span> <span class="pre">5,</span> <span class="pre">4]</span></tt>)</p>
 </div>
+<p class="flip3">Click to Show/Hide Solution</p> <div class="panel3"><div class="highlight-python"><div class="highlight"><pre><span class="c"># Initialize figure and axes</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">])</span>
+
+<span class="c"># Define spectral types</span>
+<span class="n">spectral_id</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+<span class="n">spectral_types</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;O&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;F&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;K&#39;</span><span class="p">,</span> <span class="s">&#39;M&#39;</span><span class="p">]</span>
+
+<span class="c"># Plot the data</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">spectral_id</span><span class="p">,</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="s">&#39;ro&#39;</span><span class="p">)</span>
+
+<span class="c"># Set the limits</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">7.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">10.</span><span class="p">)</span>
+
+<span class="c"># Set the custom ticks on the x-axis</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">spectral_id</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">spectral_types</span><span class="p">)</span>
+
+<span class="c"># Set the axis labels</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">&quot;Spectral type&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&quot;Number of sources&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><div class="admonition-exercise-practice-axes-placement-and-hiding-labels admonition">
+<p class="first admonition-title">Exercise: Practice axes placement and hiding labels</p>
+<p>Create a set of 4 axes in a 2 by 2 grid, with no space between the sets of
+axes, and with no labels in the overlap regions.</p>
+<p class="last">Create a set of square axes in a figure that has <tt class="docutils literal"><span class="pre">figsize=(10,</span> <span class="pre">5)</span></tt>,
+leaving enough space for the axis and tick labels. Make the set of axes
+centered in the figure.</p>
+</div>
+<p class="flip4">Click to Show/Hide Solution</p> <div class="panel4"><div class="highlight-python"><div class="highlight"><pre><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">])</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">])</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="s">&#39;&#39;</span><span class="p">)</span>
+<span class="n">ax3</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">])</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="s">&#39;&#39;</span><span class="p">)</span>
+<span class="n">ax4</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">])</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="s">&#39;&#39;</span><span class="p">)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="s">&#39;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>which gives:</p>
+<a class="reference internal image-reference" href="../_images/exercise_4.png"><img alt="../_images/exercise_4.png" class="align-center" src="../_images/exercise_4.png" style="width: 480.0px; height: 480.0px;" /></a>
+</div></div>
 <div class="section" id="tips-and-tricks">
 <h2>Tips and tricks<a class="headerlink" href="#tips-and-tricks" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="designing-plots">
