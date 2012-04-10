@@ -294,7 +294,9 @@ display:none;
 <li><a class="reference internal" href="#adding-a-legend">Adding a legend</a></li>
 <li><a class="reference internal" href="#adding-a-colorbar">Adding a colorbar</a></li>
 <li><a class="reference internal" href="#custom-ticks-and-labels">Custom ticks and labels</a></li>
+<li><a class="reference internal" href="#patches-and-collections">Patches and collections</a></li>
 <li><a class="reference internal" href="#tips-and-tricks">Tips and tricks</a><ul>
+<li><a class="reference internal" href="#matplotlib-gallery">Matplotlib gallery</a></li>
 <li><a class="reference internal" href="#designing-plots">Designing plots</a></li>
 <li><a class="reference internal" href="#automatic-bounding-box">Automatic bounding box</a></li>
 <li><a class="reference internal" href="#showing-images-maps-with-non-pixel-coordinates">Showing images/maps with non-pixel coordinates</a></li>
@@ -655,8 +657,38 @@ centered in the figure.</p>
 <p>which gives:</p>
 <a class="reference internal image-reference" href="../_images/exercise_4.png"><img alt="../_images/exercise_4.png" class="align-center" src="../_images/exercise_4.png" style="width: 480.0px; height: 480.0px;" /></a>
 </div></div>
+<div class="section" id="patches-and-collections">
+<h2>Patches and collections<a class="headerlink" href="#patches-and-collections" title="Permalink to this headline">¶</a></h2>
+<p>Many objects in Matplotlib are in fact <em>patches</em> or collections of patches. It is actually very easy to add your own custom items (e.g. a circle, a square, etc.) to a plot. First, import the patch class you need:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="kn">import</span> <span class="n">Circle</span>
+</pre></div>
+</div>
+<p>Then, you can create a circle:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">c</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">((</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span> <span class="n">radius</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+            <span class="n">edgecolor</span><span class="o">=</span><span class="s">&#39;red&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s">&#39;blue&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Finally, add your patch to your figure:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/patches.png"><img alt="../_images/patches.png" class="align-center" src="../_images/patches.png" style="width: 480.0px; height: 360.0px;" /></a>
+<p>See <a class="reference external" href="http://matplotlib.sourceforge.net/api/artist_api.html?#module-matplotlib.patches">here</a> for a complete list of patches and options.</p>
+<p>Similarly, there are line classes:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">matplotlib.lines</span> <span class="kn">import</span> <span class="n">Line2D</span>
+<span class="o">...</span>
+<span class="n">l</span> <span class="o">=</span> <span class="n">Line2D</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_line</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>See <a class="reference external" href="http://matplotlib.sourceforge.net/api/artist_api.html?#module-matplotlib.lines">here</a> for a complete list of line types and options.</p>
+</div>
 <div class="section" id="tips-and-tricks">
 <h2>Tips and tricks<a class="headerlink" href="#tips-and-tricks" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="matplotlib-gallery">
+<h3>Matplotlib gallery<a class="headerlink" href="#matplotlib-gallery" title="Permalink to this headline">¶</a></h3>
+<p>We&#8217;ve only touched the tip of the iceberg in terms of methods for plotting, so remember that the <a class="reference external" href="http://matplotlib.sourceforge.net/gallery.html">Matplotlib gallery</a> is your friend! Just click on a figure to see the code that produced it!</p>
+</div>
 <div class="section" id="designing-plots">
 <h3>Designing plots<a class="headerlink" href="#designing-plots" title="Permalink to this headline">¶</a></h3>
 <p>When designing plots, it&#8217;s often fastest to save the plot to PNG when trying out different commands, and to switch to EPS and/or PDF (if necessary) only at the very end, once the plot is satisfactory, because PNG output is fastest. In particular, on MacOS X, if you have the PNG file open, and re-run the script to re-generate it, you simply need to click on the open file to refresh, which makes it easy to tweak the plot.</p>
