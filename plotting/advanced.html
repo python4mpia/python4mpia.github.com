@@ -297,6 +297,7 @@ display:none;
 <li><a class="reference internal" href="#tips-and-tricks">Tips and tricks</a><ul>
 <li><a class="reference internal" href="#designing-plots">Designing plots</a></li>
 <li><a class="reference internal" href="#automatic-bounding-box">Automatic bounding box</a></li>
+<li><a class="reference internal" href="#showing-images-maps-with-non-pixel-coordinates">Showing images/maps with non-pixel coordinates</a></li>
 <li><a class="reference internal" href="#separating-computations-and-plotting">Separating computations and plotting</a></li>
 <li><a class="reference internal" href="#making-many-plots">Making many plots</a></li>
 </ul>
@@ -335,7 +336,7 @@ display:none;
 <h1>Advanced plotting<a class="headerlink" href="#advanced-plotting" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="moving-to-object-based-plotting">
 <h2>Moving to object-based plotting<a class="headerlink" href="#moving-to-object-based-plotting" title="Permalink to this headline">¶</a></h2>
-<p>In <em class="xref std std-ref">Matplotlib</em>, we learned about making plots using a very procedural method, e.g.:</p>
+<p>In <a class="reference internal" href="matplotlib.html"><em>Matplotlib</em></a>, we learned about making plots using a procedural method, e.g.:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
@@ -667,6 +668,20 @@ centered in the figure.</p>
 </pre></div>
 </div>
 <p>Note however that this means that if a figure size was specified when initializing the figure, the final figure size may be a little different.</p>
+</div>
+<div class="section" id="showing-images-maps-with-non-pixel-coordinates">
+<h3>Showing images/maps with non-pixel coordinates<a class="headerlink" href="#showing-images-maps-with-non-pixel-coordinates" title="Permalink to this headline">¶</a></h3>
+<p>By default, when using <tt class="docutils literal"><span class="pre">imshow</span></tt>, the x- and y-axis show the pixel coordinates. You can change this by specifying the extent of the image in whatever coordinate system you want to use:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="mf">10.</span><span class="p">,</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">80</span><span class="p">))</span>
+<span class="n">i</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s">&#39;nearest&#39;</span><span class="p">,</span>
+              <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">10.</span><span class="p">,</span> <span class="mf">10.</span><span class="p">,</span> <span class="o">-</span><span class="mf">10.</span><span class="p">,</span> <span class="mf">10.</span><span class="p">])</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">&#39;imshow_extent.png&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s">&#39;0.95&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/imshow_extent.png"><img alt="../_images/imshow_extent.png" class="align-center" src="../_images/imshow_extent.png" style="width: 480.0px; height: 360.0px;" /></a>
+<p>Note that if you want to use WCS coordinates, you probably want to use <a class="reference internal" href="aplpy.html"><em>APLpy</em></a> instead!</p>
 </div>
 <div class="section" id="separating-computations-and-plotting">
 <h3>Separating computations and plotting<a class="headerlink" href="#separating-computations-and-plotting" title="Permalink to this headline">¶</a></h3>
