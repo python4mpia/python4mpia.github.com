@@ -354,14 +354,7 @@ display:none;
 <div class="section" id="getting-started">
 <h2>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
 <p>Start off by downloading <a class="reference download internal" href="../_downloads/APLpy-example.tar"><tt class="xref download docutils literal"><span class="pre">this</span> <span class="pre">tar</span> <span class="pre">file</span></tt></a>, expand it, and go to the <tt class="docutils literal"><span class="pre">APLpy-example</span></tt> directory on the command line. Then, launch pylab:</p>
-<div class="highlight-python"><pre>$ ipython -pylab</pre>
-</div>
-<p>If you have trouble downloading the file, then start up IPython (<tt class="docutils literal"><span class="pre">ipython</span> <span class="pre">-pylab</span></tt>) and enter:</p>
-<div class="highlight-python"><pre>import urllib2, tarfile
-url = 'http://python4astronomers.github.com/_downloads/APLpy-example.tar'
-tarfile.open(fileobj=urllib2.urlopen(url), mode='r|').extractall()
-cd APLpy-example
-ls</pre>
+<div class="highlight-python"><pre>$ ipython --pylab</pre>
 </div>
 <p>Import the <tt class="docutils literal"><span class="pre">aplpy</span></tt> module (note the lowercase module name):</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">aplpy</span>

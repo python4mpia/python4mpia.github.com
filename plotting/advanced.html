@@ -295,7 +295,7 @@ display:none;
 <li><a class="reference internal" href="#adding-a-legend">Adding a legend</a></li>
 <li><a class="reference internal" href="#adding-a-colorbar">Adding a colorbar</a></li>
 <li><a class="reference internal" href="#custom-ticks-and-labels">Custom ticks and labels</a></li>
-<li><a class="reference internal" href="#patches-and-collections">Patches and collections</a></li>
+<li><a class="reference internal" href="#artists-patches-and-lines">Artists, Patches, and Lines</a></li>
 <li><a class="reference internal" href="#tips-and-tricks">Tips and tricks</a><ul>
 <li><a class="reference internal" href="#matplotlib-gallery">Matplotlib gallery</a></li>
 <li><a class="reference internal" href="#designing-plots">Designing plots</a></li>
@@ -438,13 +438,13 @@ centered in the figure.</p>
 <h2>Twin axes<a class="headerlink" href="#twin-axes" title="Permalink to this headline">¶</a></h2>
 <p>In some cases, it can be desirable to show two different x axes (e.g. distance and redshift), or two different y axes (e.g. two different quantities such as density and temperature). Matplotlib provides an easy way to create <em>twin</em> axes. For example:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">ax2</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>creates a new set of axes (<tt class="docutils literal"><span class="pre">ax2</span></tt>) that shares the x-axis with <tt class="docutils literal"><span class="pre">ax1</span></tt>, but can have a separate y-axis (similarly, <tt class="docutils literal"><span class="pre">twiny</span></tt> would return a second set of axes sharing the y-axis, but with a separate x-axis). As an example, we can use this to plot two different quantities as a function of time:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">ax2</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
 <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">10.</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">t</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span> <span class="s">&#39;b-&#39;</span><span class="p">)</span>
@@ -545,7 +545,7 @@ Example (modified) lines from this script include:</p>
 <h2>Adding a legend<a class="headerlink" href="#adding-a-legend" title="Permalink to this headline">¶</a></h2>
 <p>Adding a legend to a plot is straightforward. First, whenever calling a plotting routine for which you want the results included in the legend, add the <tt class="docutils literal"><span class="pre">label=</span></tt> argument:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">8.</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span> <span class="o">**</span> <span class="mf">1.5</span><span class="p">,</span> <span class="s">&#39;ro&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;density&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">20</span><span class="o">/</span><span class="n">x</span><span class="p">,</span> <span class="s">&#39;bx&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;temperature&#39;</span><span class="p">)</span>
@@ -568,7 +568,7 @@ Example (modified) lines from this script include:</p>
 <h2>Adding a colorbar<a class="headerlink" href="#adding-a-colorbar" title="Permalink to this headline">¶</a></h2>
 <p>Adding a colorbar to a plot is also straightforward, and involves capturing the handle to the <tt class="docutils literal"><span class="pre">imshow</span></tt> object:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="mf">10.</span><span class="p">,</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">80</span><span class="p">))</span>
 <span class="n">i</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s">&#39;nearest&#39;</span><span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>  <span class="c"># note that colorbar is a method of the figure, not the axes</span>
@@ -615,7 +615,7 @@ Example (modified) lines from this script include:</p>
 <h2>Custom ticks and labels<a class="headerlink" href="#custom-ticks-and-labels" title="Permalink to this headline">¶</a></h2>
 <p>In some cases, you may want to specify which tick locations should be shown. This can be done with:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">])</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">])</span>
 </pre></div>
@@ -623,7 +623,7 @@ Example (modified) lines from this script include:</p>
 <a class="reference internal image-reference" href="../_images/custom_ticks_1.png"><img alt="../_images/custom_ticks_1.png" class="align-center" src="../_images/custom_ticks_1.png" style="width: 480.0px; height: 360.0px;" /></a>
 <p>It is also easy to specify what the label strings should be explicitly:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">])</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">([</span><span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="s">&#39;c&#39;</span><span class="p">])</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">])</span>
@@ -634,14 +634,14 @@ Example (modified) lines from this script include:</p>
 <p>It is best to only use <tt class="docutils literal"><span class="pre">set_ticklabels</span></tt> when also using <tt class="docutils literal"><span class="pre">set_ticks</span></tt>, so that you know exactly which ticks you are assigning the labels for. The above can be used for example if you would like to make a plot as a function of spectral type, or if you want to format the labels in a very specific way.</p>
 <p>This can also be used to hide ticks and/or labels. For example, to hide ticks and labels on the x axis, just do:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span>
 </pre></div>
 </div>
 <a class="reference internal image-reference" href="../_images/custom_ticks_3.png"><img alt="../_images/custom_ticks_3.png" class="align-center" src="../_images/custom_ticks_3.png" style="width: 480.0px; height: 360.0px;" /></a>
 <p>If you only want to hide labels, not the ticks, from an axis, then just do:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="s">&#39;&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -679,13 +679,13 @@ Example (modified) lines from this script include:</p>
 </div><div class="admonition-exercise-practice-axes-placement-and-hiding-labels admonition">
 <p class="first admonition-title">Exercise: Practice axes placement and hiding labels</p>
 <p>Create a set of 4 axes in a 2 by 2 grid, with no space between the sets of
-axes, and with no labels in the overlap regions.</p>
-<p class="last">Create a set of square axes in a figure that has <tt class="docutils literal"><span class="pre">figsize=(10,</span> <span class="pre">5)</span></tt>,
-leaving enough space for the axis and tick labels. Make the set of axes
-centered in the figure.</p>
+axes, and with no labels in the overlap regions, like this:</p>
+<a class="last reference internal image-reference" href="../_images/exercise_4.png"><img alt="../_images/exercise_4.png" class="align-center" src="../_images/exercise_4.png" style="width: 480.0px; height: 480.0px;" /></a>
 </div>
 <p class="flip4">Click to Show/Hide Solution</p> <div class="panel4"><div class="highlight-python"><div class="highlight"><pre><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
 <span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">])</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">])</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">])</span>
 <span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">])</span>
 <span class="n">ax2</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="s">&#39;&#39;</span><span class="p">)</span>
 <span class="n">ax3</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">])</span>
@@ -695,16 +695,19 @@ centered in the figure.</p>
 <span class="n">ax4</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="s">&#39;&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>which gives:</p>
-<a class="reference internal image-reference" href="../_images/exercise_4.png"><img alt="../_images/exercise_4.png" class="align-center" src="../_images/exercise_4.png" style="width: 480.0px; height: 480.0px;" /></a>
 </div></div>
-<div class="section" id="patches-and-collections">
-<h2>Patches and collections<a class="headerlink" href="#patches-and-collections" title="Permalink to this headline">¶</a></h2>
-<p>Many objects in Matplotlib are in fact <em>patches</em> or collections of patches. It is actually very easy to add your own custom items (e.g. a circle, a square, etc.) to a plot. First, import the patch class you need:</p>
+<div class="section" id="artists-patches-and-lines">
+<h2>Artists, Patches, and Lines<a class="headerlink" href="#artists-patches-and-lines" title="Permalink to this headline">¶</a></h2>
+<p>Virtually all objects in Matplotlib are <em>artists</em>, which are objects that have
+visual attributes that can be set. There are two important kinds of artists:
+<em>lines</em>, and <em>patches</em>.</p>
+<p>It is actually very easy to add your own custom lines or patches (e.g. a
+circle, a square, etc.) to a plot. In the case of a patch, import the patch
+class you need:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="kn">import</span> <span class="n">Circle</span>
 </pre></div>
 </div>
-<p>Then, you can create a circle:</p>
+<p>Then, create an instance of the patch:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">c</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">((</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span> <span class="n">radius</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
             <span class="n">edgecolor</span><span class="o">=</span><span class="s">&#39;red&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s">&#39;blue&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
 </pre></div>
@@ -746,7 +749,7 @@ centered in the figure.</p>
 <h3>Showing images/maps with non-pixel coordinates<a class="headerlink" href="#showing-images-maps-with-non-pixel-coordinates" title="Permalink to this headline">¶</a></h3>
 <p>By default, when using <tt class="docutils literal"><span class="pre">imshow</span></tt>, the x- and y-axis show the pixel coordinates. You can change this by specifying the extent of the image in whatever coordinate system you want to use:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="mf">10.</span><span class="p">,</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">80</span><span class="p">))</span>
 <span class="n">i</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s">&#39;nearest&#39;</span><span class="p">,</span>
               <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">10.</span><span class="p">,</span> <span class="mf">10.</span><span class="p">,</span> <span class="o">-</span><span class="mf">10.</span><span class="p">,</span> <span class="mf">10.</span><span class="p">])</span>
@@ -764,19 +767,19 @@ centered in the figure.</p>
 <h3>Making many plots<a class="headerlink" href="#making-many-plots" title="Permalink to this headline">¶</a></h3>
 <p>When using the partial object-oriented interface described in this workshop, one needs to be aware that pyplot always keeps a reference to open figures. For example, when doing:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>one would normally expect (in Python terms) that when the second figure is created, there are no longer references to the original figure, and the memory should be freed, but this is not the case. Pyplot keeps an internal reference to all figures unless specifically instructed to close a figure. Therefore, when making many plots, users may run out of memory. The solution is to explicitly close figures when they are no longer used:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
 
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
 </pre></div>
 </div>
