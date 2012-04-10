@@ -26,6 +26,9 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title=" 0.1.0 documentation" href="../index.html" />
+    <link rel="up" title="Plotting and Images" href="plotting.html" />
+    <link rel="next" title="Publication-quality plots" href="publication.html" />
+    <link rel="prev" title="Matplotlib" href="matplotlib.html" />
  
 <script type="text/javascript"> 
 $(document).ready(function(){
@@ -278,7 +281,14 @@ display:none;
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
-        <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li> 
+        <li class="right" >
+          <a href="publication.html" title="Publication-quality plots"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="matplotlib.html" title="Matplotlib"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li>
+          <li><a href="plotting.html" accesskey="U">Plotting and Images</a> &raquo;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar">
@@ -295,7 +305,6 @@ display:none;
 <li><a class="reference internal" href="#custom-ticks-and-labels">Custom ticks and labels</a></li>
 <li><a class="reference internal" href="#tips-and-tricks">Tips and tricks</a><ul>
 <li><a class="reference internal" href="#designing-plots">Designing plots</a></li>
-<li><a class="reference internal" href="#using-your-system-s-latex">Using your system&#8217;s latex</a></li>
 <li><a class="reference internal" href="#automatic-bounding-box">Automatic bounding box</a></li>
 <li><a class="reference internal" href="#separating-computations-and-plotting">Separating computations and plotting</a></li>
 <li><a class="reference internal" href="#making-many-plots">Making many plots</a></li>
@@ -305,6 +314,12 @@ display:none;
 </li>
 </ul>
 
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="matplotlib.html"
+                        title="previous chapter">Matplotlib</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="publication.html"
+                        title="next chapter">Publication-quality plots</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="../_sources/plotting/advanced.txt"
@@ -394,25 +409,29 @@ matplotlib, but we will not cover this here.</p>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c"># create an axes object in the figure</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="../_images/subplot.png"><img alt="../_images/subplot.png" class="align-center" src="../_images/subplot.png" style="width: 480.0px; height: 360.0px;" /></a>
 <p>The second line creates subplot on a 1x1 grid. As we described before, the arguments for <tt class="docutils literal"><span class="pre">add_subplot</span></tt> are the number of rows, columns, and the ID of the subplot, between 1 and the number of columns times the number of rows.</p>
-<p>While it is possible to adjust the spacing between the subplots using <a class="reference external" href="http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.subplots_adjust">subplots_adjust</a>, it is often easier to just use the more general <tt class="docutils literal"><span class="pre">add_axes</span></tt> method instead of <tt class="docutils literal"><span class="pre">add_subplot</span></tt>. The <tt class="docutils literal"><span class="pre">add_axes</span></tt> method takes a list of four values, which are <tt class="docutils literal"><span class="pre">xmin</span></tt>, <tt class="docutils literal"><span class="pre">xmin</span></tt>, <tt class="docutils literal"><span class="pre">dx</span></tt>, and <tt class="docutils literal"><span class="pre">dy</span></tt> for the subplot, where <tt class="docutils literal"><span class="pre">xmin</span></tt> and <tt class="docutils literal"><span class="pre">ymin</span></tt> are the coordinates of the lower left corner of the subplot, and <tt class="docutils literal"><span class="pre">dx</span></tt> and <tt class="docutils literal"><span class="pre">dy</span></tt> are the width and height of the subplot, with all values specified in relative units (where 0 is left/bottom and 1 is top/right). For example:</p>
+<p>While it is possible to adjust the spacing between the subplots using <a class="reference external" href="http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.subplots_adjust">subplots_adjust</a>, or use the <a class="reference external" href="http://matplotlib.sourceforge.net/users/gridspec.html">gridspec</a> functionality for more advanced subplotting, it is often easier to just use the more general <tt class="docutils literal"><span class="pre">add_axes</span></tt> method instead of <tt class="docutils literal"><span class="pre">add_subplot</span></tt>. The <tt class="docutils literal"><span class="pre">add_axes</span></tt> method takes a list of four values, which are <tt class="docutils literal"><span class="pre">xmin</span></tt>, <tt class="docutils literal"><span class="pre">xmin</span></tt>, <tt class="docutils literal"><span class="pre">dx</span></tt>, and <tt class="docutils literal"><span class="pre">dy</span></tt> for the subplot, where <tt class="docutils literal"><span class="pre">xmin</span></tt> and <tt class="docutils literal"><span class="pre">ymin</span></tt> are the coordinates of the lower left corner of the subplot, and <tt class="docutils literal"><span class="pre">dx</span></tt> and <tt class="docutils literal"><span class="pre">dy</span></tt> are the width and height of the subplot, with all values specified in relative units (where 0 is left/bottom and 1 is top/right). For example:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="p">])</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="../_images/axes_full.png"><img alt="../_images/axes_full.png" class="align-center" src="../_images/axes_full.png" style="width: 480.0px; height: 360.0px;" /></a>
 <p>will show a subplot that occupies all the figure (and the axis labels will in fact be hidden). This allows us to easily set up axes that touch:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">])</span>
 <span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">])</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="../_images/two_axes.png"><img alt="../_images/two_axes.png" class="align-center" src="../_images/two_axes.png" style="width: 480.0px; height: 360.0px;" /></a>
 <p>although we still need a good way to hide the axis labels in the subplot on the right hand side. Combined with the <tt class="docutils literal"><span class="pre">figsize=</span></tt> argument, this allows us to control the exact aspect ratio of the subplots.</p>
 <p>Note that is also allows us to easily make inset plots:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">])</span>
-<span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">([</span><span class="mf">0.68</span><span class="p">,</span> <span class="mf">0.68</span><span class="p">,</span> <span class="mf">0.16</span><span class="p">,</span> <span class="mf">0.16</span><span class="p">])</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">([</span><span class="mf">0.72</span><span class="p">,</span> <span class="mf">0.72</span><span class="p">,</span> <span class="mf">0.16</span><span class="p">,</span> <span class="mf">0.16</span><span class="p">])</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="../_images/axes_inset.png"><img alt="../_images/axes_inset.png" class="align-center" src="../_images/axes_inset.png" style="width: 480.0px; height: 360.0px;" /></a>
 <p>Exercise: TODO</p>
 </div>
 <div class="section" id="controlling-the-appearance-of-plots">
@@ -427,29 +446,38 @@ matplotlib, but we will not cover this here.</p>
 
 <span class="c"># Retrieve an element of a plot and set properties</span>
 <span class="k">for</span> <span class="n">tick</span> <span class="ow">in</span> <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">get_ticklabels</span><span class="p">():</span>
-    <span class="n">tick</span><span class="o">.</span><span class="n">set_fontsize</span><span class="p">(</span><span class="s">&#39;x-small&#39;</span><span class="p">)</span>
+    <span class="n">tick</span><span class="o">.</span><span class="n">set_fontsize</span><span class="p">(</span><span class="s">&#39;large&#39;</span><span class="p">)</span>
     <span class="n">tick</span><span class="o">.</span><span class="n">set_fontname</span><span class="p">(</span><span class="s">&#39;Times New Roman&#39;</span><span class="p">)</span>
+    <span class="n">tick</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s">&#39;blue&#39;</span><span class="p">)</span>
+    <span class="n">tick</span><span class="o">.</span><span class="n">set_weight</span><span class="p">(</span><span class="s">&#39;bold&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="../_images/appearance_fonts_custom.png"><img alt="../_images/appearance_fonts_custom.png" class="align-center" src="../_images/appearance_fonts_custom.png" style="width: 480.0px; height: 360.0px;" /></a>
 <p>This is very powerful, as it allows you to customize virtually <em>all</em> elements in a plot. However, in practice, this can be a lot of work for simple and common things (e.g. setting the tick label properties), so matplotlib allows users to specify default properties via rc parameters. These can be set either in a <cite>~/.matplotlib/matplotlibrc</cite> file, or in a script. To set these via a file, see <a class="reference external" href="http://matplotlib.sourceforge.net/users/customizing.html#a-sample-matplotlibrc-file">matplotlibrc</a>. Example lines from this script include:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="c">#xtick.major.size     : 4      # major tick size in points</span>
 <span class="c">#xtick.minor.size     : 2      # minor tick size in points</span>
 <span class="c">#xtick.major.pad      : 4      # distance to major tick label in points</span>
 <span class="c">#xtick.minor.pad      : 4      # distance to the minor tick label in points</span>
-<span class="c">#xtick.color          : k      # color of the tick labels</span>
+<span class="c">#xtick.color          : r      # color of the tick labels</span>
 <span class="c">#xtick.labelsize      : medium # fontsize of the tick labels</span>
-<span class="c">#xtick.direction      : in     # direction: in or out</span>
+<span class="c">#xtick.direction      : out     # direction: in or out</span>
 </pre></div>
 </div>
 <p>These lines are commented out by default, but you can uncomment them to make them active. However, it&#8217;s often easier to define properties on a per-script basis using the <a class="reference external" href="http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.rc">rc</a> function. This function&#8217;s first argument is the category of the settings, and this is followed by a set of keyword arguments to set the parameters for this element. To reproduce the above lines from the <tt class="docutils literal"><span class="pre">matplotlibrc</span></tt> file, one would do:</p>
-<div class="highlight-python"><pre>import matplotlib.pyplot as plt
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
 
-plt.rc('xtick', color='k', labelsize='medium', direction='in'
-plt.rc('xtick.major', size=4, pad=4)
-plt.rc('xtick.minor', size=2, pad=4)</pre>
+<span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s">&#39;xtick&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;r&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="s">&#39;medium&#39;</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="s">&#39;out&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s">&#39;xtick.major&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s">&#39;xtick.minor&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
 </div>
+<a class="reference internal image-reference" href="../_images/appearance_fonts_rc.png"><img alt="../_images/appearance_fonts_rc.png" class="align-center" src="../_images/appearance_fonts_rc.png" style="width: 480.0px; height: 360.0px;" /></a>
 <p>It is not necessary to specify all the parameters in every script - only specify the ones you want to change from the default, e.g.:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s">&#39;xtick&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;red&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If you need to reset the parameters to their default values, use:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">plt</span><span class="o">.</span><span class="n">rcdefaults</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -458,7 +486,7 @@ plt.rc('xtick.minor', size=2, pad=4)</pre>
 <p>Adding a legend to a plot is straightforward. First, whenever calling a plotting routine for which you want the results included in the legend, add the <tt class="docutils literal"><span class="pre">label=</span></tt> argument:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span><span class="mf">13.</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">8.</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span> <span class="o">**</span> <span class="mf">1.5</span><span class="p">,</span> <span class="s">&#39;ro&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;density&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">20</span><span class="o">/</span><span class="n">x</span><span class="p">,</span> <span class="s">&#39;bx&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;temperature&#39;</span><span class="p">)</span>
 </pre></div>
@@ -468,63 +496,88 @@ plt.rc('xtick.minor', size=2, pad=4)</pre>
 </pre></div>
 </div>
 <p>and the legend will automatically appear!</p>
+<a class="reference internal image-reference" href="../_images/legend.png"><img alt="../_images/legend.png" class="align-center" src="../_images/legend.png" style="width: 480.0px; height: 360.0px;" /></a>
+<p>Note that you can control the font size in a legend with the following rc parameter:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s">&#39;legend&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="s">&#39;small&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>which would produce:</p>
+<a class="reference internal image-reference" href="../_images/legend_custom.png"><img alt="../_images/legend_custom.png" class="align-center" src="../_images/legend_custom.png" style="width: 480.0px; height: 360.0px;" /></a>
 </div>
 <div class="section" id="adding-a-colorbar">
 <h2>Adding a colorbar<a class="headerlink" href="#adding-a-colorbar" title="Permalink to this headline">¶</a></h2>
 <p>Adding a colorbar to a plot is also straightforward, and involves capturing the handle to the imshow object:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
-<span class="n">i</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="mf">10.</span><span class="p">,</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">80</span><span class="p">))</span>
+<span class="n">i</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s">&#39;nearest&#39;</span><span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>  <span class="c"># note that colorbar is a method of the figure, not the axes</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="../_images/colorbar_ax.png"><img alt="../_images/colorbar_ax.png" class="align-center" src="../_images/colorbar_ax.png" style="width: 480.0px; height: 360.0px;" /></a>
+<p>Note that in the above <tt class="docutils literal"><span class="pre">colorbar</span></tt> call, the colorbar box automatically eats up space from the axes to which it is attached. If you want to customize exactly where the colorbar appears, you can define a set of axes, and pass it to colorbar via the <tt class="docutils literal"><span class="pre">cax=</span></tt> argument:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.6</span><span class="p">,</span><span class="mf">0.8</span><span class="p">])</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="mf">10.</span><span class="p">,</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">80</span><span class="p">))</span>
+<span class="n">i</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s">&#39;nearest&#39;</span><span class="p">)</span>
+<span class="n">colorbar_ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">([</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">])</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">cax</span><span class="o">=</span><span class="n">colorbar_ax</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/colorbar_cax.png"><img alt="../_images/colorbar_cax.png" class="align-center" src="../_images/colorbar_cax.png" style="width: 480.0px; height: 360.0px;" /></a>
+<p>You will notice that even though the axes we specified <em>should</em> line up nicely, they don&#8217;t. This is because imshow automatically modifies the axes so that pixels are square. We can fix this with <tt class="docutils literal"><span class="pre">aspect='auto'</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.6</span><span class="p">,</span><span class="mf">0.8</span><span class="p">])</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="mf">10.</span><span class="p">,</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">80</span><span class="p">))</span>
+<span class="n">i</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s">&#39;auto&#39;</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s">&#39;nearest&#39;</span><span class="p">)</span>
+<span class="n">colorbar_ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">([</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">])</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">cax</span><span class="o">=</span><span class="n">colorbar_ax</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/colorbar_cax_aspect.png"><img alt="../_images/colorbar_cax_aspect.png" class="align-center" src="../_images/colorbar_cax_aspect.png" style="width: 480.0px; height: 360.0px;" /></a>
+<p>With these options, you should now have complete control on the placement of axes and colorbars!</p>
 </div>
 <div class="section" id="custom-ticks-and-labels">
 <h2>Custom ticks and labels<a class="headerlink" href="#custom-ticks-and-labels" title="Permalink to this headline">¶</a></h2>
 <p>In some cases, you may want to specify which tick locations should be shown. This can be done with:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_ticks</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">])</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_ticks</span><span class="p">([</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">])</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="../_images/custom_ticks_1.png"><img alt="../_images/custom_ticks_1.png" class="align-center" src="../_images/custom_ticks_1.png" style="width: 480.0px; height: 360.0px;" /></a>
 <p>It is also easy to specify what the label strings should be explicitly:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_ticks</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">])</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_ticklabels</span><span class="p">([</span><span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="s">&#39;c&#39;</span><span class="p">])</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_ticks</span><span class="p">([</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">])</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_ticklabels</span><span class="p">([</span><span class="s">&#39;first&#39;</span><span class="p">,</span> <span class="s">&#39;second&#39;</span><span class="p">,</span> <span class="s">&#39;third&#39;</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">([</span><span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="s">&#39;c&#39;</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">([</span><span class="s">&#39;first&#39;</span><span class="p">,</span> <span class="s">&#39;second&#39;</span><span class="p">,</span> <span class="s">&#39;third&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="../_images/custom_ticks_2.png"><img alt="../_images/custom_ticks_2.png" class="align-center" src="../_images/custom_ticks_2.png" style="width: 480.0px; height: 360.0px;" /></a>
 <p>It is best to only use <tt class="docutils literal"><span class="pre">set_ticklabels</span></tt> when also using <tt class="docutils literal"><span class="pre">set_ticks</span></tt>, so that you know exactly which ticks you are assigning the labels for. The above can be used for example if you would like to make a plot as a function of spectral type, or if you want to format the labels in a very specific way.</p>
 <p>This can also be used to hide ticks and/or labels. For example, to hide ticks and labels on the x axis, just do:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_ticks</span><span class="p">([])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="../_images/custom_ticks_3.png"><img alt="../_images/custom_ticks_3.png" class="align-center" src="../_images/custom_ticks_3.png" style="width: 480.0px; height: 360.0px;" /></a>
 <p>If you only want to hide labels, not the ticks, from an axis, then just do:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_ticklabels</span><span class="p">(</span><span class="s">&#39;&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="s">&#39;&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="../_images/custom_ticks_4.png"><img alt="../_images/custom_ticks_4.png" class="align-center" src="../_images/custom_ticks_4.png" style="width: 480.0px; height: 360.0px;" /></a>
 </div>
 <div class="section" id="tips-and-tricks">
 <h2>Tips and tricks<a class="headerlink" href="#tips-and-tricks" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="designing-plots">
 <h3>Designing plots<a class="headerlink" href="#designing-plots" title="Permalink to this headline">¶</a></h3>
 <p>When designing plots, it&#8217;s often fastest to save the plot to PNG when trying out different commands, and to switch to EPS and/or PDF (if necessary) only at the very end, once the plot is satisfactory, because PNG output is fastest. In particular, on MacOS X, if you have the PNG file open, and re-run the script to re-generate it, you simply need to click on the open file to refresh, which makes it easy to tweak the plot.</p>
-</div>
-<div class="section" id="using-your-system-s-latex">
-<h3>Using your system&#8217;s latex<a class="headerlink" href="#using-your-system-s-latex" title="Permalink to this headline">¶</a></h3>
-<p>One of the rc parameters available is <tt class="docutils literal"><span class="pre">text.usetex</span></tt>, which allows Matplotlib to use the system LaTeX installation instead of the built-in one. The system installation generally produces better results, but is quite slow (it may take several seconds to generate the labels for the plot). The parameter can be set in-script with:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s">&#39;text&#39;</span><span class="p">,</span> <span class="n">usetex</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>Because of the slower performance, we recommend only enabling this option at the last minute, once you are ready to make the final plot.</p>
 </div>
 <div class="section" id="automatic-bounding-box">
 <h3>Automatic bounding box<a class="headerlink" href="#automatic-bounding-box" title="Permalink to this headline">¶</a></h3>
@@ -574,7 +627,14 @@ plt.rc('xtick.minor', size=2, pad=4)</pre>
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              >index</a></li>
-        <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li> 
+        <li class="right" >
+          <a href="publication.html" title="Publication-quality plots"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="matplotlib.html" title="Matplotlib"
+             >previous</a> |</li>
+        <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li>
+          <li><a href="plotting.html" >Plotting and Images</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
