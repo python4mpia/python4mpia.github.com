@@ -289,6 +289,7 @@ display:none;
 <li><a class="reference internal" href="#moving-to-object-based-plotting">Moving to object-based plotting</a></li>
 <li><a class="reference internal" href="#figure-size">Figure size</a></li>
 <li><a class="reference internal" href="#placing-axes">Placing Axes</a></li>
+<li><a class="reference internal" href="#twin-axes">Twin axes</a></li>
 <li><a class="reference internal" href="#controlling-the-appearance-of-plots">Controlling the appearance of plots</a></li>
 <li><a class="reference internal" href="#rc-parameters"><tt class="docutils literal"><span class="pre">rc</span></tt> parameters</a></li>
 <li><a class="reference internal" href="#adding-a-legend">Adding a legend</a></li>
@@ -433,6 +434,28 @@ centered in the figure.</p>
 </div>
 <a class="reference internal image-reference" href="../_images/exercise_1.png"><img alt="../_images/exercise_1.png" class="align-center" src="../_images/exercise_1.png" style="width: 600.0px; height: 300.0px;" /></a>
 </div></div>
+<div class="section" id="twin-axes">
+<h2>Twin axes<a class="headerlink" href="#twin-axes" title="Permalink to this headline">¶</a></h2>
+<p>In some cases, it can be desirable to show two different x axes (e.g. distance and redshift), or two different y axes (e.g. two different quantities such as density and temperature). Matplotlib provides an easy way to create <em>twin</em> axes. For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>creates a new set of axes (<tt class="docutils literal"><span class="pre">ax2</span></tt>) that shares the x-axis with <tt class="docutils literal"><span class="pre">ax1</span></tt>, but can have a separate y-axis (similarly, <tt class="docutils literal"><span class="pre">twiny</span></tt> would return a second set of axes sharing the y-axis, but with a separate x-axis). As an example, we can use this to plot two different quantities as a function of time:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">10.</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">t</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span> <span class="s">&#39;b-&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="mi">1000</span> <span class="o">/</span> <span class="p">(</span><span class="n">t</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="s">&#39;r-&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&#39;Density (cgs)&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&#39;Temperature (K)&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;blue&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">&#39;Time (s)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/twinx.png"><img alt="../_images/twinx.png" class="align-center" src="../_images/twinx.png" style="width: 480.0px; height: 360.0px;" /></a>
+</div>
 <div class="section" id="controlling-the-appearance-of-plots">
 <h2>Controlling the appearance of plots<a class="headerlink" href="#controlling-the-appearance-of-plots" title="Permalink to this headline">¶</a></h2>
 <p>In Matplotlib, every plot element is a full Python object with properties that can be edited. Therefore, this means that properties can always be specified by setting the appropriate arguments in methods, or by retrieving these objects. For example:</p>
