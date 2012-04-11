@@ -383,10 +383,10 @@ this for the current workshop. One of the biggest advantages of using this metho
 </div>
 <p>defines two figures, one with two sets of axes, and one with one set of axes. Subsequently, use <tt class="docutils literal"><span class="pre">ax1.plot(...)</span></tt> to plot to the subplot in <tt class="docutils literal"><span class="pre">fig1</span></tt>, and <tt class="docutils literal"><span class="pre">ax2.plot(...)</span></tt> and <tt class="docutils literal"><span class="pre">ax3.plot(...)</span></tt> to plot in the top and bottom subplots of <tt class="docutils literal"><span class="pre">fig2</span></tt> respectively.</p>
 <p>The slight downside of this method is that in interactive mode, you will need to explicitly call:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">plt</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">fig</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>to refresh the figure after plotting commands.</p>
+<p>to refresh the figure after plotting commands (where <tt class="docutils literal"><span class="pre">fig</span></tt> is the figure object).</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p>while this method is more object-oriented than the procedural method
@@ -505,12 +505,12 @@ centered in the figure.</p>
 and points objects to change the points to be red, and the title to have
 an <tt class="docutils literal"><span class="pre">x-large</span></tt> font size.</p>
 <p><strong>Hint 1:</strong> &lt;tab&gt; suggestion/completion is your friend!</p>
-<p class="last"><strong>Hint 2:</strong> Don&#8217;t forget to run <tt class="docutils literal"><span class="pre">plt.draw()</span></tt> to refresh the plot after
-modifying properties!</p>
+<p class="last"><strong>Hint 2:</strong> Don&#8217;t forget to run <tt class="docutils literal"><span class="pre">fig.canvas.draw()</span></tt> to refresh the plot
+after modifying properties!</p>
 </div>
 <p class="flip2">Click to Show/Hide Solution</p> <div class="panel2"><div class="highlight-python"><div class="highlight"><pre><span class="n">points</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s">&#39;red&#39;</span><span class="p">)</span>
 <span class="n">title</span><span class="o">.</span><span class="n">set_fontsize</span><span class="p">(</span><span class="s">&#39;x-large&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>Easy! :-)</p>
