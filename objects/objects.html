@@ -1,0 +1,667 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Object Oriented Programming in Python &mdash;  0.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title=" 0.1.0 documentation" href="../index.html" />
+    <link rel="prev" title="APLpy" href="../plotting/aplpy.html" />
+ 
+<script type="text/javascript"> 
+$(document).ready(function(){
+
+$(".flip0").click(function(){
+    $(".panel0").slideToggle("normal");
+  });
+
+$(".flip1").click(function(){
+    $(".panel1").slideToggle("normal");
+  });
+
+$(".flip2").click(function(){
+    $(".panel2").slideToggle("normal");
+  });
+
+$(".flip3").click(function(){
+    $(".panel3").slideToggle("normal");
+  });
+
+$(".flip4").click(function(){
+    $(".panel4").slideToggle("normal");
+  });
+
+$(".flip5").click(function(){
+    $(".panel5").slideToggle("normal");
+  });
+
+$(".flip6").click(function(){
+    $(".panel6").slideToggle("normal");
+  });
+
+$(".flip7").click(function(){
+    $(".panel7").slideToggle("normal");
+  });
+
+$(".flip8").click(function(){
+    $(".panel8").slideToggle("normal");
+  });
+
+$(".flip9").click(function(){
+    $(".panel9").slideToggle("normal");
+  });
+
+});
+</script>
+ 
+<style type="text/css"> 
+
+div.panel0,p.flip0
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip0
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel0
+{
+display:none;
+}
+
+div.panel1,p.flip1
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip1
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel1
+{
+display:none;
+}
+
+div.panel2,p.flip2
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip2
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel2
+{
+display:none;
+}
+
+div.panel3,p.flip3
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip3
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel3
+{
+display:none;
+}
+
+div.panel4,p.flip4
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip4
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel4
+{
+display:none;
+}
+
+div.panel5,p.flip5
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip5
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel5
+{
+display:none;
+}
+
+div.panel6,p.flip6
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip6
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel6
+{
+display:none;
+}
+
+div.panel7,p.flip7
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip7
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel7
+{
+display:none;
+}
+
+div.panel8,p.flip8
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip8
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel8
+{
+display:none;
+}
+
+div.panel9,p.flip9
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip9
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel9
+{
+display:none;
+}
+
+</style>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-27427631-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../plotting/aplpy.html" title="APLpy"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Object Oriented Programming in Python</a><ul>
+<li><a class="reference internal" href="#what-is-object-oriented-00-programming">What is Object Oriented (00) Programming?</a></li>
+<li><a class="reference internal" href="#what-are-python-objects">What are Python Objects?</a></li>
+<li><a class="reference internal" href="#you-ve-already-been-using-oo">You&#8217;ve Already Been Using OO!</a></li>
+<li><a class="reference internal" href="#when-to-use-your-own-classes-and-objects">When to use your own Classes and Objects</a></li>
+<li><a class="reference internal" href="#when-not-to-use-your-own-classes-and-objects">When NOT to use your own Classes and Objects</a></li>
+<li><a class="reference internal" href="#how-to-make-your-own-objects">How to Make Your Own Objects</a></li>
+<li><a class="reference internal" href="#other-cool-stuff">Other Cool Stuff</a></li>
+<li><a class="reference internal" href="#further-reading">Further Reading</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../plotting/aplpy.html"
+                        title="previous chapter">APLpy</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/objects/objects.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="object-oriented-programming-in-python">
+<span id="guide"></span><h1>Object Oriented Programming in Python<a class="headerlink" href="#object-oriented-programming-in-python" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="what-is-object-oriented-00-programming">
+<h2>What is Object Oriented (00) Programming?<a class="headerlink" href="#what-is-object-oriented-00-programming" title="Permalink to this headline">¶</a></h2>
+<p>Object Oriented Programming is a philosophy of programming which compartmentalizes data and related
+functions into &#8220;Objects&#8221;</p>
+<p>Non-Object Oriented Programming (Procedural Programming) can be thought of as a long, ordered list
+of instructions or commands.  Data is visible to the top-level program, and shepherded through the
+commands from beginning to end.</p>
+<p>Procedural Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">mixItUp</span><span class="p">(</span><span class="n">original</span><span class="p">):</span>
+    <span class="n">characters</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">original</span><span class="p">)</span>
+    <span class="n">temp</span> <span class="o">=</span> <span class="n">characters</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+    <span class="n">characters</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">characters</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+    <span class="n">characters</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span>
+    <span class="n">temp</span> <span class="o">=</span> <span class="n">characters</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span>
+    <span class="n">characters</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="o">=</span> <span class="n">characters</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span>
+    <span class="n">characters</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span>
+    <span class="k">return</span> <span class="s">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">characters</span><span class="p">)</span>
+
+<span class="n">test_string</span> <span class="o">=</span> <span class="s">&#39;this is a test&#39;</span>
+<span class="n">output_string</span> <span class="o">=</span> <span class="n">mixItUp</span><span class="p">(</span><span class="n">test_string</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">test_string</span>
+<span class="k">print</span> <span class="n">output_string</span>
+</pre></div>
+</div>
+<p>In Procedural code, there are often large numbers of raw data variables visible to the main program.</p>
+<p>Object Oriented Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">mixableString</span><span class="p">(</span> <span class="nb">object</span> <span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__text</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">mixItUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">temp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__text</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__text</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__text</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__text</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span>
+        <span class="n">temp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__text</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__text</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__text</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__text</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span>
+
+    <span class="k">def</span> <span class="nf">get_text</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__text</span><span class="p">)</span>
+
+<span class="n">test_string</span> <span class="o">=</span> <span class="n">mixableString</span><span class="p">(</span><span class="s">&#39;this is a test&#39;</span><span class="p">)</span>
+<span class="n">test_string</span><span class="o">.</span><span class="n">mixItUp</span><span class="p">()</span>
+<span class="k">print</span> <span class="n">test_string</span><span class="o">.</span><span class="n">get_text</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><a class="reference external" href="./example_A.py">Here</a> is an example script of the above code.</p>
+<p>In Object Oriented code, most variables at the main program level are Objects.  Data are stored
+within these objects, and are rarely accessible from the main program.</p>
+<p>In the above example, the <em>class mixableString( object ):</em> defines the format of the object.  Think of it
+as a blueprint.  The <em>__init__(self)</em> fiction contains a description of the object.  Other
+functions describe functions the object can perform or can access the information inside the object::
+However, just as a blueprint is not a building, the definition of an object is not very useful until you &#8220;instantiate&#8221;
+the object.  The line <em>test_string = mixableString(&#8216;this is a test&#8217;)</em> creates a new instance of the mixableString
+object.  The line <em>test_string.mixItUp()</em> calls the <em>mixItUp</em> function in that object, which performs the scrambling.
+The line <em>print test_string.get_text()</em> prints out the return value of the <em>get_text</em> function.</p>
+<p>Extending this example a little further:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">test_A</span> <span class="o">=</span> <span class="n">mixableString</span><span class="p">(</span><span class="s">&#39;this is a test&#39;</span><span class="p">)</span>
+<span class="n">test_B</span> <span class="o">=</span> <span class="n">mixableString</span><span class="p">(</span><span class="s">&#39;this is another test!&#39;</span><span class="p">)</span>
+<span class="n">test_A</span><span class="o">.</span><span class="n">mixItUp</span><span class="p">()</span>
+<span class="k">print</span> <span class="n">test_A</span><span class="o">.</span><span class="n">get_text</span><span class="p">()</span>
+<span class="k">print</span> <span class="n">test_B</span><span class="o">.</span><span class="n">get_text</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This code will produce the following:</p>
+<div class="highlight-python"><pre>thii st a sest
+this is another test!</pre>
+</div>
+<p>test_A and test_B are &#8220;instances&#8221; of the class mixableString.  Actions performed on one instance of a class will only affect
+that instance.  Other instances of the same class are left unaffected.</p>
+<p>You might have noticed that the member functions always have the variable <em>self</em> as the first argument, even when the calling function
+passes no arguments (i.e. <em>test_string.get_text()</em>).  The <em>self</em> variable is so named because it is a self-referential variable.  Each
+instance of an object has to be able to separate itself from other instances.  The <em>self</em> variable allows python to access the private
+data of each individual object instance.</p>
+<p>You also might have noticed that private data is stored in variables with the convention <em>self.__VarName</em>.  The <em>self.__</em> is the Python convention, and
+allows each individual object access to its private data.</p>
+</div>
+<div class="section" id="what-are-python-objects">
+<h2>What are Python Objects?<a class="headerlink" href="#what-are-python-objects" title="Permalink to this headline">¶</a></h2>
+<p>Python Objects are similar to IDL structures, but with important extra features.  Just as in IDL,
+you can arbitrarily design the data structure within the object (structure).  The object can contain
+whatever data you would like to put into them.  In addition, you can also add functions to the objects,
+which allow you to perform operations on the data without &#8220;getting your hands dirty&#8221; in the main
+program.  (Just FYI, you can also create Objects in IDL, but Objects are integral to Python)</p>
+</div>
+<div class="section" id="you-ve-already-been-using-oo">
+<h2>You&#8217;ve Already Been Using OO!<a class="headerlink" href="#you-ve-already-been-using-oo" title="Permalink to this headline">¶</a></h2>
+<p>Any python data variable or function to which you can apply tab completion is an object.</p>
+<p>Lists behave like objects:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">E</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="n">E</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>append() is a function associated with the list, and its function is to add the value &#8216;n&#8217; to the end
+of the list &#8216;E&#8217;.  If you type &#8220;E.&#8221; and press tab, you see that lists are objects and have the following
+member functions associated with them:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">E</span><span class="o">.</span><span class="n">append</span><span class="p">()</span>
+<span class="n">E</span><span class="o">.</span><span class="n">extend</span><span class="p">()</span>
+<span class="n">E</span><span class="o">.</span><span class="n">insert</span><span class="p">()</span>
+<span class="n">E</span><span class="o">.</span><span class="n">remove</span><span class="p">()</span>
+<span class="n">E</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+<span class="n">E</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+<span class="n">E</span><span class="o">.</span><span class="n">index</span><span class="p">()</span>
+<span class="n">E</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+<span class="n">E</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Here is an example from scipy:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">interpolate</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">/</span><span class="mf">3.0</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">interpolate</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">xnew</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+<span class="n">ynew</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">xnew</span><span class="p">)</span>   <span class="c"># use interpolation function returned by `interp1d`</span>
+</pre></div>
+</div>
+<p>f is a python function/object returned by the interpolate.interp1d.  When you call the function/object
+with a new set of x values, it will perform the interpolation and return interpolated y values.</p>
+<p>One of the most obvious objects commonly used in Python is the matplotlib.pyplot object:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">graph</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>In this example, fig, ax, and graph are all handles which refer to objects returned by the function calls.
+As previously demonstrated in the <em>Making Publication Quality Plots</em> class, you can use these handles to access and modify
+information in the plot.</p>
+<p>There is a difference between using objects and an Object-Oriented approach.  It&#8217;s very difficult
+to <em>NOT</em> use objects of some sort in a python script.  However, the fact that you&#8217;re using objects
+doesn&#8217;t mean that you&#8217;re writing Object-Oriented code.  A full Object-Oriented approach is quite a different
+approach to writing code, and is beyond the scope of this workshop.  Without radically changing your approach,
+you can still reap the benefits of Objects and considerably clean up your code.</p>
+</div>
+<div class="section" id="when-to-use-your-own-classes-and-objects">
+<h2>When to use your own Classes and Objects<a class="headerlink" href="#when-to-use-your-own-classes-and-objects" title="Permalink to this headline">¶</a></h2>
+<p>Object oriented programming works well when you have a set of objects (stars, galaxies, etc...) which
+all have values or measurements associated with them.  In a procedural program, you might think of
+constructing several arrays (i.e. an array for RA, an array for declination, an array for object name,
+an array for Stellar Mass, an array for...)  While this is ok and easy for small numbers of variables,
+it can quickly become very confusing and spaghettify your code.</p>
+</div>
+<div class="section" id="when-not-to-use-your-own-classes-and-objects">
+<h2>When NOT to use your own Classes and Objects<a class="headerlink" href="#when-not-to-use-your-own-classes-and-objects" title="Permalink to this headline">¶</a></h2>
+<p>Small programming tasks with few and disparate variables.  Writing your own Objects front-loads the design
+of a program.  You can spend hours writing an object, and relatively small amounts of time writing
+the code which interacts with the objects, but if you&#8217;re only using it to do simple tasks,
+you&#8217;ll end up wasting time, both clock time and processor time.
+Object Orientation would not be the first choice for sleek numerical calculations.</p>
+</div>
+<div class="section" id="how-to-make-your-own-objects">
+<h2>How to Make Your Own Objects<a class="headerlink" href="#how-to-make-your-own-objects" title="Permalink to this headline">¶</a></h2>
+<p>Making your own objects is fun and easy!  To create your own object, all you need to do is follow the following format:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">myObject</span><span class="p">(</span> <span class="n">Object</span> <span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">init_var</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__var</span> <span class="o">=</span> <span class="n">init_var</span>
+
+    <span class="k">def</span> <span class="nf">myFunction_add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_var</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__var</span> <span class="o">+=</span> <span class="n">input_var</span>
+
+    <span class="k">def</span> <span class="nf">myFunction_getVar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__var</span>
+</pre></div>
+</div>
+<p>That&#8217;s it!  You define the object with the <em>class</em> keyword.  The <em>__init__()</em> function is the function used to create a
+new instance of an object.  The <em>__init__()</em> function is the only required function.</p>
+<p>Here is a more practical example:  Say you are studying a sample of stars.  Each star will have several attributes</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Star</span><span class="p">(</span> <span class="n">Object</span> <span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Name</span><span class="p">,</span> <span class="n">RA</span><span class="p">,</span> <span class="n">Dec</span><span class="p">,</span> <span class="n">Jmag</span><span class="p">,</span> <span class="n">Hmag</span><span class="p">,</span> <span class="n">Kmag</span><span class="p">,</span> <span class="n">SpT</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__Name</span> <span class="o">=</span> <span class="n">Name</span>           <span class="c">#Name of the star</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__RA</span> <span class="o">=</span> <span class="n">RA</span>               <span class="c">#Right Ascension (degrees)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__Dec</span> <span class="o">=</span> <span class="n">Dec</span>             <span class="c">#Declination (degrees)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__Jmag</span> <span class="o">=</span> <span class="n">Jmag</span>           <span class="c">#J-band Magnitude</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__Hmag</span> <span class="o">=</span> <span class="n">Hmag</span>           <span class="c">#H-band Magnitude</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__Kmag</span> <span class="o">=</span> <span class="n">Kmag</span>           <span class="c">#K-band Magnitude</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__SpT</span> <span class="o">=</span> <span class="n">SpT</span>             <span class="c">#Spectral Type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__Av</span> <span class="o">=</span> <span class="mf">0.0</span>              <span class="c">#Visual Extinction</span>
+
+    <span class="k">def</span> <span class="nf">get_Name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Name</span>
+
+    <span class="k">def</span> <span class="nf">get_RA</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">segFlag</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">segFlag</span><span class="p">:</span>
+            <span class="n">hours</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__RA</span><span class="o">/</span><span class="mi">15</span><span class="p">)</span>
+            <span class="n">minutes</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">__RA</span><span class="o">-</span><span class="n">hours</span><span class="o">*</span><span class="mi">15</span><span class="p">)</span><span class="o">*</span><span class="mi">60</span><span class="o">/</span><span class="mi">15</span><span class="p">)</span>
+            <span class="n">seconds</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__RA</span><span class="o">-</span><span class="n">hours</span><span class="o">*</span><span class="mf">15.0</span><span class="o">-</span><span class="n">minutes</span><span class="o">/</span><span class="mf">60.0</span><span class="o">*</span><span class="mf">15.0</span><span class="p">)</span><span class="o">*</span><span class="mi">3600</span><span class="o">/</span><span class="mi">15</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">hours</span><span class="p">,</span> <span class="n">minutes</span><span class="p">,</span> <span class="n">seconds</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__RA</span>
+
+    <span class="k">def</span> <span class="nf">set_Name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__Name</span> <span class="o">=</span> <span class="n">Name</span>
+
+    <span class="k">def</span> <span class="nf">calc_Reddening</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__Av</span> <span class="o">=</span> <span class="n">photmetricReddening</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__Jmag</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Hmag</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Kmag</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__SpT</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The <em>Star</em> class defines an object which has private members __Name, __RA, __Dec, __Jmag, __Hmag, __Kmag, __SpT, and __Av.</p>
+<p><a class="reference external" href="./example_B.py">Here</a> is an example of how an object like this might be used</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">star_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">starA</span> <span class="o">=</span> <span class="n">Star</span><span class="p">(</span><span class="s">&#39;TWHya&#39;</span><span class="p">,</span> <span class="mf">165.46625</span><span class="p">,</span> <span class="o">-</span><span class="mf">34.7047</span><span class="p">,</span> <span class="mf">8.2</span><span class="p">,</span> <span class="mf">7.6</span><span class="p">,</span> <span class="mf">7.3</span><span class="p">,</span> <span class="s">&#39;K7V&#39;</span><span class="p">)</span>
+<span class="n">star_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">starA</span><span class="p">)</span>
+<span class="n">star_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Star</span><span class="p">(</span><span class="s">&#39;AlphaBoo&#39;</span><span class="p">,</span> <span class="mf">213.91529</span><span class="p">,</span> <span class="mf">19.1824</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.25</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.81</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.91</span><span class="p">,</span> <span class="s">&#39;K1III&#39;</span><span class="p">))</span>
+<span class="n">star_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Star</span><span class="p">(</span><span class="s">&#39;TTauri&#39;</span><span class="p">,</span> <span class="mf">65.495</span><span class="p">,</span> <span class="mf">19.535</span><span class="p">,</span> <span class="mf">7.24</span><span class="p">,</span> <span class="mf">6.24</span><span class="p">,</span> <span class="mf">5.32</span><span class="p">,</span> <span class="s">&#39;G5V&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Now, we can access either the sexegesimal or decimal Right Ascension:</p>
+<div class="highlight-python"><pre>star_list[0].get_RA(segFlag=True)
+&gt;&gt; (11, 1, 51.900000000000546)
+star_list[1].get_RA()
+&gt;&gt; 213.91529</pre>
+</div>
+</div>
+<div class="section" id="other-cool-stuff">
+<h2>Other Cool Stuff<a class="headerlink" href="#other-cool-stuff" title="Permalink to this headline">¶</a></h2>
+<p>If you type <em>print star_list</em>, you&#8217;ll get something akin to this:</p>
+<div class="highlight-python"><pre>print star_list
+&gt;&gt; [&lt;__main__.Star at 0x104f4d0&gt;,
+    &lt;__main__.Star at 0x104f450&gt;,
+    &lt;__main__.Star at 0x104f490&gt;]</pre>
+</div>
+<p>Not exactly legible, but by overriding the <em>__repr__(self)</em>, you can redefine the text-representation of a Star object:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Star</span><span class="p">(</span> <span class="nb">object</span> <span class="p">):</span>
+   <span class="o">...</span>
+   <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+       <span class="k">return</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">: </span><span class="si">%f</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__RA</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now, when you ask Python to print a Star object, it calls this function.  So, repeating the previous exercise:</p>
+<div class="highlight-python"><pre>print star_list
+&gt;&gt; [TWHya: 165.466250, AlphaBoo: 213.915290, TTauri: 65.495000]</pre>
+</div>
+<p>You can also override the &#8220;less-than&#8221; or &#8220;greater-than&#8221; operations.  This is powerful because Python
+now knows how to compare objects of this type, and can sort them.  So, in the example above, we could
+redefine the less-than/greater-than operations to sort a list of stars by Right Ascension (or J-band magnitude,
+or alphabetically by name, or whatever you like).  To do this, you must include in the <em>class</em> definition
+your new definition of less-than/greater-than:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Star</span><span class="p">(</span> <span class="nb">object</span> <span class="p">):</span>
+   <span class="o">...</span>
+   <span class="k">def</span> <span class="nf">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+       <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="nb">float</span><span class="p">):</span>
+           <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__RA</span> <span class="o">&lt;</span> <span class="n">other</span>
+       <span class="k">else</span><span class="p">:</span>
+           <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__RA</span> <span class="o">&lt;</span> <span class="n">other</span><span class="o">.</span><span class="n">__RA</span>
+</pre></div>
+</div>
+<p>Now, we can sort the any list of Star objects by Right Ascension:</p>
+<div class="highlight-python"><pre>star_list.sort()
+print star_list
+&gt;&gt; [TTauri: 65.495000, TWHya: 165.466250, AlphaBoo: 213.915290]</pre>
+</div>
+<p><a class="reference external" href="./example_C.py">Here</a> is an example of the above code.</p>
+<p>The reason the previous examples are called <em>Overriding</em> is because they over-ride existing functions called <em>__repr__(self)</em> and
+<em>__lt__(self, other)</em>.  Where did these functions come from?  We certainly didn&#8217;t define them from scratch!  To understand this, we
+must understand the concept of &#8220;Inheritance&#8221;.  In the original definition of <em>class Star( object ):</em>, the <em>object</em> is the parent class
+of the Star Object.  Here is an example from Wikipedia:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Animal</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>    <span class="c"># Constructor of the class</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+    <span class="k">def</span> <span class="nf">talk</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>              <span class="c"># Abstract method, defined by convention only</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s">&quot;Subclass must implement abstract method&quot;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Cat</span><span class="p">(</span><span class="n">Animal</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">talk</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s">&#39;Meow!&#39;</span>
+
+<span class="k">class</span> <span class="nc">Dog</span><span class="p">(</span><span class="n">Animal</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">talk</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s">&#39;Woof! Woof!&#39;</span>
+</pre></div>
+</div>
+<p>Class Animal is the parent class for both Cat and Dog.  You may notice that neither Cat nor Dog have the required <em>__init__()</em> function.
+This is because they inherit it from their parent class, Animal.  This means that both objects have a self.name variable.  Both
+Cat and Dog override the <em>talk(self)</em> function with functions appropriate to their type.:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">animals</span> <span class="o">=</span> <span class="p">[</span><span class="n">Cat</span><span class="p">(</span><span class="s">&#39;Missy&#39;</span><span class="p">),</span> <span class="n">Dog</span><span class="p">(</span><span class="s">&#39;Lassie&#39;</span><span class="p">)]</span>
+<span class="k">for</span> <span class="n">animal</span> <span class="ow">in</span> <span class="n">animals</span><span class="p">:</span>
+    <span class="k">print</span> <span class="n">animal</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s">&#39;: &#39;</span> <span class="o">+</span> <span class="n">animal</span><span class="o">.</span><span class="n">talk</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This prints the following:</p>
+<div class="highlight-python"><pre>Missy: Meow!
+Lassie: Woof! Woof!</pre>
+</div>
+<p>Custom Objects are powerful ways to organize your data and keeping your code from turning into spaghetti.
+These are just a few of the things which are possible.  The sky&#8217;s the limit, so feel free to explore!</p>
+</div>
+<div class="section" id="further-reading">
+<h2>Further Reading<a class="headerlink" href="#further-reading" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="http://www.amazon.com/Object-Oriented-Thought-Process-The-Edition/dp/0672330164">Object Oriented Thought Process</a>, Matt Weisfeld</li>
+<li><a class="reference external" href="http://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612">Design Patterns</a>, Erich Gamma et al.</li>
+<li><a class="reference external" href="http://www.amazon.com/Object-Oriented-Programming-Python-Michael-Goldwasser/dp/0136150314">Object-Oriented Programming in Python</a>, Goldwasser &amp; Letscher</li>
+</ul>
+<table border="1" class="docutils">
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../plotting/aplpy.html" title="APLpy"
+             >previous</a> |</li>
+        <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright .
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+    </div>
+  </body>
+</html>
