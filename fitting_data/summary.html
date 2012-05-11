@@ -283,6 +283,14 @@ display:none;
     </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Summary</a><ul>
+<li><a class="reference internal" href="#take-home-messages">Take home messages</a></li>
+</ul>
+</li>
+</ul>
+
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="../_sources/fitting_data/summary.txt"
@@ -311,23 +319,25 @@ display:none;
             
   <div class="section" id="summary">
 <h1>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h1>
-<p>In particular, we have learned how to:</p>
 <ul class="simple">
-<li>numerically integrate with Scipy,</li>
-<li>minimise a function with Scipy,</li>
-<li>conduct linear-algebra operations with Numpy,</li>
-<li>compute Fourier transforms with Numpy,</li>
-<li>compare merger rates in active/inactive galaxies,</li>
-<li>analytically fit linear models to data,</li>
-<li>not estimate optimal polynomial order from data.</li>
+<li>Scipy provides least-squares codes (<cite>leastsq</cite> and <cite>curve_fit</cite>) that use a Levenburg-Marquardt gradient method.</li>
+<li>Scipy also provides a Simplex algorithm (<cite>fmin</cite>) for more general problems.</li>
+<li>Not all problems are least-square problems.</li>
+<li>Simplex is robust but inefficient.</li>
+<li>Gradient methods are efficient but not robust (assume convex problem).</li>
+<li>Fitting a Salpeter SMF is a convex problem.</li>
+<li>Direct Monte-Carlo sampling only works for trivial fit problems (1D, large uncertainties).</li>
+<li>Metropolis-Hastings is robust but efficiency strongly depends on fine-tuning of numerous stepsizes.</li>
+<li>Hamiltonian Monte-Carlo is robust and efficiency depends on fine-tuning of a single stepsize.</li>
 </ul>
-<p>Some general conclusions:</p>
+<div class="section" id="take-home-messages">
+<h2>Take home messages<a class="headerlink" href="#take-home-messages" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Numpy and Scipy provide a wealth of mathematical functions that substantially simplify your life as a scientist.</li>
-<li>This functionality by far outmatches what you can get in IDL - both in diversity and in quality.</li>
-<li>Numpy and Scipy have what you need: Do not reinvent the wheel!</li>
+<li>There is no &#8216;&#8217;perfect&#8217;&#8217; fit algorithm that solves all problems.</li>
+<li>You need to be able to identify and implement the fit algorithm that solves your problem.</li>
+<li>Python is well suited to implement simple and advanced fit algorithms.</li>
 </ul>
-<p>Finally, you are now equipped with the basic knowledge to start using Numpy and Scipy. If you should encounter any serious problems, feel free to contact the Python mailing list at MPIA.</p>
+</div>
 </div>
 
 

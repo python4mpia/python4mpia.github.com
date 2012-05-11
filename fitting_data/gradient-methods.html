@@ -1,0 +1,491 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Gradient methods &mdash;  0.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title=" 0.1.0 documentation" href="../index.html" />
+ 
+<script type="text/javascript"> 
+$(document).ready(function(){
+
+$(".flip0").click(function(){
+    $(".panel0").slideToggle("normal");
+  });
+
+$(".flip1").click(function(){
+    $(".panel1").slideToggle("normal");
+  });
+
+$(".flip2").click(function(){
+    $(".panel2").slideToggle("normal");
+  });
+
+$(".flip3").click(function(){
+    $(".panel3").slideToggle("normal");
+  });
+
+$(".flip4").click(function(){
+    $(".panel4").slideToggle("normal");
+  });
+
+$(".flip5").click(function(){
+    $(".panel5").slideToggle("normal");
+  });
+
+$(".flip6").click(function(){
+    $(".panel6").slideToggle("normal");
+  });
+
+$(".flip7").click(function(){
+    $(".panel7").slideToggle("normal");
+  });
+
+$(".flip8").click(function(){
+    $(".panel8").slideToggle("normal");
+  });
+
+$(".flip9").click(function(){
+    $(".panel9").slideToggle("normal");
+  });
+
+});
+</script>
+ 
+<style type="text/css"> 
+
+div.panel0,p.flip0
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip0
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel0
+{
+display:none;
+}
+
+div.panel1,p.flip1
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip1
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel1
+{
+display:none;
+}
+
+div.panel2,p.flip2
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip2
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel2
+{
+display:none;
+}
+
+div.panel3,p.flip3
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip3
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel3
+{
+display:none;
+}
+
+div.panel4,p.flip4
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip4
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel4
+{
+display:none;
+}
+
+div.panel5,p.flip5
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip5
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel5
+{
+display:none;
+}
+
+div.panel6,p.flip6
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip6
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel6
+{
+display:none;
+}
+
+div.panel7,p.flip7
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip7
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel7
+{
+display:none;
+}
+
+div.panel8,p.flip8
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip8
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel8
+{
+display:none;
+}
+
+div.panel9,p.flip9
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip9
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel9
+{
+display:none;
+}
+
+</style>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-27427631-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Gradient methods</a><ul>
+<li><a class="reference internal" href="#convex-optimisation">Convex optimisation</a></li>
+<li><a class="reference internal" href="#newton-s-method">Newton&#8217;s method</a></li>
+<li><a class="reference internal" href="#gradient-descent">Gradient descent</a></li>
+<li><a class="reference internal" href="#stochastic-gradient-descent">Stochastic gradient descent</a></li>
+</ul>
+</li>
+</ul>
+
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/fitting_data/gradient-methods.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="gradient-methods">
+<h1>Gradient methods<a class="headerlink" href="#gradient-methods" title="Permalink to this headline">¶</a></h1>
+<p>As mentioned before, <cite>leastsq</cite> and thus also <cite>curve_fit</cite> from <cite>scipy.optimize</cite> employ a Levenburg-Marquardt algorithm, which is a special kind of gradient method that is very popular in astronomy (e.g. used in GalFit). There are numerous different types of gradient methods, e.g.:</p>
+<ul class="simple">
+<li>Levenburg-Marquardt</li>
+<li>Newton&#8217;s method</li>
+<li>conjugate gradient</li>
+<li>gradient ascent/descent</li>
+<li>stochastic gradient ascent/descent</li>
+<li>...</li>
+</ul>
+<p>Some of these methods are implemented in Scipy.</p>
+<div class="section" id="convex-optimisation">
+<h2>Convex optimisation<a class="headerlink" href="#convex-optimisation" title="Permalink to this headline">¶</a></h2>
+<p>All gradient methods share the same implicit assumption: The objective function has a single global minimum. In other words, the likelihood function is &#8216;&#8217;convex&#8217;&#8216;. More technical: A function is convex, if and only if its Hessian (matrix of second derivatives) has negative eigenvalues everywhere.</p>
+<p>For linear models and Gaussian noise, this assumption is always satisfied, i.e., the likelihood is always convex. In this case, the Hessian is constant (independent of fit parameters) and all its eigenvalues are negative. This is clear because the Hessian is related to the covariance matrix via <img class="math" src="../_images/math/8c1f41909da9d4b428ee66bfca5c1ef8a151a5c3.png" alt="\Sigma=-H^{-1}"/> and <img class="math" src="../_images/math/c8f77e3035db5fe9a4975967750ac1a6454bda8c.png" alt="\Sigma"/> is positive definite, so <img class="math" src="../_images/math/b1902d279ba37d60bdce4e0e987b7cd19d48974e.png" alt="H"/> has to be negative definite.</p>
+<p>As soon as models become nonlinear or data noise non-Gaussian, testing for convexity is often very difficult and rarely possible.</p>
+<p>Moreover, nonlinear problems are often not convex, such that gradient methods all run into the nearest local minimum, depending on the initial guess. Therefore, gradient methods are highly efficient (fast) but not very robust, they have the &#8216;&#8217;opposite&#8217;&#8217; behaviour of the Simplex algorithm.</p>
+<p>Unlike <cite>leastsq</cite> and <cite>curve_fit</cite>, gradient methods can also be applied to fit problems that do not have a least-squares formulation. However, this requires us to be able to implement them on our own!</p>
+<p>Let us just talk about three simple examples.</p>
+</div>
+<div class="section" id="newton-s-method">
+<h2>Newton&#8217;s method<a class="headerlink" href="#newton-s-method" title="Permalink to this headline">¶</a></h2>
+<p>Newton&#8217;s method is actually a method for root finding. So we want to find the root of the first derivative of our objective function.</p>
+<p>The algorithm is iterative, and given a parameter vector <img class="math" src="../_images/math/3523c117421a3db7f0c97a381c8fe5a6bd18d161.png" alt="\theta_i"/>, the next iteration is obtain by</p>
+<blockquote>
+<div><img class="math" src="../_images/math/19a252dbf458443d59e41609c8a1c6b9d8e00412.png" alt="\theta_{i+1} = \theta_i - H^{-1}\cdot\nabla_\theta J(\theta_i)"/></div></blockquote>
+<p>Obviously, we need to compute the gradient <img class="math" src="../_images/math/aef72d3ea9e8dbdf6bcb076e51ace4148a39c16d.png" alt="\nabla_\theta J(\theta_i)"/> of our objective function <img class="math" src="../_images/math/decf11d5f37385dc7403dd685707777d5b416112.png" alt="J(\theta)"/> and the Hessian (matrix of second derivatives). This usually requires a lot of math.</p>
+<p>In rare cases, the results are so simple that they can be easily implemented. If the assumption of a single global minimum holds (convex problem), then Newton&#8217;s method will usually converge extremely fast (say within 5-10 iterations).</p>
+</div>
+<div class="section" id="gradient-descent">
+<h2>Gradient descent<a class="headerlink" href="#gradient-descent" title="Permalink to this headline">¶</a></h2>
+<p>Gradient descent is an iterative algorithm, too. Let the objective function be <img class="math" src="../_images/math/a61c1e51680e27d35d05bebed87d474972fc70bd.png" alt="\chi^2"/>, then the update equation is</p>
+<blockquote>
+<div><img class="math" src="../_images/math/9e560f6f9eb6105750ea1241c41c2fc48b51d8de.png" alt="\theta_{i+1} = \theta_i - \alpha\nabla_\theta\chi^2 = \theta_i + 2\alpha\sum_{n=1}^N\frac{y_n-f(x_n)}{\sigma_n^2}\nabla_\theta f(x_n)"/></div></blockquote>
+<p>The parameter <img class="math" src="../_images/math/10f32377ac67d94f764f12a15ea987e88c85d3e1.png" alt="\alpha"/> is sometimes called &#8216;&#8217;learning rate&#8217;&#8216;, which is a fancy way of saying &#8216;&#8217;stepsize&#8217;&#8216;.</p>
+<p>Let us consider the following example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+
+<span class="c"># Create toy data.</span>
+<span class="n">xdata</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">3.0</span><span class="p">,</span><span class="mf">4.0</span><span class="p">,</span><span class="mf">5.0</span><span class="p">]</span>
+<span class="n">ydata</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.9</span><span class="p">,</span><span class="mf">2.2</span><span class="p">,</span><span class="mf">2.8</span><span class="p">,</span><span class="mf">3.9</span><span class="p">,</span><span class="mf">5.1</span><span class="p">]</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">]</span>
+
+<span class="c"># Initial guess and learning rate.</span>
+<span class="n">x0</span>    <span class="o">=</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">]</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.01</span>
+
+<span class="c"># Store initial guess for plotting.</span>
+<span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="n">x0</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+<span class="n">B</span> <span class="o">=</span> <span class="p">[</span><span class="n">x0</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+
+<span class="c"># Iteration.</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">):</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">x0</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">x0</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="c"># Compute gradients of chi2 w.r.t. a and b.</span>
+        <span class="n">grad_a</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="n">grad_b</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">xdata</span><span class="p">)):</span>
+                <span class="n">grad_a</span> <span class="o">=</span> <span class="n">grad_a</span> <span class="o">-</span> <span class="mf">2.0</span><span class="o">*</span><span class="p">(</span><span class="n">ydata</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">-</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="o">*</span><span class="n">xdata</span><span class="p">[</span><span class="n">n</span><span class="p">])</span><span class="o">*</span><span class="mf">1.0</span><span class="o">/</span><span class="p">(</span><span class="n">sigma</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">*</span><span class="n">sigma</span><span class="p">[</span><span class="n">n</span><span class="p">])</span>
+                <span class="n">grad_b</span> <span class="o">=</span> <span class="n">grad_b</span> <span class="o">-</span> <span class="mf">2.0</span><span class="o">*</span><span class="p">(</span><span class="n">ydata</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">-</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="o">*</span><span class="n">xdata</span><span class="p">[</span><span class="n">n</span><span class="p">])</span><span class="o">*</span><span class="n">xdata</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">/</span><span class="p">(</span><span class="n">sigma</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">*</span><span class="n">sigma</span><span class="p">[</span><span class="n">n</span><span class="p">])</span>
+        <span class="c"># Update parameters.</span>
+        <span class="n">a_new</span> <span class="o">=</span> <span class="n">a</span> <span class="o">-</span> <span class="n">alpha</span><span class="o">*</span><span class="n">grad_a</span>
+        <span class="n">b_new</span> <span class="o">=</span> <span class="n">b</span> <span class="o">-</span> <span class="n">alpha</span><span class="o">*</span><span class="n">grad_b</span>
+        <span class="n">x0</span>    <span class="o">=</span> <span class="p">[</span><span class="n">a_new</span><span class="p">,</span><span class="n">b_new</span><span class="p">]</span>
+
+        <span class="c"># Store parameters for plotting.</span>
+        <span class="n">A</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a_new</span><span class="p">)</span>
+        <span class="n">B</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">b_new</span><span class="p">)</span>
+
+<span class="c"># Plot route of gradient descent.</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="s">&#39;o-&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;blue&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">],</span> <span class="s">&#39;x&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">markeredgewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;orange&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.05</span><span class="p">,</span><span class="mf">0.55</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mf">0.75</span><span class="p">,</span><span class="mf">1.55</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">r&#39;$a$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">r&#39;$b$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">&#39;example-gradient-descent.png&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Here is the route taken by the gradient descent algorithm towards the global minimum starting from an initial guess.</p>
+<img alt="../_images/example-gradient-descent.png" src="../_images/example-gradient-descent.png" />
+</div>
+<div class="section" id="stochastic-gradient-descent">
+<h2>Stochastic gradient descent<a class="headerlink" href="#stochastic-gradient-descent" title="Permalink to this headline">¶</a></h2>
+<p>Gradient descent obviously tries to find the shortest path to the nearest local minimum. This strict behaviour can be relaxed by modifying the algorithm.</p>
+<p>Gradient descent computes the gradient using all data. Conversely, stochastic gradient descent computes the gradient using only a single data point, which is chosen randomly (therefore &#8216;&#8217;stochastic&#8217;&#8216;). This has two major advantages:</p>
+<ul class="simple">
+<li>The algorithm&#8217;s route in parameter space is randomised, such that it has the chance not to end up in the nearest local minimum but to find some other minimum that is potentially better.</li>
+<li>If there is a lot of data, computing the gradient may be very costly. Stochastic gradient descent reduces this cost.</li>
+</ul>
+<p>The code of gradient descent only needs to be modified slightly:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">random</span> <span class="kn">as</span> <span class="nn">random</span>
+
+<span class="c"># set random seed.</span>
+<span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c"># Create toy data.</span>
+<span class="n">xdata</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">3.0</span><span class="p">,</span><span class="mf">4.0</span><span class="p">,</span><span class="mf">5.0</span><span class="p">]</span>
+<span class="n">ydata</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.9</span><span class="p">,</span><span class="mf">2.2</span><span class="p">,</span><span class="mf">2.8</span><span class="p">,</span><span class="mf">3.9</span><span class="p">,</span><span class="mf">5.1</span><span class="p">]</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">]</span>
+
+<span class="c"># Initial guess and learning rate (same as for gradient descent).</span>
+<span class="n">x0</span>    <span class="o">=</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">]</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.01</span>
+
+<span class="c"># Store initial guess for plotting.</span>
+<span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="n">x0</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+<span class="n">B</span> <span class="o">=</span> <span class="p">[</span><span class="n">x0</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+
+<span class="c"># Iteration (same number of evaluations as for gradient descent).</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">300</span><span class="p">):</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">x0</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">x0</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="c"># Compute stochastic gradients of chi2 w.r.t. a and b.</span>
+        <span class="n">n</span>      <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">xdata</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>  <span class="c"># randomly chose data point</span>
+        <span class="n">grad_a</span> <span class="o">=</span> <span class="o">-</span> <span class="mf">2.0</span><span class="o">*</span><span class="p">(</span><span class="n">ydata</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">-</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="o">*</span><span class="n">xdata</span><span class="p">[</span><span class="n">n</span><span class="p">])</span><span class="o">*</span><span class="mf">1.0</span><span class="o">/</span><span class="p">(</span><span class="n">sigma</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">*</span><span class="n">sigma</span><span class="p">[</span><span class="n">n</span><span class="p">])</span>
+        <span class="n">grad_b</span> <span class="o">=</span> <span class="o">-</span> <span class="mf">2.0</span><span class="o">*</span><span class="p">(</span><span class="n">ydata</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">-</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="o">*</span><span class="n">xdata</span><span class="p">[</span><span class="n">n</span><span class="p">])</span><span class="o">*</span><span class="n">xdata</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">/</span><span class="p">(</span><span class="n">sigma</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">*</span><span class="n">sigma</span><span class="p">[</span><span class="n">n</span><span class="p">])</span>
+        <span class="c"># Update parameters.</span>
+        <span class="n">a_new</span> <span class="o">=</span> <span class="n">a</span> <span class="o">-</span> <span class="n">alpha</span><span class="o">*</span><span class="n">grad_a</span>
+        <span class="n">b_new</span> <span class="o">=</span> <span class="n">b</span> <span class="o">-</span> <span class="n">alpha</span><span class="o">*</span><span class="n">grad_b</span>
+        <span class="n">x0</span>    <span class="o">=</span> <span class="p">[</span><span class="n">a_new</span><span class="p">,</span><span class="n">b_new</span><span class="p">]</span>
+
+        <span class="c"># Store parameters for plotting.</span>
+        <span class="n">A</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a_new</span><span class="p">)</span>
+        <span class="n">B</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">b_new</span><span class="p">)</span>
+
+<span class="c"># Plot route of gradient descent.</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="s">&#39;o-&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;blue&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">],</span> <span class="s">&#39;x&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">markeredgewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;orange&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.05</span><span class="p">,</span><span class="mf">0.55</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mf">0.75</span><span class="p">,</span><span class="mf">1.55</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">r&#39;$a$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">r&#39;$b$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">&#39;example-stochastic-gradient-descent.png&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Here is the route taken by the stochastic gradient descent algorithm towards the global minimum starting from the same initial guess.</p>
+<img alt="../_images/example-stochastic-gradient-descent.png" src="../_images/example-stochastic-gradient-descent.png" />
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright .
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

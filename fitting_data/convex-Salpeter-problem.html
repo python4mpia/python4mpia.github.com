@@ -1,0 +1,351 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Convexity of the Salpeter problem &mdash;  0.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title=" 0.1.0 documentation" href="../index.html" />
+ 
+<script type="text/javascript"> 
+$(document).ready(function(){
+
+$(".flip0").click(function(){
+    $(".panel0").slideToggle("normal");
+  });
+
+$(".flip1").click(function(){
+    $(".panel1").slideToggle("normal");
+  });
+
+$(".flip2").click(function(){
+    $(".panel2").slideToggle("normal");
+  });
+
+$(".flip3").click(function(){
+    $(".panel3").slideToggle("normal");
+  });
+
+$(".flip4").click(function(){
+    $(".panel4").slideToggle("normal");
+  });
+
+$(".flip5").click(function(){
+    $(".panel5").slideToggle("normal");
+  });
+
+$(".flip6").click(function(){
+    $(".panel6").slideToggle("normal");
+  });
+
+$(".flip7").click(function(){
+    $(".panel7").slideToggle("normal");
+  });
+
+$(".flip8").click(function(){
+    $(".panel8").slideToggle("normal");
+  });
+
+$(".flip9").click(function(){
+    $(".panel9").slideToggle("normal");
+  });
+
+});
+</script>
+ 
+<style type="text/css"> 
+
+div.panel0,p.flip0
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip0
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel0
+{
+display:none;
+}
+
+div.panel1,p.flip1
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip1
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel1
+{
+display:none;
+}
+
+div.panel2,p.flip2
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip2
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel2
+{
+display:none;
+}
+
+div.panel3,p.flip3
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip3
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel3
+{
+display:none;
+}
+
+div.panel4,p.flip4
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip4
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel4
+{
+display:none;
+}
+
+div.panel5,p.flip5
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip5
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel5
+{
+display:none;
+}
+
+div.panel6,p.flip6
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip6
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel6
+{
+display:none;
+}
+
+div.panel7,p.flip7
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip7
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel7
+{
+display:none;
+}
+
+div.panel8,p.flip8
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip8
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel8
+{
+display:none;
+}
+
+div.panel9,p.flip9
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip9
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel9
+{
+display:none;
+}
+
+</style>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-27427631-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/fitting_data/convex-Salpeter-problem.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="convexity-of-the-salpeter-problem">
+<h1>Convexity of the Salpeter problem<a class="headerlink" href="#convexity-of-the-salpeter-problem" title="Permalink to this headline">¶</a></h1>
+<p>The Salpeter problem is neither a linear nor a least-squares problem. Let us check if it is a convex problem!</p>
+<p>For Hamiltonian Monte-Carlo, we have already computed the gradient of the log-likelihood, which is our objective function:</p>
+<blockquote>
+<div><img class="math" src="../_images/math/fc924d6fcc5cbdaf9cfbd3458de18460079ccae4.png" alt="\frac{\partial\log\mathcal L}{\partial\alpha} = -D-\frac{N}{1-\alpha}\left[1 + \frac{1-\alpha}{M_{max}^{1-\alpha}-M_{min}^{1-\alpha}}\left(M_{min}^{1-\alpha}\log M_{min}-M_{max}^{1-\alpha}\log M_{max}\right)\right]"/></div></blockquote>
+<p>As we only have a single fit parameter - <img class="math" src="../_images/math/10f32377ac67d94f764f12a15ea987e88c85d3e1.png" alt="\alpha"/> - the Hessian is a 1x1 matrix and its single eigenvalue is:</p>
+<blockquote>
+<div><img class="math" src="../_images/math/adf43d422435dc0d18f5bc5ae39b4eccea309e9f.png" alt="\frac{\partial^2\log\mathcal L}{\partial\alpha^2} = -N\left[\frac{1}{(1-\alpha)^2} + \left(\frac{M_{min}^{1-\alpha}\log M_{min}-M_{max}^{1-\alpha}\log M_{max}}{M_{max}^{1-\alpha}-M_{min}^{1-\alpha}}\right)^2 + \frac{M_{max}^{1-\alpha}\log^2 M_{max}-M_{min}^{1-\alpha}\log^2 M_{min}}{M_{max}^{1-\alpha}-M_{min}^{1-\alpha}}\right]"/></div></blockquote>
+<p>If the Salpeter problem is convex, this eigenvalue has to be negative. Is it negative?</p>
+<p>By definition, we have <img class="math" src="../_images/math/0755192f1ed3b77317e8d60ec40edb5bad5d7a89.png" alt="N&gt;0"/> and <img class="math" src="../_images/math/51fd4f639df1df51c63222036dc7f614c5198c8a.png" alt="M_{max}&gt;M_{min}"/>.</p>
+<p>Therefore, as long as <img class="math" src="../_images/math/8d0ecaf51059f4d0b04faa7146a646165a0a77a2.png" alt="\alpha\neq 1"/>, the first two terms in brackets are always strictly positive.</p>
+<p>For <img class="math" src="../_images/math/8aaf6a0db4b9f85eedd7e1a20d93d72430dafea1.png" alt="\alpha &lt; 1"/>, also the third term is strictly positive because <img class="math" src="../_images/math/51fd4f639df1df51c63222036dc7f614c5198c8a.png" alt="M_{max}&gt;M_{min}"/>.</p>
+<p>For <img class="math" src="../_images/math/cc2e71eb8e237e1e4e80913b1db13022a9768071.png" alt="\alpha &gt; 1"/>, the third term may in fact become negative. However, for <img class="math" src="../_images/math/bb1c1c33c6f3241786915ab3170316b1ea1f0489.png" alt="M_{min}=1"/> and <img class="math" src="../_images/math/aa28696de7c45656932c50b01011348771ca87d2.png" alt="M_{max}=100"/>, the eigenvalue is still strictly negative at least until <img class="math" src="../_images/math/6e9c3b4c3a09026689f29ccbb9467054c8f2a0cb.png" alt="\alpha=10"/>.</p>
+<p>We conclude that for <img class="math" src="../_images/math/bb1c1c33c6f3241786915ab3170316b1ea1f0489.png" alt="M_{min}=1"/> and <img class="math" src="../_images/math/aa28696de7c45656932c50b01011348771ca87d2.png" alt="M_{max}=100"/> and for all <img class="math" src="../_images/math/beeb8a3eccc27c893c7e2a16e388c9aefa2e4739.png" alt="\alpha &lt; 10"/> and <img class="math" src="../_images/math/8d0ecaf51059f4d0b04faa7146a646165a0a77a2.png" alt="\alpha\neq 1"/> the eigenvalue <img class="math" src="../_images/math/996edc3c899ca5e7bb6a57fc23d02727e62dcde6.png" alt="\frac{\partial^2\log\mathcal L}{\partial\alpha^2}"/> of the Hessian is always strictly negative. In other words, in our case the Salpeter problem is convex, i.e., the log-likelihood function has only a single maximum which is therefore the global maximum.</p>
+<p>Obviously, we could simply use a gradient method - ideally Newton&#8217;s method (we already have computed gradient and Hessian!) - in order to find the maximum quickly. Nevertheless, the Monte-Carlo methods also directly provide us with uncertainty estimates.</p>
+<p>This is a very rare example, where a non-trivial problem can be directly tested for convexity.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright .
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

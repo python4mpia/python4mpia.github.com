@@ -1,20 +1,19 @@
 Summary
 ==========================
 
-In particular, we have learned how to:
+* Scipy provides least-squares codes (`leastsq` and `curve_fit`) that use a Levenburg-Marquardt gradient method.
+* Scipy also provides a Simplex algorithm (`fmin`) for more general problems.
+* Not all problems are least-square problems.
+* Simplex is robust but inefficient.
+* Gradient methods are efficient but not robust (assume convex problem).
+* Fitting a Salpeter SMF is a convex problem.
+* Direct Monte-Carlo sampling only works for trivial fit problems (1D, large uncertainties).
+* Metropolis-Hastings is robust but efficiency strongly depends on fine-tuning of numerous stepsizes.
+* Hamiltonian Monte-Carlo is robust and efficiency depends on fine-tuning of a single stepsize.
 
-* numerically integrate with Scipy,
-* minimise a function with Scipy,
-* conduct linear-algebra operations with Numpy,
-* compute Fourier transforms with Numpy,
-* compare merger rates in active/inactive galaxies,
-* analytically fit linear models to data,
-* not estimate optimal polynomial order from data.
+Take home messages
+---------------------
 
-Some general conclusions:
-
-* Numpy and Scipy provide a wealth of mathematical functions that substantially simplify your life as a scientist.
-* This functionality by far outmatches what you can get in IDL - both in diversity and in quality.
-* Numpy and Scipy have what you need: Do not reinvent the wheel!
-
-Finally, you are now equipped with the basic knowledge to start using Numpy and Scipy. If you should encounter any serious problems, feel free to contact the Python mailing list at MPIA.
+* There is no ''perfect'' fit algorithm that solves all problems.
+* You need to be able to identify and implement the fit algorithm that solves your problem.
+* Python is well suited to implement simple and advanced fit algorithms.

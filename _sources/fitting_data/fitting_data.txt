@@ -1,33 +1,46 @@
-An introduction to fitting data using Numpy & Scipy
-===============================
+Fitting data with Python
+========================
 
-Numpy and Scipy are two very important packages when using Python for scientific work. Both packages provide powerful methods, e.g., matrix operations, numerical integration, statistical distributions.
+Fitting models to data is one of the key steps in scientific work:
+
+* fitting some spectrum/spectral line
+* fitting 2D light distribution of a galaxy
+* estimating the stellar IMF from a set of observed masses
+* estimating the galaxy luminosity function from data
+* ...
+
+Numpy and Scipy provide readily usable tools to fit models to data.
+
+Moreover, Python is an excellent environment to develop your own fitting routines for more advanced problems.
 
 Goals of this session
 ----------------
 
-* How to use Numpy: matrices & linear algebra.
-* How to use Scipy: numerical integration.
-* How to compare population proportions.
-* How to fit linear models. 
-* Never trust p-values or reduced :math:`\chi^2`.
-* Review some basic plotting.
+* This is a Python tutorial but some statistics is inevitable!
+* How to use implemented routines: `leastsq`, `curve_fit` and Simplex.
+* Some gradient methods.
+* Astrophysical example: Salpeter mass function.
+* Monte-Carlo sampling from probability distributions.
+* Metropolis-Hastings MCMC.
+* Hamiltonian Monte-Carlo.
 
 At the end of this session, participants will have code fragments that can be readily used or easily adopted for their own scientific work.
 
-Furthermore, participants are then familiar with the basic concepts of Numpy and Scipy, such that they know how to learn more complicated things themselfes.
 
 **Agenda**
 
 .. toctree::
    :maxdepth: 1
 
-   basics-scipy
-   prob-2-population-proportions
-   basics-numpy
-   prob-3-fitting-linear-models
-   prob-4-p-values
+   least-squares-fitting
+   simplex-fitting
+   gradient-methods
+   Salpeter-background
+   MC-sampling-from-Salpeter
+   Metropolis-Hastings
+   Hamiltonian-MCMC
+   convex-Salpeter-problem
    summary
 
 :Authors: Rene Andrae
-:Copyright: 2011, Rene Andrae
+:Copyright: 2012, Rene Andrae

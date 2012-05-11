@@ -1,0 +1,444 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Metropolis-Hastings algorithm &mdash;  0.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title=" 0.1.0 documentation" href="../index.html" />
+ 
+<script type="text/javascript"> 
+$(document).ready(function(){
+
+$(".flip0").click(function(){
+    $(".panel0").slideToggle("normal");
+  });
+
+$(".flip1").click(function(){
+    $(".panel1").slideToggle("normal");
+  });
+
+$(".flip2").click(function(){
+    $(".panel2").slideToggle("normal");
+  });
+
+$(".flip3").click(function(){
+    $(".panel3").slideToggle("normal");
+  });
+
+$(".flip4").click(function(){
+    $(".panel4").slideToggle("normal");
+  });
+
+$(".flip5").click(function(){
+    $(".panel5").slideToggle("normal");
+  });
+
+$(".flip6").click(function(){
+    $(".panel6").slideToggle("normal");
+  });
+
+$(".flip7").click(function(){
+    $(".panel7").slideToggle("normal");
+  });
+
+$(".flip8").click(function(){
+    $(".panel8").slideToggle("normal");
+  });
+
+$(".flip9").click(function(){
+    $(".panel9").slideToggle("normal");
+  });
+
+});
+</script>
+ 
+<style type="text/css"> 
+
+div.panel0,p.flip0
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip0
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel0
+{
+display:none;
+}
+
+div.panel1,p.flip1
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip1
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel1
+{
+display:none;
+}
+
+div.panel2,p.flip2
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip2
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel2
+{
+display:none;
+}
+
+div.panel3,p.flip3
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip3
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel3
+{
+display:none;
+}
+
+div.panel4,p.flip4
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip4
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel4
+{
+display:none;
+}
+
+div.panel5,p.flip5
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip5
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel5
+{
+display:none;
+}
+
+div.panel6,p.flip6
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip6
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel6
+{
+display:none;
+}
+
+div.panel7,p.flip7
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip7
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel7
+{
+display:none;
+}
+
+div.panel8,p.flip8
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip8
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel8
+{
+display:none;
+}
+
+div.panel9,p.flip9
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip9
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel9
+{
+display:none;
+}
+
+</style>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-27427631-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Metropolis-Hastings algorithm</a><ul>
+<li><a class="reference internal" href="#salpeter-likelihood-function">Salpeter likelihood function</a></li>
+<li><a class="reference internal" href="#problems-of-monte-carlo-sampling">Problems of Monte-Carlo sampling</a></li>
+<li><a class="reference internal" href="#solution-markov-chain-monte-carlo-mcmc-sampling">Solution: Markov-chain Monte-Carlo (MCMC) sampling</a></li>
+</ul>
+</li>
+</ul>
+
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/fitting_data/Metropolis-Hastings.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="metropolis-hastings-algorithm">
+<h1>Metropolis-Hastings algorithm<a class="headerlink" href="#metropolis-hastings-algorithm" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="salpeter-likelihood-function">
+<h2>Salpeter likelihood function<a class="headerlink" href="#salpeter-likelihood-function" title="Permalink to this headline">¶</a></h2>
+<p>We just saw that Monte-Carlo methods can draw samples from any probability distribution. In the former case, that probability distribution was the Salpeter mass function, from which we sampled stellar masses.</p>
+<p>Now, our goal is to learn the probability distribution of <img class="math" src="../_images/math/10f32377ac67d94f764f12a15ea987e88c85d3e1.png" alt="\alpha"/>, given some data (the posterior probability). In fact, we are happy to only infer the likelihood function here. Unfortunately, this now requires some math.</p>
+<p>We assume that we are given <img class="math" src="../_images/math/fc97ef67268cd4e91bacdf12b8901d7036c9a056.png" alt="N"/> i.i.d. samples of stellar masses (with negligible errors on the measurements). In that case, the likelihood of the problem is</p>
+<blockquote>
+<div><img class="math" src="../_images/math/a5f226b9efa4d7410668183198c2c345bd2cdf0f.png" alt="\mathcal L(\{M_1,M_2,\ldots,M_N\};\alpha) = \prod_{n=1}^N p(M_n|\theta) = \prod_{n=1}^N c\left(\frac{M_n}{M_\odot}\right)^{-\alpha}"/></div></blockquote>
+<p>Furthermore, we assume that we are given an observation interval <img class="math" src="../_images/math/d6a9565da48127fac6fab0930596ec429064fe61.png" alt="[M_{min},M_{max}]"/> of stellar masses. (Infering that interval for observational data is a complicated astronomical problem.) Then, we can evaluate the normalisation constant,</p>
+<blockquote>
+<div><img class="math" src="../_images/math/ec71701b95eef73263d025b6f970576c42596547.png" alt="\int_{M_{min}}^{M_{max}}dM c M^{-\alpha} = c\frac{M_{max}^{1-\alpha}-M_{min}^{1-\alpha}}{1-\alpha}=1"/></div></blockquote>
+<p>This enables us to solve for <img class="math" src="../_images/math/3372c1cb6d68cf97c2d231acc0b47b95a9ed04cc.png" alt="c"/>, if we want to.</p>
+<p>Instead of <img class="math" src="../_images/math/7f101c08b0c758b6b4fe1da0057539cc02829abe.png" alt="\mathcal L"/>, once usually considers <img class="math" src="../_images/math/e72de59e7c250ded010ed2332a2c054fdc0ca374.png" alt="\log\mathcal L"/>, which is numerically more stable and usually also simplifies the math,</p>
+<blockquote>
+<div><img class="math" src="../_images/math/70948908395522f846de8f7a4c8d539abc5f8ed3.png" alt="\log\mathcal L(\{M_1,M_2,\ldots,M_N\};\alpha) = N\log c -\alpha \sum_{n=1}^N \log\left(\frac{M_n}{M_\odot}\right)"/>
+<img class="math" src="../_images/math/1ad8acb0bf3575dd875a915740c21b8bf985c8fc.png" alt="\phantom{\log\mathcal L(\{M_1,M_2,\ldots,M_N\};\alpha)}= N\log\left(\frac{1-\alpha}{M_{max}^{1-\alpha}-M_{min}^{1-\alpha}}\right)-\alpha \sum_{n=1}^N \log\left(\frac{M_n}{M_\odot}\right)"/></div></blockquote>
+<p>There are two important things to note carefully about this log-likelihood function:</p>
+<ul class="simple">
+<li>It is not a least-squares problem.</li>
+<li>The data only enters via <img class="math" src="../_images/math/975f41feb10e073821a1cfe25b588fd86478b101.png" alt="D=\sum_{n=1}^N \log\left(\frac{M_n}{M_\odot}\right)"/>, which is completely independent of the fit parameter <img class="math" src="../_images/math/10f32377ac67d94f764f12a15ea987e88c85d3e1.png" alt="\alpha"/> and can be computed once at beginning. Therefore, handling huge datasets such as a Gaia catalogue is no problem at all!</li>
+</ul>
+</div>
+<div class="section" id="problems-of-monte-carlo-sampling">
+<h2>Problems of Monte-Carlo sampling<a class="headerlink" href="#problems-of-monte-carlo-sampling" title="Permalink to this headline">¶</a></h2>
+<p>If we were to plot <img class="math" src="../_images/math/049e688a9171630aeea67158a04c95758a3187e6.png" alt="\log\mathcal L(\{M_1,M_2,\ldots,M_N\};\alpha)"/> as a function of <img class="math" src="../_images/math/10f32377ac67d94f764f12a15ea987e88c85d3e1.png" alt="\alpha"/>, we would realise that it has a single extremely sharp peak.</p>
+<p>This is a huge problem for Monte-Carlo sampling, because the likelihood is essentially zero everywhere, except at this single sharp peak. The chance that our proposal distribution hits a value at this peak tends towards zero. Consequently, we cannot estimate <img class="math" src="../_images/math/10f32377ac67d94f764f12a15ea987e88c85d3e1.png" alt="\alpha"/> by drawing Monte-Carlo samples from <img class="math" src="../_images/math/049e688a9171630aeea67158a04c95758a3187e6.png" alt="\log\mathcal L(\{M_1,M_2,\ldots,M_N\};\alpha)"/>.</p>
+<p>In general, there is also an even more severe problem: Monte-Carlo methods such as the one we discussed before only work in one dimension. If we have more than one fit parameter, i.e., if we need to draw samples from PDFs over high-dimensional parameter spaces, these Monte-Carlo methods quickly become computationally infeasible. (See Sect. 29.3 in <a class="reference external" href="http://www.inference.phy.cam.ac.uk/mackay/itila/book.html">MacKay&#8217;s ITILA</a> for a runtime analysis.)</p>
+</div>
+<div class="section" id="solution-markov-chain-monte-carlo-mcmc-sampling">
+<h2>Solution: Markov-chain Monte-Carlo (MCMC) sampling<a class="headerlink" href="#solution-markov-chain-monte-carlo-mcmc-sampling" title="Permalink to this headline">¶</a></h2>
+<p>The solution to both problems is MCMC. We provide a first value - an initial guess - and then look for better values in a Monte-Carlo fashion.</p>
+<p>There are numerous MCMC algorithms. For the moment, we only consider the Metropolis-Hastings algorithm, which is the simplest type of MCMC.</p>
+<p>We continue the previous code that drew samples from the Salpeter SMF and start implementation with the definition of the log-likelihood function and the toy data:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">evaluateLogLikelihood</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">M_min</span><span class="p">,</span> <span class="n">M_max</span><span class="p">):</span>
+      <span class="c"># Compute normalisation constant.</span>
+      <span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">M_max</span><span class="p">,</span> <span class="mf">1.0</span><span class="o">-</span><span class="n">alpha</span><span class="p">)</span> <span class="o">-</span> <span class="n">math</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">M_min</span><span class="p">,</span> <span class="mf">1.0</span><span class="o">-</span><span class="n">alpha</span><span class="p">))</span>
+      <span class="c"># return log likelihood.</span>
+      <span class="k">return</span> <span class="n">N</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">-</span> <span class="n">alpha</span><span class="o">*</span><span class="n">D</span>
+
+<span class="c"># Generate toy data.</span>
+<span class="n">N</span>      <span class="o">=</span> <span class="mi">1000000</span>  <span class="c"># Draw 1 Million stellar masses.</span>
+<span class="n">alpha</span>  <span class="o">=</span> <span class="mf">2.35</span>
+<span class="n">M_min</span>  <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">M_max</span>  <span class="o">=</span> <span class="mf">100.0</span>
+<span class="n">Masses</span> <span class="o">=</span> <span class="n">sampleFromSalpeter</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">M_min</span><span class="p">,</span> <span class="n">M_max</span><span class="p">)</span>
+<span class="n">LogM</span>   <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Masses</span><span class="p">))</span>
+<span class="n">D</span>      <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">LogM</span><span class="p">)</span><span class="o">*</span><span class="n">N</span>
+</pre></div>
+</div>
+<p>Now follows the actual Metropolis-Hastings algorithm:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># initial guess for alpha.</span>
+<span class="n">guess</span> <span class="o">=</span> <span class="mf">3.0</span>
+<span class="c"># Prepare storing MCMC chain.</span>
+<span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="n">guess</span><span class="p">]</span>
+<span class="c"># define stepsize of MCMC.</span>
+<span class="n">stepsize</span> <span class="o">=</span> <span class="mf">0.005</span>
+<span class="n">accepted</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+<span class="c"># Metropolis-Hastings with 10,000 iterations.</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10000</span><span class="p">):</span>
+        <span class="n">old_alpha</span>  <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">old_loglik</span> <span class="o">=</span> <span class="n">evaluateLogLikelihood</span><span class="p">(</span><span class="n">old_alpha</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">M_min</span><span class="p">,</span> <span class="n">M_max</span><span class="p">)</span>
+        <span class="c"># Suggest new candidate from Gaussian proposal distribution.</span>
+        <span class="n">new_alpha</span>  <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">gauss</span><span class="p">(</span><span class="n">old_alpha</span><span class="p">,</span> <span class="n">stepsize</span><span class="p">)</span>
+        <span class="n">new_loglik</span> <span class="o">=</span> <span class="n">evaluateLogLikelihood</span><span class="p">(</span><span class="n">new_alpha</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">M_min</span><span class="p">,</span> <span class="n">M_max</span><span class="p">)</span>
+        <span class="c"># Accept new candidate in Monte-Carlo fashing.</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">new_loglik</span> <span class="o">&gt;</span> <span class="n">old_loglik</span><span class="p">):</span>
+                <span class="n">A</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_alpha</span><span class="p">)</span>
+                <span class="n">accepted</span> <span class="o">=</span> <span class="n">accepted</span> <span class="o">+</span> <span class="mf">1.0</span>
+        <span class="k">else</span><span class="p">:</span>
+                <span class="n">u</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">u</span> <span class="o">&lt;</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">new_loglik</span> <span class="o">-</span> <span class="n">old_loglik</span><span class="p">)):</span>
+                        <span class="n">A</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_alpha</span><span class="p">)</span>
+                        <span class="n">accepted</span> <span class="o">=</span> <span class="n">accepted</span> <span class="o">+</span> <span class="mf">1.0</span>
+                <span class="k">else</span><span class="p">:</span>
+                        <span class="n">A</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">old_alpha</span><span class="p">)</span>
+
+<span class="k">print</span> <span class="s">&quot;Acceptance rate = &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">accepted</span><span class="o">/</span><span class="mf">10000.0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Finally, we discard the burn-in phase, thin out the Markov chain in order to reduce autocorrelations, and plot the result:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># Discard first half of MCMC chain and thin out the rest.</span>
+<span class="n">Clean</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5000</span><span class="p">,</span><span class="mi">10000</span><span class="p">):</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">%</span> <span class="mi">10</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+                <span class="n">Clean</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">n</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">Clean</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s">&#39;step&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([</span><span class="mf">2.346</span><span class="p">,</span><span class="mf">2.348</span><span class="p">,</span><span class="mf">2.35</span><span class="p">,</span><span class="mf">2.352</span><span class="p">,</span><span class="mf">2.354</span><span class="p">],[</span><span class="mf">2.346</span><span class="p">,</span><span class="mf">2.348</span><span class="p">,</span><span class="mf">2.35</span><span class="p">,</span><span class="mf">2.352</span><span class="p">,</span><span class="mf">2.354</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mf">2.345</span><span class="p">,</span><span class="mf">2.355</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">r&#39;$\alpha$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">r&#39;$\cal L($Data$;\alpha)$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">&#39;example-MCMC-results.png&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/example-MCMC-results.png" src="../_images/example-MCMC-results.png" />
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright .
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>
