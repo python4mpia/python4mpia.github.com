@@ -27,7 +27,7 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title=" 0.1.0 documentation" href="../index.html" />
     <link rel="up" title="Fitting data with Python" href="fitting_data.html" />
-    <link rel="next" title="Convexity of the Salpeter problem" href="convex-Salpeter-problem.html" />
+    <link rel="next" title="Additional material: Convexity of the Salpeter problem" href="convex-Salpeter-problem.html" />
     <link rel="prev" title="Metropolis-Hastings algorithm" href="Metropolis-Hastings.html" />
  
 <script type="text/javascript"> 
@@ -282,7 +282,7 @@ display:none;
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="convex-Salpeter-problem.html" title="Convexity of the Salpeter problem"
+          <a href="convex-Salpeter-problem.html" title="Additional material: Convexity of the Salpeter problem"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="Metropolis-Hastings.html" title="Metropolis-Hastings algorithm"
@@ -307,7 +307,7 @@ display:none;
                         title="previous chapter">Metropolis-Hastings algorithm</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="convex-Salpeter-problem.html"
-                        title="next chapter">Convexity of the Salpeter problem</a></p>
+                        title="next chapter">Additional material: Convexity of the Salpeter problem</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="../_sources/fitting_data/Hamiltonian-MCMC.txt"
@@ -344,6 +344,7 @@ display:none;
 <li>Is the stepsize too small, all candidates are accepted and we have a random walk going nowhere.</li>
 </ul>
 <p>Obviously, the stepsize needs to be chosen very carefully in order to make the algorithm efficient.</p>
+<p>In particular, we must not change the stepsizes while running the Metropolis-Hastings algorithm. This would violate &#8220;detailed balance&#8221; and thus destroy the Markov property (density no longer proportional to likelihood).</p>
 <p>If we have many fit parameters, every single one will have its own stepsize that needs to be fine tuned. This can become a cumbersome task.</p>
 <p>Therefore, other MCMC algorithms have been developed, which either tune the stepsizes automatically (e.g. slice sampling) or do not have any stepsizes at all (e.g. Gibbs sampling).</p>
 <p>Let us now consider Hamiltonian Monte-Carlo, which still involves a single stepsize but improves efficiency by making use of gradients of the objective function and &#8216;&#8217;Hamiltonian dynamics&#8217;&#8216;.</p>
@@ -353,14 +354,16 @@ display:none;
 <p>First, we need to compute the gradient of our objective function, i.e., of the log-likelihood:</p>
 <blockquote>
 <div><img class="math" src="../_images/math/fc924d6fcc5cbdaf9cfbd3458de18460079ccae4.png" alt="\frac{\partial\log\mathcal L}{\partial\alpha} = -D-\frac{N}{1-\alpha}\left[1 + \frac{1-\alpha}{M_{max}^{1-\alpha}-M_{min}^{1-\alpha}}\left(M_{min}^{1-\alpha}\log M_{min}-M_{max}^{1-\alpha}\log M_{max}\right)\right]"/></div></blockquote>
-<p>In Python:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="c"># Define gradient of log-likelihood.</span>
-<span class="k">def</span> <span class="nf">evaluateGradient</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">M_min</span><span class="p">,</span> <span class="n">M_max</span><span class="p">,</span> <span class="n">log_M_min</span><span class="p">,</span> <span class="n">log_M_max</span><span class="p">):</span>
-        <span class="n">grad</span> <span class="o">=</span> <span class="n">log_M_min</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">M_min</span><span class="p">,</span> <span class="mf">1.0</span><span class="o">-</span><span class="n">alpha</span><span class="p">)</span> <span class="o">-</span> <span class="n">log_M_max</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">M_max</span><span class="p">,</span> <span class="mf">1.0</span><span class="o">-</span><span class="n">alpha</span><span class="p">)</span>
-        <span class="n">grad</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">+</span> <span class="n">grad</span><span class="o">*</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">M_max</span><span class="p">,</span> <span class="mf">1.0</span><span class="o">-</span><span class="n">alpha</span><span class="p">)</span> <span class="o">-</span> <span class="n">math</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">M_min</span><span class="p">,</span> <span class="mf">1.0</span><span class="o">-</span><span class="n">alpha</span><span class="p">))</span>
-        <span class="n">grad</span> <span class="o">=</span> <span class="o">-</span><span class="n">D</span> <span class="o">-</span> <span class="n">N</span><span class="o">*</span><span class="n">grad</span><span class="o">/</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">gradient</span>
-</pre></div>
+<p>The gradient in Python:</p>
+<div class="highlight-python"><pre># Define gradient of log-likelihood.
+def evaluateGradient(params, D, N, M_min, M_max, log_M_min, log_M_max):
+    alpha = params[0]  # extract alpha
+    grad = logMmin*math.pow(M_min, 1.0-alpha)
+            - logMmax*math.pow(M_max, 1.0-alpha)
+    grad = 1.0 + grad*(1.0 - alpha)/(math.pow(M_max, 1.0-alpha)
+            - math.pow(M_min, 1.0-alpha))
+    grad = -D - N*grad/(1.0 - alpha)
+    return numpy.array(grad)</pre>
 </div>
 <p>Hamiltonian Monte-Carlo makes use of the fact, that we can write our likelihood as</p>
 <blockquote>
@@ -368,69 +371,87 @@ display:none;
 <p>where <img class="math" src="../_images/math/fd4debddb7c2f9bced5c90ac033ef9b5ec282342.png" alt="E=-\log\mathcal L"/> is the &#8216;&#8217;energy&#8217;&#8216;. The algorithm then uses Hamiltonian dynamics to modify the way how candidates are proposed:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">log_M_min</span>  <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
 <span class="n">log_M_max</span>  <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">100.0</span><span class="p">)</span>
-<span class="c"># initial guess for alpha.</span>
-<span class="n">guess</span> <span class="o">=</span> <span class="mf">3.0</span>
+<span class="c"># Initial guess for alpha as array.</span>
+<span class="n">guess</span> <span class="o">=</span> <span class="p">[</span><span class="mf">3.0</span><span class="p">]</span>
 <span class="c"># Prepare storing MCMC chain.</span>
 <span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="n">guess</span><span class="p">]</span>
 <span class="c"># define stepsize of MCMC.</span>
-<span class="n">stepsize</span> <span class="o">=</span> <span class="mf">0.00023</span>
+<span class="n">stepsize</span> <span class="o">=</span> <span class="mf">0.000047</span>
 <span class="n">accepted</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+<span class="kn">import</span> <span class="nn">copy</span>
 
 <span class="c"># Hamiltonian Monte-Carlo.</span>
 <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10000</span><span class="p">):</span>
-        <span class="n">old_alpha</span>  <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-        <span class="c"># Remember, energy = -loglik</span>
-        <span class="n">old_energy</span> <span class="o">=</span> <span class="o">-</span><span class="n">evaluateLogLikelihood</span><span class="p">(</span><span class="n">old_alpha</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">M_min</span><span class="p">,</span> <span class="n">M_max</span><span class="p">)</span>
-        <span class="n">old_grad</span>   <span class="o">=</span> <span class="o">-</span><span class="n">evaluateGradient</span><span class="p">(</span><span class="n">old_alpha</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">M_min</span><span class="p">,</span> <span class="n">M_max</span><span class="p">,</span> <span class="n">log_M_min</span><span class="p">,</span> <span class="n">log_M_max</span><span class="p">)</span>
+    <span class="n">old_alpha</span>  <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="c"># Remember, energy = -loglik</span>
+    <span class="n">old_energy</span> <span class="o">=</span> <span class="o">-</span><span class="n">evaluateLogLikelihood</span><span class="p">(</span><span class="n">old_alpha</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">M_min</span><span class="p">,</span>
+                      <span class="n">M_max</span><span class="p">)</span>
+    <span class="n">old_grad</span>   <span class="o">=</span> <span class="o">-</span><span class="n">evaluateGradient</span><span class="p">(</span><span class="n">old_alpha</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">M_min</span><span class="p">,</span>
+                      <span class="n">M_max</span><span class="p">,</span> <span class="n">log_M_min</span><span class="p">,</span> <span class="n">log_M_max</span><span class="p">)</span>
 
-        <span class="n">new_alpha</span> <span class="o">=</span> <span class="n">old_alpha</span>
-        <span class="n">new_grad</span>  <span class="o">=</span> <span class="n">old_grad</span>
-        <span class="c"># Suggest new candidate using gradient and Hamiltonian dynamics.</span>
-        <span class="n">p</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">gauss</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>  <span class="c"># draw random momentum vector from unit Gaussian.</span>
-        <span class="n">H</span> <span class="o">=</span> <span class="n">p</span><span class="o">*</span><span class="n">p</span><span class="o">/</span><span class="mf">2.0</span> <span class="o">+</span> <span class="n">old_energy</span>    <span class="c"># compute Hamiltonian</span>
+    <span class="n">new_alpha</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">old_alpha</span><span class="p">)</span>  <span class="c"># deep copy of array</span>
+    <span class="n">new_grad</span>  <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">old_grad</span><span class="p">)</span>   <span class="c"># deep copy of array</span>
+    <span class="c"># Suggest new candidate using gradient + Hamiltonian dynamics.</span>
+    <span class="c"># draw random momentum vector from unit Gaussian.</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">gauss</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+    <span class="n">H</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">p</span><span class="p">)</span><span class="o">/</span><span class="mf">2.0</span> <span class="o">+</span> <span class="n">old_energy</span>    <span class="c"># compute Hamiltonian</span>
 
-        <span class="c"># Leapfrog step.</span>
-        <span class="n">p</span>         <span class="o">=</span> <span class="n">p</span> <span class="o">-</span> <span class="n">stepsize</span><span class="o">*</span><span class="n">new_grad</span><span class="o">/</span><span class="mf">2.0</span>  <span class="c"># make half step in p</span>
-        <span class="n">new_alpha</span> <span class="o">=</span> <span class="n">new_alpha</span> <span class="o">+</span> <span class="n">stepsize</span><span class="o">*</span><span class="n">p</span>  <span class="c"># make full step in alpha</span>
-        <span class="n">new_grad</span>  <span class="o">=</span> <span class="o">-</span><span class="n">evaluateGradient</span><span class="p">(</span><span class="n">old_alpha</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">M_min</span><span class="p">,</span> <span class="n">M_max</span><span class="p">,</span> <span class="n">log_M_min</span><span class="p">,</span> <span class="n">log_M_max</span><span class="p">)</span>
-        <span class="n">p</span>         <span class="o">=</span> <span class="n">p</span> <span class="o">-</span> <span class="n">stepsize</span><span class="o">*</span><span class="n">new_grad</span><span class="o">/</span><span class="mf">2.0</span>  <span class="c"># make half step in p</span>
+    <span class="c"># Do 5 Leapfrog steps.</span>
+    <span class="k">for</span> <span class="n">tau</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+        <span class="c"># make half step in p</span>
+        <span class="n">p</span>         <span class="o">=</span> <span class="n">p</span> <span class="o">-</span> <span class="n">stepsize</span><span class="o">*</span><span class="n">new_grad</span><span class="o">/</span><span class="mf">2.0</span>
+        <span class="c"># make full step in alpha</span>
+        <span class="n">new_alpha</span> <span class="o">=</span> <span class="n">new_alpha</span> <span class="o">+</span> <span class="n">stepsize</span><span class="o">*</span><span class="n">p</span>
+        <span class="c"># compute new gradient</span>
+        <span class="n">new_grad</span>  <span class="o">=</span> <span class="o">-</span><span class="n">evaluateGradient</span><span class="p">(</span><span class="n">old_alpha</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">M_min</span><span class="p">,</span>
+                         <span class="n">M_max</span><span class="p">,</span> <span class="n">log_M_min</span><span class="p">,</span> <span class="n">log_M_max</span><span class="p">)</span>
+        <span class="c"># make half step in p</span>
+        <span class="n">p</span>         <span class="o">=</span> <span class="n">p</span> <span class="o">-</span> <span class="n">stepsize</span><span class="o">*</span><span class="n">new_grad</span><span class="o">/</span><span class="mf">2.0</span>
 
-        <span class="c"># Compute new Hamiltonian.</span>
-        <span class="n">new_energy</span> <span class="o">=</span> <span class="o">-</span><span class="n">evaluateLogLikelihood</span><span class="p">(</span><span class="n">new_alpha</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">M_min</span><span class="p">,</span> <span class="n">M_max</span><span class="p">)</span>
-        <span class="n">newH</span>       <span class="o">=</span> <span class="n">p</span><span class="o">*</span><span class="n">p</span><span class="o">/</span><span class="mf">2.0</span> <span class="o">+</span> <span class="n">new_energy</span>
-        <span class="n">dH</span>         <span class="o">=</span> <span class="n">newH</span> <span class="o">-</span> <span class="n">H</span>
+    <span class="c"># Compute new Hamiltonian. Remember, energy = -loglik.</span>
+    <span class="n">new_energy</span> <span class="o">=</span> <span class="o">-</span><span class="n">evaluateLogLikelihood</span><span class="p">(</span><span class="n">new_alpha</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">M_min</span><span class="p">,</span>
+                     <span class="n">M_max</span><span class="p">)</span>
+    <span class="n">newH</span>       <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">p</span><span class="p">)</span><span class="o">/</span><span class="mf">2.0</span> <span class="o">+</span> <span class="n">new_energy</span>
+    <span class="n">dH</span>         <span class="o">=</span> <span class="n">newH</span> <span class="o">-</span> <span class="n">H</span>
 
-        <span class="c"># Accept new candidate in Monte-Carlo fashing.</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">dH</span> <span class="o">&lt;</span> <span class="mf">0.0</span><span class="p">):</span>
-                <span class="n">A</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_alpha</span><span class="p">)</span>
-                <span class="n">accepted</span> <span class="o">=</span> <span class="n">accepted</span> <span class="o">+</span> <span class="mf">1.0</span>
+    <span class="c"># Accept new candidate in Monte-Carlo fashion.</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">dH</span> <span class="o">&lt;</span> <span class="mf">0.0</span><span class="p">):</span>
+        <span class="n">A</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_alpha</span><span class="p">)</span>
+        <span class="n">accepted</span> <span class="o">=</span> <span class="n">accepted</span> <span class="o">+</span> <span class="mf">1.0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">u</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">u</span> <span class="o">&lt;</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">dH</span><span class="p">)):</span>
+            <span class="n">A</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_alpha</span><span class="p">)</span>
+            <span class="n">accepted</span> <span class="o">=</span> <span class="n">accepted</span> <span class="o">+</span> <span class="mf">1.0</span>
         <span class="k">else</span><span class="p">:</span>
-                <span class="n">u</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)</span>
-                <span class="k">if</span> <span class="p">(</span><span class="n">u</span> <span class="o">&lt;</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">dH</span><span class="p">)):</span>
-                        <span class="n">A</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_alpha</span><span class="p">)</span>
-                        <span class="n">accepted</span> <span class="o">=</span> <span class="n">accepted</span> <span class="o">+</span> <span class="mf">1.0</span>
-                <span class="k">else</span><span class="p">:</span>
-                        <span class="n">A</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">old_alpha</span><span class="p">)</span>
+            <span class="n">A</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">old_alpha</span><span class="p">)</span>
 
-<span class="k">print</span> <span class="s">&quot;Acceptance rate = &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">accepted</span><span class="o">/</span><span class="mf">10000.0</span><span class="p">)</span>
-
-
-<span class="c"># Discard first half of MCMC chain and thin out the rest.</span>
+<span class="k">print</span> <span class="s">&quot;Acceptance rate = &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">accepted</span><span class="o">/</span><span class="nb">float</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)))</span>
+</pre></div>
+</div>
+<p>Plot the results:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># Discard first half of MCMC chain and thin out the rest.</span>
 <span class="n">Clean</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5000</span><span class="p">,</span><span class="mi">10000</span><span class="p">):</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">%</span> <span class="mi">10</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
-                <span class="n">Clean</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">n</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">%</span> <span class="mi">10</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="n">Clean</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="c"># Print Monte-Carlo estimate of alpha.</span>
+<span class="k">print</span> <span class="s">&quot;Mean:  &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">Clean</span><span class="p">))</span>
+<span class="k">print</span> <span class="s">&quot;Sigma: &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">Clean</span><span class="p">))</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">Clean</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s">&#39;step&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([</span><span class="mf">2.346</span><span class="p">,</span><span class="mf">2.348</span><span class="p">,</span><span class="mf">2.35</span><span class="p">,</span><span class="mf">2.352</span><span class="p">,</span><span class="mf">2.354</span><span class="p">],[</span><span class="mf">2.346</span><span class="p">,</span><span class="mf">2.348</span><span class="p">,</span><span class="mf">2.35</span><span class="p">,</span><span class="mf">2.352</span><span class="p">,</span><span class="mf">2.354</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([</span><span class="mf">2.346</span><span class="p">,</span><span class="mf">2.348</span><span class="p">,</span><span class="mf">2.35</span><span class="p">,</span><span class="mf">2.352</span><span class="p">,</span><span class="mf">2.354</span><span class="p">],</span>
+           <span class="p">[</span><span class="mf">2.346</span><span class="p">,</span><span class="mf">2.348</span><span class="p">,</span><span class="mf">2.35</span><span class="p">,</span><span class="mf">2.352</span><span class="p">,</span><span class="mf">2.354</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mf">2.345</span><span class="p">,</span><span class="mf">2.355</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">r&#39;$\alpha$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">r&#39;$\cal L($Data$;\alpha)$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">&#39;example-HamiltonianMC-results.png&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Here is the resulting estimate of <img class="math" src="../_images/math/10f32377ac67d94f764f12a15ea987e88c85d3e1.png" alt="\alpha"/>:</p>
+<p>The true value we used to generate the data was <img class="math" src="../_images/math/6d47583b7fe5918ceb46d4f86ad58d33bd1a31b2.png" alt="\alpha=2.35"/>. The Monte-Carlo estimate is <img class="math" src="../_images/math/f442ed8a92fc63cff9ec326210aefb6771482f86.png" alt="\hat\alpha=2.3507\pm 0.0014"/>. Here is the estimated likelihood of <img class="math" src="../_images/math/10f32377ac67d94f764f12a15ea987e88c85d3e1.png" alt="\alpha"/>.</p>
 <img alt="../_images/example-HamiltonianMC-results.png" src="../_images/example-HamiltonianMC-results.png" />
 </div>
 </div>
@@ -448,7 +469,7 @@ display:none;
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="convex-Salpeter-problem.html" title="Convexity of the Salpeter problem"
+          <a href="convex-Salpeter-problem.html" title="Additional material: Convexity of the Salpeter problem"
              >next</a> |</li>
         <li class="right" >
           <a href="Metropolis-Hastings.html" title="Metropolis-Hastings algorithm"

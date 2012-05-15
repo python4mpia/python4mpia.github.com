@@ -26,7 +26,7 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title=" 0.1.0 documentation" href="../index.html" />
-    <link rel="next" title="Least-squares fitting in Python" href="least-squares-fitting.html" />
+    <link rel="next" title="Introduction" href="introduction.html" />
     <link rel="prev" title="Object Oriented Programming in Python" href="../object_orientation/index.html" />
  
 <script type="text/javascript"> 
@@ -281,7 +281,7 @@ display:none;
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="least-squares-fitting.html" title="Least-squares fitting in Python"
+          <a href="introduction.html" title="Introduction"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="../object_orientation/index.html" title="Object Oriented Programming in Python"
@@ -305,8 +305,8 @@ display:none;
   <p class="topless"><a href="../object_orientation/index.html"
                         title="previous chapter">Object Oriented Programming in Python</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="least-squares-fitting.html"
-                        title="next chapter">Least-squares fitting in Python</a></p>
+  <p class="topless"><a href="introduction.html"
+                        title="next chapter">Introduction</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="../_sources/fitting_data/fitting_data.txt"
@@ -339,6 +339,7 @@ display:none;
 <ul class="simple">
 <li>fitting some spectrum/spectral line</li>
 <li>fitting 2D light distribution of a galaxy</li>
+<li>fitting orbits of exoplanets</li>
 <li>estimating the stellar IMF from a set of observed masses</li>
 <li>estimating the galaxy luminosity function from data</li>
 <li>...</li>
@@ -348,11 +349,9 @@ display:none;
 <div class="section" id="goals-of-this-session">
 <h2>Goals of this session<a class="headerlink" href="#goals-of-this-session" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>This is a Python tutorial but some statistics is inevitable!</li>
+<li>This is a Python tutorial but some statistics are inevitable!</li>
 <li>How to use implemented routines: <cite>leastsq</cite>, <cite>curve_fit</cite> and Simplex.</li>
-<li>Some gradient methods.</li>
 <li>Astrophysical example: Salpeter mass function.</li>
-<li>Monte-Carlo sampling from probability distributions.</li>
 <li>Metropolis-Hastings MCMC.</li>
 <li>Hamiltonian Monte-Carlo.</li>
 </ul>
@@ -360,14 +359,15 @@ display:none;
 <p><strong>Agenda</strong></p>
 <div class="toctree-wrapper compound">
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="least-squares-fitting.html">Least-squares fitting in Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="simplex-fitting.html">Simplex algorithm</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gradient-methods.html">Gradient methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gradient-methods.html">Additional material: Gradient methods</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Salpeter-background.html">Example: Salpeter stellar mass function</a></li>
-<li class="toctree-l1"><a class="reference internal" href="MC-sampling-from-Salpeter.html">Monte-Carlo sampling from Salpeter SMF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MC-sampling-from-Salpeter.html">Additional material: Monte-Carlo sampling from Salpeter SMF</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Metropolis-Hastings.html">Metropolis-Hastings algorithm</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Hamiltonian-MCMC.html">Hamiltonian Monte-Carlo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="convex-Salpeter-problem.html">Convexity of the Salpeter problem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="convex-Salpeter-problem.html">Additional material: Convexity of the Salpeter problem</a></li>
 <li class="toctree-l1"><a class="reference internal" href="summary.html">Summary</a></li>
 </ul>
 </div>
@@ -397,7 +397,7 @@ display:none;
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="least-squares-fitting.html" title="Least-squares fitting in Python"
+          <a href="introduction.html" title="Introduction"
              >next</a> |</li>
         <li class="right" >
           <a href="../object_orientation/index.html" title="Object Oriented Programming in Python"

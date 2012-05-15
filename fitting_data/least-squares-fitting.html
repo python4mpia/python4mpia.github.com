@@ -28,7 +28,7 @@
     <link rel="top" title=" 0.1.0 documentation" href="../index.html" />
     <link rel="up" title="Fitting data with Python" href="fitting_data.html" />
     <link rel="next" title="Simplex algorithm" href="simplex-fitting.html" />
-    <link rel="prev" title="Fitting data with Python" href="fitting_data.html" />
+    <link rel="prev" title="Introduction" href="introduction.html" />
  
 <script type="text/javascript"> 
 $(document).ready(function(){
@@ -285,7 +285,7 @@ display:none;
           <a href="simplex-fitting.html" title="Simplex algorithm"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="fitting_data.html" title="Fitting data with Python"
+          <a href="introduction.html" title="Introduction"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li>
           <li><a href="fitting_data.html" accesskey="U">Fitting data with Python</a> &raquo;</li> 
@@ -297,16 +297,16 @@ display:none;
   <ul>
 <li><a class="reference internal" href="#">Least-squares fitting in Python</a><ul>
 <li><a class="reference internal" href="#what-is-least-squares">What is least squares?</a></li>
-<li><a class="reference internal" href="#least-squares-in-scipy-i-scipy-optimize-leastsq">Least squares in Scipy I: <cite>scipy.optimize.leastsq</cite></a></li>
-<li><a class="reference internal" href="#least-squares-in-scipy-ii-scipy-optimize-curve-fit">Least squares in Scipy II: <cite>scipy.optimize.curve_fit</cite></a></li>
+<li><a class="reference internal" href="#scipy-optimize-curve-fit"><cite>scipy.optimize.curve_fit</cite></a></li>
+<li><a class="reference internal" href="#scipy-optimize-leastsq"><cite>scipy.optimize.leastsq</cite></a></li>
 <li><a class="reference internal" href="#lack-of-robustness">Lack of robustness</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="fitting_data.html"
-                        title="previous chapter">Fitting data with Python</a></p>
+  <p class="topless"><a href="introduction.html"
+                        title="previous chapter">Introduction</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="simplex-fitting.html"
                         title="next chapter">Simplex algorithm</a></p>
@@ -344,56 +344,20 @@ display:none;
 <ul class="simple">
 <li>Minimise <img class="math" src="../_images/math/00e6d1d4a24c4cf3abe4f764a33ef7bd8a433a2c.png" alt="\chi^2 = \sum_{n=1}^N \left(\frac{y_n - f(x_n)}{\sigma_n}\right)^2"/></li>
 <li>If and only if the data&#8217;s noise is Gaussian, minimising <img class="math" src="../_images/math/a61c1e51680e27d35d05bebed87d474972fc70bd.png" alt="\chi^2"/> is identical to maximising the likelihood <img class="math" src="../_images/math/03a5cf09b70bbbb3f6693dcc6ffbbf2ca84d571c.png" alt="\mathcal L\propto e^{-\chi^2/2}"/>.</li>
-<li>If data&#8217;s noise model is unknown, then minimise <img class="math" src="../_images/math/647f503cc7d84a38218958996d8cb81d4c0dd35e.png" alt="J = \sum_{n=1}^N \left(y_n - f(x_n)\right)^2"/></li>
+<li>If data&#8217;s noise model is unknown, then minimise <img class="math" src="../_images/math/d99d5a8262c8d79856115459ad8de1ce7be4c274.png" alt="J(\theta) = \sum_{n=1}^N \left[(y_n - f(x_n;\theta)\right]^2"/></li>
 <li>For non-Gaussian data noise, least squares is just a recipe (usually) without any probabilistic interpretation (no uncertainty estimates).</li>
 </ul>
 </div>
-<div class="section" id="least-squares-in-scipy-i-scipy-optimize-leastsq">
-<h2>Least squares in Scipy I: <cite>scipy.optimize.leastsq</cite><a class="headerlink" href="#least-squares-in-scipy-i-scipy-optimize-leastsq" title="Permalink to this headline">¶</a></h2>
-<p>Scipy provides a method called <cite>leastsq</cite> as part of its <cite>optimize</cite> package. However, there are tow problems:</p>
-<ul class="simple">
-<li>This method is not well documented (no easy examples).</li>
-<li>The way the function for minimisation is provided seems to allow only for linear models.</li>
-<li>Error/covariance estimates on fit parameters not straight-forward to obtain.</li>
-</ul>
-<p>Internally, <cite>leastsq</cite> uses Levenburg-Marquardt to minimise the score function.</p>
-<p>First step is to declare the function that should be minimised:</p>
+<div class="section" id="scipy-optimize-curve-fit">
+<h2><cite>scipy.optimize.curve_fit</cite><a class="headerlink" href="#scipy-optimize-curve-fit" title="Permalink to this headline">¶</a></h2>
+<p><cite>curve_fit</cite> is part of <cite>scipy.optimize</cite> and a wrapper for <cite>scipy.optimize.leastsq</cite> that overcomes its poor usability. Like <cite>leastsq</cite>, <cite>curve_fit</cite> internally uses a Levenburg-Marquardt gradient method (greedy algorithm) to minimise the objective function.</p>
+<p>Let us create some toy data:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span>
 
-<span class="c"># The function whose square is to be minimised.</span>
-<span class="c"># params ... list of parameters tuned to minimise function.</span>
-<span class="c"># Further arguments:</span>
-<span class="c"># xdata ... design matrix for a linear model.</span>
-<span class="c"># ydata ... observed data.</span>
-<span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">xdata</span><span class="p">,</span> <span class="n">ydata</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">(</span><span class="n">ydata</span> <span class="o">-</span> <span class="n">numpy</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">xdata</span><span class="p">,</span> <span class="n">params</span><span class="p">))</span>
-
-<span class="c"># Generate artificial data = straight line with a=0 and b=1 plus some noise.</span>
-<span class="n">xdata</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">],[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">3.0</span><span class="p">,</span><span class="mf">4.0</span><span class="p">,</span><span class="mf">5.0</span><span class="p">]]))</span>
+<span class="c"># Generate artificial data = straight line with a=0 and b=1</span>
+<span class="c"># plus some noise.</span>
+<span class="n">xdata</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">3.0</span><span class="p">,</span><span class="mf">4.0</span><span class="p">,</span><span class="mf">5.0</span><span class="p">])</span>
 <span class="n">ydata</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.9</span><span class="p">,</span><span class="mf">2.2</span><span class="p">,</span><span class="mf">2.8</span><span class="p">,</span><span class="mf">3.9</span><span class="p">,</span><span class="mf">5.1</span><span class="p">])</span>
-<span class="c"># Initial guess.</span>
-<span class="n">x0</span>    <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>
-</pre></div>
-</div>
-<p>Now, we can use the least-squares method:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">scipy.optimize</span> <span class="kn">as</span> <span class="nn">optimization</span>
-
-<span class="k">print</span> <span class="n">optimization</span><span class="o">.</span><span class="n">leastsq</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">xdata</span><span class="p">,</span> <span class="n">ydata</span><span class="p">),</span> <span class="n">maxfev</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>Note the <cite>args</cite> argument, which is necessary in order to pass the data to the function.</p>
-<p>This only provides the parameter estimates (a=0.02857143, b=0.98857143).</p>
-</div>
-<div class="section" id="least-squares-in-scipy-ii-scipy-optimize-curve-fit">
-<h2>Least squares in Scipy II: <cite>scipy.optimize.curve_fit</cite><a class="headerlink" href="#least-squares-in-scipy-ii-scipy-optimize-curve-fit" title="Permalink to this headline">¶</a></h2>
-<p><cite>curve_fit</cite> is also part of <cite>scipy.optimize</cite> and a wrapper for <cite>scipy.optimize.leastsq</cite> that overcomes its poor usability.</p>
-<p>For instance, the objective function is much more easily defined as the model:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">c</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">x</span>
-</pre></div>
-</div>
-<p>Furthermore, the input data does not need to be a design matrix anymore:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">xdata</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">3.0</span><span class="p">,</span><span class="mf">4.0</span><span class="p">,</span><span class="mf">5.0</span><span class="p">])</span>
 <span class="c"># Initial guess.</span>
 <span class="n">x0</span>    <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>
 </pre></div>
@@ -402,58 +366,100 @@ display:none;
 <div class="highlight-python"><div class="highlight"><pre><span class="n">sigma</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">])</span>
 </pre></div>
 </div>
+<p>The objective function is easily (but less general) defined as the model:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">c</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">x</span>
+</pre></div>
+</div>
 <p>Usage is very simple:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="k">print</span> <span class="n">optimization</span><span class="o">.</span><span class="n">curve_fit</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">xdata</span><span class="p">,</span> <span class="n">ydata</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">scipy.optimize</span> <span class="kn">as</span> <span class="nn">optimization</span>
+
+<span class="k">print</span> <span class="n">optimization</span><span class="o">.</span><span class="n">curve_fit</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">xdata</span><span class="p">,</span> <span class="n">ydata</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>This outputs the actual parameter estimate (a=0.1, b=0.88142857, c=0.02142857) and the 3x3 covariance matrix.</p>
 </div>
+<div class="section" id="scipy-optimize-leastsq">
+<h2><cite>scipy.optimize.leastsq</cite><a class="headerlink" href="#scipy-optimize-leastsq" title="Permalink to this headline">¶</a></h2>
+<p>Scipy provides a method called <cite>leastsq</cite> as part of its <cite>optimize</cite> package. However, there are tow problems:</p>
+<ul class="simple">
+<li>This method is not well documented (no easy examples).</li>
+<li>Error/covariance estimates on fit parameters not straight-forward to obtain.</li>
+</ul>
+<p>Internally, <cite>leastsq</cite> uses Levenburg-Marquardt gradient method (greedy algorithm) to minimise the score function.</p>
+<p>First step is to declare the objective function that should be minimised:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># The function whose square is to be minimised.</span>
+<span class="c"># params ... list of parameters tuned to minimise function.</span>
+<span class="c"># Further arguments:</span>
+<span class="c"># xdata ... design matrix for a linear model.</span>
+<span class="c"># ydata ... observed data.</span>
+<span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">xdata</span><span class="p">,</span> <span class="n">ydata</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">ydata</span> <span class="o">-</span> <span class="n">numpy</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">xdata</span><span class="p">,</span> <span class="n">params</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>The toy data now needs to be provided in a more complex way:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># Provide data as design matrix: straight line with a=0 and b=1 plus some noise.</span>
+<span class="n">xdata</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">],</span>
+              <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">3.0</span><span class="p">,</span><span class="mf">4.0</span><span class="p">,</span><span class="mf">5.0</span><span class="p">]]))</span>
+</pre></div>
+</div>
+<p>Now, we can use the least-squares method:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">print</span> <span class="n">optimization</span><span class="o">.</span><span class="n">leastsq</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">xdata</span><span class="p">,</span> <span class="n">ydata</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Note the <cite>args</cite> argument, which is necessary in order to pass the data to the function.</p>
+<p>This only provides the parameter estimates (a=0.02857143, b=0.98857143).</p>
+</div>
 <div class="section" id="lack-of-robustness">
 <h2>Lack of robustness<a class="headerlink" href="#lack-of-robustness" title="Permalink to this headline">¶</a></h2>
-<p>Gradient methods such as Levenburg-Marquardt used by <cite>leastsq</cite>/<cite>curve_fit</cite> simply run into the nearest local minimum.</p>
-<p>Here is a demonstration:</p>
+<p>Gradient methods such as Levenburg-Marquardt used by <cite>leastsq</cite>/<cite>curve_fit</cite> are greedy methods and simply run into the nearest local minimum.</p>
+<img alt="../_images/demo-robustness-curve-fit.png" src="../_images/demo-robustness-curve-fit.png" />
+<p>Here is the code used for this demonstration:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span><span class="o">,</span><span class="nn">math</span>
 <span class="kn">import</span> <span class="nn">scipy.optimize</span> <span class="kn">as</span> <span class="nn">optimization</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
 
 <span class="c"># Chose a model that will create bimodality.</span>
 <span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">*</span><span class="n">b</span><span class="o">*</span><span class="n">x</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">*</span><span class="n">b</span><span class="o">*</span><span class="n">x</span>  <span class="c"># Term b*b will create bimodality.</span>
 
-<span class="c"># Create toy data.</span>
+<span class="c"># Create toy data for curve_fit.</span>
 <span class="n">xdata</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">3.0</span><span class="p">,</span><span class="mf">4.0</span><span class="p">,</span><span class="mf">5.0</span><span class="p">])</span>
 <span class="n">ydata</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.9</span><span class="p">,</span><span class="mf">2.2</span><span class="p">,</span><span class="mf">2.8</span><span class="p">,</span><span class="mf">3.9</span><span class="p">,</span><span class="mf">5.1</span><span class="p">])</span>
 <span class="n">sigma</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">])</span>
 
 <span class="c"># Compute chi-square manifold.</span>
-<span class="n">Steps</span> <span class="o">=</span> <span class="mi">101</span>
-<span class="n">Chi2Manifold</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">Steps</span><span class="p">,</span><span class="n">Steps</span><span class="p">])</span>
-<span class="n">amin</span> <span class="o">=</span> <span class="o">-</span><span class="mf">7.0</span>
-<span class="n">amax</span> <span class="o">=</span> <span class="o">+</span><span class="mf">5.0</span>
-<span class="n">bmin</span> <span class="o">=</span> <span class="o">-</span><span class="mf">4.0</span>
-<span class="n">bmax</span> <span class="o">=</span> <span class="o">+</span><span class="mf">4.0</span>
+<span class="n">Steps</span> <span class="o">=</span> <span class="mi">101</span>  <span class="c"># grid size</span>
+<span class="n">Chi2Manifold</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">Steps</span><span class="p">,</span><span class="n">Steps</span><span class="p">])</span>  <span class="c"># allocate grid</span>
+<span class="n">amin</span> <span class="o">=</span> <span class="o">-</span><span class="mf">7.0</span>  <span class="c"># minimal value of a covered by grid</span>
+<span class="n">amax</span> <span class="o">=</span> <span class="o">+</span><span class="mf">5.0</span>  <span class="c"># maximal value of a covered by grid</span>
+<span class="n">bmin</span> <span class="o">=</span> <span class="o">-</span><span class="mf">4.0</span>  <span class="c"># minimal value of b covered by grid</span>
+<span class="n">bmax</span> <span class="o">=</span> <span class="o">+</span><span class="mf">4.0</span>  <span class="c"># maximal value of b covered by grid</span>
 <span class="k">for</span> <span class="n">s1</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Steps</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">s2</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Steps</span><span class="p">):</span>
+        <span class="c"># Current values of (a,b) at grid position (s1,s2).</span>
         <span class="n">a</span> <span class="o">=</span> <span class="n">amin</span> <span class="o">+</span> <span class="p">(</span><span class="n">amax</span> <span class="o">-</span> <span class="n">amin</span><span class="p">)</span><span class="o">*</span><span class="nb">float</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">Steps</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
         <span class="n">b</span> <span class="o">=</span> <span class="n">bmin</span> <span class="o">+</span> <span class="p">(</span><span class="n">bmax</span> <span class="o">-</span> <span class="n">bmin</span><span class="p">)</span><span class="o">*</span><span class="nb">float</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">Steps</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-
+        <span class="c"># Evaluate chi-squared.</span>
         <span class="n">chi2</span> <span class="o">=</span> <span class="mf">0.0</span>
         <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">xdata</span><span class="p">)):</span>
-                <span class="n">residual</span> <span class="o">=</span> <span class="p">(</span><span class="n">ydata</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">-</span> <span class="n">func</span><span class="p">(</span><span class="n">xdata</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">))</span><span class="o">/</span><span class="n">sigma</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
-                <span class="n">chi2</span> <span class="o">=</span> <span class="n">chi2</span> <span class="o">+</span> <span class="n">residual</span><span class="o">*</span><span class="n">residual</span>
-        <span class="n">Chi2Manifold</span><span class="p">[</span><span class="n">Steps</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">s2</span><span class="p">,</span><span class="n">s1</span><span class="p">]</span> <span class="o">=</span> <span class="n">chi2</span>
+            <span class="n">residual</span> <span class="o">=</span> <span class="p">(</span><span class="n">ydata</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">-</span> <span class="n">func</span><span class="p">(</span><span class="n">xdata</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">))</span><span class="o">/</span><span class="n">sigma</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+            <span class="n">chi2</span> <span class="o">=</span> <span class="n">chi2</span> <span class="o">+</span> <span class="n">residual</span><span class="o">*</span><span class="n">residual</span>
+        <span class="n">Chi2Manifold</span><span class="p">[</span><span class="n">Steps</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">s2</span><span class="p">,</span><span class="n">s1</span><span class="p">]</span> <span class="o">=</span> <span class="n">chi2</span>  <span class="c"># write result to grid.</span>
 
-
+<span class="c"># Plot grid.</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mf">4.5</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.09</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.09</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.97</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.99</span><span class="p">)</span>
 <span class="c"># Plot chi-square manifold.</span>
-<span class="n">image</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">Chi2Manifold</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">50.0</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="n">amin</span><span class="p">,</span> <span class="n">amax</span><span class="p">,</span> <span class="n">bmin</span><span class="p">,</span> <span class="n">bmax</span><span class="p">])</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">Chi2Manifold</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">50.0</span><span class="p">,</span>
+              <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="n">amin</span><span class="p">,</span> <span class="n">amax</span><span class="p">,</span> <span class="n">bmin</span><span class="p">,</span> <span class="n">bmax</span><span class="p">])</span>
 <span class="c"># Plot where curve-fit is going to for a couple of initial guesses.</span>
 <span class="k">for</span> <span class="n">a_initial</span> <span class="ow">in</span> <span class="o">-</span><span class="mf">6.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">4.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">:</span>
-        <span class="c"># Initial guess.</span>
-        <span class="n">x0</span>   <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">a_initial</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.5</span><span class="p">])</span>
-        <span class="n">xFit</span> <span class="o">=</span> <span class="n">optimization</span><span class="o">.</span><span class="n">curve_fit</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">xdata</span><span class="p">,</span> <span class="n">ydata</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">x0</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">xFit</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">x0</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">xFit</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="s">&#39;o-&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">markeredgewidth</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;orange&#39;</span><span class="p">)</span>
+    <span class="c"># Initial guess.</span>
+    <span class="n">x0</span>   <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">a_initial</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.5</span><span class="p">])</span>
+    <span class="n">xFit</span> <span class="o">=</span> <span class="n">optimization</span><span class="o">.</span><span class="n">curve_fit</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">xdata</span><span class="p">,</span> <span class="n">ydata</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">x0</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">xFit</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">x0</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">xFit</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="s">&#39;o-&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+                 <span class="n">markeredgewidth</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;orange&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>  <span class="c"># make colorbar</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">amin</span><span class="p">,</span> <span class="n">amax</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">bmin</span><span class="p">,</span> <span class="n">bmax</span><span class="p">)</span>
@@ -463,7 +469,6 @@ display:none;
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="../_images/demo-robustness-curve-fit.png" src="../_images/demo-robustness-curve-fit.png" />
 </div>
 </div>
 
@@ -483,7 +488,7 @@ display:none;
           <a href="simplex-fitting.html" title="Simplex algorithm"
              >next</a> |</li>
         <li class="right" >
-          <a href="fitting_data.html" title="Fitting data with Python"
+          <a href="introduction.html" title="Introduction"
              >previous</a> |</li>
         <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li>
           <li><a href="fitting_data.html" >Fitting data with Python</a> &raquo;</li> 

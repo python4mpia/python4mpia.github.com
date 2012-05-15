@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Gradient methods &mdash;  0.1.0 documentation</title>
+    <title>Additional material: Gradient methods &mdash;  0.1.0 documentation</title>
     
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -295,7 +295,7 @@ display:none;
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Gradient methods</a><ul>
+<li><a class="reference internal" href="#">Additional material: Gradient methods</a><ul>
 <li><a class="reference internal" href="#convex-optimisation">Convex optimisation</a></li>
 <li><a class="reference internal" href="#newton-s-method">Newton&#8217;s method</a></li>
 <li><a class="reference internal" href="#gradient-descent">Gradient descent</a></li>
@@ -336,8 +336,8 @@ display:none;
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="gradient-methods">
-<h1>Gradient methods<a class="headerlink" href="#gradient-methods" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="additional-material-gradient-methods">
+<h1>Additional material: Gradient methods<a class="headerlink" href="#additional-material-gradient-methods" title="Permalink to this headline">¶</a></h1>
 <p>As mentioned before, <cite>leastsq</cite> and thus also <cite>curve_fit</cite> from <cite>scipy.optimize</cite> employ a Levenburg-Marquardt algorithm, which is a special kind of gradient method that is very popular in astronomy (e.g. used in GalFit). There are numerous different types of gradient methods, e.g.:</p>
 <ul class="simple">
 <li>Levenburg-Marquardt</li>
@@ -347,7 +347,7 @@ display:none;
 <li>stochastic gradient ascent/descent</li>
 <li>...</li>
 </ul>
-<p>Some of these methods are implemented in Scipy.</p>
+<p>Many of these methods are implemented in Scipy, see <a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/optimize.html">here</a>.</p>
 <div class="section" id="convex-optimisation">
 <h2>Convex optimisation<a class="headerlink" href="#convex-optimisation" title="Permalink to this headline">¶</a></h2>
 <p>All gradient methods share the same implicit assumption: The objective function has a single global minimum. In other words, the likelihood function is &#8216;&#8217;convex&#8217;&#8216;. More technical: A function is convex, if and only if its Hessian (matrix of second derivatives) has negative eigenvalues everywhere.</p>
@@ -373,51 +373,55 @@ display:none;
 <div><img class="math" src="../_images/math/9e560f6f9eb6105750ea1241c41c2fc48b51d8de.png" alt="\theta_{i+1} = \theta_i - \alpha\nabla_\theta\chi^2 = \theta_i + 2\alpha\sum_{n=1}^N\frac{y_n-f(x_n)}{\sigma_n^2}\nabla_\theta f(x_n)"/></div></blockquote>
 <p>The parameter <img class="math" src="../_images/math/10f32377ac67d94f764f12a15ea987e88c85d3e1.png" alt="\alpha"/> is sometimes called &#8216;&#8217;learning rate&#8217;&#8216;, which is a fancy way of saying &#8216;&#8217;stepsize&#8217;&#8216;.</p>
 <p>Let us consider the following example:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<div class="highlight-python"><pre>import matplotlib.pyplot as plt
 
-<span class="c"># Create toy data.</span>
-<span class="n">xdata</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">3.0</span><span class="p">,</span><span class="mf">4.0</span><span class="p">,</span><span class="mf">5.0</span><span class="p">]</span>
-<span class="n">ydata</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.9</span><span class="p">,</span><span class="mf">2.2</span><span class="p">,</span><span class="mf">2.8</span><span class="p">,</span><span class="mf">3.9</span><span class="p">,</span><span class="mf">5.1</span><span class="p">]</span>
-<span class="n">sigma</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">]</span>
+# Create toy data.
+xdata = [0.0,1.0,2.0,3.0,4.0,5.0]
+ydata = [0.1,0.9,2.2,2.8,3.9,5.1]
+sigma = [1.0,1.0,1.0,1.0,1.0,1.0]
 
-<span class="c"># Initial guess and learning rate.</span>
-<span class="n">x0</span>    <span class="o">=</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">]</span>
-<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.01</span>
+# Initial guess and learning rate.
+x0    = [0.5, 1.5]
+alpha = 0.01
 
-<span class="c"># Store initial guess for plotting.</span>
-<span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="n">x0</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
-<span class="n">B</span> <span class="o">=</span> <span class="p">[</span><span class="n">x0</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+# Store initial guess for plotting.
+A = [x0[0]]
+B = [x0[1]]
 
-<span class="c"># Iteration.</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">):</span>
-        <span class="n">a</span> <span class="o">=</span> <span class="n">x0</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="n">b</span> <span class="o">=</span> <span class="n">x0</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-        <span class="c"># Compute gradients of chi2 w.r.t. a and b.</span>
-        <span class="n">grad_a</span> <span class="o">=</span> <span class="mf">0.0</span>
-        <span class="n">grad_b</span> <span class="o">=</span> <span class="mf">0.0</span>
-        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">xdata</span><span class="p">)):</span>
-                <span class="n">grad_a</span> <span class="o">=</span> <span class="n">grad_a</span> <span class="o">-</span> <span class="mf">2.0</span><span class="o">*</span><span class="p">(</span><span class="n">ydata</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">-</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="o">*</span><span class="n">xdata</span><span class="p">[</span><span class="n">n</span><span class="p">])</span><span class="o">*</span><span class="mf">1.0</span><span class="o">/</span><span class="p">(</span><span class="n">sigma</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">*</span><span class="n">sigma</span><span class="p">[</span><span class="n">n</span><span class="p">])</span>
-                <span class="n">grad_b</span> <span class="o">=</span> <span class="n">grad_b</span> <span class="o">-</span> <span class="mf">2.0</span><span class="o">*</span><span class="p">(</span><span class="n">ydata</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">-</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="o">*</span><span class="n">xdata</span><span class="p">[</span><span class="n">n</span><span class="p">])</span><span class="o">*</span><span class="n">xdata</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">/</span><span class="p">(</span><span class="n">sigma</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">*</span><span class="n">sigma</span><span class="p">[</span><span class="n">n</span><span class="p">])</span>
-        <span class="c"># Update parameters.</span>
-        <span class="n">a_new</span> <span class="o">=</span> <span class="n">a</span> <span class="o">-</span> <span class="n">alpha</span><span class="o">*</span><span class="n">grad_a</span>
-        <span class="n">b_new</span> <span class="o">=</span> <span class="n">b</span> <span class="o">-</span> <span class="n">alpha</span><span class="o">*</span><span class="n">grad_b</span>
-        <span class="n">x0</span>    <span class="o">=</span> <span class="p">[</span><span class="n">a_new</span><span class="p">,</span><span class="n">b_new</span><span class="p">]</span>
+# Iteration.
+for i in range(50):
+    a = x0[0]
+    b = x0[1]
+    # Compute gradients of chi2 w.r.t. a and b.
+    # Do the math first before trying to understand
+    # this piece of code!
+    grad_a = 0.0
+    grad_b = 0.0
+    for n in range(len(xdata)):
+        grad_a = grad_a - 2.0*(ydata[n] - a - b*xdata[n])
+                     *1.0/(sigma[n]*sigma[n])
+        grad_b = grad_b - 2.0*(ydata[n] - a - b*xdata[n])
+                     *xdata[n]/(sigma[n]*sigma[n])
+    # Update parameters.
+    a_new = a - alpha*grad_a
+    b_new = b - alpha*grad_b
+    x0    = [a_new,b_new]
 
-        <span class="c"># Store parameters for plotting.</span>
-        <span class="n">A</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a_new</span><span class="p">)</span>
-        <span class="n">B</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">b_new</span><span class="p">)</span>
+    # Store parameters for plotting.
+    A.append(a_new)
+    B.append(b_new)
 
-<span class="c"># Plot route of gradient descent.</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="s">&#39;o-&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;blue&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">],</span> <span class="s">&#39;x&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">markeredgewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;orange&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.05</span><span class="p">,</span><span class="mf">0.55</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mf">0.75</span><span class="p">,</span><span class="mf">1.55</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">r&#39;$a$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">r&#39;$b$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">&#39;example-gradient-descent.png&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
+# Plot route of gradient descent.
+plt.figure(1)
+plt.plot(A, B, 'o-', ms=6, lw=3, color='blue')
+plt.plot([0.0], [1.0], 'x', ms=12, markeredgewidth=3,
+          color='orange')
+plt.xlim(-0.05,0.55)
+plt.ylim(0.75,1.55)
+plt.xlabel(r'$a$', fontsize=24)
+plt.ylabel(r'$b$', fontsize=24)
+plt.savefig('example-gradient-descent.png')
+plt.show()</pre>
 </div>
 <p>Here is the route taken by the gradient descent algorithm towards the global minimum starting from an initial guess.</p>
 <img alt="../_images/example-gradient-descent.png" src="../_images/example-gradient-descent.png" />
@@ -452,20 +456,20 @@ display:none;
 
 <span class="c"># Iteration (same number of evaluations as for gradient descent).</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">300</span><span class="p">):</span>
-        <span class="n">a</span> <span class="o">=</span> <span class="n">x0</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="n">b</span> <span class="o">=</span> <span class="n">x0</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-        <span class="c"># Compute stochastic gradients of chi2 w.r.t. a and b.</span>
-        <span class="n">n</span>      <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">xdata</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>  <span class="c"># randomly chose data point</span>
-        <span class="n">grad_a</span> <span class="o">=</span> <span class="o">-</span> <span class="mf">2.0</span><span class="o">*</span><span class="p">(</span><span class="n">ydata</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">-</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="o">*</span><span class="n">xdata</span><span class="p">[</span><span class="n">n</span><span class="p">])</span><span class="o">*</span><span class="mf">1.0</span><span class="o">/</span><span class="p">(</span><span class="n">sigma</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">*</span><span class="n">sigma</span><span class="p">[</span><span class="n">n</span><span class="p">])</span>
-        <span class="n">grad_b</span> <span class="o">=</span> <span class="o">-</span> <span class="mf">2.0</span><span class="o">*</span><span class="p">(</span><span class="n">ydata</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">-</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="o">*</span><span class="n">xdata</span><span class="p">[</span><span class="n">n</span><span class="p">])</span><span class="o">*</span><span class="n">xdata</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">/</span><span class="p">(</span><span class="n">sigma</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">*</span><span class="n">sigma</span><span class="p">[</span><span class="n">n</span><span class="p">])</span>
-        <span class="c"># Update parameters.</span>
-        <span class="n">a_new</span> <span class="o">=</span> <span class="n">a</span> <span class="o">-</span> <span class="n">alpha</span><span class="o">*</span><span class="n">grad_a</span>
-        <span class="n">b_new</span> <span class="o">=</span> <span class="n">b</span> <span class="o">-</span> <span class="n">alpha</span><span class="o">*</span><span class="n">grad_b</span>
-        <span class="n">x0</span>    <span class="o">=</span> <span class="p">[</span><span class="n">a_new</span><span class="p">,</span><span class="n">b_new</span><span class="p">]</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">x0</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">x0</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="c"># Compute stochastic gradients of chi2 w.r.t. a and b.</span>
+    <span class="n">n</span>      <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">xdata</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>  <span class="c"># randomly chose data point</span>
+    <span class="n">grad_a</span> <span class="o">=</span> <span class="o">-</span> <span class="mf">2.0</span><span class="o">*</span><span class="p">(</span><span class="n">ydata</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">-</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="o">*</span><span class="n">xdata</span><span class="p">[</span><span class="n">n</span><span class="p">])</span><span class="o">*</span><span class="mf">1.0</span><span class="o">/</span><span class="p">(</span><span class="n">sigma</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">*</span><span class="n">sigma</span><span class="p">[</span><span class="n">n</span><span class="p">])</span>
+    <span class="n">grad_b</span> <span class="o">=</span> <span class="o">-</span> <span class="mf">2.0</span><span class="o">*</span><span class="p">(</span><span class="n">ydata</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">-</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="o">*</span><span class="n">xdata</span><span class="p">[</span><span class="n">n</span><span class="p">])</span><span class="o">*</span><span class="n">xdata</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">/</span><span class="p">(</span><span class="n">sigma</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">*</span><span class="n">sigma</span><span class="p">[</span><span class="n">n</span><span class="p">])</span>
+    <span class="c"># Update parameters.</span>
+    <span class="n">a_new</span> <span class="o">=</span> <span class="n">a</span> <span class="o">-</span> <span class="n">alpha</span><span class="o">*</span><span class="n">grad_a</span>
+    <span class="n">b_new</span> <span class="o">=</span> <span class="n">b</span> <span class="o">-</span> <span class="n">alpha</span><span class="o">*</span><span class="n">grad_b</span>
+    <span class="n">x0</span>    <span class="o">=</span> <span class="p">[</span><span class="n">a_new</span><span class="p">,</span><span class="n">b_new</span><span class="p">]</span>
 
-        <span class="c"># Store parameters for plotting.</span>
-        <span class="n">A</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a_new</span><span class="p">)</span>
-        <span class="n">B</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">b_new</span><span class="p">)</span>
+    <span class="c"># Store parameters for plotting.</span>
+    <span class="n">A</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a_new</span><span class="p">)</span>
+    <span class="n">B</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">b_new</span><span class="p">)</span>
 
 <span class="c"># Plot route of gradient descent.</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>

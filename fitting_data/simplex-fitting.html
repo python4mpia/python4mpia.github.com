@@ -27,7 +27,7 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title=" 0.1.0 documentation" href="../index.html" />
     <link rel="up" title="Fitting data with Python" href="fitting_data.html" />
-    <link rel="next" title="Gradient methods" href="gradient-methods.html" />
+    <link rel="next" title="Additional material: Gradient methods" href="gradient-methods.html" />
     <link rel="prev" title="Least-squares fitting in Python" href="least-squares-fitting.html" />
  
 <script type="text/javascript"> 
@@ -282,7 +282,7 @@ display:none;
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="gradient-methods.html" title="Gradient methods"
+          <a href="gradient-methods.html" title="Additional material: Gradient methods"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="least-squares-fitting.html" title="Least-squares fitting in Python"
@@ -298,7 +298,7 @@ display:none;
                         title="previous chapter">Least-squares fitting in Python</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="gradient-methods.html"
-                        title="next chapter">Gradient methods</a></p>
+                        title="next chapter">Additional material: Gradient methods</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="../_sources/fitting_data/simplex-fitting.txt"
@@ -327,26 +327,34 @@ display:none;
             
   <div class="section" id="simplex-algorithm">
 <h1>Simplex algorithm<a class="headerlink" href="#simplex-algorithm" title="Permalink to this headline">¶</a></h1>
-<p>The Simplex algorithm of Nelder &amp; Mead is a very robust but inefficient (slow) optimisation algorithm.</p>
-<p>It only uses function evaluations but no gradients or inferred gradients. The score function is minimised geometrically be stepping in different directions, trying different stepsizes.</p>
-<p>The function to be minimised is directly provided, e.g., as a <img class="math" src="../_images/math/a61c1e51680e27d35d05bebed87d474972fc70bd.png" alt="\chi^2"/>. Hence, Simplex is much more general than <cite>leastsq</cite> or <cite>curve_fit</cite>.</p>
+<p>The Simplex algorithm of Nelder &amp; Mead is a more robust but inefficient (slow) optimisation algorithm.</p>
+<p>It only uses function evaluations but no gradients or inferred gradients. The score function is minimised geometrically be stepping in different directions, trying different stepsizes. The Simplex is a greedy algorithm, too.</p>
+<p>The objective function to be minimised is directly provided and does not need to be of a least-squares form. Hence, Simplex is much more general than <cite>leastsq</cite> or <cite>curve_fit</cite>.</p>
 <p>Here is a code example:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">fmin</span> <span class="k">as</span> <span class="n">simplex</span>
+<span class="c"># &quot;fmin&quot; is not a sensible name for an optimisation package.</span>
+<span class="c"># Rename fmin to &quot;simplex&quot;</span>
 
-<span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">):</span>
-        <span class="c"># extract current values of fit parameters from input array</span>
-        <span class="n">a</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="n">b</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-        <span class="n">c</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
-        <span class="c"># compute chi-square</span>
-        <span class="n">chi2</span> <span class="o">=</span> <span class="mf">0.0</span>
-        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)):</span>
-                <span class="n">x</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
-                <span class="c"># The function y(x) is a polynomial in this example.</span>
-                <span class="n">y</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">c</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">x</span>
+<span class="c"># Define the objective function to be minimised by Simplex.</span>
+<span class="c"># params ... array holding the values of the fit parameters.</span>
+<span class="c"># X      ... array holding x-positions of observed data.</span>
+<span class="c"># Y      ... array holding y-values of observed data.</span>
+<span class="c"># Err    ... array holding errors of observed data.</span>
+<span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Err</span><span class="p">):</span>
+    <span class="c"># extract current values of fit parameters from input array</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="c"># compute chi-square</span>
+    <span class="n">chi2</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+        <span class="c"># The function y(x)=a+b*x+c*x^2 is a polynomial</span>
+        <span class="c"># in this example.</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">c</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">x</span>
 
-                <span class="n">chi2</span> <span class="o">=</span> <span class="n">chi2</span> <span class="o">+</span> <span class="p">(</span><span class="n">Y</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">Y</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">chi2</span>
+        <span class="n">chi2</span> <span class="o">=</span> <span class="n">chi2</span> <span class="o">+</span> <span class="p">(</span><span class="n">Y</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">Y</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">Err</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">*</span><span class="n">Err</span><span class="p">[</span><span class="n">n</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">chi2</span>
 
 <span class="n">xdata</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">3.0</span><span class="p">,</span><span class="mf">4.0</span><span class="p">,</span><span class="mf">5.0</span><span class="p">]</span>
 <span class="n">ydata</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.9</span><span class="p">,</span><span class="mf">2.2</span><span class="p">,</span><span class="mf">2.8</span><span class="p">,</span><span class="mf">3.9</span><span class="p">,</span><span class="mf">5.1</span><span class="p">]</span>
@@ -356,7 +364,7 @@ display:none;
 <span class="n">x0</span>    <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
 
 <span class="c"># Apply downhill Simplex algorithm.</span>
-<span class="k">print</span> <span class="n">simplex</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">xdata</span><span class="p">,</span> <span class="n">ydata</span><span class="p">),</span> <span class="n">xtol</span><span class="o">=</span><span class="mf">0.0001</span><span class="p">,</span> <span class="n">ftol</span><span class="o">=</span><span class="mf">0.0001</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">full_output</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">simplex</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">xdata</span><span class="p">,</span> <span class="n">ydata</span><span class="p">,</span> <span class="n">sigma</span><span class="p">),</span> <span class="n">full_output</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The result (a=0.10001189, b=0.88144704, c=0.021426) has no error/uncertainty estimates because the Simplex algorithm is a mere optimisation. Given the Simplex estimate of the minimum, errors have to be estimated afterwards using some other method.</p>
@@ -375,7 +383,7 @@ display:none;
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="gradient-methods.html" title="Gradient methods"
+          <a href="gradient-methods.html" title="Additional material: Gradient methods"
              >next</a> |</li>
         <li class="right" >
           <a href="least-squares-fitting.html" title="Least-squares fitting in Python"

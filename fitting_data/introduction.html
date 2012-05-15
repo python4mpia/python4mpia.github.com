@@ -1,0 +1,462 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Introduction &mdash;  0.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title=" 0.1.0 documentation" href="../index.html" />
+    <link rel="up" title="Fitting data with Python" href="fitting_data.html" />
+    <link rel="next" title="Least-squares fitting in Python" href="least-squares-fitting.html" />
+    <link rel="prev" title="Fitting data with Python" href="fitting_data.html" />
+ 
+<script type="text/javascript"> 
+$(document).ready(function(){
+
+$(".flip0").click(function(){
+    $(".panel0").slideToggle("normal");
+  });
+
+$(".flip1").click(function(){
+    $(".panel1").slideToggle("normal");
+  });
+
+$(".flip2").click(function(){
+    $(".panel2").slideToggle("normal");
+  });
+
+$(".flip3").click(function(){
+    $(".panel3").slideToggle("normal");
+  });
+
+$(".flip4").click(function(){
+    $(".panel4").slideToggle("normal");
+  });
+
+$(".flip5").click(function(){
+    $(".panel5").slideToggle("normal");
+  });
+
+$(".flip6").click(function(){
+    $(".panel6").slideToggle("normal");
+  });
+
+$(".flip7").click(function(){
+    $(".panel7").slideToggle("normal");
+  });
+
+$(".flip8").click(function(){
+    $(".panel8").slideToggle("normal");
+  });
+
+$(".flip9").click(function(){
+    $(".panel9").slideToggle("normal");
+  });
+
+});
+</script>
+ 
+<style type="text/css"> 
+
+div.panel0,p.flip0
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip0
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel0
+{
+display:none;
+}
+
+div.panel1,p.flip1
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip1
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel1
+{
+display:none;
+}
+
+div.panel2,p.flip2
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip2
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel2
+{
+display:none;
+}
+
+div.panel3,p.flip3
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip3
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel3
+{
+display:none;
+}
+
+div.panel4,p.flip4
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip4
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel4
+{
+display:none;
+}
+
+div.panel5,p.flip5
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip5
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel5
+{
+display:none;
+}
+
+div.panel6,p.flip6
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip6
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel6
+{
+display:none;
+}
+
+div.panel7,p.flip7
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip7
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel7
+{
+display:none;
+}
+
+div.panel8,p.flip8
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip8
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel8
+{
+display:none;
+}
+
+div.panel9,p.flip9
+{
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.5em;
+    border-bottom: 1px solid #86989B;
+}
+p.flip9
+{
+    color: white;
+    font-weight: bold;
+    background-color: #AFC1C4;
+}
+div.panel9
+{
+display:none;
+}
+
+</style>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-27427631-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="least-squares-fitting.html" title="Least-squares fitting in Python"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="fitting_data.html" title="Fitting data with Python"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li>
+          <li><a href="fitting_data.html" accesskey="U">Fitting data with Python</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Introduction</a><ul>
+<li><a class="reference internal" href="#linear-vs-non-linear-models">Linear vs. non-linear models</a></li>
+<li><a class="reference internal" href="#first-idea-brute-force-grids">First idea: Brute-force grids</a></li>
+<li><a class="reference internal" href="#second-idea-random-grids">Second idea: Random grids</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="fitting_data.html"
+                        title="previous chapter">Fitting data with Python</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="least-squares-fitting.html"
+                        title="next chapter">Least-squares fitting in Python</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/fitting_data/introduction.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<p>We are given:</p>
+<ul class="simple">
+<li>observational data</li>
+<li>a model with a set of fit parameters</li>
+</ul>
+<p>Goal:</p>
+<ul class="simple">
+<li>Want to optimise some objective function.</li>
+<li>E.g.: Want to minimise squared difference between some model and some given data.</li>
+</ul>
+<p>What we do not talk about:</p>
+<ul class="simple">
+<li>How to choose your objective function.</li>
+<li>How to choose your model.</li>
+</ul>
+<div class="section" id="linear-vs-non-linear-models">
+<h2>Linear vs. non-linear models<a class="headerlink" href="#linear-vs-non-linear-models" title="Permalink to this headline">¶</a></h2>
+<p>A model <img class="math" src="../_images/math/bf6aeacb0c64b0a6e492455e0fe133cdb3615f20.png" alt="f(x;\theta)"/> is called linear if and only if we can write it as <img class="math" src="../_images/math/e73b5d4ef9f4c54ac25b89b68a46e0a26f9bebbd.png" alt="f(x;\theta)=\theta^T\cdot x"/>. Examples for linear models are:</p>
+<ul class="simple">
+<li><img class="math" src="../_images/math/3654683f4c298234ef3fcaf02f48b7619d686d81.png" alt="f(x) = a + bx"/> (straight line)</li>
+<li><img class="math" src="../_images/math/0a114401772a4e12d497a78ca32659b1c0f84d7c.png" alt="f(x) = a + bx+cx^2+dx^3"/></li>
+<li><img class="math" src="../_images/math/7c515d90cdf6dbc432419df7eab8076e00988b5c.png" alt="f(x) = a\cos(x)+b\sin(x)"/></li>
+</ul>
+<p>If the optimisation problem is a least-squares problem, fitting linear models can be done analytically using linear algebra (matrices)! In this case, the resulting likelihood is always exactly Gaussian (no approximation!), i.e., it is unimodal and there is a single global optimum (convex problem).</p>
+<p>However, many interesting astrophysical problems are not linear! Examples for non-linear models are:</p>
+<ul class="simple">
+<li><img class="math" src="../_images/math/91acd9afbbff348061de30dfdbefec20a76695c0.png" alt="f(x) = a\cos(b*x)"/></li>
+<li>fitting emission/absorption features in a spectrum</li>
+<li>fitting light profiles of galaxies (morphology)</li>
+</ul>
+<p>For nonlinear models or linear models without least-squares formulation, there is usually no analytic solution and the likelihood may also be multimodal. In this case, we need an optimisation algorithm in order to fit the model parameters.</p>
+</div>
+<div class="section" id="first-idea-brute-force-grids">
+<h2>First idea: Brute-force grids<a class="headerlink" href="#first-idea-brute-force-grids" title="Permalink to this headline">¶</a></h2>
+<p>Try brute-force all combinations of fit parameters and find the optimum of the objective function.</p>
+<p>Let&#8217;s create some toy data:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+
+<span class="c"># Create 1D Gaussian toy data.</span>
+<span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c"># set random seed</span>
+<span class="c"># Draw 10 values from unit Gaussian.</span>
+<span class="n">Data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Our model is a straight line with true parameters offset a = 0.0 and slope  b = 0.0. Fit for a and b using a brute-force grid:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># Range of parameter a.</span>
+<span class="n">a_min</span> <span class="o">=</span> <span class="o">-</span><span class="mf">2.5</span>
+<span class="n">a_max</span> <span class="o">=</span>  <span class="mf">2.5</span>
+<span class="c"># Range of parameter b.</span>
+<span class="n">b_min</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span>
+<span class="n">b_max</span> <span class="o">=</span>  <span class="mf">1.0</span>
+<span class="c"># Number of steps of grid.</span>
+<span class="n">Steps</span> <span class="o">=</span> <span class="mi">51</span>
+<span class="c"># Allocate grid as matrix.</span>
+<span class="n">Grid</span>  <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">Steps</span><span class="p">,</span><span class="n">Steps</span><span class="p">])</span>
+<span class="c"># Try all parameter combinations.</span>
+<span class="k">for</span> <span class="n">s1</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Steps</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">s2</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Steps</span><span class="p">):</span>
+        <span class="c"># Current parameter combination.</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">a_min</span> <span class="o">+</span> <span class="p">(</span><span class="n">a_max</span> <span class="o">-</span> <span class="n">a_min</span><span class="p">)</span><span class="o">*</span><span class="nb">float</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span><span class="o">/</span><span class="nb">float</span><span class="p">(</span><span class="n">Steps</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">b_min</span> <span class="o">+</span> <span class="p">(</span><span class="n">b_max</span> <span class="o">-</span> <span class="n">b_min</span><span class="p">)</span><span class="o">*</span><span class="nb">float</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span><span class="o">/</span><span class="nb">float</span><span class="p">(</span><span class="n">Steps</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="c"># Evaluate chi-squared.</span>
+        <span class="n">chi2</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">Data</span><span class="p">)):</span>
+            <span class="c"># Use index n as pseudo-position</span>
+            <span class="n">residual</span> <span class="o">=</span> <span class="p">(</span><span class="n">Data</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">-</span> <span class="n">a</span> <span class="o">-</span> <span class="n">n</span><span class="o">*</span><span class="n">b</span><span class="p">)</span>
+            <span class="n">chi2</span>     <span class="o">=</span> <span class="n">chi2</span> <span class="o">+</span> <span class="n">residual</span><span class="o">*</span><span class="n">residual</span>
+        <span class="n">Grid</span><span class="p">[</span><span class="n">Steps</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">s2</span><span class="p">,</span><span class="n">s1</span><span class="p">]</span> <span class="o">=</span> <span class="n">chi2</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">mini</span>  <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">Grid</span><span class="p">)</span>  <span class="c"># minimal value of chi2</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">Grid</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="n">mini</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">mini</span><span class="o">+</span><span class="mf">20.0</span><span class="p">,</span>
+                         <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="n">a_min</span><span class="p">,</span><span class="n">a_max</span><span class="p">,</span><span class="n">b_min</span><span class="p">,</span><span class="n">b_max</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">r&#39;$a$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">r&#39;$b$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">&#39;example-chi2-manifold.png&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Here is what the resulting <img class="math" src="../_images/math/a61c1e51680e27d35d05bebed87d474972fc70bd.png" alt="\chi^2"/>-manifold looks like:</p>
+<img alt="../_images/example-chi2-manifold.png" src="../_images/example-chi2-manifold.png" />
+<p>Brute-force grids may seem naive but this method is the first to consider!</p>
+</div>
+<div class="section" id="second-idea-random-grids">
+<h2>Second idea: Random grids<a class="headerlink" href="#second-idea-random-grids" title="Permalink to this headline">¶</a></h2>
+<p>Brute-force grids quickly become computationally infeasible for more than 1 or 2 fit parameters. Computation times increase exponentially.</p>
+<p>Instead of using a regular grid, simply try random values of all parameters and finally take that one with best objective function.</p>
+<p>However, if we have a lot of fit parameters, the chance that we hit a good parameter combination by pure luck decreases exponentially.</p>
+<p>Consequently, we need to talk about more elaborate optimisation algorithms.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="least-squares-fitting.html" title="Least-squares fitting in Python"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="fitting_data.html" title="Fitting data with Python"
+             >previous</a> |</li>
+        <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li>
+          <li><a href="fitting_data.html" >Fitting data with Python</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright .
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

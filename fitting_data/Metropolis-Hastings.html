@@ -28,7 +28,7 @@
     <link rel="top" title=" 0.1.0 documentation" href="../index.html" />
     <link rel="up" title="Fitting data with Python" href="fitting_data.html" />
     <link rel="next" title="Hamiltonian Monte-Carlo" href="Hamiltonian-MCMC.html" />
-    <link rel="prev" title="Monte-Carlo sampling from Salpeter SMF" href="MC-sampling-from-Salpeter.html" />
+    <link rel="prev" title="Additional material: Monte-Carlo sampling from Salpeter SMF" href="MC-sampling-from-Salpeter.html" />
  
 <script type="text/javascript"> 
 $(document).ready(function(){
@@ -285,7 +285,7 @@ display:none;
           <a href="Hamiltonian-MCMC.html" title="Hamiltonian Monte-Carlo"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="MC-sampling-from-Salpeter.html" title="Monte-Carlo sampling from Salpeter SMF"
+          <a href="MC-sampling-from-Salpeter.html" title="Additional material: Monte-Carlo sampling from Salpeter SMF"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li>
           <li><a href="fitting_data.html" accesskey="U">Fitting data with Python</a> &raquo;</li> 
@@ -297,15 +297,15 @@ display:none;
   <ul>
 <li><a class="reference internal" href="#">Metropolis-Hastings algorithm</a><ul>
 <li><a class="reference internal" href="#salpeter-likelihood-function">Salpeter likelihood function</a></li>
-<li><a class="reference internal" href="#problems-of-monte-carlo-sampling">Problems of Monte-Carlo sampling</a></li>
-<li><a class="reference internal" href="#solution-markov-chain-monte-carlo-mcmc-sampling">Solution: Markov-chain Monte-Carlo (MCMC) sampling</a></li>
+<li><a class="reference internal" href="#markov-chain-monte-carlo-mcmc-sampling">Markov-chain Monte-Carlo (MCMC) sampling</a></li>
+<li><a class="reference internal" href="#id1">Metropolis-Hastings algorithm</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
   <p class="topless"><a href="MC-sampling-from-Salpeter.html"
-                        title="previous chapter">Monte-Carlo sampling from Salpeter SMF</a></p>
+                        title="previous chapter">Additional material: Monte-Carlo sampling from Salpeter SMF</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="Hamiltonian-MCMC.html"
                         title="next chapter">Hamiltonian Monte-Carlo</a></p>
@@ -343,11 +343,15 @@ display:none;
 <p>Now, our goal is to learn the probability distribution of <img class="math" src="../_images/math/10f32377ac67d94f764f12a15ea987e88c85d3e1.png" alt="\alpha"/>, given some data (the posterior probability). In fact, we are happy to only infer the likelihood function here. Unfortunately, this now requires some math.</p>
 <p>We assume that we are given <img class="math" src="../_images/math/fc97ef67268cd4e91bacdf12b8901d7036c9a056.png" alt="N"/> i.i.d. samples of stellar masses (with negligible errors on the measurements). In that case, the likelihood of the problem is</p>
 <blockquote>
-<div><img class="math" src="../_images/math/a5f226b9efa4d7410668183198c2c345bd2cdf0f.png" alt="\mathcal L(\{M_1,M_2,\ldots,M_N\};\alpha) = \prod_{n=1}^N p(M_n|\theta) = \prod_{n=1}^N c\left(\frac{M_n}{M_\odot}\right)^{-\alpha}"/></div></blockquote>
-<p>Furthermore, we assume that we are given an observation interval <img class="math" src="../_images/math/d6a9565da48127fac6fab0930596ec429064fe61.png" alt="[M_{min},M_{max}]"/> of stellar masses. (Infering that interval for observational data is a complicated astronomical problem.) Then, we can evaluate the normalisation constant,</p>
+<div><img class="math" src="../_images/math/7476cd4845414a352960dfda63a6f1c5b0c223e0.png" alt="\mathcal L(\{M_1,M_2,\ldots,M_N\};\alpha) = \prod_{n=1}^N p(M_n|\alpha) = \prod_{n=1}^N c\left(\frac{M_n}{M_\odot}\right)^{-\alpha}"/></div></blockquote>
+<p>We can evaluate the normalisation constant by integrating over the observation interval <img class="math" src="../_images/math/d6a9565da48127fac6fab0930596ec429064fe61.png" alt="[M_{min},M_{max}]"/>:</p>
 <blockquote>
 <div><img class="math" src="../_images/math/ec71701b95eef73263d025b6f970576c42596547.png" alt="\int_{M_{min}}^{M_{max}}dM c M^{-\alpha} = c\frac{M_{max}^{1-\alpha}-M_{min}^{1-\alpha}}{1-\alpha}=1"/></div></blockquote>
-<p>This enables us to solve for <img class="math" src="../_images/math/3372c1cb6d68cf97c2d231acc0b47b95a9ed04cc.png" alt="c"/>, if we want to.</p>
+<p>There are two simplifying assumptions in this approach:</p>
+<ul class="simple">
+<li>We neglect errors of stellar mass observations <img class="math" src="../_images/math/eb12e06e542e73a4fa3b7237d8be00b2bef219c5.png" alt="M_n"/>.</li>
+<li>We assume that <img class="math" src="../_images/math/d6a9565da48127fac6fab0930596ec429064fe61.png" alt="[M_{min},M_{max}]"/> are known.</li>
+</ul>
 <p>Instead of <img class="math" src="../_images/math/7f101c08b0c758b6b4fe1da0057539cc02829abe.png" alt="\mathcal L"/>, once usually considers <img class="math" src="../_images/math/e72de59e7c250ded010ed2332a2c054fdc0ca374.png" alt="\log\mathcal L"/>, which is numerically more stable and usually also simplifies the math,</p>
 <blockquote>
 <div><img class="math" src="../_images/math/70948908395522f846de8f7a4c8d539abc5f8ed3.png" alt="\log\mathcal L(\{M_1,M_2,\ldots,M_N\};\alpha) = N\log c -\alpha \sum_{n=1}^N \log\left(\frac{M_n}{M_\odot}\right)"/>
@@ -358,22 +362,30 @@ display:none;
 <li>The data only enters via <img class="math" src="../_images/math/975f41feb10e073821a1cfe25b588fd86478b101.png" alt="D=\sum_{n=1}^N \log\left(\frac{M_n}{M_\odot}\right)"/>, which is completely independent of the fit parameter <img class="math" src="../_images/math/10f32377ac67d94f764f12a15ea987e88c85d3e1.png" alt="\alpha"/> and can be computed once at beginning. Therefore, handling huge datasets such as a Gaia catalogue is no problem at all!</li>
 </ul>
 </div>
-<div class="section" id="problems-of-monte-carlo-sampling">
-<h2>Problems of Monte-Carlo sampling<a class="headerlink" href="#problems-of-monte-carlo-sampling" title="Permalink to this headline">¶</a></h2>
-<p>If we were to plot <img class="math" src="../_images/math/049e688a9171630aeea67158a04c95758a3187e6.png" alt="\log\mathcal L(\{M_1,M_2,\ldots,M_N\};\alpha)"/> as a function of <img class="math" src="../_images/math/10f32377ac67d94f764f12a15ea987e88c85d3e1.png" alt="\alpha"/>, we would realise that it has a single extremely sharp peak.</p>
-<p>This is a huge problem for Monte-Carlo sampling, because the likelihood is essentially zero everywhere, except at this single sharp peak. The chance that our proposal distribution hits a value at this peak tends towards zero. Consequently, we cannot estimate <img class="math" src="../_images/math/10f32377ac67d94f764f12a15ea987e88c85d3e1.png" alt="\alpha"/> by drawing Monte-Carlo samples from <img class="math" src="../_images/math/049e688a9171630aeea67158a04c95758a3187e6.png" alt="\log\mathcal L(\{M_1,M_2,\ldots,M_N\};\alpha)"/>.</p>
-<p>In general, there is also an even more severe problem: Monte-Carlo methods such as the one we discussed before only work in one dimension. If we have more than one fit parameter, i.e., if we need to draw samples from PDFs over high-dimensional parameter spaces, these Monte-Carlo methods quickly become computationally infeasible. (See Sect. 29.3 in <a class="reference external" href="http://www.inference.phy.cam.ac.uk/mackay/itila/book.html">MacKay&#8217;s ITILA</a> for a runtime analysis.)</p>
+<div class="section" id="markov-chain-monte-carlo-mcmc-sampling">
+<h2>Markov-chain Monte-Carlo (MCMC) sampling<a class="headerlink" href="#markov-chain-monte-carlo-mcmc-sampling" title="Permalink to this headline">¶</a></h2>
+<p>MCMC is an iterative algorithm. We provide a first value - an initial guess - and then look for better values in a Monte-Carlo fashion.</p>
+<p>Basic idea of MCMC: Chain is an iteration, i.e., a set of points. Density of points is directly proportional to likelihood. (In brute-force grids, likelihood values at points map manifold.)</p>
+<p>MCMC is NOT a greedy algorithm, but can theoretically explore the whole manifold if run for infinite time.</p>
+<p>BONUS: MCMC not only provides best-fit values but also uncertainty estimates via scatter of chain.</p>
 </div>
-<div class="section" id="solution-markov-chain-monte-carlo-mcmc-sampling">
-<h2>Solution: Markov-chain Monte-Carlo (MCMC) sampling<a class="headerlink" href="#solution-markov-chain-monte-carlo-mcmc-sampling" title="Permalink to this headline">¶</a></h2>
-<p>The solution to both problems is MCMC. We provide a first value - an initial guess - and then look for better values in a Monte-Carlo fashion.</p>
-<p>There are numerous MCMC algorithms. For the moment, we only consider the Metropolis-Hastings algorithm, which is the simplest type of MCMC.</p>
+<div class="section" id="id1">
+<h2>Metropolis-Hastings algorithm<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>There are numerous MCMC algorithms. For the moment, we only consider the Metropolis-Hastings algorithm, which is the simplest type of MCMC. See chapters 29 and 30 in <a class="reference external" href="http://www.inference.phy.cam.ac.uk/mackay/itila/book.html">MacKay&#8217;s ITILA</a> for a very nice introduction to Monte-Carlo algorithms.</p>
 <p>We continue the previous code that drew samples from the Salpeter SMF and start implementation with the definition of the log-likelihood function and the toy data:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">evaluateLogLikelihood</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">M_min</span><span class="p">,</span> <span class="n">M_max</span><span class="p">):</span>
-      <span class="c"># Compute normalisation constant.</span>
-      <span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">M_max</span><span class="p">,</span> <span class="mf">1.0</span><span class="o">-</span><span class="n">alpha</span><span class="p">)</span> <span class="o">-</span> <span class="n">math</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">M_min</span><span class="p">,</span> <span class="mf">1.0</span><span class="o">-</span><span class="n">alpha</span><span class="p">))</span>
-      <span class="c"># return log likelihood.</span>
-      <span class="k">return</span> <span class="n">N</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">-</span> <span class="n">alpha</span><span class="o">*</span><span class="n">D</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># Define logarithmic likelihood function.</span>
+<span class="c"># params ... array of fit params, here just alpha</span>
+<span class="c"># D      ... sum over log(M_n)</span>
+<span class="c"># N      ... number of data points.</span>
+<span class="c"># M_min  ... lower limit of mass interval</span>
+<span class="c"># M_max  ... upper limit of mass interval</span>
+<span class="k">def</span> <span class="nf">evaluateLogLikelihood</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">M_min</span><span class="p">,</span> <span class="n">M_max</span><span class="p">):</span>
+    <span class="n">alpha</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c"># extract alpha</span>
+    <span class="c"># Compute normalisation constant.</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">M_max</span><span class="p">,</span> <span class="mf">1.0</span><span class="o">-</span><span class="n">alpha</span><span class="p">)</span>
+                        <span class="o">-</span> <span class="n">math</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">M_min</span><span class="p">,</span> <span class="mf">1.0</span><span class="o">-</span><span class="n">alpha</span><span class="p">))</span>
+    <span class="c"># return log likelihood.</span>
+    <span class="k">return</span> <span class="n">N</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">-</span> <span class="n">alpha</span><span class="o">*</span><span class="n">D</span>
 
 <span class="c"># Generate toy data.</span>
 <span class="n">N</span>      <span class="o">=</span> <span class="mi">1000000</span>  <span class="c"># Draw 1 Million stellar masses.</span>
@@ -385,33 +397,38 @@ display:none;
 <span class="n">D</span>      <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">LogM</span><span class="p">)</span><span class="o">*</span><span class="n">N</span>
 </pre></div>
 </div>
-<p>Now follows the actual Metropolis-Hastings algorithm:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="c"># initial guess for alpha.</span>
-<span class="n">guess</span> <span class="o">=</span> <span class="mf">3.0</span>
-<span class="c"># Prepare storing MCMC chain.</span>
+<p>Now follows the actual Metropolis-Hastings algorithm (for arbitrary number of fit parameters):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># initial guess for alpha as array.</span>
+<span class="n">guess</span> <span class="o">=</span> <span class="p">[</span><span class="mf">3.0</span><span class="p">]</span>
+<span class="c"># Prepare storing MCMC chain as array of arrays.</span>
 <span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="n">guess</span><span class="p">]</span>
 <span class="c"># define stepsize of MCMC.</span>
-<span class="n">stepsize</span> <span class="o">=</span> <span class="mf">0.005</span>
-<span class="n">accepted</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">stepsizes</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.005</span><span class="p">]</span>  <span class="c"># array of stepsizes</span>
+<span class="n">accepted</span>  <span class="o">=</span> <span class="mf">0.0</span>
 
 <span class="c"># Metropolis-Hastings with 10,000 iterations.</span>
 <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10000</span><span class="p">):</span>
-        <span class="n">old_alpha</span>  <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-        <span class="n">old_loglik</span> <span class="o">=</span> <span class="n">evaluateLogLikelihood</span><span class="p">(</span><span class="n">old_alpha</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">M_min</span><span class="p">,</span> <span class="n">M_max</span><span class="p">)</span>
-        <span class="c"># Suggest new candidate from Gaussian proposal distribution.</span>
-        <span class="n">new_alpha</span>  <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">gauss</span><span class="p">(</span><span class="n">old_alpha</span><span class="p">,</span> <span class="n">stepsize</span><span class="p">)</span>
-        <span class="n">new_loglik</span> <span class="o">=</span> <span class="n">evaluateLogLikelihood</span><span class="p">(</span><span class="n">new_alpha</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">M_min</span><span class="p">,</span> <span class="n">M_max</span><span class="p">)</span>
-        <span class="c"># Accept new candidate in Monte-Carlo fashing.</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">new_loglik</span> <span class="o">&gt;</span> <span class="n">old_loglik</span><span class="p">):</span>
-                <span class="n">A</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_alpha</span><span class="p">)</span>
-                <span class="n">accepted</span> <span class="o">=</span> <span class="n">accepted</span> <span class="o">+</span> <span class="mf">1.0</span>
+    <span class="n">old_alpha</span>  <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="c"># old parameter value as array</span>
+    <span class="n">old_loglik</span> <span class="o">=</span> <span class="n">evaluateLogLikelihood</span><span class="p">(</span><span class="n">old_alpha</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">M_min</span><span class="p">,</span>
+                    <span class="n">M_max</span><span class="p">)</span>
+    <span class="c"># Suggest new candidate from Gaussian proposal distribution.</span>
+    <span class="n">new_alpha</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">old_alpha</span><span class="p">)])</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">old_alpha</span><span class="p">)):</span>
+        <span class="c"># Use stepsize provided for every dimension.</span>
+        <span class="n">new_alpha</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">gauss</span><span class="p">(</span><span class="n">old_alpha</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">stepsizes</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">new_loglik</span> <span class="o">=</span> <span class="n">evaluateLogLikelihood</span><span class="p">(</span><span class="n">new_alpha</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">M_min</span><span class="p">,</span>
+                    <span class="n">M_max</span><span class="p">)</span>
+    <span class="c"># Accept new candidate in Monte-Carlo fashing.</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">new_loglik</span> <span class="o">&gt;</span> <span class="n">old_loglik</span><span class="p">):</span>
+        <span class="n">A</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_alpha</span><span class="p">)</span>
+        <span class="n">accepted</span> <span class="o">=</span> <span class="n">accepted</span> <span class="o">+</span> <span class="mf">1.0</span>  <span class="c"># monitor acceptance</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">u</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">u</span> <span class="o">&lt;</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">new_loglik</span> <span class="o">-</span> <span class="n">old_loglik</span><span class="p">)):</span>
+            <span class="n">A</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_alpha</span><span class="p">)</span>
+            <span class="n">accepted</span> <span class="o">=</span> <span class="n">accepted</span> <span class="o">+</span> <span class="mf">1.0</span>  <span class="c"># monitor acceptance</span>
         <span class="k">else</span><span class="p">:</span>
-                <span class="n">u</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)</span>
-                <span class="k">if</span> <span class="p">(</span><span class="n">u</span> <span class="o">&lt;</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">new_loglik</span> <span class="o">-</span> <span class="n">old_loglik</span><span class="p">)):</span>
-                        <span class="n">A</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_alpha</span><span class="p">)</span>
-                        <span class="n">accepted</span> <span class="o">=</span> <span class="n">accepted</span> <span class="o">+</span> <span class="mf">1.0</span>
-                <span class="k">else</span><span class="p">:</span>
-                        <span class="n">A</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">old_alpha</span><span class="p">)</span>
+            <span class="n">A</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">old_alpha</span><span class="p">)</span>
 
 <span class="k">print</span> <span class="s">&quot;Acceptance rate = &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">accepted</span><span class="o">/</span><span class="mf">10000.0</span><span class="p">)</span>
 </pre></div>
@@ -420,12 +437,17 @@ display:none;
 <div class="highlight-python"><div class="highlight"><pre><span class="c"># Discard first half of MCMC chain and thin out the rest.</span>
 <span class="n">Clean</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5000</span><span class="p">,</span><span class="mi">10000</span><span class="p">):</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">%</span> <span class="mi">10</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
-                <span class="n">Clean</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">n</span><span class="p">])</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">%</span> <span class="mi">10</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="n">Clean</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="c"># Print Monte-Carlo estimate of alpha.</span>
+<span class="k">print</span> <span class="s">&quot;Mean:  &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">Clean</span><span class="p">))</span>
+<span class="k">print</span> <span class="s">&quot;Sigma: &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">Clean</span><span class="p">))</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">Clean</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s">&#39;step&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([</span><span class="mf">2.346</span><span class="p">,</span><span class="mf">2.348</span><span class="p">,</span><span class="mf">2.35</span><span class="p">,</span><span class="mf">2.352</span><span class="p">,</span><span class="mf">2.354</span><span class="p">],[</span><span class="mf">2.346</span><span class="p">,</span><span class="mf">2.348</span><span class="p">,</span><span class="mf">2.35</span><span class="p">,</span><span class="mf">2.352</span><span class="p">,</span><span class="mf">2.354</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([</span><span class="mf">2.346</span><span class="p">,</span><span class="mf">2.348</span><span class="p">,</span><span class="mf">2.35</span><span class="p">,</span><span class="mf">2.352</span><span class="p">,</span><span class="mf">2.354</span><span class="p">],</span>
+           <span class="p">[</span><span class="mf">2.346</span><span class="p">,</span><span class="mf">2.348</span><span class="p">,</span><span class="mf">2.35</span><span class="p">,</span><span class="mf">2.352</span><span class="p">,</span><span class="mf">2.354</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mf">2.345</span><span class="p">,</span><span class="mf">2.355</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">r&#39;$\alpha$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">r&#39;$\cal L($Data$;\alpha)$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>
@@ -433,6 +455,7 @@ display:none;
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+<p>The true value we used to generate the data was <img class="math" src="../_images/math/6d47583b7fe5918ceb46d4f86ad58d33bd1a31b2.png" alt="\alpha=2.35"/>. The Monte-Carlo estimate is <img class="math" src="../_images/math/cda68a33ee8742a46ca3d2767c62e9bf08593d6f.png" alt="\hat\alpha=2.3507\pm 0.0015"/>. Here is the estimated likelihood of <img class="math" src="../_images/math/10f32377ac67d94f764f12a15ea987e88c85d3e1.png" alt="\alpha"/>.</p>
 <img alt="../_images/example-MCMC-results.png" src="../_images/example-MCMC-results.png" />
 </div>
 </div>
@@ -453,7 +476,7 @@ display:none;
           <a href="Hamiltonian-MCMC.html" title="Hamiltonian Monte-Carlo"
              >next</a> |</li>
         <li class="right" >
-          <a href="MC-sampling-from-Salpeter.html" title="Monte-Carlo sampling from Salpeter SMF"
+          <a href="MC-sampling-from-Salpeter.html" title="Additional material: Monte-Carlo sampling from Salpeter SMF"
              >previous</a> |</li>
         <li><a href="../index.html"> 0.1.0 documentation</a> &raquo;</li>
           <li><a href="fitting_data.html" >Fitting data with Python</a> &raquo;</li> 

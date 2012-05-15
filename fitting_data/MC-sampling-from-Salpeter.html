@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Monte-Carlo sampling from Salpeter SMF &mdash;  0.1.0 documentation</title>
+    <title>Additional material: Monte-Carlo sampling from Salpeter SMF &mdash;  0.1.0 documentation</title>
     
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -293,6 +293,14 @@ display:none;
     </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Additional material: Monte-Carlo sampling from Salpeter SMF</a><ul>
+<li><a class="reference internal" href="#problems-of-monte-carlo-sampling">Problems of Monte-Carlo sampling</a></li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
   <p class="topless"><a href="Salpeter-background.html"
                         title="previous chapter">Example: Salpeter stellar mass function</a></p>
@@ -325,8 +333,8 @@ display:none;
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="monte-carlo-sampling-from-salpeter-smf">
-<h1>Monte-Carlo sampling from Salpeter SMF<a class="headerlink" href="#monte-carlo-sampling-from-salpeter-smf" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="additional-material-monte-carlo-sampling-from-salpeter-smf">
+<h1>Additional material: Monte-Carlo sampling from Salpeter SMF<a class="headerlink" href="#additional-material-monte-carlo-sampling-from-salpeter-smf" title="Permalink to this headline">¶</a></h1>
 <p>Drawing samples from a given probability distribution is a very common task. We would like to draw samples from the likelihood distribution of the fit parameters.</p>
 <p>In our case, we want to simulate data of stellar mass measurements.</p>
 <p>Monte-Carlo methods can sample from any given probability distribution. The general outline of a Monte-Carlo algorithm is to first draw some candidate values from some proposal distribution and second to accept or reject this candidate randomly given the probability distribution.</p>
@@ -338,27 +346,32 @@ display:none;
 
 <span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c"># set random seed.</span>
 
+<span class="c"># Draw random samples from Salpeter IMF.</span>
+<span class="c"># N     ... number of samples.</span>
+<span class="c"># alpha ... power-law index.</span>
+<span class="c"># M_min ... lower bound of mass interval.</span>
+<span class="c"># M_max ... upper bound of mass interval.</span>
 <span class="k">def</span> <span class="nf">sampleFromSalpeter</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">M_min</span><span class="p">,</span> <span class="n">M_max</span><span class="p">):</span>
-        <span class="c"># Convert limits from M to logM.</span>
-        <span class="n">log_M_Min</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">M_min</span><span class="p">)</span>
-        <span class="n">log_M_Max</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">M_max</span><span class="p">)</span>
-        <span class="c"># Since Salpeter SMF decays, maximum likelihood occurs at M_min</span>
-        <span class="n">maxlik</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">M_min</span><span class="p">,</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">)</span>
+    <span class="c"># Convert limits from M to logM.</span>
+    <span class="n">log_M_Min</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">M_min</span><span class="p">)</span>
+    <span class="n">log_M_Max</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">M_max</span><span class="p">)</span>
+    <span class="c"># Since Salpeter SMF decays, maximum likelihood occurs at M_min</span>
+    <span class="n">maxlik</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">M_min</span><span class="p">,</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">)</span>
 
-        <span class="c"># Prepare array for output masses.</span>
-        <span class="n">Masses</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="c"># Fill in array.</span>
-        <span class="k">while</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">Masses</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">):</span>
-                <span class="c"># Draw candidate from logM interval.</span>
-                <span class="n">logM</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">log_M_Min</span><span class="p">,</span><span class="n">log_M_Max</span><span class="p">)</span>
-                <span class="n">M</span>    <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">logM</span><span class="p">)</span>
-                <span class="c"># Compute likelihood of candidate from Salpeter SMF.</span>
-                <span class="n">likelihood</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">)</span>
-                <span class="c"># Accept randomly.</span>
-                <span class="n">u</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="n">maxlik</span><span class="p">)</span>
-                <span class="k">if</span> <span class="p">(</span><span class="n">u</span> <span class="o">&lt;</span> <span class="n">likelihood</span><span class="p">):</span>
-                        <span class="n">Masses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">Masses</span>
+    <span class="c"># Prepare array for output masses.</span>
+    <span class="n">Masses</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="c"># Fill in array.</span>
+    <span class="k">while</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">Masses</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">):</span>
+        <span class="c"># Draw candidate from logM interval.</span>
+        <span class="n">logM</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">log_M_Min</span><span class="p">,</span><span class="n">log_M_Max</span><span class="p">)</span>
+        <span class="n">M</span>    <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">logM</span><span class="p">)</span>
+        <span class="c"># Compute likelihood of candidate from Salpeter SMF.</span>
+        <span class="n">likelihood</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">)</span>
+        <span class="c"># Accept randomly.</span>
+        <span class="n">u</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="n">maxlik</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">u</span> <span class="o">&lt;</span> <span class="n">likelihood</span><span class="p">):</span>
+            <span class="n">Masses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Masses</span>
 </pre></div>
 </div>
 <p>Note that this implementation draws its candidates from a uniform distribution over <img class="math" src="../_images/math/ebcb14381956bbd5537198fd81f8accd9e9a4aad.png" alt="\log M"/> instead of <img class="math" src="../_images/math/5d1e4485dc90c450e8c76826516c1b2ccb8fce16.png" alt="M"/>. This is computationally much more efficient, which is due to the mathematical form of the Salpeter SMF that decays quickly with increasing mass.</p>
@@ -370,16 +383,17 @@ display:none;
 
 <span class="c"># Plot distribution.</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">LogMasses</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s">&#39;step&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">100.0</span><span class="p">)))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">LogMasses</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s">&#39;step&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+         <span class="nb">range</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">100.0</span><span class="p">)))</span>
 <span class="c"># Overplot with Salpeter SMF.</span>
 <span class="n">X</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">Y</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">101</span><span class="p">):</span>
-        <span class="n">logM</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">100.0</span><span class="p">)</span><span class="o">*</span><span class="nb">float</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">/</span><span class="mf">100.0</span>
-        <span class="n">x</span>    <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">logM</span><span class="p">)</span>
-        <span class="n">y</span>    <span class="o">=</span> <span class="mf">2.0e5</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mf">1.0</span><span class="o">-</span><span class="mf">2.35</span><span class="p">)</span>  <span class="c"># take care of normalisation later</span>
-        <span class="n">X</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">logM</span><span class="p">)</span>
-        <span class="n">Y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">logM</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">100.0</span><span class="p">)</span><span class="o">*</span><span class="nb">float</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">/</span><span class="mf">100.0</span>
+    <span class="n">x</span>    <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">logM</span><span class="p">)</span>
+    <span class="n">y</span>    <span class="o">=</span> <span class="mf">2.0e5</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mf">1.0</span><span class="o">-</span><span class="mf">2.35</span><span class="p">)</span>  <span class="c"># normalisation</span>
+    <span class="n">X</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">logM</span><span class="p">)</span>
+    <span class="n">Y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="s">&#39;-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;black&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">100.0</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">r&#39;$\log M$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>
@@ -390,6 +404,12 @@ display:none;
 </div>
 <p>The resulting distribution looks like this (in log-log space, a power-law is a straight line):</p>
 <img alt="../_images/example-Monte-Carlo-sampling-from-Salpeter.png" src="../_images/example-Monte-Carlo-sampling-from-Salpeter.png" />
+<div class="section" id="problems-of-monte-carlo-sampling">
+<h2>Problems of Monte-Carlo sampling<a class="headerlink" href="#problems-of-monte-carlo-sampling" title="Permalink to this headline">¶</a></h2>
+<p>If we were to plot <img class="math" src="../_images/math/049e688a9171630aeea67158a04c95758a3187e6.png" alt="\log\mathcal L(\{M_1,M_2,\ldots,M_N\};\alpha)"/> as a function of <img class="math" src="../_images/math/10f32377ac67d94f764f12a15ea987e88c85d3e1.png" alt="\alpha"/>, we would realise that it has a single extremely sharp peak.</p>
+<p>This is a huge problem for Monte-Carlo sampling, because the likelihood is essentially zero everywhere, except at this single sharp peak. The chance that our proposal distribution hits a value at this peak tends towards zero. Consequently, we cannot estimate <img class="math" src="../_images/math/10f32377ac67d94f764f12a15ea987e88c85d3e1.png" alt="\alpha"/> by drawing Monte-Carlo samples from <img class="math" src="../_images/math/049e688a9171630aeea67158a04c95758a3187e6.png" alt="\log\mathcal L(\{M_1,M_2,\ldots,M_N\};\alpha)"/>.</p>
+<p>In general, there is also an even more severe problem: Monte-Carlo methods such as the one we discussed before only work in one dimension. If we have more than one fit parameter, i.e., if we need to draw samples from PDFs over high-dimensional parameter spaces, these Monte-Carlo methods quickly become computationally infeasible. (See Sect. 29.3 in <a class="reference external" href="http://www.inference.phy.cam.ac.uk/mackay/itila/book.html">MacKay&#8217;s ITILA</a> for a runtime analysis.)</p>
+</div>
 </div>
 
 
